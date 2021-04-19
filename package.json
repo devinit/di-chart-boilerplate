@@ -1,7 +1,7 @@
 {
   "name": "di-chart-boilerplate",
   "version": "1.0.0",
-  "description": "Describe di-chart-boilerplate here",
+  "description": "A Starting Point for Creating DI's D3 Charts",
   "private": true,
   "scripts": {
     "build": "nwb build-web-app",
@@ -10,8 +10,6 @@
     "test": "nwb test",
     "test:coverage": "nwb test --coverage",
     "test:watch": "nwb test --server"
-  },
-  "dependencies": {
   },
   "devDependencies": {
     "nwb": "0.25.x"
