@@ -16,4 +16,7 @@ module.exports = {
     node: true,
     jasmine: true,
   },
+  globals: {
+    d3: 'readonly',
+  },
 };
