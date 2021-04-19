@@ -1,3 +1,4 @@
-let app = document.querySelector('#app')
+let chartNode = document.querySelector('#chart')
 
-app.innerHTML = '<h2 class="section__heading">Welcome to di-chart-boilerplate</h2>'
+const dichart = new window.DICharts.Chart(chartNode.parentElement);
+dichart.showLoading();

@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>DI Chart Boilerplate</title>
     <meta name="description" content="">
-    <link href="https://devinit.org/assets/css/screen.min.600391bdde7f.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.min.css" >
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" rel="stylesheet">
     <link href="https://devinit.org/assets/css/di_website.min.2a5154f5c000.css" rel="stylesheet">
   </head>
@@ -15,7 +15,18 @@
       <main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
         <section class="section">
           <div class="row row--narrow">
-            <div id="app"></div>
+            <div class="chart-container chart-container--full">
+              <div class="charts__chart">
+
+                <!-- CODE TO COPY STARTS HERE {% endcomment %} -->
+                <div id="chart"></div>
+                <!-- CODE TO COPY ENDS HERE {% endcomment %} -->
+
+                <div class="chart-loading">
+                  <div class="chart-loading__block"><div></div><div></div><div></div><div></div></div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
