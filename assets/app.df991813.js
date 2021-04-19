@@ -1,2 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(n,o,t){n.exports=t(1)},function(n,o,t){"use strict";t.r(o);t(2);var e=document.querySelector("#chart");new window.DICharts.Chart(e.parentElement).showLoading()},function(n,o,t){}],[[0,1]]]);
-//# sourceMappingURL=app.df991813.js.map
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(n,o,t){n.exports=t(1)},function(n,o,t){"use strict";t.r(o);t(2);window.onload=function(){var n=document.querySelector("#chart");new window.DICharts.Chart(n.parentElement).showLoading()}},function(n,o,t){}],[[0,1]]]);
