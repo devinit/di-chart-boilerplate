@@ -9,9 +9,13 @@
     "start": "nwb serve-web-app --reload",
     "test": "nwb test",
     "test:coverage": "nwb test --coverage",
-    "test:watch": "nwb test --server"
+    "test:watch": "nwb test --server",
+    "lint": "eslint 'src/**/*.js' --quiet"
   },
   "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "nwb": "0.25.x"
   },
   "author": "",

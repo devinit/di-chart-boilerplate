@@ -11,12 +11,12 @@ module.exports = {
           // Configuration options for css-loader
           css: {
             modules: false,
-          }
+          },
         },
-      ]
+      ],
     },
     extractCSS: {
-      filename: process.env.NODE_ENV === 'production' ? `[name].[contenthash:8].css` : '[name].css'
-    }
-  }
-}
+      filename: process.env.NODE_ENV === 'production' ? '[name].[contenthash:8].css' : '[name].css',
+    },
+  },
+};
