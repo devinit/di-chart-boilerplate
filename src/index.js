@@ -7,14 +7,22 @@ import './styles/styles.css';
  * Run your code after the page has loaded
  */
 window.addEventListener('load', () => {
-  const chartNode = window.document.querySelector('#chart'); // TODO: perhaps use a CSS
-  const dichart = new window.DICharts.Chart(chartNode.parentElement);
-  dichart.showLoading();
-  // dichart.hideLoading();
+  window.DICharts.handler.addChart({
+    className: 'dicharts--boilerplate-chart',
+    d3: {
+      onAdd: (chartNodes) => {
+        Array.prototype.forEach.call(chartNodes, (chartNode) => {
+          const dichart = new window.DICharts.Chart(chartNode.parentElement);
+          dichart.showLoading();
+          // dichart.hideLoading();
 
-  /**
-   * d3 - prefix all browsers global with window i.e window.d3 - d3 won't work without it
-   *
-   * const chart = window.d3.select(chartNode);
-   */
+          /**
+           * d3 - prefix all browsers global with window i.e window.d3 - d3 won't work without it
+           *
+           * const chart = window.d3.select(chartNode);
+           */
+        });
+      },
+    },
+  });
 });
