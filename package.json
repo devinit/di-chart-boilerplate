@@ -34,5 +34,8 @@
   },
   "lint-staged": {
     "src/**/*.js": "eslint --cache --fix"
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2"
   }
 }
