@@ -13,6 +13,7 @@ const renderChart = (chartNode, data) => {
   // get the data
   const chart = window.echarts.init(chartNode);
   const option = {
+    legend: { show: false },
     yAxis: {
       type: 'category',
       data: data.map((d) => d.Country),
