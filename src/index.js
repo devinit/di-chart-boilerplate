@@ -1,5 +1,6 @@
 import deepMerge from 'deepmerge';
 import './styles/styles.css';
+import fetchCSVData from './utils/data';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 const defaultOptions = {
@@ -55,9 +56,6 @@ const defaultOptions = {
 };
 
 // Your Code Goes Here i.e. functions
-const fetchData = (url) => new Promise((resolve) => {
-  window.d3.csv(url, (data) => resolve(data));
-});
 
 const renderChart = (chartNode, data) => {
   // append the svg object to the body of the page
@@ -102,7 +100,7 @@ window.addEventListener('load', () => {
            * const chart = window.echarts.init(chartNode);
            */
           const csv = 'https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv';
-          fetchData(csv).then((data) => {
+          fetchCSVData(csv).then((data) => {
             renderChart(chartNode.parentElement, data);
             dichart.hideLoading();
           });
