@@ -50,7 +50,7 @@ window.addEventListener('load', () => {
            */
           const csv = 'https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv';
           fetchCSVData(csv).then((data) => {
-            renderChart(chartNode.parentElement, data);
+            renderChart(chartNode, data);
             dichart.hideLoading();
           });
         });
