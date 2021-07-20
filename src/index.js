@@ -60,6 +60,7 @@ window.addEventListener('load', () => {
               options: data.map((d) => d.Country),
               allItemsLabel: 'All Countries',
               className: 'country-filter',
+              label: 'Select Country',
             });
             const chart = renderChart(chartNode, data);
 
