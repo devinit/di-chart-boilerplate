@@ -1,8 +1,9 @@
 import deepMerge from 'deepmerge';
+import defaultOptions from './charts/echarts';
 import './styles/styles.css';
 import fetchCSVData from './utils/data';
-import { addFilterWrapper, addFilter } from './widgets/filters';
-import defaultOptions from './charts/echarts';
+import { addFilter, addFilterWrapper } from './widgets/filters';
+import PillWidget from './widgets/pills';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
@@ -90,6 +91,16 @@ window.addEventListener('load', () => {
                 ],
               });
             });
+
+            const pillWidget = new PillWidget({
+              wrapper: filterWrapper,
+              pills: ['America'],
+              onAdd: (pill) => console.log(`${pill} added`),
+              onRemove: (pill) => console.log(`${pill} removed`),
+            });
+            if (pillWidget.pills.length) {
+              chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
+            }
             dichart.hideLoading();
           });
         });
