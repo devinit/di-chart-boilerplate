@@ -49,6 +49,9 @@ const defaultOptions = {
       show: false,
     },
   },
+  grid: {
+    top: 10,
+  },
 };
 
 export default defaultOptions;
