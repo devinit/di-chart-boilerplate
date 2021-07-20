@@ -1,7 +1,7 @@
 import deepMerge from 'deepmerge';
 import './styles/styles.css';
 import fetchCSVData from './utils/data';
-import { addFilterWrapper, addFilter } from './utils/filters';
+import { addFilterWrapper, addFilter } from './widgets/filters';
 import defaultOptions from './charts/echarts';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
