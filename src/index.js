@@ -1,6 +1,7 @@
 import deepMerge from 'deepmerge';
 import './styles/styles.css';
 import fetchCSVData from './utils/data';
+import { addFilterWrapper, addFilter } from './utils/filters';
 import defaultOptions from './charts/echarts';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
@@ -20,6 +21,7 @@ const renderChart = (chartNode, data) => {
       type: 'value',
     },
     series: [{
+      name: 'Countries',
       data: data.map((d) => Number(d.Value)),
       type: 'bar',
       showBackground: true,
@@ -29,6 +31,8 @@ const renderChart = (chartNode, data) => {
     }],
   };
   chart.setOption(deepMerge(defaultOptions, option));
+
+  return chart;
 };
 /**
  * Run your code after the page has loaded
@@ -50,7 +54,40 @@ window.addEventListener('load', () => {
            */
           const csv = 'https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv';
           fetchCSVData(csv).then((data) => {
-            renderChart(chartNode, data);
+            const filterWrapper = addFilterWrapper(chartNode);
+            const countryFilter = addFilter({
+              wrapper: filterWrapper,
+              options: data.map((d) => d.Country),
+              allItemsLabel: 'All Countries',
+              className: 'country-filter',
+            });
+            const chart = renderChart(chartNode, data);
+
+            countryFilter.addEventListener('change', (event) => {
+              const { value } = event.currentTarget;
+              chart.setOption({
+                yAxis: {
+                  data:
+                    value !== '*'
+                      ? data
+                        .filter((d) => d.Country === value)
+                        .map((d) => d.Country)
+                      : data.map((d) => d.Country),
+                },
+                series: [
+                  {
+                    // find series by name
+                    name: 'Countries',
+                    data:
+                      value !== '*'
+                        ? data
+                          .filter((d) => d.Country === value)
+                          .map((d) => d.Value)
+                        : data.map((d) => d.Value),
+                  },
+                ],
+              });
+            });
             dichart.hideLoading();
           });
         });
