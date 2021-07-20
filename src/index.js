@@ -1,59 +1,8 @@
 import deepMerge from 'deepmerge';
 import './styles/styles.css';
 import fetchCSVData from './utils/data';
+import defaultOptions from './charts/echarts';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
-
-const defaultOptions = {
-  legend: {
-    top: 10,
-    textStyle: {
-      fontFamily: 'Geomanist Regular,sans-serif',
-    },
-  },
-  tooltip: {
-    trigger: 'axis',
-    textStyle: {
-      fontFamily: 'Geomanist Regular,sans-serif',
-    },
-  },
-  toolbox: {
-    showTitle: false,
-    feature: {
-      saveAsImage: {
-        title: 'Save as image',
-        pixelRatio: 2,
-      },
-    },
-    right: 20,
-    tooltip: {
-      show: true,
-      textStyle: {
-        fontFamily: 'Geomanist Regular,sans-serif',
-        formatter(param) {
-          return `<div>${param.title}</div>`; // user-defined DOM structure
-        },
-      },
-    },
-  },
-  xAxis: {
-    axisLabel: {
-      fontFamily: 'Geomanist Regular,sans-serif',
-      fontSize: 13,
-    },
-    splitLine: {
-      show: false,
-    },
-  },
-  yAxis: {
-    axisLabel: {
-      fontFamily: 'Geomanist Regular,sans-serif',
-      fontSize: 13,
-    },
-    splitLine: {
-      show: false,
-    },
-  },
-};
 
 // Your Code Goes Here i.e. functions
 
