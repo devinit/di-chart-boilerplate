@@ -67,15 +67,25 @@ window.addEventListener('load', () => {
             const chart = renderChart(chartNode, data);
 
             // initialise pill widget for the multi-select option
-            const pillWidget = new PillWidget({
-              wrapper: filterWrapper,
-              // pills: ['America'],
-              onAdd: (pill) => console.log(`${pill} added`),
-              onRemove: (pill) => console.log(`${pill} removed`),
-            });
+            const pillWidget = new PillWidget({ wrapper: filterWrapper });
             if (pillWidget.pills.length) {
               chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
             }
+
+            const updateChart = (updatedData) => {
+              chart.setOption({
+                yAxis: {
+                  data: updatedData.map((d) => d.Country),
+                },
+                series: [
+                  {
+                    // find series by name
+                    name: 'Countries',
+                    data: updatedData.map((d) => d.Value),
+                  },
+                ],
+              });
+            };
 
             // add event listeners
             countryFilter.addEventListener('change', (event) => {
@@ -90,27 +100,15 @@ window.addEventListener('load', () => {
                 pillWidget.removeAll();
               }
               // filter data to return only the selected items
-              const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Country));
+              const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Country)) : data;
               // update chart
-              chart.setOption({
-                yAxis: {
-                  data:
-                    value !== '*'
-                      ? filteredData.map((d) => d.Country)
-                      : data.map((d) => d.Country),
-                },
-                series: [
-                  {
-                    // find series by name
-                    name: 'Countries',
-                    data:
-                      value !== '*'
-                        ? filteredData.map((d) => d.Value)
-                        : data.map((d) => d.Value),
-                  },
-                ],
-              });
+              updateChart(filteredData);
             });
+
+            pillWidget.onRemove(() => {
+              updateChart(data.filter((d) => pillWidget.pillNames.includes(d.Country)));
+            });
+
             dichart.hideLoading();
           });
         });
