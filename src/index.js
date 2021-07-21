@@ -41,10 +41,6 @@ const renderChart = (chartNode, data, { donors, years, channels }) => {
       emphasis: {
         focus: 'series',
       },
-      showBackground: true,
-      backgroundStyle: {
-        color: 'rgba(180, 180, 180, 0.2)',
-      },
     })),
   };
   chart.setOption(deepMerge(defaultOptions, option));
@@ -83,6 +79,12 @@ window.addEventListener('load', () => {
               allItemsLabel: 'All Donors',
               className: 'country-filter',
               label: 'Select Donor',
+            });
+            const channelFilter = addFilter({
+              wrapper: filterWrapper,
+              options: channels,
+              className: 'channel-filter',
+              label: 'Channel',
             });
             const chart = renderChart(chartNode, cleanData(data), { donors, years, channels });
 

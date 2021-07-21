@@ -18,7 +18,9 @@ export const addFilter = ({
 }) => {
   const selectElement = document.createElement('select');
   selectElement.classList.add(...['data-selector', 'js-plotly-chart-data-selector', className]);
-  createOption(selectElement, { label: allItemsLabel, value: '*' });
+  if (allItemsLabel) {
+    createOption(selectElement, { label: allItemsLabel, value: '*' });
+  }
   options.forEach((option) => createOption(selectElement, option));
   selectElement.classList.add('data-selector--active');
 
