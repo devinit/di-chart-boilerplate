@@ -25,36 +25,41 @@ const createWidget = () => {
 
 function PillWidget(options) {
   const widget = {
-    pills: options.pills || [],
+    pillNames: options.pills || [],
     onAddListener: options.onAdd,
     onRemoveListener: options.onRemove,
     widget: null,
+    pills: [],
     init() {
       this.widget = createWidget();
-      if (this.pills && this.pills.length) {
-        this.pills.forEach((pill) => {
-          const button = createPill(this.widget, pill)[1];
-          // TODO: save button in pillButtons array
-          button.addEventListener('click', (event) => {
-            const parent = event.currentTarget.parentElement;
-            if (parent) {
-              this.remove(parent.innerText);
-            }
-          });
-        });
+      if (this.pillNames && this.pillNames.length) {
+        this.pillNames.forEach((pillName) => this.add(pillName, true));
       }
     },
-    add(pill) {
+    add(pillName, allowDuplicate = false) {
+      if (!allowDuplicate && this.pillNames.includes(pillName)) return;
+      this.pillNames.push(pillName);
+      // create pill button
+      const [pill, button] = createPill(this.widget, pillName);
       this.pills.push(pill);
+      button.addEventListener('click', (event) => {
+        const parent = event.currentTarget.parentElement;
+        if (parent) {
+          this.remove(parent.innerText);
+        }
+      });
       if (this.onAddListener) {
-        this.onAddListener(pill);
+        this.onAddListener(pillName);
       }
     },
-    remove(pill) {
-      // TODO: actually remove pill
-      // this.pills.pop(pill);
+    remove(pillName) {
+      const index = this.pillNames.indexOf(pillName);
+      this.pillNames = this.pillNames.filter((p) => p !== pillName);
+      const pill = this.pills[index];
+      this.pills = this.pills.filter((p, _index) => _index !== index);
+      pill.remove();
       if (this.onRemoveListener) {
-        this.onRemoveListener(pill);
+        this.onRemoveListener(pillName);
       }
     },
     onAdd(onAddListener) {
@@ -62,6 +67,11 @@ function PillWidget(options) {
     },
     onRemove(onRemoveListener) {
       this.onRemoveListener = onRemoveListener;
+    },
+    removeAll() {
+      this.pillNames = [];
+      this.pills.forEach((button) => button.remove());
+      this.pill = [];
     },
   };
   widget.init();
