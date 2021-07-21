@@ -37,7 +37,7 @@ const renderChart = (chartNode, data, { donors, years, channels }) => {
       name: donor,
       data: processData(data, years, donor, channels[0]).map((d) => Number(d.value)),
       type: 'bar',
-      stack: donors[0],
+      stack: channels[0],
       emphasis: {
         focus: 'series',
       },
@@ -130,6 +130,27 @@ window.addEventListener('load', () => {
             // pillWidget.onRemove(() => {
             //   updateChart(data.filter((d) => pillWidget.pillNames.includes(d.Country)));
             // });
+
+            channelFilter.addEventListener('change', (event) => {
+              const { value: channel } = event.currentTarget;
+              // update chart
+              chart.setOption({
+                series: donors
+                  .filter((donor) => donor !== 'EU Institutions')
+                  .map((donor) => ({
+                    name: donor,
+                    data: processData(
+                      cleanData(data),
+                      years,
+                      donor,
+                      channel,
+                    ).map((d) => Number(d.value)),
+                    type: 'bar',
+                    stack: channel,
+                    emphasis: { focus: 'series' },
+                  })),
+              }, { replaceMerge: ['series'] });
+            });
 
             dichart.hideLoading();
           });
