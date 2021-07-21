@@ -87,60 +87,22 @@ window.addEventListener('load', () => {
               label: 'Channel',
             });
             const chart = renderChart(chartNode, cleanData(data), { donors, years, channels });
+            let activeChannel = channels[0];
+            const selectedDonors = donors.filter((donor) => donor !== 'EU Institutions');
 
             // initialise pill widget for the multi-select option
-            // const pillWidget = new PillWidget({ wrapper: filterWrapper });
-            // if (pillWidget.pills.length) {
-            //   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
-            // }
+            const pillWidget = new PillWidget({ wrapper: filterWrapper });
+            if (pillWidget.pills.length) {
+              chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
+            }
 
-            // const updateChart = (updatedData) => {
-            //   chart.setOption({
-            //     yAxis: {
-            //       data: updatedData.map((d) => d.Country),
-            //     },
-            //     series: [
-            //       {
-            //         // find series by name
-            //         name: 'Donor',
-            //         data: updatedData.map((d) => d.Value),
-            //       },
-            //     ],
-            //   });
-            // };
-
-            // add event listeners
-            // countryFilter.addEventListener('change', (event) => {
-            //   const { value } = event.currentTarget;
-            //   if (value !== '*') {
-            //     // if it's the first pill, append pill widget
-            //     if (!pillWidget.pillNames.length) {
-            //       chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
-            //     }
-            //     pillWidget.add(value);
-            //   } else {
-            //     pillWidget.removeAll();
-            //   }
-            //   // filter data to return only the selected items
-            //   const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Country)) : data;
-            //   // update chart
-            //   updateChart(filteredData);
-            // });
-
-            // pillWidget.onRemove(() => {
-            //   updateChart(data.filter((d) => pillWidget.pillNames.includes(d.Country)));
-            // });
-
-            channelFilter.addEventListener('change', (event) => {
-              const { value: channel } = event.currentTarget;
-              // update chart
+            const updateChart = (updatedData, activeDonors, channel) => {
               chart.setOption({
-                series: donors
-                  .filter((donor) => donor !== 'EU Institutions')
+                series: activeDonors
                   .map((donor) => ({
                     name: donor,
                     data: processData(
-                      cleanData(data),
+                      cleanData(updatedData),
                       years,
                       donor,
                       channel,
@@ -150,6 +112,34 @@ window.addEventListener('load', () => {
                     emphasis: { focus: 'series' },
                   })),
               }, { replaceMerge: ['series'] });
+            };
+
+            // add event listeners
+            countryFilter.addEventListener('change', (event) => {
+              const { value } = event.currentTarget;
+              if (value !== '*') {
+                // if it's the first pill, append pill widget
+                if (!pillWidget.pillNames.length) {
+                  chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
+                }
+                pillWidget.add(value);
+              } else {
+                pillWidget.removeAll();
+              }
+              // filter data to return only the selected items
+              const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
+              // update chart
+              updateChart(filteredData, pillWidget.pillNames, activeChannel);
+            });
+
+            pillWidget.onRemove(() => {
+              updateChart(data.filter((d) => pillWidget.pillNames.includes(d.Country)));
+            });
+
+            channelFilter.addEventListener('change', (event) => {
+              const { value: channel } = event.currentTarget;
+              activeChannel = channel;
+              updateChart(data, selectedDonors, activeChannel);
             });
 
             dichart.hideLoading();
