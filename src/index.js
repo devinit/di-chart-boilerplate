@@ -88,7 +88,6 @@ window.addEventListener('load', () => {
             });
             const chart = renderChart(chartNode, cleanData(data), { donors, years, channels });
             let activeChannel = channels[0];
-            const selectedDonors = donors.filter((donor) => donor !== 'EU Institutions');
 
             // initialise pill widget for the multi-select option
             const pillWidget = new PillWidget({ wrapper: filterWrapper });
@@ -97,12 +96,13 @@ window.addEventListener('load', () => {
             }
 
             const updateChart = (updatedData, activeDonors, channel) => {
+              const cleanedData = cleanData(updatedData);
               chart.setOption({
                 series: activeDonors
                   .map((donor) => ({
                     name: donor,
                     data: processData(
-                      cleanData(updatedData),
+                      cleanedData,
                       years,
                       donor,
                       channel,
@@ -133,13 +133,23 @@ window.addEventListener('load', () => {
             });
 
             pillWidget.onRemove(() => {
-              updateChart(data.filter((d) => pillWidget.pillNames.includes(d.Country)));
+              updateChart(
+                pillWidget.pillNames.length
+                  ? data.filter((d) => pillWidget.pillNames.includes(d.Donor))
+                  : data,
+                pillWidget.pillNames.length ? pillWidget.pillNames : donors,
+                activeChannel,
+              );
             });
 
             channelFilter.addEventListener('change', (event) => {
               const { value: channel } = event.currentTarget;
               activeChannel = channel;
-              updateChart(data, selectedDonors, activeChannel);
+              updateChart(
+                data,
+                pillWidget.pillNames.length ? pillWidget.pillNames : donors,
+                activeChannel,
+              );
             });
 
             dichart.hideLoading();
