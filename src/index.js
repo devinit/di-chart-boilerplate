@@ -66,15 +66,37 @@ window.addEventListener('load', () => {
             });
             const chart = renderChart(chartNode, data);
 
+            // initialise pill widget for the multi-select option
+            const pillWidget = new PillWidget({
+              wrapper: filterWrapper,
+              // pills: ['America'],
+              onAdd: (pill) => console.log(`${pill} added`),
+              onRemove: (pill) => console.log(`${pill} removed`),
+            });
+            if (pillWidget.pills.length) {
+              chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
+            }
+
+            // add event listeners
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
+              if (value !== '*') {
+                // if it's the first pill, append pill widget
+                if (!pillWidget.pillNames.length) {
+                  chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
+                }
+                pillWidget.add(value);
+              } else {
+                pillWidget.removeAll();
+              }
+              // filter data to return only the selected items
+              const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Country));
+              // update chart
               chart.setOption({
                 yAxis: {
                   data:
                     value !== '*'
-                      ? data
-                        .filter((d) => d.Country === value)
-                        .map((d) => d.Country)
+                      ? filteredData.map((d) => d.Country)
                       : data.map((d) => d.Country),
                 },
                 series: [
@@ -83,24 +105,12 @@ window.addEventListener('load', () => {
                     name: 'Countries',
                     data:
                       value !== '*'
-                        ? data
-                          .filter((d) => d.Country === value)
-                          .map((d) => d.Value)
+                        ? filteredData.map((d) => d.Value)
                         : data.map((d) => d.Value),
                   },
                 ],
               });
             });
-
-            const pillWidget = new PillWidget({
-              wrapper: filterWrapper,
-              pills: ['America'],
-              onAdd: (pill) => console.log(`${pill} added`),
-              onRemove: (pill) => console.log(`${pill} removed`),
-            });
-            if (pillWidget.pills.length) {
-              chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
-            }
             dichart.hideLoading();
           });
         });
