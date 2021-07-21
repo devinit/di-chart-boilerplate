@@ -8,40 +8,44 @@ import PillWidget from './widgets/pills';
 
 // Your Code Goes Here i.e. functions
 
-const processData = (data) => data;
+const cleanData = (data) => data.map((d) => {
+  const clean = { ...d };
+  clean.value = d['USD deflated'].trim() ? Number(d['USD deflated'].replace(',', '').replace(' ', '').trim()) : null;
 
-const renderChart = (chartNode, data) => {
-  // append the svg object to the body of the page
+  return clean;
+});
 
-  // get the data
+const processData = (data, years, donor, channel) => {
+  const filteredData = data.filter((d) => d.Donor.trim() === donor && d['Delivery Channel'] === channel);
+  const sortedData = years.map((year) => filteredData.find((d) => d.Year === year));
+
+  return sortedData;
+};
+
+const renderChart = (chartNode, data, { donors, years, channels }) => {
   const chart = window.echarts.init(chartNode);
   const option = {
     legend: { show: false },
-    yAxis: {
-      type: 'category',
-      data: processData(data).map((d) => d.Country),
-    },
     xAxis: {
+      type: 'category',
+      data: years,
+    },
+    yAxis: {
       type: 'value',
     },
-    series: [{
-      name: 'Countries',
-      data: data.map((d) => Number(d.Value)),
+    series: donors.filter((donor) => donor !== 'EU Institutions').map((donor) => ({
+      name: donor,
+      data: processData(data, years, donor, channels[0]).map((d) => Number(d.value)),
       type: 'bar',
+      stack: donors[0],
+      emphasis: {
+        focus: 'series',
+      },
       showBackground: true,
       backgroundStyle: {
         color: 'rgba(180, 180, 180, 0.2)',
       },
-    },
-    {
-      name: 'Countries',
-      data: data.map((d) => Number(d.Value)),
-      type: 'bar',
-      showBackground: true,
-      backgroundStyle: {
-        color: 'rgba(180, 180, 180, 0.2)',
-      },
-    }],
+    })),
   };
   chart.setOption(deepMerge(defaultOptions, option));
 
@@ -66,22 +70,13 @@ window.addEventListener('load', () => {
            * const chart = window.echarts.init(chartNode);
            */
           const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/funding-channels/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
-          // const csv = 'https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv';
           fetchCSVData(csv).then((data) => {
-            // const data = [
-            //   { Country: 'United States', Value: 12394, Continent: 'North America' },
-            //   { Country: 'Russia', Value: 6148, Continent: 'Europe' },
-            //   { Country: 'Germany (FRG)', Value: 1653, Continent: 'Europe' },
-            //   { Country: 'France', Value: 2162, Continent: 'Europe' },
-            //   { Country: 'United Kingdom', Value: 1214, Continent: 'Europe' },
-            //   { Country: 'China', Value: 1131, Continent: 'Asia' },
-            //   { Country: 'Spain', Value: 814, Continent: 'Europe' },
-            //   { Country: 'Netherlands', Value: 1167, Continent: 'Europe' },
-            //   { Country: 'Italy', Value: 660, Continent: 'Europe' },
-            //   { Country: 'Israel', Value: 1263, Continent: 'Europe' },
-            // ];
             const filterWrapper = addFilterWrapper(chartNode);
+            // extract unique values
             const donors = [...new Set(data.map((d) => d.Donor))];
+            const years = [...new Set(data.map((d) => d.Year))];
+            const channels = [...new Set(data.map((d) => d['Delivery Channel']))];
+            // create UI elements
             const countryFilter = addFilter({
               wrapper: filterWrapper,
               options: donors,
@@ -89,7 +84,7 @@ window.addEventListener('load', () => {
               className: 'country-filter',
               label: 'Select Donor',
             });
-            // const chart = renderChart(chartNode, data);
+            const chart = renderChart(chartNode, cleanData(data), { donors, years, channels });
 
             // initialise pill widget for the multi-select option
             // const pillWidget = new PillWidget({ wrapper: filterWrapper });
@@ -134,7 +129,7 @@ window.addEventListener('load', () => {
             //   updateChart(data.filter((d) => pillWidget.pillNames.includes(d.Country)));
             // });
 
-            // dichart.hideLoading();
+            dichart.hideLoading();
           });
         });
       },
