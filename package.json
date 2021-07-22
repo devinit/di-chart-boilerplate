@@ -33,6 +33,7 @@
     "src/**/*.js": "eslint --cache --fix"
   },
   "dependencies": {
+    "core-js": "^3.15.2",
     "deepmerge": "^4.2.2"
   }
 }
