@@ -136,6 +136,23 @@ window.addEventListener('load', () => {
               }, { replaceMerge: ['series'] });
             };
 
+            const onAdd = (value) => {
+              // filter data to return only the selected items
+              if (activeChannel === '*') {
+                const activeDonor = value !== '*' ? value : donors[0];
+                const filteredData = data.filter((d) => d.Donor === activeDonor);
+                updateChartForChannelSeries(filteredData, activeDonor);
+                if (value === '*') {
+                  countryFilter.value = activeDonor;
+                }
+
+                return;
+              }
+              const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
+              const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
+              updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
+            };
+
             /**
              * Event Listeners/Handlers
              * */
@@ -148,24 +165,22 @@ window.addEventListener('load', () => {
                 }
                 if (activeChannel === '*') {
                   pillWidget.removeAll();
+                  onAdd(value);
+
+                  return;
                 }
                 pillWidget.add(value);
               } else {
+                if (activeChannel === '*') {
+                  const [firstChannel] = channels;
+                  activeChannel = firstChannel;
+                  channelFilter.value = activeChannel;
+                }
                 pillWidget.removeAll();
               }
             });
 
-            pillWidget.onAdd((value) => {
-              // filter data to return only the selected items
-              const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
-              if (activeChannel === '*') {
-                updateChartForChannelSeries(filteredData, value);
-
-                return;
-              }
-              const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
-              updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
-            });
+            pillWidget.onAdd(onAdd);
 
             pillWidget.onRemove(() => {
               const hasPills = !!pillWidget.pillNames.length;
