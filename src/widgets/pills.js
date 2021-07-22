@@ -85,13 +85,16 @@ function PillWidget(options) {
     removeAll() {
       this.pillNames = [];
       this.pills.forEach((button) => button.remove());
-      this.pill = [];
+      this.pills = [];
       if (this.onRemoveListener) {
         this.onRemoveListener();
       }
     },
-    enabled(isEnabled = true) {
-      enabled = isEnabled;
+    enable() {
+      enabled = true;
+    },
+    disable() {
+      enabled = false;
     },
     isEnabled() {
       return enabled;

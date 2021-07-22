@@ -99,9 +99,10 @@ window.addEventListener('load', () => {
               chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
             }
 
-            const updateChart = (updatedData, activeDonors, channel) => {
+            const updateChartForDonorSeries = (updatedData, activeDonors, channel) => {
               const cleanedData = cleanData(updatedData);
               chart.setOption({
+                legend: { show: false },
                 series: activeDonors
                   .map((donor) => ({
                     name: donor,
@@ -118,6 +119,22 @@ window.addEventListener('load', () => {
               }, { replaceMerge: ['series'] });
             };
 
+            const updateChartForChannelSeries = (updatedData, donor) => {
+              const cleanedData = cleanData(updatedData);
+              chart.setOption({
+                legend: { show: true },
+                series: channels.map((channel) => ({
+                  name: channel,
+                  data: processData(cleanedData, years, donor, channel).map(
+                    (d) => Number(d.value),
+                  ),
+                  type: 'bar',
+                  stack: donor,
+                  emphasis: { focus: 'series' },
+                })),
+              }, { replaceMerge: ['series'] });
+            };
+
             /**
              * Event Listeners/Handlers
              * */
@@ -128,6 +145,9 @@ window.addEventListener('load', () => {
                 if (!pillWidget.pillNames.length) {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
                 }
+                if (activeChannel === '*') {
+                  pillWidget.removeAll();
+                }
                 pillWidget.add(value);
               } else {
                 pillWidget.removeAll();
@@ -137,8 +157,13 @@ window.addEventListener('load', () => {
             pillWidget.onAdd((value) => {
               // filter data to return only the selected items
               const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
+              if (activeChannel === '*') {
+                updateChartForChannelSeries(filteredData, value);
+
+                return;
+              }
               const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
-              updateChart(filteredData, selectedDonors, activeChannel);
+              updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
             });
 
             pillWidget.onRemove(() => {
@@ -146,15 +171,30 @@ window.addEventListener('load', () => {
               const filteredData = hasPills
                 ? data.filter((d) => pillWidget.pillNames.includes(d.Donor))
                 : data;
+              if (activeChannel === '*') {
+                updateChartForChannelSeries(filteredData, pillWidget.pillNames[0] || donors[0]);
+
+                return;
+              }
               const selectedDonors = hasPills ? pillWidget.pillNames : donors;
-              updateChart(filteredData, selectedDonors, activeChannel);
+              updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
             });
 
             channelFilter.addEventListener('change', (event) => {
               const { value: channel } = event.currentTarget;
               activeChannel = channel;
+              if (channel === '*') {
+                pillWidget.removeAll();
+                pillWidget.disable();
+                const [firstDonor] = donors;
+                updateChartForChannelSeries(data, firstDonor);
+                countryFilter.value = firstDonor;
+
+                return;
+              }
+              pillWidget.enable();
               const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
-              updateChart(data, selectedDonors, activeChannel);
+              updateChartForDonorSeries(data, selectedDonors, activeChannel);
             });
 
             dichart.hideLoading();
