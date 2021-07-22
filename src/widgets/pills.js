@@ -32,6 +32,7 @@ const addBorderColours = (elements, colours) => {
 };
 
 function PillWidget(options) {
+  let enabled = true;
   const widget = {
     pillNames: options.pills || [],
     onAddListener: options.onAdd,
@@ -46,7 +47,7 @@ function PillWidget(options) {
       }
     },
     add(pillName, extra = {}) {
-      if (!extra.allowDuplicate && this.pillNames.includes(pillName)) return;
+      if (!enabled || (!extra.allowDuplicate && this.pillNames.includes(pillName))) return;
       this.pillNames.push(pillName);
       // create pill button
       const [pill, button] = createPill(this.widget, pillName);
@@ -63,6 +64,7 @@ function PillWidget(options) {
       addBorderColours(this.pills, this.colours);
     },
     remove(pillName) {
+      if (!enabled) return;
       const index = this.pillNames.indexOf(pillName);
       this.pillNames = this.pillNames.filter((p) => p !== pillName);
       const pill = this.pills[index];
@@ -83,6 +85,12 @@ function PillWidget(options) {
       this.pillNames = [];
       this.pills.forEach((button) => button.remove());
       this.pill = [];
+    },
+    enabled(isEnabled = true) {
+      enabled = isEnabled;
+    },
+    isEnabled() {
+      return enabled;
     },
   };
   widget.init();
