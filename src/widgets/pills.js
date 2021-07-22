@@ -22,6 +22,14 @@ const createWidget = () => {
 
   return widgetWrapper;
 };
+const addBorderColours = (elements, colours) => {
+  Array.prototype.forEach.call(elements, (element, index) => {
+    if (index < colours.length) {
+      element.style.borderColor = colours[index]; // eslint-disable-line
+    }
+    element.style.borderWidth = '2px'; // eslint-disable-line
+  });
+};
 
 function PillWidget(options) {
   const widget = {
@@ -30,14 +38,15 @@ function PillWidget(options) {
     onRemoveListener: options.onRemove,
     widget: null,
     pills: [],
+    colours: options.colours || [],
     init() {
       this.widget = createWidget();
       if (this.pillNames && this.pillNames.length) {
-        this.pillNames.forEach((pillName) => this.add(pillName, true));
+        this.pillNames.forEach((pillName) => this.add(pillName, { allowDuplicate: true }));
       }
     },
-    add(pillName, allowDuplicate = false) {
-      if (!allowDuplicate && this.pillNames.includes(pillName)) return;
+    add(pillName, extra = {}) {
+      if (!extra.allowDuplicate && this.pillNames.includes(pillName)) return;
       this.pillNames.push(pillName);
       // create pill button
       const [pill, button] = createPill(this.widget, pillName);
@@ -51,6 +60,7 @@ function PillWidget(options) {
       if (this.onAddListener) {
         this.onAddListener(pillName);
       }
+      addBorderColours(this.pills, this.colours);
     },
     remove(pillName) {
       const index = this.pillNames.indexOf(pillName);
@@ -61,6 +71,7 @@ function PillWidget(options) {
       if (this.onRemoveListener) {
         this.onRemoveListener(pillName);
       }
+      addBorderColours(this.pills, this.colours);
     },
     onAdd(onAddListener) {
       this.onAddListener = onAddListener;

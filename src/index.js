@@ -90,7 +90,10 @@ window.addEventListener('load', () => {
             let activeChannel = channels[0];
 
             // initialise pill widget for the multi-select option
-            const pillWidget = new PillWidget({ wrapper: filterWrapper });
+            const pillWidget = new PillWidget({
+              wrapper: filterWrapper,
+              colours: chart.getOption().color,
+            });
             if (pillWidget.pills.length) {
               chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
             }
