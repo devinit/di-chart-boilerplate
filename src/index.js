@@ -132,6 +132,9 @@ window.addEventListener('load', () => {
               } else {
                 pillWidget.removeAll();
               }
+            });
+
+            pillWidget.onAdd((value) => {
               // filter data to return only the selected items
               const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
               const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;

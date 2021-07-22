@@ -86,6 +86,9 @@ function PillWidget(options) {
       this.pillNames = [];
       this.pills.forEach((button) => button.remove());
       this.pill = [];
+      if (this.onRemoveListener) {
+        this.onRemoveListener();
+      }
     },
     enabled(isEnabled = true) {
       enabled = isEnabled;
