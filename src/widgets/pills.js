@@ -47,12 +47,13 @@ function PillWidget(options) {
       }
     },
     add(pillName, extra = {}) {
-      if (!enabled || (!extra.allowDuplicate && this.pillNames.includes(pillName))) return;
+      if (!this.isEnabled() || (!extra.allowDuplicate && this.pillNames.includes(pillName))) return;
       this.pillNames.push(pillName);
       // create pill button
       const [pill, button] = createPill(this.widget, pillName);
       this.pills.push(pill);
       button.addEventListener('click', (event) => {
+        if (!this.isEnabled()) return;
         const parent = event.currentTarget.parentElement;
         if (parent) {
           this.remove(parent.innerText);
