@@ -6,22 +6,25 @@ export const addFilterWrapper = (chartNode) => {
   return filterWrapper;
 };
 
-export const createOption = (selectElement, option) => {
+export const createOption = (selectElement, option, selected = false) => {
   const optionElement = document.createElement('option');
   optionElement.value = typeof option === 'string' ? option : option.value;
   optionElement.text = typeof option === 'string' ? option : option.label;
+  if (selected) {
+    optionElement.selected = true;
+  }
   selectElement.appendChild(optionElement);
 };
 
 export const addFilter = ({
-  wrapper, options, allItemsLabel, className, label,
+  wrapper, options, allItemsLabel, className, label, defaultOption = '*',
 }) => {
   const selectElement = document.createElement('select');
   selectElement.classList.add(...['data-selector', 'js-plotly-chart-data-selector', className]);
   if (allItemsLabel) {
-    createOption(selectElement, { label: allItemsLabel, value: '*' });
+    createOption(selectElement, { label: allItemsLabel, value: '*' }, defaultOption === '*');
   }
-  options.forEach((option) => createOption(selectElement, option));
+  options.forEach((option) => createOption(selectElement, option, option === defaultOption));
   selectElement.classList.add('data-selector--active');
 
   if (label) {

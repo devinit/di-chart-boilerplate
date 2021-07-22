@@ -57,7 +57,6 @@ window.addEventListener('load', () => {
       onAdd: (chartNodes) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
-          // dichart.showLoading();
 
           /**
            * ECharts - prefix all browsers global with window
@@ -80,14 +79,16 @@ window.addEventListener('load', () => {
               className: 'country-filter',
               label: 'Select Donor',
             });
+            let activeChannel = channels[0];
             const channelFilter = addFilter({
               wrapper: filterWrapper,
               options: channels,
+              allItemsLabel: 'All Channels',
               className: 'channel-filter',
               label: 'Channel',
+              defaultOption: activeChannel,
             });
             const chart = renderChart(chartNode, cleanData(data), { donors, years, channels });
-            let activeChannel = channels[0];
 
             // initialise pill widget for the multi-select option
             const pillWidget = new PillWidget({
@@ -117,7 +118,9 @@ window.addEventListener('load', () => {
               }, { replaceMerge: ['series'] });
             };
 
-            // add event listeners
+            /**
+             * Event Listeners/Handlers
+             * */
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
               if (value !== '*') {
@@ -131,32 +134,24 @@ window.addEventListener('load', () => {
               }
               // filter data to return only the selected items
               const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
-              // update chart
-              updateChart(
-                filteredData,
-                pillWidget.pillNames.length ? pillWidget.pillNames : donors,
-                activeChannel,
-              );
+              const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
+              updateChart(filteredData, selectedDonors, activeChannel);
             });
 
             pillWidget.onRemove(() => {
-              updateChart(
-                pillWidget.pillNames.length
-                  ? data.filter((d) => pillWidget.pillNames.includes(d.Donor))
-                  : data,
-                pillWidget.pillNames.length ? pillWidget.pillNames : donors,
-                activeChannel,
-              );
+              const hasPills = !!pillWidget.pillNames.length;
+              const filteredData = hasPills
+                ? data.filter((d) => pillWidget.pillNames.includes(d.Donor))
+                : data;
+              const selectedDonors = hasPills ? pillWidget.pillNames : donors;
+              updateChart(filteredData, selectedDonors, activeChannel);
             });
 
             channelFilter.addEventListener('change', (event) => {
               const { value: channel } = event.currentTarget;
               activeChannel = channel;
-              updateChart(
-                data,
-                pillWidget.pillNames.length ? pillWidget.pillNames : donors,
-                activeChannel,
-              );
+              const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
+              updateChart(data, selectedDonors, activeChannel);
             });
 
             dichart.hideLoading();
