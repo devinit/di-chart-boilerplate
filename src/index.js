@@ -132,7 +132,11 @@ window.addEventListener('load', () => {
               // filter data to return only the selected items
               const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
               // update chart
-              updateChart(filteredData, pillWidget.pillNames, activeChannel);
+              updateChart(
+                filteredData,
+                pillWidget.pillNames.length ? pillWidget.pillNames : donors,
+                activeChannel,
+              );
             });
 
             pillWidget.onRemove(() => {
