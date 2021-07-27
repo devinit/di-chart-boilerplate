@@ -98,10 +98,7 @@ window.addEventListener('load', () => {
             const chart = renderDefaultChart(chartNode, cleanData(data), { years, channels });
 
             // initialise pill widget for the multi-select option
-            const pillWidget = new PillWidget({
-              wrapper: filterWrapper,
-              colours: chart.getOption().color,
-            });
+            const pillWidget = new PillWidget({ wrapper: filterWrapper });
             if (pillWidget.pills.length) {
               chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
             }
