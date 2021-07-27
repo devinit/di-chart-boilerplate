@@ -109,17 +109,21 @@ window.addEventListener('load', () => {
               const series = activeDonors
                 .map((donor) => channels.map((channel) => ({
                   name: channel,
-                  data: processData(
-                    cleanedData,
-                    years,
-                    donor,
-                    channel,
-                  ).map((d) => Number(d.value)),
+                  data: processData(cleanedData, years, donor, channel).map(
+                    (d) => Number(d.value),
+                  ),
                   type: 'bar',
                   stack: donor,
-                  emphasis: { focus: 'series', blurScope: 'series' },
-                  tooltip: { trigger: 'item', formatter: `{b} - ${donor} <br />{a} <strong style="padding-left:10px;">{c}</strong>` },
-                }))).reduce((final, cur) => final.concat(cur), []);
+                  emphasis: { focus: 'series' },
+                  tooltip:
+                      activeDonors.length > 1
+                        ? {
+                          trigger: 'item',
+                          formatter: `{b} - ${donor} <br />{a} <strong style="padding-left:10px;">{c}</strong>`,
+                        }
+                        : {},
+                })))
+                .reduce((final, cur) => final.concat(cur), []);
               chart.setOption({
                 series,
               }, { replaceMerge: ['series'] });
