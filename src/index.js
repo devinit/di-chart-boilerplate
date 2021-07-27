@@ -103,23 +103,24 @@ window.addEventListener('load', () => {
               chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
             }
 
-            const updateChartForDonorSeries = (updatedData, activeDonors, channel) => {
+            const updateChartForDonorSeries = (updatedData, activeDonors) => {
               const cleanedData = cleanData(updatedData);
+              const series = activeDonors
+                .map((donor) => channels.map((channel) => ({
+                  name: channel,
+                  data: processData(
+                    cleanedData,
+                    years,
+                    donor,
+                    channel,
+                  ).map((d) => Number(d.value)),
+                  type: 'bar',
+                  stack: donor,
+                  emphasis: { focus: 'series', blurScope: 'series' },
+                  tooltip: { trigger: 'item', formatter: `{b} - ${donor} <br />{a} <strong style="padding-left:10px;">{c}</strong>` },
+                }))).reduce((final, cur) => final.concat(cur), []);
               chart.setOption({
-                legend: { show: false },
-                series: activeDonors
-                  .map((donor) => ({
-                    name: donor,
-                    data: processData(
-                      cleanedData,
-                      years,
-                      donor,
-                      channel,
-                    ).map((d) => Number(d.value)),
-                    type: 'bar',
-                    stack: channel,
-                    emphasis: { focus: 'series' },
-                  })),
+                series,
               }, { replaceMerge: ['series'] });
             };
 
@@ -127,8 +128,8 @@ window.addEventListener('load', () => {
               // filter data to return only the selected items
               const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
               const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
-              console.log(filteredData, selectedDonors);
-              // updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
+              // console.log(filteredData, selectedDonors);
+              updateChartForDonorSeries(filteredData, selectedDonors);
             };
 
             /**
