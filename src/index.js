@@ -146,6 +146,8 @@ window.addEventListener('load', () => {
                 // if it's the first pill, append pill widget
                 if (!pillWidget.pillNames.length) {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
+                } else {
+                  countryFilter.disabled = true; // ensure that only 2 countries can be selected
                 }
                 pillWidget.add(value);
               } else {
@@ -160,7 +162,9 @@ window.addEventListener('load', () => {
               if (hasPills) {
                 const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Donor));
                 updateChartForDonorSeries(filteredData, pillWidget.pillNames);
+                countryFilter.disabled = false; // enable to select more donors
               } else {
+                countryFilter.value = '*'; // reset country filter selected value
                 renderDefaultChart(chart, cleanData(data), { years, channels });
               }
             });
