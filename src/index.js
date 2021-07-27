@@ -95,112 +95,72 @@ window.addEventListener('load', () => {
               className: 'country-filter',
               label: 'Select Donor',
             });
-            let activeChannel = '*';
-            const chart = renderDefaultChart(chartNode, cleanData(data), { donors, years, channels });
+            const chart = renderDefaultChart(chartNode, cleanData(data), { years, channels });
 
             // initialise pill widget for the multi-select option
-            // const pillWidget = new PillWidget({
-            //   wrapper: filterWrapper,
-            //   colours: chart.getOption().color,
-            // });
-            // if (pillWidget.pills.length) {
-            //   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
-            // }
+            const pillWidget = new PillWidget({
+              wrapper: filterWrapper,
+              colours: chart.getOption().color,
+            });
+            if (pillWidget.pills.length) {
+              chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
+            }
 
-            // const updateChartForDonorSeries = (updatedData, activeDonors, channel) => {
-            //   const cleanedData = cleanData(updatedData);
-            //   chart.setOption({
-            //     legend: { show: false },
-            //     series: activeDonors
-            //       .map((donor) => ({
-            //         name: donor,
-            //         data: processData(
-            //           cleanedData,
-            //           years,
-            //           donor,
-            //           channel,
-            //         ).map((d) => Number(d.value)),
-            //         type: 'bar',
-            //         stack: channel,
-            //         emphasis: { focus: 'series' },
-            //       })),
-            //   }, { replaceMerge: ['series'] });
-            // };
+            const updateChartForDonorSeries = (updatedData, activeDonors, channel) => {
+              const cleanedData = cleanData(updatedData);
+              chart.setOption({
+                legend: { show: false },
+                series: activeDonors
+                  .map((donor) => ({
+                    name: donor,
+                    data: processData(
+                      cleanedData,
+                      years,
+                      donor,
+                      channel,
+                    ).map((d) => Number(d.value)),
+                    type: 'bar',
+                    stack: channel,
+                    emphasis: { focus: 'series' },
+                  })),
+              }, { replaceMerge: ['series'] });
+            };
 
-            // const updateChartForChannelSeries = (updatedData, donor) => {
-            //   const cleanedData = cleanData(updatedData);
-            //   chart.setOption({
-            //     legend: { show: true },
-            //     series: channels.map((channel) => ({
-            //       name: channel,
-            //       data: processData(cleanedData, years, donor, channel).map(
-            //         (d) => Number(d.value),
-            //       ),
-            //       type: 'bar',
-            //       stack: donor,
-            //       emphasis: { focus: 'series' },
-            //     })),
-            //   }, { replaceMerge: ['series'] });
-            // };
+            const onAdd = (value) => {
+              // filter data to return only the selected items
+              const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
+              const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
+              console.log(filteredData, selectedDonors);
+              // updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
+            };
 
-            // const onAdd = (value) => {
-            //   // filter data to return only the selected items
-            //   if (activeChannel === '*') {
-            //     const activeDonor = value !== '*' ? value : donors[0];
-            //     const filteredData = data.filter((d) => d.Donor === activeDonor);
-            //     updateChartForChannelSeries(filteredData, activeDonor);
-            //     if (value === '*') {
-            //       countryFilter.value = activeDonor;
-            //     }
+            /**
+              * Event Listeners/Handlers
+              * */
+            countryFilter.addEventListener('change', (event) => {
+              const { value } = event.currentTarget;
+              if (value !== '*') {
+                // if it's the first pill, append pill widget
+                if (!pillWidget.pillNames.length) {
+                  chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
+                }
+                pillWidget.add(value);
+              } else {
+                pillWidget.removeAll();
+              }
+            });
 
-            //     return;
-            //   }
-            //   const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
-            //   const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
-            //   updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
-            // };
+            pillWidget.onAdd(onAdd);
 
-            // /**
-            //  * Event Listeners/Handlers
-            //  * */
-            // countryFilter.addEventListener('change', (event) => {
-            //   const { value } = event.currentTarget;
-            //   if (value !== '*') {
-            //     // if it's the first pill, append pill widget
-            //     if (!pillWidget.pillNames.length) {
-            //       chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
-            //     }
-            //     if (activeChannel === '*') {
-            //       pillWidget.removeAll();
-            //       onAdd(value);
-
-            //       return;
-            //     }
-            //     pillWidget.add(value);
-            //   } else {
-            //     if (activeChannel === '*') {
-            //       const [firstChannel] = channels;
-            //       activeChannel = firstChannel;
-            //     }
-            //     pillWidget.removeAll();
-            //   }
-            // });
-
-            // pillWidget.onAdd(onAdd);
-
-            // pillWidget.onRemove(() => {
-            //   const hasPills = !!pillWidget.pillNames.length;
-            //   const filteredData = hasPills
-            //     ? data.filter((d) => pillWidget.pillNames.includes(d.Donor))
-            //     : data;
-            //   if (activeChannel === '*') {
-            //     updateChartForChannelSeries(filteredData, pillWidget.pillNames[0] || donors[0]);
-
-            //     return;
-            //   }
-            //   const selectedDonors = hasPills ? pillWidget.pillNames : donors;
-            //   updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
-            // });
+            pillWidget.onRemove(() => {
+              const hasPills = !!pillWidget.pillNames.length;
+              const filteredData = hasPills
+                ? data.filter((d) => pillWidget.pillNames.includes(d.Donor))
+                : data;
+              const selectedDonors = hasPills ? pillWidget.pillNames : donors;
+              console.log(filteredData, selectedDonors);
+              // updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
+            });
 
             dichart.hideLoading();
           });
