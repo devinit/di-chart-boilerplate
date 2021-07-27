@@ -17,20 +17,25 @@ const cleanData = (data) => data.map((d) => {
 });
 
 const processData = (data, years, donor, channel) => {
-  /**
-   * TODO: follow the steps below
-   * 1. Remove filter by channels
-   * 2. If no donor is provided, go to 3
-   * 3. To generate sorted data by year, aggregate data for the year & channel
-   * 4. If donor is provided, aggregate donor data to return single value for the year & channel
-   *  */
   const filteredData = data.filter((d) => d.Donor.trim() === donor && d['Delivery Channel'] === channel);
   const sortedData = years.map((year) => filteredData.find((d) => d.Year === year));
 
   return sortedData;
 };
 
-const renderChart = (chartNode, data, { donors, years, channels }) => {
+const processChannelData = (data, years, channel) => {
+  const channelData = data.filter((d) => d['Delivery Channel'] === channel && d.Donor !== 'EU Institutions');
+  const chartData = years.reduce((values, year) => {
+    const yearData = channelData.filter((d) => d.Year === year);
+    const value = yearData.reduce((sum, item) => sum + Number(item.value || 0), 0);
+
+    return values.concat(value);
+  }, []);
+
+  return chartData;
+};
+
+const renderDefaultChart = (chartNode, data, { years, channels }) => {
   const chart = window.echarts.init(chartNode);
   const option = {
     legend: {
@@ -46,10 +51,9 @@ const renderChart = (chartNode, data, { donors, years, channels }) => {
     yAxis: {
       type: 'value',
     },
-    // TODO: use channels as the base for series creation instead of donors
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, donors[0], channel).map((d) => Number(d.value)),
+      data: processChannelData(data, years, channel),
       type: 'bar',
       stack: 'channels',
       emphasis: { focus: 'series' },
@@ -92,7 +96,7 @@ window.addEventListener('load', () => {
               label: 'Select Donor',
             });
             let activeChannel = '*';
-            const chart = renderChart(chartNode, cleanData(data), { donors, years, channels });
+            const chart = renderDefaultChart(chartNode, cleanData(data), { donors, years, channels });
 
             // initialise pill widget for the multi-select option
             // const pillWidget = new PillWidget({
