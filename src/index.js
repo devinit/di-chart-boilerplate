@@ -35,8 +35,7 @@ const processChannelData = (data, years, channel) => {
   return chartData;
 };
 
-const renderDefaultChart = (chartNode, data, { years, channels }) => {
-  const chart = window.echarts.init(chartNode);
+const renderDefaultChart = (chart, data, { years, channels }) => {
   const option = {
     legend: {
       show: true,
@@ -59,7 +58,7 @@ const renderDefaultChart = (chartNode, data, { years, channels }) => {
       emphasis: { focus: 'series' },
     })),
   };
-  chart.setOption(deepMerge(defaultOptions, option));
+  chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
 
   return chart;
 };
@@ -95,7 +94,9 @@ window.addEventListener('load', () => {
               className: 'country-filter',
               label: 'Select Donor',
             });
-            const chart = renderDefaultChart(chartNode, cleanData(data), { years, channels });
+            // const chart = renderDefaultChart(chartNode, cleanData(data), { years, channels });
+            const chart = window.echarts.init(chartNode);
+            renderDefaultChart(chart, cleanData(data), { years, channels });
 
             // initialise pill widget for the multi-select option
             const pillWidget = new PillWidget({ wrapper: filterWrapper });
@@ -152,12 +153,12 @@ window.addEventListener('load', () => {
 
             pillWidget.onRemove(() => {
               const hasPills = !!pillWidget.pillNames.length;
-              const filteredData = hasPills
-                ? data.filter((d) => pillWidget.pillNames.includes(d.Donor))
-                : data;
-              const selectedDonors = hasPills ? pillWidget.pillNames : donors;
-              console.log(filteredData, selectedDonors);
-              // updateChartForDonorSeries(filteredData, selectedDonors, activeChannel);
+              if (hasPills) {
+                const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Donor));
+                updateChartForDonorSeries(filteredData, pillWidget.pillNames);
+              } else {
+                renderDefaultChart(chart, cleanData(data), { years, channels });
+              }
             });
 
             dichart.hideLoading();
