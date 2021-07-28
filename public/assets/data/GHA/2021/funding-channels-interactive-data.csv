@@ -1,856 +1,991 @@
-Donor,Delivery Channel,Year,USD deflated,
-United States,Multilateral organisations,2011," 3,176 ",
-United States,NGOs,2011," 1,019 ",
-United States,International Red Cross and Red Crescent Movement,2011, 356 ,
-United States,Public sector,2011, 257 ,
-United States,Other,2011, 282 ,
-United States,Multilateral organisations,2012," 3,044 ",
-United States,NGOs,2012, 846 ,
-United States,International Red Cross and Red Crescent Movement,2012, 263 ,
-United States,Public sector,2012, 194 ,
-United States,Other,2012, 111 ,
-United States,Multilateral organisations,2013," 3,801 ",
-United States,NGOs,2013, 923 ,
-United States,International Red Cross and Red Crescent Movement,2013, 317 ,
-United States,Public sector,2013, 98 ,
-United States,Other,2013, 124 ,
-United States,Multilateral organisations,2014," 4,814 ",
-United States,NGOs,2014," 1,028 ",
-United States,International Red Cross and Red Crescent Movement,2014, 398 ,
-United States,Public sector,2014, 178 ,
-United States,Other,2014, 135 ,
-United States,Multilateral organisations,2015," 4,250 ",
-United States,NGOs,2015," 1,599 ",
-United States,International Red Cross and Red Crescent Movement,2015, 396 ,
-United States,Public sector,2015, 172 ,
-United States,Other,2015, 273 ,
-United States,Multilateral organisations,2016," 4,312 ",
-United States,NGOs,2016," 1,592 ",
-United States,International Red Cross and Red Crescent Movement,2016, 467 ,
-United States,Public sector,2016, 275 ,
-United States,Other,2016, 124 ,
-United States,Multilateral organisations,2017," 4,953 ",
-United States,NGOs,2017," 1,669 ",
-United States,International Red Cross and Red Crescent Movement,2017, 447 ,
-United States,Public sector,2017, 164 ,
-United States,Other,2017, 135 ,
-United States,Multilateral organisations,2018," 4,744 ",
-United States,NGOs,2018," 1,640 ",
-United States,International Red Cross and Red Crescent Movement,2018, 499 ,
-United States,Public sector,2018, 293 ,
-United States,Other,2018, 144 ,
-United States,Multilateral organisations,2019," 5,552 ",
-United States,NGOs,2019," 1,897 ",
-United States,International Red Cross and Red Crescent Movement,2019, 497 ,
-United States,Public sector,2019, 218 ,
-United States,Other,2019, 162 ,
-Germany,Multilateral organisations,2011, 553 ,
-Germany,NGOs,2011, 73 ,
-Germany,International Red Cross and Red Crescent Movement,2011, 26 ,
-Germany,Public sector,2011, 191 ,
-Germany,Other,2011, 5 ,
-Germany,Multilateral organisations,2012, 581 ,
-Germany,NGOs,2012, 92 ,
-Germany,International Red Cross and Red Crescent Movement,2012, 13 ,
-Germany,Public sector,2012, 129 ,
-Germany,Other,2012, 0 ,
-Germany,Multilateral organisations,2013, 679 ,
-Germany,NGOs,2013, 137 ,
-Germany,International Red Cross and Red Crescent Movement,2013, 38 ,
-Germany,Public sector,2013, 133 ,
-Germany,Other,2013, 8 ,
-Germany,Multilateral organisations,2014, 862 ,
-Germany,NGOs,2014, 172 ,
-Germany,International Red Cross and Red Crescent Movement,2014, 47 ,
-Germany,Public sector,2014, 259 ,
-Germany,Other,2014, 3 ,
-Germany,Multilateral organisations,2015, 897 ,
-Germany,NGOs,2015, 199 ,
-Germany,International Red Cross and Red Crescent Movement,2015, 43 ,
-Germany,Public sector,2015, 213 ,
-Germany,Other,2015, 6 ,
-Germany,Multilateral organisations,2016," 2,197 ",
-Germany,NGOs,2016, 278 ,
-Germany,International Red Cross and Red Crescent Movement,2016, 141 ,
-Germany,Public sector,2016, 264 ,
-Germany,Other,2016, 7 ,
-Germany,Multilateral organisations,2017," 2,671 ",
-Germany,NGOs,2017, 300 ,
-Germany,International Red Cross and Red Crescent Movement,2017, 206 ,
-Germany,Public sector,2017, 253 ,
-Germany,Other,2017, 6 ,
-Germany,Multilateral organisations,2018," 2,526 ",
-Germany,NGOs,2018, 279 ,
-Germany,International Red Cross and Red Crescent Movement,2018, 169 ,
-Germany,Public sector,2018, 311 ,
-Germany,Other,2018, 10 ,
-Germany,Multilateral organisations,2019," 2,212 ",
-Germany,NGOs,2019, 306 ,
-Germany,International Red Cross and Red Crescent Movement,2019, 175 ,
-Germany,Public sector,2019, 192 ,
-Germany,Other,2019, 6 ,
-United Kingdom,Multilateral organisations,2011," 1,001 ",
-United Kingdom,NGOs,2011, 134 ,
-United Kingdom,International Red Cross and Red Crescent Movement,2011, 42 ,
-United Kingdom,Public sector,2011, 0 ,
-United Kingdom,Other,2011, 28 ,
-United Kingdom,Multilateral organisations,2012, 900 ,
-United Kingdom,NGOs,2012, 138 ,
-United Kingdom,International Red Cross and Red Crescent Movement,2012, 49 ,
-United Kingdom,Public sector,2012, 10 ,
-United Kingdom,Other,2012, 14 ,
-United Kingdom,Multilateral organisations,2013," 1,394 ",
-United Kingdom,NGOs,2013, 177 ,
-United Kingdom,International Red Cross and Red Crescent Movement,2013, 74 ,
-United Kingdom,Public sector,2013, 40 ,
-United Kingdom,Other,2013, 26 ,
-United Kingdom,Multilateral organisations,2014," 1,495 ",
-United Kingdom,NGOs,2014, 353 ,
-United Kingdom,International Red Cross and Red Crescent Movement,2014, 103 ,
-United Kingdom,Public sector,2014, 112 ,
-United Kingdom,Other,2014, 111 ,
-United Kingdom,Multilateral organisations,2015," 1,580 ",
-United Kingdom,NGOs,2015, 483 ,
-United Kingdom,International Red Cross and Red Crescent Movement,2015, 117 ,
-United Kingdom,Public sector,2015, 32 ,
-United Kingdom,Other,2015, 126 ,
-United Kingdom,Multilateral organisations,2016," 1,775 ",
-United Kingdom,NGOs,2016, 467 ,
-United Kingdom,International Red Cross and Red Crescent Movement,2016, 158 ,
-United Kingdom,Public sector,2016, 32 ,
-United Kingdom,Other,2016, 72 ,
-United Kingdom,Multilateral organisations,2017," 1,838 ",
-United Kingdom,NGOs,2017, 486 ,
-United Kingdom,International Red Cross and Red Crescent Movement,2017, 158 ,
-United Kingdom,Public sector,2017, 32 ,
-United Kingdom,Other,2017, 37 ,
-United Kingdom,Multilateral organisations,2018," 1,896 ",
-United Kingdom,NGOs,2018, 221 ,
-United Kingdom,International Red Cross and Red Crescent Movement,2018, 185 ,
-United Kingdom,Public sector,2018, 64 ,
-United Kingdom,Other,2018, 48 ,
-United Kingdom,Multilateral organisations,2019," 2,431 ",
-United Kingdom,NGOs,2019, 267 ,
-United Kingdom,International Red Cross and Red Crescent Movement,2019, 115 ,
-United Kingdom,Public sector,2019, 53 ,
-United Kingdom,Other,2019, 85 ,
-Sweden,Multilateral organisations,2011, 461 ,
-Sweden,NGOs,2011, 129 ,
-Sweden,International Red Cross and Red Crescent Movement,2011, 69 ,
-Sweden,Public sector,2011, 20 ,
-Sweden,Other,2011, 1 ,
-Sweden,Multilateral organisations,2012, 439 ,
-Sweden,NGOs,2012, 95 ,
-Sweden,International Red Cross and Red Crescent Movement,2012, 81 ,
-Sweden,Public sector,2012, 20 ,
-Sweden,Other,2012, 0 ,
-Sweden,Multilateral organisations,2013, 437 ,
-Sweden,NGOs,2013, 97 ,
-Sweden,International Red Cross and Red Crescent Movement,2013, 76 ,
-Sweden,Public sector,2013, 18 ,
-Sweden,Other,2013, 1 ,
-Sweden,Multilateral organisations,2014, 536 ,
-Sweden,NGOs,2014, 126 ,
-Sweden,International Red Cross and Red Crescent Movement,2014, 82 ,
-Sweden,Public sector,2014, 30 ,
-Sweden,Other,2014, 0 ,
-Sweden,Multilateral organisations,2015, 599 ,
-Sweden,NGOs,2015, 113 ,
-Sweden,International Red Cross and Red Crescent Movement,2015, 75 ,
-Sweden,Public sector,2015, 12 ,
-Sweden,Other,2015, 1 ,
-Sweden,Multilateral organisations,2016, 500 ,
-Sweden,NGOs,2016, 111 ,
-Sweden,International Red Cross and Red Crescent Movement,2016, 81 ,
-Sweden,Public sector,2016, 19 ,
-Sweden,Other,2016, 0 ,
-Sweden,Multilateral organisations,2017, 625 ,
-Sweden,NGOs,2017, 117 ,
-Sweden,International Red Cross and Red Crescent Movement,2017, 75 ,
-Sweden,Public sector,2017, 12 ,
-Sweden,Other,2017, 2 ,
-Sweden,Multilateral organisations,2018, 744 ,
-Sweden,NGOs,2018, 135 ,
-Sweden,International Red Cross and Red Crescent Movement,2018, 80 ,
-Sweden,Public sector,2018, 12 ,
-Sweden,Other,2018, 3 ,
-Sweden,Multilateral organisations,2019, 664 ,
-Sweden,NGOs,2019, 133 ,
-Sweden,International Red Cross and Red Crescent Movement,2019, 75 ,
-Sweden,Public sector,2019, 13 ,
-Sweden,Other,2019, 1 ,
-Netherlands,Multilateral organisations,2011, 346 ,
-Netherlands,NGOs,2011, 17 ,
-Netherlands,International Red Cross and Red Crescent Movement,2011, 46 ,
-Netherlands,Public sector,2011, 1 ,
-Netherlands,Other,2011, 2 ,
-Netherlands,Multilateral organisations,2012, 354 ,
-Netherlands,NGOs,2012, 19 ,
-Netherlands,International Red Cross and Red Crescent Movement,2012, 27 ,
-Netherlands,Public sector,2012, 0 ,
-Netherlands,Other,2012, 1 ,
-Netherlands,Multilateral organisations,2013, 311 ,
-Netherlands,NGOs,2013, 42 ,
-Netherlands,International Red Cross and Red Crescent Movement,2013, 37 ,
-Netherlands,Public sector,2013, 1 ,
-Netherlands,Other,2013, 1 ,
-Netherlands,Multilateral organisations,2014, 395 ,
-Netherlands,NGOs,2014, 72 ,
-Netherlands,International Red Cross and Red Crescent Movement,2014, 51 ,
-Netherlands,Public sector,2014, 1 ,
-Netherlands,Other,2014, 7 ,
-Netherlands,Multilateral organisations,2015, 557 ,
-Netherlands,NGOs,2015, 138 ,
-Netherlands,International Red Cross and Red Crescent Movement,2015, 80 ,
-Netherlands,Public sector,2015, 1 ,
-Netherlands,Other,2015, 4 ,
-Netherlands,Multilateral organisations,2016, 503 ,
-Netherlands,NGOs,2016, 90 ,
-Netherlands,International Red Cross and Red Crescent Movement,2016, 79 ,
-Netherlands,Public sector,2016, 3 ,
-Netherlands,Other,2016, 2 ,
-Netherlands,Multilateral organisations,2017, 466 ,
-Netherlands,NGOs,2017, 88 ,
-Netherlands,International Red Cross and Red Crescent Movement,2017, 74 ,
-Netherlands,Public sector,2017, 1 ,
-Netherlands,Other,2017, 2 ,
-Netherlands,Multilateral organisations,2018, 502 ,
-Netherlands,NGOs,2018, 81 ,
-Netherlands,International Red Cross and Red Crescent Movement,2018, 77 ,
-Netherlands,Public sector,2018, 1 ,
-Netherlands,Other,2018, 3 ,
-Netherlands,Multilateral organisations,2019, 449 ,
-Netherlands,NGOs,2019, 90 ,
-Netherlands,International Red Cross and Red Crescent Movement,2019, 70 ,
-Netherlands,Public sector,2019, 3 ,
-Netherlands,Other,2019, 2 ,
-Norway,Multilateral organisations,2011, 264 ,
-Norway,NGOs,2011, 96 ,
-Norway,International Red Cross and Red Crescent Movement,2011, 45 ,
-Norway,Public sector,2011, 6 ,
-Norway,Other,2011, 2 ,
-Norway,Multilateral organisations,2012, 238 ,
-Norway,NGOs,2012, 91 ,
-Norway,International Red Cross and Red Crescent Movement,2012, 43 ,
-Norway,Public sector,2012, 8 ,
-Norway,Other,2012, 2 ,
-Norway,Multilateral organisations,2013, 255 ,
-Norway,NGOs,2013, 125 ,
-Norway,International Red Cross and Red Crescent Movement,2013, 48 ,
-Norway,Public sector,2013, 8 ,
-Norway,Other,2013, 3 ,
-Norway,Multilateral organisations,2014, 288 ,
-Norway,NGOs,2014, 132 ,
-Norway,International Red Cross and Red Crescent Movement,2014, 48 ,
-Norway,Public sector,2014, 12 ,
-Norway,Other,2014, 2 ,
-Norway,Multilateral organisations,2015, 344 ,
-Norway,NGOs,2015, 143 ,
-Norway,International Red Cross and Red Crescent Movement,2015, 48 ,
-Norway,Public sector,2015, 13 ,
-Norway,Other,2015, 2 ,
-Norway,Multilateral organisations,2016, 363 ,
-Norway,NGOs,2016, 183 ,
-Norway,International Red Cross and Red Crescent Movement,2016, 69 ,
-Norway,Public sector,2016, 13 ,
-Norway,Other,2016, 2 ,
-Norway,Multilateral organisations,2017, 451 ,
-Norway,NGOs,2017, 194 ,
-Norway,International Red Cross and Red Crescent Movement,2017, 51 ,
-Norway,Public sector,2017, 9 ,
-Norway,Other,2017, 1 ,
-Norway,Multilateral organisations,2018, 428 ,
-Norway,NGOs,2018, 157 ,
-Norway,International Red Cross and Red Crescent Movement,2018, 60 ,
-Norway,Public sector,2018, 5 ,
-Norway,Other,2018, 0 ,
-Norway,Multilateral organisations,2019, 452 ,
-Norway,NGOs,2019, 181 ,
-Norway,International Red Cross and Red Crescent Movement,2019, 67 ,
-Norway,Public sector,2019, 6 ,
-Norway,Other,2019, 0 ,
-Canada,Multilateral organisations,2011, 336 ,
-Canada,NGOs,2011, 87 ,
-Canada,International Red Cross and Red Crescent Movement,2011, 41 ,
-Canada,Public sector,2011, 2 ,
-Canada,Other,2011, 4 ,
-Canada,Multilateral organisations,2012, 320 ,
-Canada,NGOs,2012, 69 ,
-Canada,International Red Cross and Red Crescent Movement,2012, 54 ,
-Canada,Public sector,2012, 0 ,
-Canada,Other,2012, 4 ,
-Canada,Multilateral organisations,2013, 371 ,
-Canada,NGOs,2013, 104 ,
-Canada,International Red Cross and Red Crescent Movement,2013, 49 ,
-Canada,Public sector,2013, 25 ,
-Canada,Other,2013, 6 ,
-Canada,Multilateral organisations,2014, 415 ,
-Canada,NGOs,2014, 133 ,
-Canada,International Red Cross and Red Crescent Movement,2014, 77 ,
-Canada,Public sector,2014, 4 ,
-Canada,Other,2014, 9 ,
-Canada,Multilateral organisations,2015, 502 ,
-Canada,NGOs,2015, 177 ,
-Canada,International Red Cross and Red Crescent Movement,2015, 79 ,
-Canada,Public sector,2015, 7 ,
-Canada,Other,2015, 5 ,
-Canada,Multilateral organisations,2016, 389 ,
-Canada,NGOs,2016, 147 ,
-Canada,International Red Cross and Red Crescent Movement,2016, 70 ,
-Canada,Public sector,2016, 1 ,
-Canada,Other,2016, 2 ,
-Canada,Multilateral organisations,2017, 460 ,
-Canada,NGOs,2017, 194 ,
-Canada,International Red Cross and Red Crescent Movement,2017, 90 ,
-Canada,Public sector,2017, 1 ,
-Canada,Other,2017, 0 ,
-Canada,Multilateral organisations,2018, 490 ,
-Canada,NGOs,2018, 182 ,
-Canada,International Red Cross and Red Crescent Movement,2018, 75 ,
-Canada,Public sector,2018, 1 ,
-Canada,Other,2018, 2 ,
-Canada,Multilateral organisations,2019, 425 ,
-Canada,NGOs,2019, 163 ,
-Canada,International Red Cross and Red Crescent Movement,2019, 68 ,
-Canada,Public sector,2019, 0 ,
-Canada,Other,2019, 1 ,
-Switzerland,Multilateral organisations,2011, 142 ,
-Switzerland,NGOs,2011, 27 ,
-Switzerland,International Red Cross and Red Crescent Movement,2011, 112 ,
-Switzerland,Public sector,2011, 30 ,
-Switzerland,Other,2011, 3 ,
-Switzerland,Multilateral organisations,2012, 148 ,
-Switzerland,NGOs,2012, 23 ,
-Switzerland,International Red Cross and Red Crescent Movement,2012, 113 ,
-Switzerland,Public sector,2012, 35 ,
-Switzerland,Other,2012, 3 ,
-Switzerland,Multilateral organisations,2013, 162 ,
-Switzerland,NGOs,2013, 34 ,
-Switzerland,International Red Cross and Red Crescent Movement,2013, 121 ,
-Switzerland,Public sector,2013, 46 ,
-Switzerland,Other,2013, 2 ,
-Switzerland,Multilateral organisations,2014, 200 ,
-Switzerland,NGOs,2014, 38 ,
-Switzerland,International Red Cross and Red Crescent Movement,2014, 142 ,
-Switzerland,Public sector,2014, 36 ,
-Switzerland,Other,2014, 4 ,
-Switzerland,Multilateral organisations,2015, 221 ,
-Switzerland,NGOs,2015, 45 ,
-Switzerland,International Red Cross and Red Crescent Movement,2015, 166 ,
-Switzerland,Public sector,2015, 49 ,
-Switzerland,Other,2015, 4 ,
-Switzerland,Multilateral organisations,2016, 207 ,
-Switzerland,NGOs,2016, 42 ,
-Switzerland,International Red Cross and Red Crescent Movement,2016, 155 ,
-Switzerland,Public sector,2016, 27 ,
-Switzerland,Other,2016, 4 ,
-Switzerland,Multilateral organisations,2017, 187 ,
-Switzerland,NGOs,2017, 50 ,
-Switzerland,International Red Cross and Red Crescent Movement,2017, 159 ,
-Switzerland,Public sector,2017, 12 ,
-Switzerland,Other,2017, 3 ,
-Switzerland,Multilateral organisations,2018, 196 ,
-Switzerland,NGOs,2018, 41 ,
-Switzerland,International Red Cross and Red Crescent Movement,2018, 157 ,
-Switzerland,Public sector,2018, 5 ,
-Switzerland,Other,2018, 3 ,
-Switzerland,Multilateral organisations,2019, 188 ,
-Switzerland,NGOs,2019, 43 ,
-Switzerland,International Red Cross and Red Crescent Movement,2019, 165 ,
-Switzerland,Public sector,2019, 10 ,
-Switzerland,Other,2019, 3 ,
-France,Multilateral organisations,2011, 357 ,
-France,NGOs,2011, 1 ,
-France,International Red Cross and Red Crescent Movement,2011, 12 ,
-France,Public sector,2011, 37 ,
-France,Other,2011, 3 ,
-France,Multilateral organisations,2012, 326 ,
-France,NGOs,2012, 8 ,
-France,International Red Cross and Red Crescent Movement,2012, 10 ,
-France,Public sector,2012, 32 ,
-France,Other,2012, -   ,
-France,Multilateral organisations,2013, 350 ,
-France,NGOs,2013, 10 ,
-France,International Red Cross and Red Crescent Movement,2013, 10 ,
-France,Public sector,2013, 10 ,
-France,Other,2013, 1 ,
-France,Multilateral organisations,2014, 407 ,
-France,NGOs,2014, 13 ,
-France,International Red Cross and Red Crescent Movement,2014, 5 ,
-France,Public sector,2014, 7 ,
-France,Other,2014, 6 ,
-France,Multilateral organisations,2015, 404 ,
-France,NGOs,2015, 8 ,
-France,International Red Cross and Red Crescent Movement,2015, 2 ,
-France,Public sector,2015, 16 ,
-France,Other,2015, 0 ,
-France,Multilateral organisations,2016, 672 ,
-France,NGOs,2016, 45 ,
-France,International Red Cross and Red Crescent Movement,2016, 7 ,
-France,Public sector,2016, 29 ,
-France,Other,2016, 5 ,
-France,Multilateral organisations,2017, 502 ,
-France,NGOs,2017, 39 ,
-France,International Red Cross and Red Crescent Movement,2017, 2 ,
-France,Public sector,2017, 43 ,
-France,Other,2017, 2 ,
-France,Multilateral organisations,2018, 526 ,
-France,NGOs,2018, 66 ,
-France,International Red Cross and Red Crescent Movement,2018, 5 ,
-France,Public sector,2018, 19 ,
-France,Other,2018, 1 ,
-France,Multilateral organisations,2019, 525 ,
-France,NGOs,2019, 61 ,
-France,International Red Cross and Red Crescent Movement,2019, 6 ,
-France,Public sector,2019, 28 ,
-France,Other,2019, 0 ,
-Denmark,Multilateral organisations,2011, 181 ,
-Denmark,NGOs,2011, 63 ,
-Denmark,International Red Cross and Red Crescent Movement,2011, 18 ,
-Denmark,Public sector,2011, 5 ,
-Denmark,Other,2011, 1 ,
-Denmark,Multilateral organisations,2012, 205 ,
-Denmark,NGOs,2012, 74 ,
-Denmark,International Red Cross and Red Crescent Movement,2012, 15 ,
-Denmark,Public sector,2012, 1 ,
-Denmark,Other,2012, 0 ,
-Denmark,Multilateral organisations,2013, 229 ,
-Denmark,NGOs,2013, 85 ,
-Denmark,International Red Cross and Red Crescent Movement,2013, 18 ,
-Denmark,Public sector,2013, 2 ,
-Denmark,Other,2013, 2 ,
-Denmark,Multilateral organisations,2014, 250 ,
-Denmark,NGOs,2014, 100 ,
-Denmark,International Red Cross and Red Crescent Movement,2014, 20 ,
-Denmark,Public sector,2014, 17 ,
-Denmark,Other,2014, 0 ,
-Denmark,Multilateral organisations,2015, 219 ,
-Denmark,NGOs,2015, 87 ,
-Denmark,International Red Cross and Red Crescent Movement,2015, 11 ,
-Denmark,Public sector,2015, 1 ,
-Denmark,Other,2015, 0 ,
-Denmark,Multilateral organisations,2016, 277 ,
-Denmark,NGOs,2016, 106 ,
-Denmark,International Red Cross and Red Crescent Movement,2016, 21 ,
-Denmark,Public sector,2016, 17 ,
-Denmark,Other,2016, 0 ,
-Denmark,Multilateral organisations,2017, 367 ,
-Denmark,NGOs,2017, 121 ,
-Denmark,International Red Cross and Red Crescent Movement,2017, 28 ,
-Denmark,Public sector,2017, 2 ,
-Denmark,Other,2017, 0 ,
-Denmark,Multilateral organisations,2018, 345 ,
-Denmark,NGOs,2018, 121 ,
-Denmark,International Red Cross and Red Crescent Movement,2018, 32 ,
-Denmark,Public sector,2018, 3 ,
-Denmark,Other,2018, 0 ,
-Denmark,Multilateral organisations,2019, 359 ,
-Denmark,NGOs,2019, 147 ,
-Denmark,International Red Cross and Red Crescent Movement,2019, 33 ,
-Denmark,Public sector,2019, 21 ,
-Denmark,Other,2019, 0 ,
-Italy,Multilateral organisations,2011, 272 ,
-Italy,NGOs,2011, 2 ,
-Italy,International Red Cross and Red Crescent Movement,2011, 6 ,
-Italy,Public sector,2011, 45 ,
-Italy,Other,2011, 3 ,
-Italy,Multilateral organisations,2012, 233 ,
-Italy,NGOs,2012, 0 ,
-Italy,International Red Cross and Red Crescent Movement,2012, 1 ,
-Italy,Public sector,2012, 32 ,
-Italy,Other,2012, 0 ,
-Italy,Multilateral organisations,2013, 264 ,
-Italy,NGOs,2013, 26 ,
-Italy,International Red Cross and Red Crescent Movement,2013, 5 ,
-Italy,Public sector,2013, 10 ,
-Italy,Other,2013, 1 ,
-Italy,Multilateral organisations,2014, 298 ,
-Italy,NGOs,2014, 10 ,
-Italy,International Red Cross and Red Crescent Movement,2014, 8 ,
-Italy,Public sector,2014, 21 ,
-Italy,Other,2014, 0 ,
-Italy,Multilateral organisations,2015, 298 ,
-Italy,NGOs,2015, 7 ,
-Italy,International Red Cross and Red Crescent Movement,2015, 12 ,
-Italy,Public sector,2015, 40 ,
-Italy,Other,2015, 0 ,
-Italy,Multilateral organisations,2016, 497 ,
-Italy,NGOs,2016, 29 ,
-Italy,International Red Cross and Red Crescent Movement,2016, 21 ,
-Italy,Public sector,2016, 32 ,
-Italy,Other,2016, 2 ,
-Italy,Multilateral organisations,2017, 521 ,
-Italy,NGOs,2017, 16 ,
-Italy,International Red Cross and Red Crescent Movement,2017, 17 ,
-Italy,Public sector,2017, 67 ,
-Italy,Other,2017, 1 ,
-Italy,Multilateral organisations,2018, 459 ,
-Italy,NGOs,2018, 14 ,
-Italy,International Red Cross and Red Crescent Movement,2018, 21 ,
-Italy,Public sector,2018, 61 ,
-Italy,Other,2018, 1 ,
-Italy,Multilateral organisations,2019, 404 ,
-Italy,NGOs,2019, 2 ,
-Italy,International Red Cross and Red Crescent Movement,2019, 8 ,
-Italy,Public sector,2019, 24 ,
-Italy,Other,2019, 0 ,
-Japan,Multilateral organisations,2011, 589 ,
-Japan,NGOs,2011, 24 ,
-Japan,International Red Cross and Red Crescent Movement,2011, 42 ,
-Japan,Public sector,2011, 142 ,
-Japan,Other,2011, 0 ,
-Japan,Multilateral organisations,2012, 348 ,
-Japan,NGOs,2012, 27 ,
-Japan,International Red Cross and Red Crescent Movement,2012, 41 ,
-Japan,Public sector,2012, 144 ,
-Japan,Other,2012, 1 ,
-Japan,Multilateral organisations,2013, 634 ,
-Japan,NGOs,2013, 30 ,
-Japan,International Red Cross and Red Crescent Movement,2013, 58 ,
-Japan,Public sector,2013, 114 ,
-Japan,Other,2013, 1 ,
-Japan,Multilateral organisations,2014, 425 ,
-Japan,NGOs,2014, 49 ,
-Japan,International Red Cross and Red Crescent Movement,2014, 50 ,
-Japan,Public sector,2014, 341 ,
-Japan,Other,2014, 4 ,
-Japan,Multilateral organisations,2015, 810 ,
-Japan,NGOs,2015, 73 ,
-Japan,International Red Cross and Red Crescent Movement,2015, 54 ,
-Japan,Public sector,2015, 369 ,
-Japan,Other,2015, 1 ,
-Japan,Multilateral organisations,2016, 672 ,
-Japan,NGOs,2016, 65 ,
-Japan,International Red Cross and Red Crescent Movement,2016, 34 ,
-Japan,Public sector,2016, 119 ,
-Japan,Other,2016, 1 ,
-Japan,Multilateral organisations,2017, 639 ,
-Japan,NGOs,2017, 78 ,
-Japan,International Red Cross and Red Crescent Movement,2017, 47 ,
-Japan,Public sector,2017, 150 ,
-Japan,Other,2017, 1 ,
-Japan,Multilateral organisations,2018, 526 ,
-Japan,NGOs,2018, 62 ,
-Japan,International Red Cross and Red Crescent Movement,2018, 24 ,
-Japan,Public sector,2018, 143 ,
-Japan,Other,2018, 1 ,
-Japan,Multilateral organisations,2019, 488 ,
-Japan,NGOs,2019, 68 ,
-Japan,International Red Cross and Red Crescent Movement,2019, 20 ,
-Japan,Public sector,2019, 110 ,
-Japan,Other,2019, 0 ,
-Belgium,Multilateral organisations,2011, 223 ,
-Belgium,NGOs,2011, 10 ,
-Belgium,International Red Cross and Red Crescent Movement,2011, 25 ,
-Belgium,Public sector,2011, 2 ,
-Belgium,Other,2011, 1 ,
-Belgium,Multilateral organisations,2012, 149 ,
-Belgium,NGOs,2012, 5 ,
-Belgium,International Red Cross and Red Crescent Movement,2012, 28 ,
-Belgium,Public sector,2012, 0 ,
-Belgium,Other,2012, 0 ,
-Belgium,Multilateral organisations,2013, 191 ,
-Belgium,NGOs,2013, 24 ,
-Belgium,International Red Cross and Red Crescent Movement,2013, 24 ,
-Belgium,Public sector,2013, 2 ,
-Belgium,Other,2013, 0 ,
-Belgium,Multilateral organisations,2014, 167 ,
-Belgium,NGOs,2014, 2 ,
-Belgium,International Red Cross and Red Crescent Movement,2014, 17 ,
-Belgium,Public sector,2014, 0 ,
-Belgium,Other,2014, 0 ,
-Belgium,Multilateral organisations,2015, 203 ,
-Belgium,NGOs,2015, 22 ,
-Belgium,International Red Cross and Red Crescent Movement,2015, 35 ,
-Belgium,Public sector,2015, 1 ,
-Belgium,Other,2015, 0 ,
-Belgium,Multilateral organisations,2016, 351 ,
-Belgium,NGOs,2016, 24 ,
-Belgium,International Red Cross and Red Crescent Movement,2016, 37 ,
-Belgium,Public sector,2016, 2 ,
-Belgium,Other,2016, 1 ,
-Belgium,Multilateral organisations,2017, 262 ,
-Belgium,NGOs,2017, 22 ,
-Belgium,International Red Cross and Red Crescent Movement,2017, 40 ,
-Belgium,Public sector,2017, 1 ,
-Belgium,Other,2017, 0 ,
-Belgium,Multilateral organisations,2018, 260 ,
-Belgium,NGOs,2018, 23 ,
-Belgium,International Red Cross and Red Crescent Movement,2018, 35 ,
-Belgium,Public sector,2018, 0 ,
-Belgium,Other,2018, 0 ,
-Belgium,Multilateral organisations,2019, 254 ,
-Belgium,NGOs,2019, 15 ,
-Belgium,International Red Cross and Red Crescent Movement,2019, 36 ,
-Belgium,Public sector,2019, 0 ,
-Belgium,Other,2019, 0 ,
-Spain,Multilateral organisations,2011, 303 ,
-Spain,NGOs,2011, 41 ,
-Spain,International Red Cross and Red Crescent Movement,2011, 30 ,
-Spain,Public sector,2011, 27 ,
-Spain,Other,2011, 2 ,
-Spain,Multilateral organisations,2012, 170 ,
-Spain,NGOs,2012, 24 ,
-Spain,International Red Cross and Red Crescent Movement,2012, 12 ,
-Spain,Public sector,2012, 7 ,
-Spain,Other,2012, 0 ,
-Spain,Multilateral organisations,2013, 157 ,
-Spain,NGOs,2013, 25 ,
-Spain,International Red Cross and Red Crescent Movement,2013, 6 ,
-Spain,Public sector,2013, 1 ,
-Spain,Other,2013, 0 ,
-Spain,Multilateral organisations,2014, 179 ,
-Spain,NGOs,2014, 25 ,
-Spain,International Red Cross and Red Crescent Movement,2014, 16 ,
-Spain,Public sector,2014, 2 ,
-Spain,Other,2014, 0 ,
-Spain,Multilateral organisations,2015, 168 ,
-Spain,NGOs,2015, 22 ,
-Spain,International Red Cross and Red Crescent Movement,2015, 8 ,
-Spain,Public sector,2015, 1 ,
-Spain,Other,2015, 0 ,
-Spain,Multilateral organisations,2016, 260 ,
-Spain,NGOs,2016, 38 ,
-Spain,International Red Cross and Red Crescent Movement,2016, 10 ,
-Spain,Public sector,2016, 2 ,
-Spain,Other,2016, 2 ,
-Spain,Multilateral organisations,2017, 236 ,
-Spain,NGOs,2017, 28 ,
-Spain,International Red Cross and Red Crescent Movement,2017, 12 ,
-Spain,Public sector,2017, 6 ,
-Spain,Other,2017, 1 ,
-Spain,Multilateral organisations,2018, 239 ,
-Spain,NGOs,2018, 21 ,
-Spain,International Red Cross and Red Crescent Movement,2018, 13 ,
-Spain,Public sector,2018, 3 ,
-Spain,Other,2018, 1 ,
-Spain,Multilateral organisations,2019, 222 ,
-Spain,NGOs,2019, 24 ,
-Spain,International Red Cross and Red Crescent Movement,2019, 11 ,
-Spain,Public sector,2019, 2 ,
-Spain,Other,2019, 5 ,
-Ireland,Multilateral organisations,2011, 83 ,
-Ireland,NGOs,2011, 20 ,
-Ireland,International Red Cross and Red Crescent Movement,2011, 18 ,
-Ireland,Public sector,2011, 5 ,
-Ireland,Other,2011, 2 ,
-Ireland,Multilateral organisations,2012, 100 ,
-Ireland,NGOs,2012, 27 ,
-Ireland,International Red Cross and Red Crescent Movement,2012, 15 ,
-Ireland,Public sector,2012, 4 ,
-Ireland,Other,2012, 2 ,
-Ireland,Multilateral organisations,2013, 103 ,
-Ireland,NGOs,2013, 28 ,
-Ireland,International Red Cross and Red Crescent Movement,2013, 16 ,
-Ireland,Public sector,2013, 1 ,
-Ireland,Other,2013, 2 ,
-Ireland,Multilateral organisations,2014, 97 ,
-Ireland,NGOs,2014, 36 ,
-Ireland,International Red Cross and Red Crescent Movement,2014, 15 ,
-Ireland,Public sector,2014, 5 ,
-Ireland,Other,2014, 3 ,
-Ireland,Multilateral organisations,2015, 110 ,
-Ireland,NGOs,2015, 33 ,
-Ireland,International Red Cross and Red Crescent Movement,2015, 17 ,
-Ireland,Public sector,2015, 1 ,
-Ireland,Other,2015, 2 ,
-Ireland,Multilateral organisations,2016, 175 ,
-Ireland,NGOs,2016, 29 ,
-Ireland,International Red Cross and Red Crescent Movement,2016, 20 ,
-Ireland,Public sector,2016, 1 ,
-Ireland,Other,2016, 2 ,
-Ireland,Multilateral organisations,2017, 163 ,
-Ireland,NGOs,2017, 25 ,
-Ireland,International Red Cross and Red Crescent Movement,2017, 18 ,
-Ireland,Public sector,2017, 1 ,
-Ireland,Other,2017, 2 ,
-Ireland,Multilateral organisations,2018, 164 ,
-Ireland,NGOs,2018, 29 ,
-Ireland,International Red Cross and Red Crescent Movement,2018, 18 ,
-Ireland,Public sector,2018, 2 ,
-Ireland,Other,2018, 1 ,
-Ireland,Multilateral organisations,2019, 158 ,
-Ireland,NGOs,2019, 29 ,
-Ireland,International Red Cross and Red Crescent Movement,2019, 21 ,
-Ireland,Public sector,2019, 1 ,
-Ireland,Other,2019, 2 ,
-Finland,Multilateral organisations,2011, 141 ,
-Finland,NGOs,2011, 20 ,
-Finland,International Red Cross and Red Crescent Movement,2011, 13 ,
-Finland,Public sector,2011, 0 ,
-Finland,Other,2011, 1 ,
-Finland,Multilateral organisations,2012, 124 ,
-Finland,NGOs,2012, 18 ,
-Finland,International Red Cross and Red Crescent Movement,2012, 9 ,
-Finland,Public sector,2012, 0 ,
-Finland,Other,2012, 1 ,
-Finland,Multilateral organisations,2013, 137 ,
-Finland,NGOs,2013, 20 ,
-Finland,International Red Cross and Red Crescent Movement,2013, 11 ,
-Finland,Public sector,2013, -   ,
-Finland,Other,2013, 0 ,
-Finland,Multilateral organisations,2014, 151 ,
-Finland,NGOs,2014, 12 ,
-Finland,International Red Cross and Red Crescent Movement,2014, 21 ,
-Finland,Public sector,2014, 0 ,
-Finland,Other,2014, 1 ,
-Finland,Multilateral organisations,2015, 138 ,
-Finland,NGOs,2015, 13 ,
-Finland,International Red Cross and Red Crescent Movement,2015, 19 ,
-Finland,Public sector,2015, 0 ,
-Finland,Other,2015, 1 ,
-Finland,Multilateral organisations,2016, 142 ,
-Finland,NGOs,2016, 13 ,
-Finland,International Red Cross and Red Crescent Movement,2016, 14 ,
-Finland,Public sector,2016, 0 ,
-Finland,Other,2016, 2 ,
-Finland,Multilateral organisations,2017, 129 ,
-Finland,NGOs,2017, 10 ,
-Finland,International Red Cross and Red Crescent Movement,2017, 18 ,
-Finland,Public sector,2017, 0 ,
-Finland,Other,2017, 0 ,
-Finland,Multilateral organisations,2018, 111 ,
-Finland,NGOs,2018, 9 ,
-Finland,International Red Cross and Red Crescent Movement,2018, 17 ,
-Finland,Public sector,2018, -   ,
-Finland,Other,2018, 0 ,
-Finland,Multilateral organisations,2019, 103 ,
-Finland,NGOs,2019, 10 ,
-Finland,International Red Cross and Red Crescent Movement,2019, 19 ,
-Finland,Public sector,2019, 0 ,
-Finland,Other,2019, 0 ,
-EU Institutions,Multilateral organisations,2011, 725 ,
-EU Institutions,NGOs,2011, 607 ,
-EU Institutions,International Red Cross and Red Crescent Movement,2011, 194 ,
-EU Institutions,Public sector,2011, 78 ,
-EU Institutions,Other,2011, 63 ,
-EU Institutions,Multilateral organisations,2012, 745 ,
-EU Institutions,NGOs,2012, 626 ,
-EU Institutions,International Red Cross and Red Crescent Movement,2012, 156 ,
-EU Institutions,Public sector,2012, 66 ,
-EU Institutions,Other,2012, 69 ,
-EU Institutions,Multilateral organisations,2013, 850 ,
-EU Institutions,NGOs,2013, 682 ,
-EU Institutions,International Red Cross and Red Crescent Movement,2013, 143 ,
-EU Institutions,Public sector,2013, 83 ,
-EU Institutions,Other,2013, 28 ,
-EU Institutions,Multilateral organisations,2014, 993 ,
-EU Institutions,NGOs,2014, 732 ,
-EU Institutions,International Red Cross and Red Crescent Movement,2014, 184 ,
-EU Institutions,Public sector,2014, 106 ,
-EU Institutions,Other,2014, 50 ,
-EU Institutions,Multilateral organisations,2015, 789 ,
-EU Institutions,NGOs,2015, 690 ,
-EU Institutions,International Red Cross and Red Crescent Movement,2015, 113 ,
-EU Institutions,Public sector,2015, 124 ,
-EU Institutions,Other,2015, 105 ,
-EU Institutions,Multilateral organisations,2016," 1,392 ",
-EU Institutions,NGOs,2016, 939 ,
-EU Institutions,International Red Cross and Red Crescent Movement,2016, 247 ,
-EU Institutions,Public sector,2016, 255 ,
-EU Institutions,Other,2016, 102 ,
-EU Institutions,Multilateral organisations,2017," 1,318 ",
-EU Institutions,NGOs,2017, 795 ,
-EU Institutions,International Red Cross and Red Crescent Movement,2017, 162 ,
-EU Institutions,Public sector,2017, 140 ,
-EU Institutions,Other,2017, 86 ,
-EU Institutions,Multilateral organisations,2018," 1,084 ",
-EU Institutions,NGOs,2018, 769 ,
-EU Institutions,International Red Cross and Red Crescent Movement,2018, 171 ,
-EU Institutions,Public sector,2018, 197 ,
-EU Institutions,Other,2018, 86 ,
-EU Institutions,Multilateral organisations,2019," 1,172 ",
-EU Institutions,NGOs,2019, 732 ,
-EU Institutions,International Red Cross and Red Crescent Movement,2019, 186 ,
-EU Institutions,Public sector,2019, 86 ,
-EU Institutions,Other,2019, 72 ,
-Saudi Arabia (Kingdom of),Multilateral organisations,2011, 154 ,
-Saudi Arabia (Kingdom of),NGOs,2011, -   ,
-Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2011, -   ,
-Saudi Arabia (Kingdom of),Public sector,2011, 42 ,
-Saudi Arabia (Kingdom of),Other,2011, -   ,
-Saudi Arabia (Kingdom of),Multilateral organisations,2012, 71 ,
-Saudi Arabia (Kingdom of),NGOs,2012, 6 ,
-Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2012, -   ,
-Saudi Arabia (Kingdom of),Public sector,2012, 82 ,
-Saudi Arabia (Kingdom of),Other,2012, 307 ,
-Saudi Arabia (Kingdom of),Multilateral organisations,2013, 13 ,
-Saudi Arabia (Kingdom of),NGOs,2013, 36 ,
-Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2013, 0 ,
-Saudi Arabia (Kingdom of),Public sector,2013, 30 ,
-Saudi Arabia (Kingdom of),Other,2013, 116 ,
-Saudi Arabia (Kingdom of),Multilateral organisations,2014, 632 ,
-Saudi Arabia (Kingdom of),NGOs,2014, 25 ,
-Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2014, 51 ,
-Saudi Arabia (Kingdom of),Public sector,2014, 23 ,
-Saudi Arabia (Kingdom of),Other,2014, 106 ,
-Saudi Arabia (Kingdom of),Multilateral organisations,2015, 350 ,
-Saudi Arabia (Kingdom of),NGOs,2015, 54 ,
-Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2015, 2 ,
-Saudi Arabia (Kingdom of),Public sector,2015, 127 ,
-Saudi Arabia (Kingdom of),Other,2015, 128 ,
-Saudi Arabia (Kingdom of),Multilateral organisations,2016, 99 ,
-Saudi Arabia (Kingdom of),NGOs,2016, 56 ,
-Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2016, 16 ,
-Saudi Arabia (Kingdom of),Public sector,2016, 318 ,
-Saudi Arabia (Kingdom of),Other,2016, 22 ,
-Saudi Arabia (Kingdom of),Multilateral organisations,2017, 164 ,
-Saudi Arabia (Kingdom of),NGOs,2017, 99 ,
-Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2017, 0 ,
-Saudi Arabia (Kingdom of),Public sector,2017, 244 ,
-Saudi Arabia (Kingdom of),Other,2017, 14 ,
-Saudi Arabia (Kingdom of),Multilateral organisations,2018, 681 ,
-Saudi Arabia (Kingdom of),NGOs,2018, 78 ,
-Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2018, 4 ,
-Saudi Arabia (Kingdom of),Public sector,2018, 800 ,
-Saudi Arabia (Kingdom of),Other,2018, 90 ,
-Saudi Arabia (Kingdom of),Multilateral organisations,2019, 560 ,
-Saudi Arabia (Kingdom of),NGOs,2019, 66 ,
-Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2019, 1 ,
-Saudi Arabia (Kingdom of),Public sector,2019, 255 ,
-Saudi Arabia (Kingdom of),Other,2019, 562 ,
-United Arab Emirates,Multilateral organisations,2011, 25 ,
-United Arab Emirates,NGOs,2011, -   ,
-United Arab Emirates,International Red Cross and Red Crescent Movement,2011, 10 ,
-United Arab Emirates,Public sector,2011, 44 ,
-United Arab Emirates,Other,2011, 92 ,
-United Arab Emirates,Multilateral organisations,2012, 1 ,
-United Arab Emirates,NGOs,2012, -   ,
-United Arab Emirates,International Red Cross and Red Crescent Movement,2012, 19 ,
-United Arab Emirates,Public sector,2012, -   ,
-United Arab Emirates,Other,2012, 18 ,
-United Arab Emirates,Multilateral organisations,2013, 33 ,
-United Arab Emirates,NGOs,2013, 3 ,
-United Arab Emirates,International Red Cross and Red Crescent Movement,2013, 17 ,
-United Arab Emirates,Public sector,2013, 179 ,
-United Arab Emirates,Other,2013, 40 ,
-United Arab Emirates,Multilateral organisations,2014, 68 ,
-United Arab Emirates,NGOs,2014, -   ,
-United Arab Emirates,International Red Cross and Red Crescent Movement,2014, 52 ,
-United Arab Emirates,Public sector,2014, -   ,
-United Arab Emirates,Other,2014, 13 ,
-United Arab Emirates,Multilateral organisations,2015, 6 ,
-United Arab Emirates,NGOs,2015, 40 ,
-United Arab Emirates,International Red Cross and Red Crescent Movement,2015, 640 ,
-United Arab Emirates,Public sector,2015, 29 ,
-United Arab Emirates,Other,2015, 52 ,
-United Arab Emirates,Multilateral organisations,2016, 96 ,
-United Arab Emirates,NGOs,2016, 1 ,
-United Arab Emirates,International Red Cross and Red Crescent Movement,2016, 410 ,
-United Arab Emirates,Public sector,2016, 49 ,
-United Arab Emirates,Other,2016, 246 ,
-United Arab Emirates,Multilateral organisations,2017, 27 ,
-United Arab Emirates,NGOs,2017, 6 ,
-United Arab Emirates,International Red Cross and Red Crescent Movement,2017, 240 ,
-United Arab Emirates,Public sector,2017, 24 ,
-United Arab Emirates,Other,2017, 24 ,
-United Arab Emirates,Multilateral organisations,2018, 763 ,
-United Arab Emirates,NGOs,2018, 1 ,
-United Arab Emirates,International Red Cross and Red Crescent Movement,2018," 1,312 ",
-United Arab Emirates,Public sector,2018, 2 ,
-United Arab Emirates,Other,2018, 91 ,
-United Arab Emirates,Multilateral organisations,2019, 534 ,
-United Arab Emirates,NGOs,2019, 6 ,
-United Arab Emirates,International Red Cross and Red Crescent Movement,2019, 71 ,
-United Arab Emirates,Public sector,2019, -   ,
-United Arab Emirates,Other,2019, 15 ,
+﻿Donor,Delivery Channel,Year,USD deflated,Proportion
+United States,Multilateral organisations,2011,"3,176",62%
+United States,NGOs,2011,"1,019",20%
+United States,International Red Cross and Red Crescent Movement,2011,356,7%
+United States,Public sector,2011,257,5%
+United States,Other,2011,282,6%
+United States,Multilateral organisations,2012,"3,044",68%
+United States,NGOs,2012,846,19%
+United States,International Red Cross and Red Crescent Movement,2012,263,6%
+United States,Public sector,2012,194,4%
+United States,Other,2012,111,2%
+United States,Multilateral organisations,2013,"3,801",72%
+United States,NGOs,2013,923,18%
+United States,International Red Cross and Red Crescent Movement,2013,317,6%
+United States,Public sector,2013,98,2%
+United States,Other,2013,124,2%
+United States,Multilateral organisations,2014,"4,814",73%
+United States,NGOs,2014,"1,028",16%
+United States,International Red Cross and Red Crescent Movement,2014,398,6%
+United States,Public sector,2014,178,3%
+United States,Other,2014,135,2%
+United States,Multilateral organisations,2015,"4,250",64%
+United States,NGOs,2015,"1,599",24%
+United States,International Red Cross and Red Crescent Movement,2015,396,6%
+United States,Public sector,2015,172,3%
+United States,Other,2015,273,4%
+United States,Multilateral organisations,2016,"4,312",64%
+United States,NGOs,2016,"1,592",24%
+United States,International Red Cross and Red Crescent Movement,2016,467,7%
+United States,Public sector,2016,275,4%
+United States,Other,2016,124,2%
+United States,Multilateral organisations,2017,"4,953",67%
+United States,NGOs,2017,"1,669",23%
+United States,International Red Cross and Red Crescent Movement,2017,447,6%
+United States,Public sector,2017,164,2%
+United States,Other,2017,135,2%
+United States,Multilateral organisations,2018,"4,744",65%
+United States,NGOs,2018,"1,640",22%
+United States,International Red Cross and Red Crescent Movement,2018,499,7%
+United States,Public sector,2018,293,4%
+United States,Other,2018,144,2%
+United States,Multilateral organisations,2019,"5,552",67%
+United States,NGOs,2019,"1,897",23%
+United States,International Red Cross and Red Crescent Movement,2019,497,6%
+United States,Public sector,2019,218,3%
+United States,Other,2019,162,2%
+Germany,Multilateral organisations,2011,553,65%
+Germany,NGOs,2011,73,9%
+Germany,International Red Cross and Red Crescent Movement,2011,26,3%
+Germany,Public sector,2011,191,22%
+Germany,Other,2011,5,1%
+Germany,Multilateral organisations,2012,581,71%
+Germany,NGOs,2012,92,11%
+Germany,International Red Cross and Red Crescent Movement,2012,13,2%
+Germany,Public sector,2012,129,16%
+Germany,Other,2012,0,0%
+Germany,Multilateral organisations,2013,679,68%
+Germany,NGOs,2013,137,14%
+Germany,International Red Cross and Red Crescent Movement,2013,38,4%
+Germany,Public sector,2013,133,13%
+Germany,Other,2013,8,1%
+Germany,Multilateral organisations,2014,862,64%
+Germany,NGOs,2014,172,13%
+Germany,International Red Cross and Red Crescent Movement,2014,47,3%
+Germany,Public sector,2014,259,19%
+Germany,Other,2014,3,0%
+Germany,Multilateral organisations,2015,897,66%
+Germany,NGOs,2015,199,15%
+Germany,International Red Cross and Red Crescent Movement,2015,43,3%
+Germany,Public sector,2015,213,16%
+Germany,Other,2015,6,0%
+Germany,Multilateral organisations,2016,"2,197",76%
+Germany,NGOs,2016,278,10%
+Germany,International Red Cross and Red Crescent Movement,2016,141,5%
+Germany,Public sector,2016,264,9%
+Germany,Other,2016,7,0%
+Germany,Multilateral organisations,2017,"2,671",78%
+Germany,NGOs,2017,300,9%
+Germany,International Red Cross and Red Crescent Movement,2017,206,6%
+Germany,Public sector,2017,253,7%
+Germany,Other,2017,6,0%
+Germany,Multilateral organisations,2018,"2,526",77%
+Germany,NGOs,2018,279,8%
+Germany,International Red Cross and Red Crescent Movement,2018,169,5%
+Germany,Public sector,2018,311,9%
+Germany,Other,2018,10,0%
+Germany,Multilateral organisations,2019,"2,212",77%
+Germany,NGOs,2019,306,11%
+Germany,International Red Cross and Red Crescent Movement,2019,175,6%
+Germany,Public sector,2019,192,7%
+Germany,Other,2019,6,0%
+United Kingdom,Multilateral organisations,2011,"1,001",83%
+United Kingdom,NGOs,2011,134,11%
+United Kingdom,International Red Cross and Red Crescent Movement,2011,42,3%
+United Kingdom,Public sector,2011,0,0%
+United Kingdom,Other,2011,28,2%
+United Kingdom,Multilateral organisations,2012,900,81%
+United Kingdom,NGOs,2012,138,12%
+United Kingdom,International Red Cross and Red Crescent Movement,2012,49,4%
+United Kingdom,Public sector,2012,10,1%
+United Kingdom,Other,2012,14,1%
+United Kingdom,Multilateral organisations,2013,"1,394",81%
+United Kingdom,NGOs,2013,177,10%
+United Kingdom,International Red Cross and Red Crescent Movement,2013,74,4%
+United Kingdom,Public sector,2013,40,2%
+United Kingdom,Other,2013,26,2%
+United Kingdom,Multilateral organisations,2014,"1,495",69%
+United Kingdom,NGOs,2014,353,16%
+United Kingdom,International Red Cross and Red Crescent Movement,2014,103,5%
+United Kingdom,Public sector,2014,112,5%
+United Kingdom,Other,2014,111,5%
+United Kingdom,Multilateral organisations,2015,"1,580",68%
+United Kingdom,NGOs,2015,483,21%
+United Kingdom,International Red Cross and Red Crescent Movement,2015,117,5%
+United Kingdom,Public sector,2015,32,1%
+United Kingdom,Other,2015,126,5%
+United Kingdom,Multilateral organisations,2016,"1,775",71%
+United Kingdom,NGOs,2016,467,19%
+United Kingdom,International Red Cross and Red Crescent Movement,2016,158,6%
+United Kingdom,Public sector,2016,32,1%
+United Kingdom,Other,2016,72,3%
+United Kingdom,Multilateral organisations,2017,"1,838",72%
+United Kingdom,NGOs,2017,486,19%
+United Kingdom,International Red Cross and Red Crescent Movement,2017,158,6%
+United Kingdom,Public sector,2017,32,1%
+United Kingdom,Other,2017,37,1%
+United Kingdom,Multilateral organisations,2018,"1,896",79%
+United Kingdom,NGOs,2018,221,9%
+United Kingdom,International Red Cross and Red Crescent Movement,2018,185,8%
+United Kingdom,Public sector,2018,64,3%
+United Kingdom,Other,2018,48,2%
+United Kingdom,Multilateral organisations,2019,"2,431",82%
+United Kingdom,NGOs,2019,267,9%
+United Kingdom,International Red Cross and Red Crescent Movement,2019,115,4%
+United Kingdom,Public sector,2019,53,2%
+United Kingdom,Other,2019,85,3%
+Sweden,Multilateral organisations,2011,461,68%
+Sweden,NGOs,2011,129,19%
+Sweden,International Red Cross and Red Crescent Movement,2011,69,10%
+Sweden,Public sector,2011,20,3%
+Sweden,Other,2011,1,0%
+Sweden,Multilateral organisations,2012,439,69%
+Sweden,NGOs,2012,95,15%
+Sweden,International Red Cross and Red Crescent Movement,2012,81,13%
+Sweden,Public sector,2012,20,3%
+Sweden,Other,2012,0,0%
+Sweden,Multilateral organisations,2013,437,70%
+Sweden,NGOs,2013,97,15%
+Sweden,International Red Cross and Red Crescent Movement,2013,76,12%
+Sweden,Public sector,2013,18,3%
+Sweden,Other,2013,1,0%
+Sweden,Multilateral organisations,2014,536,69%
+Sweden,NGOs,2014,126,16%
+Sweden,International Red Cross and Red Crescent Movement,2014,82,11%
+Sweden,Public sector,2014,30,4%
+Sweden,Other,2014,0,0%
+Sweden,Multilateral organisations,2015,599,75%
+Sweden,NGOs,2015,113,14%
+Sweden,International Red Cross and Red Crescent Movement,2015,75,9%
+Sweden,Public sector,2015,12,1%
+Sweden,Other,2015,1,0%
+Sweden,Multilateral organisations,2016,500,70%
+Sweden,NGOs,2016,111,16%
+Sweden,International Red Cross and Red Crescent Movement,2016,81,11%
+Sweden,Public sector,2016,19,3%
+Sweden,Other,2016,0,0%
+Sweden,Multilateral organisations,2017,625,75%
+Sweden,NGOs,2017,117,14%
+Sweden,International Red Cross and Red Crescent Movement,2017,75,9%
+Sweden,Public sector,2017,12,1%
+Sweden,Other,2017,2,0%
+Sweden,Multilateral organisations,2018,744,76%
+Sweden,NGOs,2018,135,14%
+Sweden,International Red Cross and Red Crescent Movement,2018,80,8%
+Sweden,Public sector,2018,12,1%
+Sweden,Other,2018,3,0%
+Sweden,Multilateral organisations,2019,664,75%
+Sweden,NGOs,2019,133,15%
+Sweden,International Red Cross and Red Crescent Movement,2019,75,8%
+Sweden,Public sector,2019,13,1%
+Sweden,Other,2019,1,0%
+Netherlands,Multilateral organisations,2011,346,84%
+Netherlands,NGOs,2011,17,4%
+Netherlands,International Red Cross and Red Crescent Movement,2011,46,11%
+Netherlands,Public sector,2011,1,0%
+Netherlands,Other,2011,2,0%
+Netherlands,Multilateral organisations,2012,354,88%
+Netherlands,NGOs,2012,19,5%
+Netherlands,International Red Cross and Red Crescent Movement,2012,27,7%
+Netherlands,Public sector,2012,0,0%
+Netherlands,Other,2012,1,0%
+Netherlands,Multilateral organisations,2013,311,79%
+Netherlands,NGOs,2013,42,11%
+Netherlands,International Red Cross and Red Crescent Movement,2013,37,9%
+Netherlands,Public sector,2013,1,0%
+Netherlands,Other,2013,1,0%
+Netherlands,Multilateral organisations,2014,395,75%
+Netherlands,NGOs,2014,72,14%
+Netherlands,International Red Cross and Red Crescent Movement,2014,51,10%
+Netherlands,Public sector,2014,1,0%
+Netherlands,Other,2014,7,1%
+Netherlands,Multilateral organisations,2015,557,71%
+Netherlands,NGOs,2015,138,18%
+Netherlands,International Red Cross and Red Crescent Movement,2015,80,10%
+Netherlands,Public sector,2015,1,0%
+Netherlands,Other,2015,4,1%
+Netherlands,Multilateral organisations,2016,503,74%
+Netherlands,NGOs,2016,90,13%
+Netherlands,International Red Cross and Red Crescent Movement,2016,79,12%
+Netherlands,Public sector,2016,3,0%
+Netherlands,Other,2016,2,0%
+Netherlands,Multilateral organisations,2017,466,74%
+Netherlands,NGOs,2017,88,14%
+Netherlands,International Red Cross and Red Crescent Movement,2017,74,12%
+Netherlands,Public sector,2017,1,0%
+Netherlands,Other,2017,2,0%
+Netherlands,Multilateral organisations,2018,502,76%
+Netherlands,NGOs,2018,81,12%
+Netherlands,International Red Cross and Red Crescent Movement,2018,77,12%
+Netherlands,Public sector,2018,1,0%
+Netherlands,Other,2018,3,0%
+Netherlands,Multilateral organisations,2019,449,73%
+Netherlands,NGOs,2019,90,15%
+Netherlands,International Red Cross and Red Crescent Movement,2019,70,11%
+Netherlands,Public sector,2019,3,0%
+Netherlands,Other,2019,2,0%
+Norway,Multilateral organisations,2011,264,64%
+Norway,NGOs,2011,96,23%
+Norway,International Red Cross and Red Crescent Movement,2011,45,11%
+Norway,Public sector,2011,6,2%
+Norway,Other,2011,2,1%
+Norway,Multilateral organisations,2012,238,62%
+Norway,NGOs,2012,91,24%
+Norway,International Red Cross and Red Crescent Movement,2012,43,11%
+Norway,Public sector,2012,8,2%
+Norway,Other,2012,2,1%
+Norway,Multilateral organisations,2013,255,58%
+Norway,NGOs,2013,125,28%
+Norway,International Red Cross and Red Crescent Movement,2013,48,11%
+Norway,Public sector,2013,8,2%
+Norway,Other,2013,3,1%
+Norway,Multilateral organisations,2014,288,60%
+Norway,NGOs,2014,132,27%
+Norway,International Red Cross and Red Crescent Movement,2014,48,10%
+Norway,Public sector,2014,12,3%
+Norway,Other,2014,2,0%
+Norway,Multilateral organisations,2015,344,62%
+Norway,NGOs,2015,143,26%
+Norway,International Red Cross and Red Crescent Movement,2015,48,9%
+Norway,Public sector,2015,13,2%
+Norway,Other,2015,2,0%
+Norway,Multilateral organisations,2016,363,58%
+Norway,NGOs,2016,183,29%
+Norway,International Red Cross and Red Crescent Movement,2016,69,11%
+Norway,Public sector,2016,13,2%
+Norway,Other,2016,2,0%
+Norway,Multilateral organisations,2017,451,64%
+Norway,NGOs,2017,194,27%
+Norway,International Red Cross and Red Crescent Movement,2017,51,7%
+Norway,Public sector,2017,9,1%
+Norway,Other,2017,1,0%
+Norway,Multilateral organisations,2018,428,66%
+Norway,NGOs,2018,157,24%
+Norway,International Red Cross and Red Crescent Movement,2018,60,9%
+Norway,Public sector,2018,5,1%
+Norway,Other,2018,0,0%
+Norway,Multilateral organisations,2019,452,64%
+Norway,NGOs,2019,181,26%
+Norway,International Red Cross and Red Crescent Movement,2019,67,10%
+Norway,Public sector,2019,6,1%
+Norway,Other,2019,0,0%
+Canada,Multilateral organisations,2011,336,72%
+Canada,NGOs,2011,87,19%
+Canada,International Red Cross and Red Crescent Movement,2011,41,9%
+Canada,Public sector,2011,2,0%
+Canada,Other,2011,4,1%
+Canada,Multilateral organisations,2012,320,72%
+Canada,NGOs,2012,69,15%
+Canada,International Red Cross and Red Crescent Movement,2012,54,12%
+Canada,Public sector,2012,0,0%
+Canada,Other,2012,4,1%
+Canada,Multilateral organisations,2013,371,67%
+Canada,NGOs,2013,104,19%
+Canada,International Red Cross and Red Crescent Movement,2013,49,9%
+Canada,Public sector,2013,25,4%
+Canada,Other,2013,6,1%
+Canada,Multilateral organisations,2014,415,65%
+Canada,NGOs,2014,133,21%
+Canada,International Red Cross and Red Crescent Movement,2014,77,12%
+Canada,Public sector,2014,4,1%
+Canada,Other,2014,9,1%
+Canada,Multilateral organisations,2015,502,65%
+Canada,NGOs,2015,177,23%
+Canada,International Red Cross and Red Crescent Movement,2015,79,10%
+Canada,Public sector,2015,7,1%
+Canada,Other,2015,5,1%
+Canada,Multilateral organisations,2016,389,64%
+Canada,NGOs,2016,147,24%
+Canada,International Red Cross and Red Crescent Movement,2016,70,12%
+Canada,Public sector,2016,1,0%
+Canada,Other,2016,2,0%
+Canada,Multilateral organisations,2017,460,62%
+Canada,NGOs,2017,194,26%
+Canada,International Red Cross and Red Crescent Movement,2017,90,12%
+Canada,Public sector,2017,1,0%
+Canada,Other,2017,0,0%
+Canada,Multilateral organisations,2018,490,65%
+Canada,NGOs,2018,182,24%
+Canada,International Red Cross and Red Crescent Movement,2018,75,10%
+Canada,Public sector,2018,1,0%
+Canada,Other,2018,2,0%
+Canada,Multilateral organisations,2019,425,65%
+Canada,NGOs,2019,163,25%
+Canada,International Red Cross and Red Crescent Movement,2019,68,10%
+Canada,Public sector,2019,0,0%
+Canada,Other,2019,1,0%
+Switzerland,Multilateral organisations,2011,142,45%
+Switzerland,NGOs,2011,27,9%
+Switzerland,International Red Cross and Red Crescent Movement,2011,112,36%
+Switzerland,Public sector,2011,30,10%
+Switzerland,Other,2011,3,1%
+Switzerland,Multilateral organisations,2012,148,46%
+Switzerland,NGOs,2012,23,7%
+Switzerland,International Red Cross and Red Crescent Movement,2012,113,35%
+Switzerland,Public sector,2012,35,11%
+Switzerland,Other,2012,3,1%
+Switzerland,Multilateral organisations,2013,162,44%
+Switzerland,NGOs,2013,34,9%
+Switzerland,International Red Cross and Red Crescent Movement,2013,121,33%
+Switzerland,Public sector,2013,46,13%
+Switzerland,Other,2013,2,1%
+Switzerland,Multilateral organisations,2014,200,48%
+Switzerland,NGOs,2014,38,9%
+Switzerland,International Red Cross and Red Crescent Movement,2014,142,34%
+Switzerland,Public sector,2014,36,8%
+Switzerland,Other,2014,4,1%
+Switzerland,Multilateral organisations,2015,221,46%
+Switzerland,NGOs,2015,45,9%
+Switzerland,International Red Cross and Red Crescent Movement,2015,166,34%
+Switzerland,Public sector,2015,49,10%
+Switzerland,Other,2015,4,1%
+Switzerland,Multilateral organisations,2016,207,48%
+Switzerland,NGOs,2016,42,10%
+Switzerland,International Red Cross and Red Crescent Movement,2016,155,36%
+Switzerland,Public sector,2016,27,6%
+Switzerland,Other,2016,4,1%
+Switzerland,Multilateral organisations,2017,187,45%
+Switzerland,NGOs,2017,50,12%
+Switzerland,International Red Cross and Red Crescent Movement,2017,159,39%
+Switzerland,Public sector,2017,12,3%
+Switzerland,Other,2017,3,1%
+Switzerland,Multilateral organisations,2018,196,49%
+Switzerland,NGOs,2018,41,10%
+Switzerland,International Red Cross and Red Crescent Movement,2018,157,39%
+Switzerland,Public sector,2018,5,1%
+Switzerland,Other,2018,3,1%
+Switzerland,Multilateral organisations,2019,188,46%
+Switzerland,NGOs,2019,43,11%
+Switzerland,International Red Cross and Red Crescent Movement,2019,165,40%
+Switzerland,Public sector,2019,10,3%
+Switzerland,Other,2019,3,1%
+France,Multilateral organisations,2011,357,87%
+France,NGOs,2011,1,0%
+France,International Red Cross and Red Crescent Movement,2011,12,3%
+France,Public sector,2011,37,9%
+France,Other,2011,3,1%
+France,Multilateral organisations,2012,326,87%
+France,NGOs,2012,8,2%
+France,International Red Cross and Red Crescent Movement,2012,10,3%
+France,Public sector,2012,32,9%
+France,Other,2012, -   ,0%
+France,Multilateral organisations,2013,350,92%
+France,NGOs,2013,10,3%
+France,International Red Cross and Red Crescent Movement,2013,10,3%
+France,Public sector,2013,10,3%
+France,Other,2013,1,0%
+France,Multilateral organisations,2014,407,93%
+France,NGOs,2014,13,3%
+France,International Red Cross and Red Crescent Movement,2014,5,1%
+France,Public sector,2014,7,2%
+France,Other,2014,6,1%
+France,Multilateral organisations,2015,404,94%
+France,NGOs,2015,8,2%
+France,International Red Cross and Red Crescent Movement,2015,2,0%
+France,Public sector,2015,16,4%
+France,Other,2015,0,0%
+France,Multilateral organisations,2016,672,89%
+France,NGOs,2016,45,6%
+France,International Red Cross and Red Crescent Movement,2016,7,1%
+France,Public sector,2016,29,4%
+France,Other,2016,5,1%
+France,Multilateral organisations,2017,502,85%
+France,NGOs,2017,39,7%
+France,International Red Cross and Red Crescent Movement,2017,2,0%
+France,Public sector,2017,43,7%
+France,Other,2017,2,0%
+France,Multilateral organisations,2018,526,85%
+France,NGOs,2018,66,11%
+France,International Red Cross and Red Crescent Movement,2018,5,1%
+France,Public sector,2018,19,3%
+France,Other,2018,1,0%
+France,Multilateral organisations,2019,525,85%
+France,NGOs,2019,61,10%
+France,International Red Cross and Red Crescent Movement,2019,6,1%
+France,Public sector,2019,28,5%
+France,Other,2019,0,0%
+Denmark,Multilateral organisations,2011,181,68%
+Denmark,NGOs,2011,63,24%
+Denmark,International Red Cross and Red Crescent Movement,2011,18,7%
+Denmark,Public sector,2011,5,2%
+Denmark,Other,2011,1,0%
+Denmark,Multilateral organisations,2012,205,70%
+Denmark,NGOs,2012,74,25%
+Denmark,International Red Cross and Red Crescent Movement,2012,15,5%
+Denmark,Public sector,2012,1,0%
+Denmark,Other,2012,0,0%
+Denmark,Multilateral organisations,2013,229,68%
+Denmark,NGOs,2013,85,25%
+Denmark,International Red Cross and Red Crescent Movement,2013,18,5%
+Denmark,Public sector,2013,2,1%
+Denmark,Other,2013,2,1%
+Denmark,Multilateral organisations,2014,250,65%
+Denmark,NGOs,2014,100,26%
+Denmark,International Red Cross and Red Crescent Movement,2014,20,5%
+Denmark,Public sector,2014,17,4%
+Denmark,Other,2014,0,0%
+Denmark,Multilateral organisations,2015,219,69%
+Denmark,NGOs,2015,87,27%
+Denmark,International Red Cross and Red Crescent Movement,2015,11,3%
+Denmark,Public sector,2015,1,0%
+Denmark,Other,2015,0,0%
+Denmark,Multilateral organisations,2016,277,66%
+Denmark,NGOs,2016,106,25%
+Denmark,International Red Cross and Red Crescent Movement,2016,21,5%
+Denmark,Public sector,2016,17,4%
+Denmark,Other,2016,0,0%
+Denmark,Multilateral organisations,2017,367,71%
+Denmark,NGOs,2017,121,23%
+Denmark,International Red Cross and Red Crescent Movement,2017,28,5%
+Denmark,Public sector,2017,2,0%
+Denmark,Other,2017,0,0%
+Denmark,Multilateral organisations,2018,345,69%
+Denmark,NGOs,2018,121,24%
+Denmark,International Red Cross and Red Crescent Movement,2018,32,6%
+Denmark,Public sector,2018,3,1%
+Denmark,Other,2018,0,0%
+Denmark,Multilateral organisations,2019,359,64%
+Denmark,NGOs,2019,147,26%
+Denmark,International Red Cross and Red Crescent Movement,2019,33,6%
+Denmark,Public sector,2019,21,4%
+Denmark,Other,2019,0,0%
+Italy,Multilateral organisations,2011,272,83%
+Italy,NGOs,2011,2,1%
+Italy,International Red Cross and Red Crescent Movement,2011,6,2%
+Italy,Public sector,2011,45,14%
+Italy,Other,2011,3,1%
+Italy,Multilateral organisations,2012,233,88%
+Italy,NGOs,2012,0,0%
+Italy,International Red Cross and Red Crescent Movement,2012,1,0%
+Italy,Public sector,2012,32,12%
+Italy,Other,2012,0,0%
+Italy,Multilateral organisations,2013,264,87%
+Italy,NGOs,2013,26,8%
+Italy,International Red Cross and Red Crescent Movement,2013,5,2%
+Italy,Public sector,2013,10,3%
+Italy,Other,2013,1,0%
+Italy,Multilateral organisations,2014,298,88%
+Italy,NGOs,2014,10,3%
+Italy,International Red Cross and Red Crescent Movement,2014,8,2%
+Italy,Public sector,2014,21,6%
+Italy,Other,2014,0,0%
+Italy,Multilateral organisations,2015,298,83%
+Italy,NGOs,2015,7,2%
+Italy,International Red Cross and Red Crescent Movement,2015,12,3%
+Italy,Public sector,2015,40,11%
+Italy,Other,2015,0,0%
+Italy,Multilateral organisations,2016,497,85%
+Italy,NGOs,2016,29,5%
+Italy,International Red Cross and Red Crescent Movement,2016,21,4%
+Italy,Public sector,2016,32,6%
+Italy,Other,2016,2,0%
+Italy,Multilateral organisations,2017,521,84%
+Italy,NGOs,2017,16,3%
+Italy,International Red Cross and Red Crescent Movement,2017,17,3%
+Italy,Public sector,2017,67,11%
+Italy,Other,2017,1,0%
+Italy,Multilateral organisations,2018,459,83%
+Italy,NGOs,2018,14,3%
+Italy,International Red Cross and Red Crescent Movement,2018,21,4%
+Italy,Public sector,2018,61,11%
+Italy,Other,2018,1,0%
+Italy,Multilateral organisations,2019,404,92%
+Italy,NGOs,2019,2,0%
+Italy,International Red Cross and Red Crescent Movement,2019,8,2%
+Italy,Public sector,2019,24,6%
+Italy,Other,2019,0,0%
+Japan,Multilateral organisations,2011,589,74%
+Japan,NGOs,2011,24,3%
+Japan,International Red Cross and Red Crescent Movement,2011,42,5%
+Japan,Public sector,2011,142,18%
+Japan,Other,2011,0,0%
+Japan,Multilateral organisations,2012,348,62%
+Japan,NGOs,2012,27,5%
+Japan,International Red Cross and Red Crescent Movement,2012,41,7%
+Japan,Public sector,2012,144,26%
+Japan,Other,2012,1,0%
+Japan,Multilateral organisations,2013,634,76%
+Japan,NGOs,2013,30,4%
+Japan,International Red Cross and Red Crescent Movement,2013,58,7%
+Japan,Public sector,2013,114,14%
+Japan,Other,2013,1,0%
+Japan,Multilateral organisations,2014,425,49%
+Japan,NGOs,2014,49,6%
+Japan,International Red Cross and Red Crescent Movement,2014,50,6%
+Japan,Public sector,2014,341,39%
+Japan,Other,2014,4,0%
+Japan,Multilateral organisations,2015,810,62%
+Japan,NGOs,2015,73,6%
+Japan,International Red Cross and Red Crescent Movement,2015,54,4%
+Japan,Public sector,2015,369,28%
+Japan,Other,2015,1,0%
+Japan,Multilateral organisations,2016,672,75%
+Japan,NGOs,2016,65,7%
+Japan,International Red Cross and Red Crescent Movement,2016,34,4%
+Japan,Public sector,2016,119,13%
+Japan,Other,2016,1,0%
+Japan,Multilateral organisations,2017,639,70%
+Japan,NGOs,2017,78,9%
+Japan,International Red Cross and Red Crescent Movement,2017,47,5%
+Japan,Public sector,2017,150,16%
+Japan,Other,2017,1,0%
+Japan,Multilateral organisations,2018,526,70%
+Japan,NGOs,2018,62,8%
+Japan,International Red Cross and Red Crescent Movement,2018,24,3%
+Japan,Public sector,2018,143,19%
+Japan,Other,2018,1,0%
+Japan,Multilateral organisations,2019,488,71%
+Japan,NGOs,2019,68,10%
+Japan,International Red Cross and Red Crescent Movement,2019,20,3%
+Japan,Public sector,2019,110,16%
+Japan,Other,2019,0,0%
+Belgium,Multilateral organisations,2011,223,85%
+Belgium,NGOs,2011,10,4%
+Belgium,International Red Cross and Red Crescent Movement,2011,25,10%
+Belgium,Public sector,2011,2,1%
+Belgium,Other,2011,1,0%
+Belgium,Multilateral organisations,2012,149,82%
+Belgium,NGOs,2012,5,3%
+Belgium,International Red Cross and Red Crescent Movement,2012,28,15%
+Belgium,Public sector,2012,0,0%
+Belgium,Other,2012,0,0%
+Belgium,Multilateral organisations,2013,191,79%
+Belgium,NGOs,2013,24,10%
+Belgium,International Red Cross and Red Crescent Movement,2013,24,10%
+Belgium,Public sector,2013,2,1%
+Belgium,Other,2013,0,0%
+Belgium,Multilateral organisations,2014,167,89%
+Belgium,NGOs,2014,2,1%
+Belgium,International Red Cross and Red Crescent Movement,2014,17,9%
+Belgium,Public sector,2014,0,0%
+Belgium,Other,2014,0,0%
+Belgium,Multilateral organisations,2015,203,78%
+Belgium,NGOs,2015,22,8%
+Belgium,International Red Cross and Red Crescent Movement,2015,35,13%
+Belgium,Public sector,2015,1,0%
+Belgium,Other,2015,0,0%
+Belgium,Multilateral organisations,2016,351,85%
+Belgium,NGOs,2016,24,6%
+Belgium,International Red Cross and Red Crescent Movement,2016,37,9%
+Belgium,Public sector,2016,2,0%
+Belgium,Other,2016,1,0%
+Belgium,Multilateral organisations,2017,262,81%
+Belgium,NGOs,2017,22,7%
+Belgium,International Red Cross and Red Crescent Movement,2017,40,12%
+Belgium,Public sector,2017,1,0%
+Belgium,Other,2017,0,0%
+Belgium,Multilateral organisations,2018,260,82%
+Belgium,NGOs,2018,23,7%
+Belgium,International Red Cross and Red Crescent Movement,2018,35,11%
+Belgium,Public sector,2018,0,0%
+Belgium,Other,2018,0,0%
+Belgium,Multilateral organisations,2019,254,83%
+Belgium,NGOs,2019,15,5%
+Belgium,International Red Cross and Red Crescent Movement,2019,36,12%
+Belgium,Public sector,2019,0,0%
+Belgium,Other,2019,0,0%
+Spain,Multilateral organisations,2011,303,75%
+Spain,NGOs,2011,41,10%
+Spain,International Red Cross and Red Crescent Movement,2011,30,7%
+Spain,Public sector,2011,27,7%
+Spain,Other,2011,2,0%
+Spain,Multilateral organisations,2012,170,80%
+Spain,NGOs,2012,24,11%
+Spain,International Red Cross and Red Crescent Movement,2012,12,6%
+Spain,Public sector,2012,7,3%
+Spain,Other,2012,0,0%
+Spain,Multilateral organisations,2013,157,83%
+Spain,NGOs,2013,25,13%
+Spain,International Red Cross and Red Crescent Movement,2013,6,3%
+Spain,Public sector,2013,1,1%
+Spain,Other,2013,0,0%
+Spain,Multilateral organisations,2014,179,81%
+Spain,NGOs,2014,25,11%
+Spain,International Red Cross and Red Crescent Movement,2014,16,7%
+Spain,Public sector,2014,2,1%
+Spain,Other,2014,0,0%
+Spain,Multilateral organisations,2015,168,84%
+Spain,NGOs,2015,22,11%
+Spain,International Red Cross and Red Crescent Movement,2015,8,4%
+Spain,Public sector,2015,1,1%
+Spain,Other,2015,0,0%
+Spain,Multilateral organisations,2016,260,83%
+Spain,NGOs,2016,38,12%
+Spain,International Red Cross and Red Crescent Movement,2016,10,3%
+Spain,Public sector,2016,2,1%
+Spain,Other,2016,2,1%
+Spain,Multilateral organisations,2017,236,83%
+Spain,NGOs,2017,28,10%
+Spain,International Red Cross and Red Crescent Movement,2017,12,4%
+Spain,Public sector,2017,6,2%
+Spain,Other,2017,1,0%
+Spain,Multilateral organisations,2018,239,86%
+Spain,NGOs,2018,21,8%
+Spain,International Red Cross and Red Crescent Movement,2018,13,5%
+Spain,Public sector,2018,3,1%
+Spain,Other,2018,1,1%
+Spain,Multilateral organisations,2019,222,84%
+Spain,NGOs,2019,24,9%
+Spain,International Red Cross and Red Crescent Movement,2019,11,4%
+Spain,Public sector,2019,2,1%
+Spain,Other,2019,5,2%
+Ireland,Multilateral organisations,2011,83,65%
+Ireland,NGOs,2011,20,16%
+Ireland,International Red Cross and Red Crescent Movement,2011,18,14%
+Ireland,Public sector,2011,5,4%
+Ireland,Other,2011,2,1%
+Ireland,Multilateral organisations,2012,100,67%
+Ireland,NGOs,2012,27,18%
+Ireland,International Red Cross and Red Crescent Movement,2012,15,10%
+Ireland,Public sector,2012,4,3%
+Ireland,Other,2012,2,2%
+Ireland,Multilateral organisations,2013,103,69%
+Ireland,NGOs,2013,28,19%
+Ireland,International Red Cross and Red Crescent Movement,2013,16,11%
+Ireland,Public sector,2013,1,1%
+Ireland,Other,2013,2,1%
+Ireland,Multilateral organisations,2014,97,62%
+Ireland,NGOs,2014,36,23%
+Ireland,International Red Cross and Red Crescent Movement,2014,15,10%
+Ireland,Public sector,2014,5,3%
+Ireland,Other,2014,3,2%
+Ireland,Multilateral organisations,2015,110,67%
+Ireland,NGOs,2015,33,20%
+Ireland,International Red Cross and Red Crescent Movement,2015,17,10%
+Ireland,Public sector,2015,1,1%
+Ireland,Other,2015,2,1%
+Ireland,Multilateral organisations,2016,175,77%
+Ireland,NGOs,2016,29,13%
+Ireland,International Red Cross and Red Crescent Movement,2016,20,9%
+Ireland,Public sector,2016,1,0%
+Ireland,Other,2016,2,1%
+Ireland,Multilateral organisations,2017,163,78%
+Ireland,NGOs,2017,25,12%
+Ireland,International Red Cross and Red Crescent Movement,2017,18,8%
+Ireland,Public sector,2017,1,0%
+Ireland,Other,2017,2,1%
+Ireland,Multilateral organisations,2018,164,77%
+Ireland,NGOs,2018,29,14%
+Ireland,International Red Cross and Red Crescent Movement,2018,18,8%
+Ireland,Public sector,2018,2,1%
+Ireland,Other,2018,1,1%
+Ireland,Multilateral organisations,2019,158,75%
+Ireland,NGOs,2019,29,14%
+Ireland,International Red Cross and Red Crescent Movement,2019,21,10%
+Ireland,Public sector,2019,1,0%
+Ireland,Other,2019,2,1%
+Finland,Multilateral organisations,2011,141,81%
+Finland,NGOs,2011,20,11%
+Finland,International Red Cross and Red Crescent Movement,2011,13,7%
+Finland,Public sector,2011,0,0%
+Finland,Other,2011,1,1%
+Finland,Multilateral organisations,2012,124,82%
+Finland,NGOs,2012,18,12%
+Finland,International Red Cross and Red Crescent Movement,2012,9,6%
+Finland,Public sector,2012,0,0%
+Finland,Other,2012,1,0%
+Finland,Multilateral organisations,2013,137,81%
+Finland,NGOs,2013,20,12%
+Finland,International Red Cross and Red Crescent Movement,2013,11,7%
+Finland,Public sector,2013, -   ,0%
+Finland,Other,2013,0,0%
+Finland,Multilateral organisations,2014,151,82%
+Finland,NGOs,2014,12,6%
+Finland,International Red Cross and Red Crescent Movement,2014,21,12%
+Finland,Public sector,2014,0,0%
+Finland,Other,2014,1,0%
+Finland,Multilateral organisations,2015,138,81%
+Finland,NGOs,2015,13,8%
+Finland,International Red Cross and Red Crescent Movement,2015,19,11%
+Finland,Public sector,2015,0,0%
+Finland,Other,2015,1,0%
+Finland,Multilateral organisations,2016,142,83%
+Finland,NGOs,2016,13,8%
+Finland,International Red Cross and Red Crescent Movement,2016,14,8%
+Finland,Public sector,2016,0,0%
+Finland,Other,2016,2,1%
+Finland,Multilateral organisations,2017,129,82%
+Finland,NGOs,2017,10,7%
+Finland,International Red Cross and Red Crescent Movement,2017,18,11%
+Finland,Public sector,2017,0,0%
+Finland,Other,2017,0,0%
+Finland,Multilateral organisations,2018,111,81%
+Finland,NGOs,2018,9,7%
+Finland,International Red Cross and Red Crescent Movement,2018,17,12%
+Finland,Public sector,2018, -   ,0%
+Finland,Other,2018,0,0%
+Finland,Multilateral organisations,2019,103,78%
+Finland,NGOs,2019,10,7%
+Finland,International Red Cross and Red Crescent Movement,2019,19,14%
+Finland,Public sector,2019,0,0%
+Finland,Other,2019,0,0%
+EU Institutions,Multilateral organisations,2011,725,43%
+EU Institutions,NGOs,2011,607,36%
+EU Institutions,International Red Cross and Red Crescent Movement,2011,194,12%
+EU Institutions,Public sector,2011,78,5%
+EU Institutions,Other,2011,63,4%
+EU Institutions,Multilateral organisations,2012,745,45%
+EU Institutions,NGOs,2012,626,38%
+EU Institutions,International Red Cross and Red Crescent Movement,2012,156,9%
+EU Institutions,Public sector,2012,66,4%
+EU Institutions,Other,2012,69,4%
+EU Institutions,Multilateral organisations,2013,850,48%
+EU Institutions,NGOs,2013,682,38%
+EU Institutions,International Red Cross and Red Crescent Movement,2013,143,8%
+EU Institutions,Public sector,2013,83,5%
+EU Institutions,Other,2013,28,2%
+EU Institutions,Multilateral organisations,2014,993,48%
+EU Institutions,NGOs,2014,732,35%
+EU Institutions,International Red Cross and Red Crescent Movement,2014,184,9%
+EU Institutions,Public sector,2014,106,5%
+EU Institutions,Other,2014,50,2%
+EU Institutions,Multilateral organisations,2015,789,43%
+EU Institutions,NGOs,2015,690,38%
+EU Institutions,International Red Cross and Red Crescent Movement,2015,113,6%
+EU Institutions,Public sector,2015,124,7%
+EU Institutions,Other,2015,105,6%
+EU Institutions,Multilateral organisations,2016,"1,392",47%
+EU Institutions,NGOs,2016,939,32%
+EU Institutions,International Red Cross and Red Crescent Movement,2016,247,8%
+EU Institutions,Public sector,2016,255,9%
+EU Institutions,Other,2016,102,3%
+EU Institutions,Multilateral organisations,2017,"1,318",53%
+EU Institutions,NGOs,2017,795,32%
+EU Institutions,International Red Cross and Red Crescent Movement,2017,162,6%
+EU Institutions,Public sector,2017,140,6%
+EU Institutions,Other,2017,86,3%
+EU Institutions,Multilateral organisations,2018,"1,084",47%
+EU Institutions,NGOs,2018,769,33%
+EU Institutions,International Red Cross and Red Crescent Movement,2018,171,7%
+EU Institutions,Public sector,2018,197,9%
+EU Institutions,Other,2018,86,4%
+EU Institutions,Multilateral organisations,2019,"1,172",52%
+EU Institutions,NGOs,2019,732,33%
+EU Institutions,International Red Cross and Red Crescent Movement,2019,186,8%
+EU Institutions,Public sector,2019,86,4%
+EU Institutions,Other,2019,72,3%
+Saudi Arabia (Kingdom of),Multilateral organisations,2011,154,79%
+Saudi Arabia (Kingdom of),NGOs,2011, -   ,0%
+Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2011, -   ,0%
+Saudi Arabia (Kingdom of),Public sector,2011,42,21%
+Saudi Arabia (Kingdom of),Other,2011, -   ,0%
+Saudi Arabia (Kingdom of),Multilateral organisations,2012,71,15%
+Saudi Arabia (Kingdom of),NGOs,2012,6,1%
+Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2012, -   ,0%
+Saudi Arabia (Kingdom of),Public sector,2012,82,18%
+Saudi Arabia (Kingdom of),Other,2012,307,66%
+Saudi Arabia (Kingdom of),Multilateral organisations,2013,13,7%
+Saudi Arabia (Kingdom of),NGOs,2013,36,18%
+Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2013,0,0%
+Saudi Arabia (Kingdom of),Public sector,2013,30,15%
+Saudi Arabia (Kingdom of),Other,2013,116,60%
+Saudi Arabia (Kingdom of),Multilateral organisations,2014,632,75%
+Saudi Arabia (Kingdom of),NGOs,2014,25,3%
+Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2014,51,6%
+Saudi Arabia (Kingdom of),Public sector,2014,23,3%
+Saudi Arabia (Kingdom of),Other,2014,106,13%
+Saudi Arabia (Kingdom of),Multilateral organisations,2015,350,53%
+Saudi Arabia (Kingdom of),NGOs,2015,54,8%
+Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2015,2,0%
+Saudi Arabia (Kingdom of),Public sector,2015,127,19%
+Saudi Arabia (Kingdom of),Other,2015,128,19%
+Saudi Arabia (Kingdom of),Multilateral organisations,2016,99,19%
+Saudi Arabia (Kingdom of),NGOs,2016,56,11%
+Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2016,16,3%
+Saudi Arabia (Kingdom of),Public sector,2016,318,62%
+Saudi Arabia (Kingdom of),Other,2016,22,4%
+Saudi Arabia (Kingdom of),Multilateral organisations,2017,164,31%
+Saudi Arabia (Kingdom of),NGOs,2017,99,19%
+Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2017,0,0%
+Saudi Arabia (Kingdom of),Public sector,2017,244,47%
+Saudi Arabia (Kingdom of),Other,2017,14,3%
+Saudi Arabia (Kingdom of),Multilateral organisations,2018,681,41%
+Saudi Arabia (Kingdom of),NGOs,2018,78,5%
+Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2018,4,0%
+Saudi Arabia (Kingdom of),Public sector,2018,800,48%
+Saudi Arabia (Kingdom of),Other,2018,90,5%
+Saudi Arabia (Kingdom of),Multilateral organisations,2019,560,39%
+Saudi Arabia (Kingdom of),NGOs,2019,66,5%
+Saudi Arabia (Kingdom of),International Red Cross and Red Crescent Movement,2019,1,0%
+Saudi Arabia (Kingdom of),Public sector,2019,255,18%
+Saudi Arabia (Kingdom of),Other,2019,562,39%
+United Arab Emirates,Multilateral organisations,2011,25,14%
+United Arab Emirates,NGOs,2011, -   ,0%
+United Arab Emirates,International Red Cross and Red Crescent Movement,2011,10,6%
+United Arab Emirates,Public sector,2011,44,26%
+United Arab Emirates,Other,2011,92,54%
+United Arab Emirates,Multilateral organisations,2012,1,1%
+United Arab Emirates,NGOs,2012, -   ,0%
+United Arab Emirates,International Red Cross and Red Crescent Movement,2012,19,50%
+United Arab Emirates,Public sector,2012, -   ,0%
+United Arab Emirates,Other,2012,18,49%
+United Arab Emirates,Multilateral organisations,2013,33,12%
+United Arab Emirates,NGOs,2013,3,1%
+United Arab Emirates,International Red Cross and Red Crescent Movement,2013,17,6%
+United Arab Emirates,Public sector,2013,179,66%
+United Arab Emirates,Other,2013,40,15%
+United Arab Emirates,Multilateral organisations,2014,68,51%
+United Arab Emirates,NGOs,2014, -   ,0%
+United Arab Emirates,International Red Cross and Red Crescent Movement,2014,52,39%
+United Arab Emirates,Public sector,2014, -   ,0%
+United Arab Emirates,Other,2014,13,10%
+United Arab Emirates,Multilateral organisations,2015,6,1%
+United Arab Emirates,NGOs,2015,40,5%
+United Arab Emirates,International Red Cross and Red Crescent Movement,2015,640,83%
+United Arab Emirates,Public sector,2015,29,4%
+United Arab Emirates,Other,2015,52,7%
+United Arab Emirates,Multilateral organisations,2016,96,12%
+United Arab Emirates,NGOs,2016,1,0%
+United Arab Emirates,International Red Cross and Red Crescent Movement,2016,410,51%
+United Arab Emirates,Public sector,2016,49,6%
+United Arab Emirates,Other,2016,246,31%
+United Arab Emirates,Multilateral organisations,2017,27,8%
+United Arab Emirates,NGOs,2017,6,2%
+United Arab Emirates,International Red Cross and Red Crescent Movement,2017,240,75%
+United Arab Emirates,Public sector,2017,24,7%
+United Arab Emirates,Other,2017,24,8%
+United Arab Emirates,Multilateral organisations,2018,763,35%
+United Arab Emirates,NGOs,2018,1,0%
+United Arab Emirates,International Red Cross and Red Crescent Movement,2018,"1,312",61%
+United Arab Emirates,Public sector,2018,2,0%
+United Arab Emirates,Other,2018,91,4%
+United Arab Emirates,Multilateral organisations,2019,534,85%
+United Arab Emirates,NGOs,2019,6,1%
+United Arab Emirates,International Red Cross and Red Crescent Movement,2019,71,11%
+United Arab Emirates,Public sector,2019, -   ,0%
+United Arab Emirates,Other,2019,15,2%
+Korea,Multilateral organisations,2011,26,69%
+Korea,NGOs,2011,0,1%
+Korea,International Red Cross and Red Crescent Movement,2011,2,5%
+Korea,Public sector,2011,10,26%
+Korea,Other,2011, -   ,0%
+Korea,Multilateral organisations,2012,22,73%
+Korea,NGOs,2012,1,2%
+Korea,International Red Cross and Red Crescent Movement,2012,1,4%
+Korea,Public sector,2012,6,21%
+Korea,Other,2012, -   ,0%
+Korea,Multilateral organisations,2013,30,77%
+Korea,NGOs,2013,1,2%
+Korea,International Red Cross and Red Crescent Movement,2013,1,1%
+Korea,Public sector,2013,7,18%
+Korea,Other,2013,0,1%
+Korea,Multilateral organisations,2014,64,77%
+Korea,NGOs,2014,0,0%
+Korea,International Red Cross and Red Crescent Movement,2014,3,3%
+Korea,Public sector,2014,16,19%
+Korea,Other,2014,0,0%
+Korea,Multilateral organisations,2015,51,75%
+Korea,NGOs,2015,1,1%
+Korea,International Red Cross and Red Crescent Movement,2015,4,6%
+Korea,Public sector,2015,12,18%
+Korea,Other,2015,0,0%
+Korea,Multilateral organisations,2016,57,69%
+Korea,NGOs,2016,3,4%
+Korea,International Red Cross and Red Crescent Movement,2016,3,4%
+Korea,Public sector,2016,19,23%
+Korea,Other,2016,0,0%
+Korea,Multilateral organisations,2017,81,73%
+Korea,NGOs,2017,2,2%
+Korea,International Red Cross and Red Crescent Movement,2017,6,5%
+Korea,Public sector,2017,21,19%
+Korea,Other,2017, -   ,0%
+Korea,Multilateral organisations,2018,112,80%
+Korea,NGOs,2018,2,2%
+Korea,International Red Cross and Red Crescent Movement,2018,6,4%
+Korea,Public sector,2018,20,14%
+Korea,Other,2018, -   ,0%
+Korea,Multilateral organisations,2019,123,85%
+Korea,NGOs,2019,2,1%
+Korea,International Red Cross and Red Crescent Movement,2019,6,4%
+Korea,Public sector,2019,13,9%
+Korea,Other,2019, -   ,0%
+Australia,Multilateral organisations,2011,238,60%
+Australia,NGOs,2011,57,14%
+Australia,International Red Cross and Red Crescent Movement,2011,59,15%
+Australia,Public sector,2011,26,6%
+Australia,Other,2011,18,4%
+Australia,Multilateral organisations,2012,244,68%
+Australia,NGOs,2012,39,11%
+Australia,International Red Cross and Red Crescent Movement,2012,42,12%
+Australia,Public sector,2012,23,6%
+Australia,Other,2012,13,4%
+Australia,Multilateral organisations,2013,191,67%
+Australia,NGOs,2013,29,10%
+Australia,International Red Cross and Red Crescent Movement,2013,20,7%
+Australia,Public sector,2013,30,10%
+Australia,Other,2013,14,5%
+Australia,Multilateral organisations,2014,223,71%
+Australia,NGOs,2014,22,7%
+Australia,International Red Cross and Red Crescent Movement,2014,39,13%
+Australia,Public sector,2014,18,6%
+Australia,Other,2014,10,3%
+Australia,Multilateral organisations,2015,179,58%
+Australia,NGOs,2015,20,7%
+Australia,International Red Cross and Red Crescent Movement,2015,43,14%
+Australia,Public sector,2015,57,19%
+Australia,Other,2015,8,3%
+Australia,Multilateral organisations,2016,121,54%
+Australia,NGOs,2016,38,17%
+Australia,International Red Cross and Red Crescent Movement,2016,51,23%
+Australia,Public sector,2016,9,4%
+Australia,Other,2016,5,2%
+Australia,Multilateral organisations,2017,91,37%
+Australia,NGOs,2017,20,8%
+Australia,International Red Cross and Red Crescent Movement,2017,14,6%
+Australia,Public sector,2017,116,48%
+Australia,Other,2017,3,1%
+Australia,Multilateral organisations,2018,119,54%
+Australia,NGOs,2018,12,5%
+Australia,International Red Cross and Red Crescent Movement,2018,26,12%
+Australia,Public sector,2018,45,20%
+Australia,Other,2018,20,9%
+Australia,Multilateral organisations,2019,173,66%
+Australia,NGOs,2019,7,3%
+Australia,International Red Cross and Red Crescent Movement,2019,43,16%
+Australia,Public sector,2019,3,1%
+Australia,Other,2019,37,14%
+All donors,Multilateral organisations,2011,"8,265",61%
+All donors,NGOs,2011,"2,500",18%
+All donors,International Red Cross and Red Crescent Movement,2011,"1,182",9%
+All donors,Public sector,2011,"1,082",8%
+All donors,Other,2011,577,4%
+All donors,Multilateral organisations,2012,"7,418",61%
+All donors,NGOs,2012,"2,283",19%
+All donors,International Red Cross and Red Crescent Movement,2012,"1,034",8%
+All donors,Public sector,2012,872,7%
+All donors,Other,2012,619,5%
+All donors,Multilateral organisations,2013,"9,334",64%
+All donors,NGOs,2013,"2,697",19%
+All donors,International Red Cross and Red Crescent Movement,2013,"1,153",8%
+All donors,Public sector,2013,858,6%
+All donors,Other,2013,483,3%
+All donors,Multilateral organisations,2014,"11,613",64%
+All donors,NGOs,2014,"3,102",17%
+All donors,International Red Cross and Red Crescent Movement,2014,"1,504",8%
+All donors,Public sector,2014,"1,220",7%
+All donors,Other,2014,654,4%
+All donors,Multilateral organisations,2015,"11,594",58%
+All donors,NGOs,2015,"3,989",20%
+All donors,International Red Cross and Red Crescent Movement,2015,"2,104",11%
+All donors,Public sector,2015,"1,358",7%
+All donors,Other,2015,937,5%
+All donors,Multilateral organisations,2016,"12,996",60%
+All donors,NGOs,2016,"4,280",20%
+All donors,International Red Cross and Red Crescent Movement,2016,"2,164",10%
+All donors,Public sector,2016,"1,703",8%
+All donors,Other,2016,695,3%
+All donors,Multilateral organisations,2017,"14,412",64%
+All donors,NGOs,2017,"4,471",20%
+All donors,International Red Cross and Red Crescent Movement,2017,"1,932",9%
+All donors,Public sector,2017,"1,507",7%
+All donors,Other,2017,358,2%
+All donors,Multilateral organisations,2018,"15,452",62%
+All donors,NGOs,2018,"4,012",16%
+All donors,International Red Cross and Red Crescent Movement,2018,"3,076",12%
+All donors,Public sector,2018,"2,042",8%
+All donors,Other,2018,519,2%
+All donors,Multilateral organisations,2019,"15,844",66%
+All donors,NGOs,2019,"4,336",18%
+All donors,International Red Cross and Red Crescent Movement,2019,"1,771",7%
+All donors,Public sector,2019,"1,144",5%
+All donors,Other,2019,970,4%
