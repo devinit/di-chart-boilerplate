@@ -62,6 +62,13 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
 
   return chart;
 };
+
+const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
+  const formatter = new Intl.NumberFormat('en-US', { style, currency: 'USD', signDisplay });
+
+  return formatter.format(value);
+};
+
 /**
  * Run your code after the page has loaded
  */
@@ -94,7 +101,6 @@ window.addEventListener('load', () => {
               className: 'country-filter',
               label: 'Select Donor',
             });
-            // const chart = renderDefaultChart(chartNode, cleanData(data), { years, channels });
             const chart = window.echarts.init(chartNode);
             renderDefaultChart(chart, cleanData(data), { years, channels });
 
@@ -119,7 +125,13 @@ window.addEventListener('load', () => {
                       activeDonors.length > 1
                         ? {
                           trigger: 'item',
-                          formatter: `{b} - ${donor} <br />{a} <strong style="padding-left:10px;">{c}</strong>`,
+                          formatter: (params) => {
+                            const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
+
+                            return item
+                              ? `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${toDollars(item.value, 'decimal', 'never')} (${item.Proportion})</strong>`
+                              : `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${toDollars(item.value, 'decimal', 'never')}</strong>`;
+                          },
                         }
                         : {},
                 })))
