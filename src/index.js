@@ -49,6 +49,10 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     yAxis: {
       type: 'value',
+      name: 'US$ millions',
+      nameLocation: 'middle',
+      nameGap: 50,
+      nameTextStyle: { fontSize: 14 },
     },
     series: channels.map((channel) => ({
       name: channel,
@@ -136,6 +140,7 @@ window.addEventListener('load', () => {
                 .reduce((final, cur) => final.concat(cur), []);
               chart.setOption({
                 series,
+                yAxis: { nameGap: 45 },
               }, { replaceMerge: ['series'] });
             };
 
@@ -143,7 +148,6 @@ window.addEventListener('load', () => {
               // filter data to return only the selected items
               const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
               const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
-              // console.log(filteredData, selectedDonors);
               updateChartForDonorSeries(filteredData, selectedDonors);
             };
 
