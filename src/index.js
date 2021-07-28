@@ -121,19 +121,17 @@ window.addEventListener('load', () => {
                   type: 'bar',
                   stack: donor,
                   emphasis: { focus: 'series' },
-                  tooltip:
-                      activeDonors.length > 1
-                        ? {
-                          trigger: 'item',
-                          formatter: (params) => {
-                            const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
+                  tooltip: {
+                    trigger: 'item',
+                    formatter: (params) => {
+                      const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
+                      const value = item
+                        ? `${toDollars(item.value, 'decimal', 'never')} (${item.Proportion})`
+                        : toDollars(item.value, 'decimal', 'never');
 
-                            return item
-                              ? `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${toDollars(item.value, 'decimal', 'never')} (${item.Proportion})</strong>`
-                              : `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${toDollars(item.value, 'decimal', 'never')}</strong>`;
-                          },
-                        }
-                        : {},
+                      return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
+                    },
+                  },
                 })))
                 .reduce((final, cur) => final.concat(cur), []);
               chart.setOption({
