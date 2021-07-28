@@ -19,6 +19,7 @@ module.exports = {
       filename: process.env.NODE_ENV === 'production' ? '[name].[contenthash:8].css' : '[name].css',
     },
     extra: {
+      mode: 'production',
       externals: {
         d3: 'd3',
       },
