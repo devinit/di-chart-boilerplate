@@ -11,7 +11,7 @@ import PillWidget from './widgets/pills';
 
 const cleanData = (data) => data.map((d) => {
   const clean = { ...d };
-  clean.value = d['USD deflated'].trim() ? Number(d['USD deflated'].replace(',', '').replace(' ', '').trim()) : null;
+  clean.value = d.Proportion.trim() ? Number(d.Proportion.replace(',', '').replace(' ', '').replace('%', '').trim()) : null;
 
   return clean;
 });
@@ -35,7 +35,14 @@ const processChannelData = (data, years, channel) => {
   return chartData;
 };
 
+const calculatePercentage = (data, channelData, index) => {
+  const sum = channelData.reduce((_sum, seriesData) => _sum + seriesData[index], 0);
+
+  return ((data / sum) * 100).toFixed(2);
+};
+
 const renderDefaultChart = (chart, data, { years, channels }) => {
+  const channelData = channels.map((channel) => processChannelData(data, years, channel));
   const option = {
     legend: {
       show: true,
@@ -51,15 +58,21 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       type: 'value',
       name: 'US$ millions',
       nameLocation: 'middle',
-      nameGap: 50,
+      nameGap: 40,
       nameTextStyle: { fontSize: 14 },
+      max: 100,
+      axisLabel: { formatter: '{value}%' },
     },
-    series: channels.map((channel) => ({
+    series: channels.map((channel, index) => ({
       name: channel,
-      data: processChannelData(data, years, channel),
+      data: channelData[index].map((d, idx) => calculatePercentage(d, channelData, idx)),
       type: 'bar',
       stack: 'channels',
       emphasis: { focus: 'series' },
+      tooltip: {
+        trigger: 'item',
+        formatter: (params) => `${params.name} <br /> ${channel} <br /> <strong>${params.value}%</strong>`,
+      },
     })),
   };
   chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
@@ -130,18 +143,15 @@ window.addEventListener('load', () => {
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
                       const value = item
-                        ? `${toDollars(item.value, 'decimal', 'never')} (${item.Proportion})`
-                        : toDollars(item.value, 'decimal', 'never');
+                        ? `${item.value}% (${toDollars(item['USD deflated'], 'decimal', 'never')})`
+                        : `${item.value}%`;
 
                       return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
                     },
                   },
                 })))
                 .reduce((final, cur) => final.concat(cur), []);
-              chart.setOption({
-                series,
-                yAxis: { nameGap: 45 },
-              }, { replaceMerge: ['series'] });
+              chart.setOption({ series }, { replaceMerge: ['series'] });
             };
 
             const onAdd = (value) => {
