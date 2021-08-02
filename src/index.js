@@ -58,10 +58,6 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     yAxis: {
       type: 'value',
-      name: 'US$ millions',
-      nameLocation: 'middle',
-      nameGap: 40,
-      nameTextStyle: { fontSize: 14 },
       max: 100,
       axisLabel: { formatter: '{value}%' },
     },
