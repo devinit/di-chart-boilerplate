@@ -52,7 +52,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
         formatter: (params) => {
           const item = data.find((d) => d['Delivery Channel'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name);
 
-          return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (${item['USD deflated']})</strong>`;
+          return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (US$ ${item['USD deflated']} millions)</strong>`;
         },
       },
     })),
@@ -123,7 +123,7 @@ window.addEventListener('load', () => {
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
                       const value = item
-                        ? `${item.value}% (${toDollars(cleanValue(item['USD deflated']), 'decimal', 'never')})`
+                        ? `${item.value}% (US$ ${toDollars(cleanValue(item['USD deflated']), 'decimal', 'never')} millions)`
                         : `${item.value}%`;
 
                       return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
