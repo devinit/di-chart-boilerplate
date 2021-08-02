@@ -24,9 +24,24 @@ const colorways = {
   leaf: ['#08492f', '#005b3e', '#00694a', '#3b8c62', '#74bf93', '#a2d1b0', '#b1d8bb', '#c5e1cb'],
 };
 
+export const mixedColourWay = () => {
+  const themes = Object.keys(colorways).filter((key) => key !== 'rainbow');
+
+  return colorways.rainbow.reduce((colours, hex, index) => [hex].concat(
+    themes.reduce((_themed, theme) => {
+      if (colorways[theme].length > index) {
+        return _themed.concat(colorways[theme][index]);
+      }
+
+      return _themed;
+    }, colours),
+    [],
+  ));
+};
+
 // default echart options for DI charts
 const defaultOptions = {
-  color: colorways.default.concat(colorways.rainbow),
+  color: colorways.rainbow.concat(colorways.default),
   legend: {
     top: 10,
     textStyle: {
