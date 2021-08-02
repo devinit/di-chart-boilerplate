@@ -68,7 +68,6 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       data: channelData[index].map((d, idx) => calculatePercentage(d, channelData, idx)),
       type: 'bar',
       stack: 'channels',
-      emphasis: { focus: 'series' },
       tooltip: {
         trigger: 'item',
         formatter: (params) => `${params.name} <br /> ${channel} <br /> <strong>${params.value}%</strong>`,
@@ -137,7 +136,6 @@ window.addEventListener('load', () => {
                   ),
                   type: 'bar',
                   stack: donor,
-                  emphasis: { focus: 'series' },
                   tooltip: {
                     trigger: 'item',
                     formatter: (params) => {
