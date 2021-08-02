@@ -136,7 +136,7 @@ window.addEventListener('load', () => {
 
             const onAdd = (value) => {
               // filter data to return only the selected items
-              const filteredData = value !== '*' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
+              const filteredData = value !== 'All donors' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
               const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
               updateChartForDonorSeries(filteredData, selectedDonors);
             };
@@ -146,7 +146,7 @@ window.addEventListener('load', () => {
               * */
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
-              if (value !== '*') {
+              if (value !== 'All donors') {
                 // if it's the first pill, append pill widget
                 if (!pillWidget.pillNames.length) {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
@@ -168,7 +168,7 @@ window.addEventListener('load', () => {
                 updateChartForDonorSeries(filteredData, pillWidget.pillNames);
                 countryFilter.disabled = false; // enable to select more donors
               } else {
-                countryFilter.value = '*'; // reset country filter selected value
+                countryFilter.value = 'All donors'; // reset country filter selected value
                 renderDefaultChart(chart, cleanData(data), { years, channels });
               }
             });
