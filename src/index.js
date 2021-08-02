@@ -13,13 +13,13 @@ const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').repl
 
 const cleanData = (data) => data.map((d) => {
   const clean = { ...d };
-  clean.value = cleanValue(d.Proportion);
+  clean.value = cleanValue(d.Value);
 
   return clean;
 });
 
-const processData = (data, years, donor, channel) => {
-  const filteredData = data.filter((d) => d.Donor.trim() === donor && d['Delivery Channel'] === channel);
+const processData = (data, years, donor, channel, valueType = 'Proportional') => {
+  const filteredData = data.filter((d) => d.Donor.trim() === donor && d['IHA type'] === channel && d['Value type'] === valueType);
   const sortedData = years.map((year) => filteredData.find((d) => d.Year === year));
 
   return sortedData;
@@ -50,9 +50,9 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       tooltip: {
         trigger: 'item',
         formatter: (params) => {
-          const item = data.find((d) => d['Delivery Channel'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name);
+          const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === 'Absolute');
 
-          return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (US$ ${item['USD deflated']} millions)</strong>`;
+          return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (US$ ${item.Value} million)</strong>`;
         },
       },
     })),
@@ -85,13 +85,13 @@ window.addEventListener('load', () => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/funding-channels/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
+          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/donors/public/assets/data/GHA/2021/interactivity-donors.csv';
           fetchCSVData(csv).then((data) => {
             const filterWrapper = addFilterWrapper(chartNode);
             // extract unique values
             const donors = [...new Set(data.map((d) => d.Donor))];
             const years = [...new Set(data.map((d) => d.Year))];
-            const channels = [...new Set(data.map((d) => d['Delivery Channel']))];
+            const channels = [...new Set(data.map((d) => d['IHA type']))];
             // create UI elements
             const countryFilter = addFilter({
               wrapper: filterWrapper,
@@ -121,10 +121,10 @@ window.addEventListener('load', () => {
                   tooltip: {
                     trigger: 'item',
                     formatter: (params) => {
-                      const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
+                      const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === 'Absolute');
                       const value = item
-                        ? `${item.value}% (US$ ${toDollars(cleanValue(item['USD deflated']), 'decimal', 'never')} millions)`
-                        : `${item.value}%`;
+                        ? `${params.value}% (US$ ${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
+                        : `${params.value}%`;
 
                       return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
                     },
