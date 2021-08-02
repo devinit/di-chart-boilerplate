@@ -111,7 +111,7 @@ window.addEventListener('load', () => {
             const updateChartForDonorSeries = (updatedData, activeDonors) => {
               const cleanedData = cleanData(updatedData);
               const series = activeDonors
-                .map((donor) => channels.map((channel) => ({
+                .map((donor) => channels.map((channel, index) => ({
                   name: channel,
                   data: processData(cleanedData, years, donor, channel).map(
                     (d) => Number(d.value),
@@ -128,6 +128,17 @@ window.addEventListener('load', () => {
 
                       return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
                     },
+                  },
+                  label: {
+                    // only show single label that overlaps the stack
+                    show: index === 0 && activeDonors.length > 1,
+                    position: 'insideBottom',
+                    distance: 15,
+                    align: 'left',
+                    verticalAlign: 'middle',
+                    rotate: 90,
+                    formatter: () => `${donor}`,
+                    fontSize: 16,
                   },
                 })))
                 .reduce((final, cur) => final.concat(cur), []);
