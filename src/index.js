@@ -9,9 +9,11 @@ import PillWidget from './widgets/pills';
 
 // Your Code Goes Here i.e. functions
 
+const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').replace(' ', '').replace('%', '').trim()) : null);
+
 const cleanData = (data) => data.map((d) => {
   const clean = { ...d };
-  clean.value = d.Proportion.trim() ? Number(d.Proportion.replace(',', '').replace(' ', '').replace('%', '').trim()) : null;
+  clean.value = cleanValue(d.Proportion);
 
   return clean;
 });
@@ -141,7 +143,7 @@ window.addEventListener('load', () => {
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
                       const value = item
-                        ? `${item.value}% (${toDollars(item['USD deflated'], 'decimal', 'never')})`
+                        ? `${item.value}% (${toDollars(cleanValue(item['USD deflated']), 'decimal', 'never')})`
                         : `${item.value}%`;
 
                       return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;

@@ -26,7 +26,7 @@ const colorways = {
 
 // default echart options for DI charts
 const defaultOptions = {
-  color: colorways.rainbow.concat(colorways.default),
+  color: colorways.default.concat(colorways.rainbow),
   legend: {
     top: 10,
     textStyle: {
