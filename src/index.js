@@ -25,26 +25,7 @@ const processData = (data, years, donor, channel) => {
   return sortedData;
 };
 
-const processChannelData = (data, years, channel) => {
-  const channelData = data.filter((d) => d['Delivery Channel'] === channel && d.Donor !== 'EU Institutions');
-  const chartData = years.reduce((values, year) => {
-    const yearData = channelData.filter((d) => d.Year === year);
-    const value = yearData.reduce((sum, item) => sum + Number(item.value || 0), 0);
-
-    return values.concat(value);
-  }, []);
-
-  return chartData;
-};
-
-const calculatePercentage = (data, channelData, index) => {
-  const sum = channelData.reduce((_sum, seriesData) => _sum + seriesData[index], 0);
-
-  return ((data / sum) * 100).toFixed(2);
-};
-
 const renderDefaultChart = (chart, data, { years, channels }) => {
-  const channelData = channels.map((channel) => processChannelData(data, years, channel));
   const option = {
     legend: {
       show: true,
@@ -61,14 +42,18 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       max: 100,
       axisLabel: { formatter: '{value}%' },
     },
-    series: channels.map((channel, index) => ({
+    series: channels.map((channel) => ({
       name: channel,
-      data: channelData[index].map((d, idx) => calculatePercentage(d, channelData, idx)),
+      data: processData(data, years, 'All donors', channel).map((d) => Number(d.value)),
       type: 'bar',
       stack: 'channels',
       tooltip: {
         trigger: 'item',
-        formatter: (params) => `${params.name} <br /> ${channel} <br /> <strong>${params.value}%</strong>`,
+        formatter: (params) => {
+          const item = data.find((d) => d['Delivery Channel'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name);
+
+          return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (${item['USD deflated']})</strong>`;
+        },
       },
     })),
   };
@@ -110,8 +95,7 @@ window.addEventListener('load', () => {
             // create UI elements
             const countryFilter = addFilter({
               wrapper: filterWrapper,
-              options: donors,
-              allItemsLabel: 'All Donors',
+              options: donors.sort(),
               className: 'country-filter',
               label: 'Select Donor',
             });
