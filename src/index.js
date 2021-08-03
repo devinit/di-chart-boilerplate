@@ -73,7 +73,7 @@ const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
  */
 window.addEventListener('load', () => {
   window.DICharts.handler.addChart({
-    className: 'dicharts--boilerplate-chart',
+    className: 'dicharts--gha-donors',
     echarts: {
       onAdd: (chartNodes) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
