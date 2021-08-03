@@ -1,5 +1,6 @@
 .dicharts--boilerplate-chart,
-.dicharts--gha-donors {
+.dicharts--gha-donors,
+.dicharts--gha-recipients {
   width: 100%;
   min-height: 450px;
 }
