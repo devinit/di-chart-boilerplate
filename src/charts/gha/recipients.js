@@ -22,12 +22,31 @@ const processData = (data, years, recipient, donor) => {
   return sortedData;
 };
 
+const processOrgTypeData = (data, recipient, orgType) => {
+  const properties = ['Destination Country', 'Recipient Org Type'];
+  const filteredData = data.find(
+    (d) => d[properties[0]].trim() === recipient && d[properties[1]] === orgType,
+  );
+  const sortedData = Object.keys(filteredData)
+    .filter((d) => !properties.includes(d))
+    .map((year) => cleanValue(filteredData[year]) || null);
+
+  return sortedData;
+};
+
 const getRecipientDonors = (data, recipient) => {
   const preApprovedDonors = ['All other donors'];
   const recipientData = data.filter((d) => d['Destination country'].trim() === recipient);
   const donors = [...new Set(recipientData.map((d) => d['Donor organisation']))].filter((d) => !preApprovedDonors.includes(d)).slice(0, 5);
 
   return donors.concat(preApprovedDonors);
+};
+
+const getRecipientOrgType = (data, recipient) => {
+  const recipientData = data.filter((d) => d['Destination Country'].trim() === recipient);
+  const orgTypes = [...new Set(recipientData.map((d) => d['Recipient Org Type']))];
+
+  return orgTypes;
 };
 
 const renderDefaultChart = (chart, data, { years, channels }) => {
@@ -50,15 +69,6 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       data: processData(data, years, 'All Recipient Countries', channel).map((d) => d && Number(d.value)),
       type: 'bar',
       stack: 'channels',
-      tooltip: {
-        // TODO: remove this if not needed
-        trigger: 'axis',
-        formatter: (params) => {
-          const item = data.find((d) => d['Donor organisation'] === channel && d['Destination country'] === 'All Recipient Countries' && `${d.Year}` === params.name);
-
-          return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (US$ ${item['USD deflated millions']} million)</strong>`;
-        },
-      },
     })),
   };
   chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
@@ -85,7 +95,6 @@ const renderRecipientChart = () => {
            */
           const donorData = await fetchCSVData('https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/charts/public/assets/data/GHA/2021/recipients-by-donor.csv');
           const orgTypeData = await fetchCSVData('https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/charts/public/assets/data/GHA/2021/recipients-by-org-type.csv');
-          console.log(orgTypeData);
           const filterWrapper = addFilterWrapper(chartNode);
           // extract unique values
           const recipients = [...new Set(donorData.map((d) => d['Destination country']))];
@@ -118,7 +127,7 @@ const renderRecipientChart = () => {
           const chart = window.echarts.init(chartNode);
           renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
 
-          const updateChart = (updatedData, recipient) => {
+          const updateChartByDonor = (updatedData, recipient) => {
             const cleanedData = cleanData(updatedData, 'USD deflated millions');
             const donors = getRecipientDonors(updatedData, recipient);
             const series = donors
@@ -133,6 +142,18 @@ const renderRecipientChart = () => {
               .reduce((final, cur) => final.concat(cur), []);
             chart.setOption({ series }, { replaceMerge: ['series'] });
           };
+          const updateChartByOrgType = (updatedData, recipient) => {
+            const orgTypes = getRecipientOrgType(updatedData, recipient);
+            const series = orgTypes
+              .map((orgType) => ({
+                name: orgType,
+                data: processOrgTypeData(updatedData, recipient, orgType),
+                type: 'bar',
+                stack: recipient,
+              }))
+              .reduce((final, cur) => final.concat(cur), []);
+            chart.setOption({ series, grid: { bottom: '20%', top: '5%' } }, { replaceMerge: ['series'] });
+          };
 
           /**
             * Event Listeners/Handlers
@@ -141,7 +162,7 @@ const renderRecipientChart = () => {
             const { value } = event.currentTarget;
             if (value !== 'All Recipient Countries') {
               const filteredData = value !== 'All Recipient Countries' ? donorData.filter((d) => d['Destination country'] === value) : donorData;
-              updateChart(filteredData, value);
+              updateChartByDonor(filteredData, value);
             } else {
               countryFilterA.value = 'All Recipient Countries'; // reset country filter selected value
               renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
@@ -157,6 +178,16 @@ const renderRecipientChart = () => {
               renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
               countryFilterAWrapper.classList.add('display-none');
               countryFilterBWrapper.classList.remove('display-none');
+            }
+          });
+          countryFilterB.addEventListener('change', (event) => {
+            const { value } = event.currentTarget;
+            if (value !== 'All Recipient Countries') {
+              const filteredData = value !== 'All Recipient Countries' ? orgTypeData.filter((d) => d['Destination Country'] === value) : orgTypeData;
+              updateChartByOrgType(filteredData, value);
+            } else {
+              countryFilterA.value = 'All Recipient Countries'; // reset country filter selected value
+              renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
             }
           });
 
