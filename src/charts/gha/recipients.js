@@ -121,7 +121,7 @@ const renderRecipientChart = () => {
             wrapper: filterWrapper,
             options: ['By Donor', 'By Recipient Organisation Type'],
             className: 'breakdown-filter',
-            label: 'Breakdown',
+            label: 'Chart Breakdown',
           });
           // defaults to donor breakdown
           const chart = window.echarts.init(chartNode);
@@ -173,11 +173,16 @@ const renderRecipientChart = () => {
             if (value === 'By Donor') {
               countryFilterAWrapper.classList.remove('display-none');
               countryFilterBWrapper.classList.add('display-none');
-            } else {
-              countryFilterA.value = 'All Recipient Countries'; // reset country filter selected value
+              countryFilterA.value = 'All Recipient Countries';
               renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
+            } else {
+              countryFilterB.value = 'All Recipient Countries'; // reset country filter selected value
               countryFilterAWrapper.classList.add('display-none');
               countryFilterBWrapper.classList.remove('display-none');
+              updateChartByOrgType(
+                orgTypeData.filter((d) => d['Destination Country'] === 'All Recipient Countries'),
+                'All Recipient Countries',
+              );
             }
           });
           countryFilterB.addEventListener('change', (event) => {
