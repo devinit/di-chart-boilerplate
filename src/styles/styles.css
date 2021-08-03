@@ -16,3 +16,7 @@
 .labelled-data-selector--wrapper {
   display: inline-block;
 }
+
+.display-none {
+  display: none;
+}

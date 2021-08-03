@@ -18,9 +18,9 @@ export const createOption = (selectElement, option, selected = false) => {
 
 export const addFilter = ({
   wrapper, options, allItemsLabel, className, label, defaultOption = '*',
-}) => {
+}, returnWrapper = false) => {
   const selectElement = document.createElement('select');
-  selectElement.classList.add(...['data-selector', 'js-plotly-chart-data-selector', className]);
+  selectElement.classList.add(...['data-selector', 'js-plotly-chart-data-selector'].concat(className));
   if (allItemsLabel) {
     createOption(selectElement, { label: allItemsLabel, value: '*' }, defaultOption === '*');
   }
@@ -36,6 +36,10 @@ export const addFilter = ({
     selectWrapper.appendChild(labelElement);
     selectWrapper.appendChild(selectElement);
     wrapper.appendChild(selectWrapper);
+
+    if (returnWrapper) {
+      return [selectElement, selectWrapper];
+    }
   } else {
     wrapper.appendChild(selectElement);
   }

@@ -74,7 +74,7 @@ const renderRecipientChart = () => {
     className: 'dicharts--gha-recipients',
     echarts: {
       onAdd: (chartNodes) => {
-        Array.prototype.forEach.call(chartNodes, (chartNode) => {
+        Array.prototype.forEach.call(chartNodes, async (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
 
           /**
@@ -83,55 +83,84 @@ const renderRecipientChart = () => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/charts/public/assets/data/GHA/2021/recipients-by-donor.csv';
-          fetchCSVData(csv).then((data) => {
-            const filterWrapper = addFilterWrapper(chartNode);
-            // extract unique values
-            const recipients = [...new Set(data.map((d) => d['Destination country']))];
-            const years = [...new Set(data.map((d) => d.Year))];
-            const initialDonors = getRecipientDonors(data, 'All Recipient Countries');
-            // create UI elements
-            const countryFilter = addFilter({
-              wrapper: filterWrapper,
-              options: recipients.sort(),
-              className: 'country-filter',
-              label: 'Select Recipient',
-            });
-            const chart = window.echarts.init(chartNode);
-            renderDefaultChart(chart, cleanData(data, 'USD deflated millions'), { years, channels: initialDonors });
+          const donorData = await fetchCSVData('https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/charts/public/assets/data/GHA/2021/recipients-by-donor.csv');
+          const orgTypeData = await fetchCSVData('https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/charts/public/assets/data/GHA/2021/recipients-by-org-type.csv');
+          console.log(orgTypeData);
+          const filterWrapper = addFilterWrapper(chartNode);
+          // extract unique values
+          const recipients = [...new Set(donorData.map((d) => d['Destination country']))];
+          const years = [...new Set(donorData.map((d) => d.Year))];
+          const initialDonors = getRecipientDonors(donorData, 'All Recipient Countries');
+          // create UI elements
+          const [countryFilterA, countryFilterAWrapper] = addFilter({
+            wrapper: filterWrapper,
+            options: recipients.sort(),
+            className: 'country-filter',
+            label: 'Select Recipient',
+          }, true);
+          // in case the recipients are different, we create another dropdown with the org type data
+          const orgTypeRecipients = [...new Set(orgTypeData.map((d) => d['Destination Country']))];
+          const [countryFilterB, countryFilterBWrapper] = addFilter({
+            wrapper: filterWrapper,
+            options: orgTypeRecipients.sort(),
+            className: 'country-filter',
+            label: 'Select Recipient',
+          }, true);
+          countryFilterBWrapper.classList.add('display-none');
 
-            const updateChart = (updatedData, recipient) => {
-              const cleanedData = cleanData(updatedData, 'USD deflated millions');
-              const donors = getRecipientDonors(updatedData, recipient);
-              const series = donors
-                .map((donor) => ({
-                  name: donor,
-                  data: processData(cleanedData, years, recipient, donor).map(
-                    (d) => d && Number(d.value),
-                  ),
-                  type: 'bar',
-                  stack: recipient,
-                }))
-                .reduce((final, cur) => final.concat(cur), []);
-              chart.setOption({ series }, { replaceMerge: ['series'] });
-            };
-
-            /**
-              * Event Listeners/Handlers
-              * */
-            countryFilter.addEventListener('change', (event) => {
-              const { value } = event.currentTarget;
-              if (value !== 'All Recipient Countries') {
-                const filteredData = value !== 'All Recipient Countries' ? data.filter((d) => d['Destination country'] === value) : data;
-                updateChart(filteredData, value);
-              } else {
-                countryFilter.value = 'All Recipient Countries'; // reset country filter selected value
-                renderDefaultChart(chart, cleanData(data, 'USD deflated millions'), { years, channels: initialDonors });
-              }
-            });
-
-            dichart.hideLoading();
+          const contextFilter = addFilter({
+            wrapper: filterWrapper,
+            options: ['By Donor', 'By Recipient Organisation Type'],
+            className: 'breakdown-filter',
+            label: 'Breakdown',
           });
+          // defaults to donor breakdown
+          const chart = window.echarts.init(chartNode);
+          renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
+
+          const updateChart = (updatedData, recipient) => {
+            const cleanedData = cleanData(updatedData, 'USD deflated millions');
+            const donors = getRecipientDonors(updatedData, recipient);
+            const series = donors
+              .map((donor) => ({
+                name: donor,
+                data: processData(cleanedData, years, recipient, donor).map(
+                  (d) => d && Number(d.value),
+                ),
+                type: 'bar',
+                stack: recipient,
+              }))
+              .reduce((final, cur) => final.concat(cur), []);
+            chart.setOption({ series }, { replaceMerge: ['series'] });
+          };
+
+          /**
+            * Event Listeners/Handlers
+            * */
+          countryFilterA.addEventListener('change', (event) => {
+            const { value } = event.currentTarget;
+            if (value !== 'All Recipient Countries') {
+              const filteredData = value !== 'All Recipient Countries' ? donorData.filter((d) => d['Destination country'] === value) : donorData;
+              updateChart(filteredData, value);
+            } else {
+              countryFilterA.value = 'All Recipient Countries'; // reset country filter selected value
+              renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
+            }
+          });
+          contextFilter.addEventListener('change', (event) => {
+            const { value } = event.currentTarget;
+            if (value === 'By Donor') {
+              countryFilterAWrapper.classList.remove('display-none');
+              countryFilterBWrapper.classList.add('display-none');
+            } else {
+              countryFilterA.value = 'All Recipient Countries'; // reset country filter selected value
+              renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
+              countryFilterAWrapper.classList.add('display-none');
+              countryFilterBWrapper.classList.remove('display-none');
+            }
+          });
+
+          dichart.hideLoading();
         });
       },
     },
