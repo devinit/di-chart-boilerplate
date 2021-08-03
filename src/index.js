@@ -1,5 +1,6 @@
 import 'core-js';
 import renderDonorsChart from './charts/gha/donors';
+import renderFundingChannelsChart from './charts/gha/funding-channels';
 import './styles/styles.css';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
@@ -10,4 +11,5 @@ import './styles/styles.css';
  */
 window.addEventListener('load', () => {
   renderDonorsChart();
+  renderFundingChannelsChart();
 });
