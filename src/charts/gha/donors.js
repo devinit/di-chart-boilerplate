@@ -83,7 +83,7 @@ const renderDonorsChart = () => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/donors/public/assets/data/GHA/2021/interactivity-donors.csv';
+          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/charts/public/assets/data/GHA/2021/interactivity-donors.csv';
           fetchCSVData(csv).then((data) => {
             const filterWrapper = addFilterWrapper(chartNode);
             // extract unique values
