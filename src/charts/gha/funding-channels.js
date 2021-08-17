@@ -27,8 +27,11 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
   const option = {
     legend: {
       show: true,
-      top: 'bottom',
-      padding: [5, 10, 15, 10],
+      top: 'top',
+      padding: [20, 10, 5, 10],
+      textStyle: {
+        fontSize: '1.3rem',
+      },
     },
     grid: { bottom: '10%' },
     xAxis: {
@@ -37,7 +40,6 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     yAxis: {
       type: 'value',
-      max: 100,
       axisLabel: { formatter: '{value}%' },
     },
     series: channels.map((channel) => ({
@@ -53,8 +55,10 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
           return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (US$ ${item['USD deflated']} millions)</strong>`;
         },
       },
+      cursor: 'auto',
     })),
   };
+  defaultOptions.toolbox.feature.saveAsImage.name = 'funding-channels';
   chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
 
   return chart;
@@ -95,7 +99,7 @@ const renderFundingChannelsChart = () => {
               wrapper: filterWrapper,
               options: donors.sort(),
               className: 'country-filter',
-              label: 'Select Donor',
+              label: '<b>Select Donor</b>',
             });
             const chart = window.echarts.init(chartNode);
             renderDefaultChart(chart, cleanData(data), { years, channels });

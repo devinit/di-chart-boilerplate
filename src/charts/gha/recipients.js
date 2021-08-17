@@ -1,5 +1,5 @@
 import deepMerge from 'deepmerge';
-import defaultOptions from '../echarts';
+import defaultOptions, { colorways } from '../echarts';
 import fetchCSVData from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
@@ -53,8 +53,11 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
   const option = {
     legend: {
       show: true,
-      top: 'bottom',
-      padding: [5, 10, 15, 10],
+      top: 'top',
+      padding: [20, 10, 5, 10],
+      textStyle: {
+        fontSize: '1.3rem',
+      },
     },
     grid: { bottom: '10%' },
     xAxis: {
@@ -69,8 +72,11 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       data: processData(data, years, 'All Recipient Countries', channel).map((d) => d && Number(d.value)),
       type: 'bar',
       stack: 'channels',
+      cursor: 'auto',
     })),
   };
+  defaultOptions.color = colorways.leaf;
+  defaultOptions.toolbox.feature.saveAsImage.name = 'recipients';
   chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
 
   return chart;
@@ -105,7 +111,7 @@ const renderRecipientChart = () => {
             wrapper: filterWrapper,
             options: recipients.sort(),
             className: 'country-filter',
-            label: 'Select Recipient',
+            label: '<b>Select Recipient</b>',
           }, true);
           // in case the recipients are different, we create another dropdown with the org type data
           const orgTypeRecipients = [...new Set(orgTypeData.map((d) => d['Destination Country']))];
@@ -113,7 +119,7 @@ const renderRecipientChart = () => {
             wrapper: filterWrapper,
             options: orgTypeRecipients.sort(),
             className: 'country-filter',
-            label: 'Select Recipient',
+            label: '<b>Select Recipient</b>',
           }, true);
           countryFilterBWrapper.classList.add('display-none');
 
@@ -121,7 +127,7 @@ const renderRecipientChart = () => {
             wrapper: filterWrapper,
             options: ['By Donor', 'By Recipient Organisation Type'],
             className: 'breakdown-filter',
-            label: 'Chart Breakdown',
+            label: '<b>Chart Breakdown</b>',
           });
           // defaults to donor breakdown
           const chart = window.echarts.init(chartNode);
