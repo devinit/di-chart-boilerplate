@@ -1,4 +1,4 @@
-const colorways = {
+export const colorways = {
   rainbow: [
     '#e84439',
     '#eb642b',
@@ -55,21 +55,22 @@ const defaultOptions = {
     },
   },
   toolbox: {
+    show: true,
     showTitle: false,
     feature: {
       saveAsImage: {
-        title: 'Save as image',
+        title: 'Save as PNG',
         pixelRatio: 2,
       },
     },
     right: 20,
     tooltip: {
       show: true,
+      formatter(param) {
+        return `<div>${param.title}</div>`; // user-defined DOM structure
+      },
       textStyle: {
         fontFamily: 'Geomanist Regular,sans-serif',
-        formatter(param) {
-          return `<div>${param.title}</div>`; // user-defined DOM structure
-        },
       },
     },
   },
