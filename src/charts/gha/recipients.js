@@ -66,6 +66,9 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     yAxis: {
       type: 'value',
+      name: 'USD$ Millions',
+      nameGap: 50,
+      nameLocation: 'middle',
     },
     series: channels.map((channel) => ({
       name: channel,
@@ -109,25 +112,26 @@ const renderRecipientChart = () => {
           // create UI elements
           const [countryFilterA, countryFilterAWrapper] = addFilter({
             wrapper: filterWrapper,
-            options: recipients.sort(),
+            options: recipients,
             className: 'country-filter',
             label: '<b>Select Recipient</b>',
+            defaultOption: 'All Recipient Countries',
           }, true);
           // in case the recipients are different, we create another dropdown with the org type data
           const orgTypeRecipients = [...new Set(orgTypeData.map((d) => d['Destination Country']))];
           const [countryFilterB, countryFilterBWrapper] = addFilter({
             wrapper: filterWrapper,
-            options: orgTypeRecipients.sort(),
+            options: orgTypeRecipients,
             className: 'country-filter',
-            label: '<b>Select Recipient</b>',
+            label: '<b>Select recipient</b>',
           }, true);
           countryFilterBWrapper.classList.add('display-none');
 
           const contextFilter = addFilter({
             wrapper: filterWrapper,
-            options: ['By Donor', 'By Recipient Organisation Type'],
+            options: ['By Donor', 'By type of organisation receiving funding'],
             className: 'breakdown-filter',
-            label: '<b>Chart Breakdown</b>',
+            label: '<b>Choose Breakdown</b>',
           });
           // defaults to donor breakdown
           const chart = window.echarts.init(chartNode);
