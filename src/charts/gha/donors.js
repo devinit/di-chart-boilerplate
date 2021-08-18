@@ -94,13 +94,14 @@ const renderDonorsChart = () => {
             const donors = [...new Set(data.map((d) => d.Donor))];
             const years = [...new Set(data.map((d) => d.Year))];
             const channels = [...new Set(data.map((d) => d['IHA type']))];
+            const donorSelectErrorMessage = 'You can compare two donors. Please remove one before adding another';
             // create UI elements
             const countryFilter = addFilter({
               wrapper: filterWrapper,
               options: donors.sort(),
               className: 'country-filter',
-              label: '<b>Select Donor</b>',
-            });
+              label: '<b>Select Donors</b>',
+            }, false, 'donorSelectError', donorSelectErrorMessage);
             const chart = window.echarts.init(chartNode);
             renderDefaultChart(chart, cleanData(data), { years, channels });
 
@@ -159,14 +160,18 @@ const renderDonorsChart = () => {
               * */
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
+              const error = document.getElementById('donorSelectError');
               if (value !== 'All donors') {
                 // if it's the first pill, append pill widget
                 if (!pillWidget.pillNames.length) {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
-                } else {
-                  countryFilter.disabled = true; // ensure that only 2 countries can be selected
                 }
-                pillWidget.add(value);
+                if (pillWidget.pillNames.length >= 2) {
+                  error.style.display = 'inline';
+                } else {
+                  pillWidget.add(value);
+                  error.style.display = 'none';
+                }
               } else {
                 pillWidget.removeAll();
               }
@@ -175,11 +180,13 @@ const renderDonorsChart = () => {
             pillWidget.onAdd(onAdd);
 
             pillWidget.onRemove(() => {
+              const error = document.getElementById('donorSelectError');
               const hasPills = !!pillWidget.pillNames.length;
               if (hasPills) {
                 const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Donor));
                 updateChartForDonorSeries(filteredData, pillWidget.pillNames);
                 countryFilter.disabled = false; // enable to select more donors
+                error.style.display = 'none';
               } else {
                 countryFilter.value = 'All donors'; // reset country filter selected value
                 renderDefaultChart(chart, cleanData(data), { years, channels });
