@@ -52,7 +52,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
         formatter: (params) => {
           const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === 'Absolute');
 
-          return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (US$ ${item.Value} million)</strong>`;
+          return `${channel} <br /> ${params.name} <br /> <strong>${params.value}% (US$ ${item.Value} million)</strong>`;
         },
       },
       cursor: 'auto',
