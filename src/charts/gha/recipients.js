@@ -6,7 +6,7 @@ import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 // Your Code Goes Here i.e. functions
 
-const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').replace(' ', '').replace('%', '').trim()) : null);
+const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').replace(' ', '').replace('%', '').trim()).toFixed(2) : null);
 
 const cleanData = (data, field = 'Value') => data.map((d) => {
   const clean = { ...d };
@@ -29,7 +29,15 @@ const processOrgTypeData = (data, recipient, orgType) => {
   );
   const sortedData = Object.keys(filteredData)
     .filter((d) => !properties.includes(d))
-    .map((year) => cleanValue(filteredData[year]) || null);
+    .map((year) => ({
+      value: cleanValue(filteredData[year]) || null,
+      emphasis: {
+        focus: 'self',
+        label: {
+          show: true,
+        },
+      },
+    }));
 
   return sortedData;
 };
@@ -80,6 +88,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
           offset: [0, 8],
         },
         emphasis: {
+          focus: 'self',
           label: {
             show: true,
           },
@@ -156,7 +165,15 @@ const renderRecipientChart = () => {
               .map((donor) => ({
                 name: donor,
                 data: processData(cleanedData, years, recipient, donor).map(
-                  (d) => d && Number(d.value),
+                  (d) => ({
+                    value: d && Number(d.value).toFixed(2),
+                    emphasis: {
+                      focus: 'self',
+                      label: {
+                        show: true,
+                      },
+                    },
+                  }),
                 ),
                 type: 'bar',
                 stack: recipient,

@@ -49,7 +49,9 @@ const defaultOptions = {
     },
   },
   tooltip: {
-    trigger: 'axis',
+    show: true,
+    trigger: 'item',
+    showContent: true,
     textStyle: {
       fontFamily: 'Geomanist Regular,sans-serif',
     },

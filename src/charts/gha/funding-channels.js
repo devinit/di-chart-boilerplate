@@ -44,7 +44,15 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, 'All donors', channel).map((d) => Number(d.value)),
+      data: processData(data, years, 'All donors', channel).map((d) => ({
+        value: d && Number(d.value).toFixed(2),
+        emphasis: {
+          focus: 'self',
+          label: {
+            show: true,
+          },
+        },
+      })),
       type: 'bar',
       stack: 'channels',
       tooltip: {
@@ -116,7 +124,15 @@ const renderFundingChannelsChart = () => {
                 .map((donor) => channels.map((channel, index) => ({
                   name: channel,
                   data: processData(cleanedData, years, donor, channel).map(
-                    (d) => Number(d.value),
+                    (d) => ({
+                      value: d && Number(d.value).toFixed(2),
+                      emphasis: {
+                        focus: 'self',
+                        label: {
+                          show: true,
+                        },
+                      },
+                    }),
                   ),
                   type: 'bar',
                   stack: donor,
