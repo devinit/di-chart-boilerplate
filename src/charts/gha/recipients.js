@@ -57,7 +57,7 @@ const getRecipientOrgType = (data, recipient) => {
   return orgTypes;
 };
 
-const renderDefaultChart = (chart, data, { years, channels }) => {
+const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
   const option = {
     legend: {
       show: true,
@@ -80,7 +80,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, 'All Recipient Countries', channel).map((d) => ({
+      data: processData(data, years, recipient, channel).map((d) => ({
         value: d && Number(d.value).toFixed(2),
         label: {
           show: true,
@@ -156,7 +156,7 @@ const renderRecipientChart = () => {
           });
           // defaults to donor breakdown
           const chart = window.echarts.init(chartNode);
-          renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
+          renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), 'All Recipient Countries', { years, channels: initialDonors });
 
           const updateChartByDonor = (updatedData, recipient) => {
             const cleanedData = cleanData(updatedData, 'USD deflated millions');
@@ -204,7 +204,7 @@ const renderRecipientChart = () => {
               updateChartByDonor(filteredData, value);
             } else {
               countryFilterA.value = 'All Recipient Countries'; // reset country filter selected value
-              renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
+              renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), 'All Recipient Countries', { years, channels: initialDonors });
             }
           });
           contextFilter.addEventListener('change', (event) => {
@@ -212,15 +212,15 @@ const renderRecipientChart = () => {
             if (value === 'By Donor') {
               countryFilterAWrapper.classList.remove('display-none');
               countryFilterBWrapper.classList.add('display-none');
-              countryFilterA.value = 'All Recipient Countries';
-              renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
+              countryFilterA.value = countryFilterB.value;
+              renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), countryFilterA.value, { years, channels: initialDonors });
             } else {
-              countryFilterB.value = 'All Recipient Countries'; // reset country filter selected value
+              countryFilterB.value = countryFilterA.value; // reset country filter selected value
               countryFilterAWrapper.classList.add('display-none');
               countryFilterBWrapper.classList.remove('display-none');
               updateChartByOrgType(
-                orgTypeData.filter((d) => d['Destination Country'] === 'All Recipient Countries'),
-                'All Recipient Countries',
+                orgTypeData.filter((d) => d['Destination Country'] === countryFilterB.value),
+                countryFilterB.value,
               );
             }
           });
@@ -231,7 +231,7 @@ const renderRecipientChart = () => {
               updateChartByOrgType(filteredData, value);
             } else {
               countryFilterA.value = 'All Recipient Countries'; // reset country filter selected value
-              renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), { years, channels: initialDonors });
+              renderDefaultChart(chart, cleanData(donorData, 'USD deflated millions'), countryFilterA.value, { years, channels: initialDonors });
             }
           });
 
