@@ -72,7 +72,19 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, 'All Recipient Countries', channel).map((d) => d && Number(d.value)),
+      data: processData(data, years, 'All Recipient Countries', channel).map((d) => ({
+        value: d && Number(d.value).toFixed(2),
+        label: {
+          show: true,
+          position: 'top',
+          offset: [0, 8],
+        },
+        emphasis: {
+          label: {
+            show: true,
+          },
+        },
+      })),
       type: 'bar',
       stack: 'channels',
       cursor: 'auto',
