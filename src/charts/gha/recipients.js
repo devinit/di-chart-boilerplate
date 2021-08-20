@@ -72,7 +72,7 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
     },
     yAxis: {
       type: 'value',
-      name: 'USD$ Millions',
+      name: 'US$ millions',
       nameGap: 50,
       nameLocation: 'middle',
     },
@@ -90,7 +90,7 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
     })),
   };
   defaultOptions.toolbox.feature.saveAsImage.name = 'recipients';
-  chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
+  chart.setOption(deepMerge(option, defaultOptions), { replaceMerge: ['series'] });
 
   return chart;
 };
@@ -179,7 +179,7 @@ const renderRecipientChart = () => {
                 cursor: 'auto',
               }))
               .reduce((final, cur) => final.concat(cur), []);
-            chart.setOption({ series, grid: { bottom: '20%', top: '5%' } }, { replaceMerge: ['series'] });
+            chart.setOption({ series, grid: { bottom: '10%' } }, { replaceMerge: ['series'] });
           };
 
           /**

@@ -107,7 +107,7 @@ const renderDonorsChart = () => {
               wrapper: filterWrapper,
               options: donors.sort(),
               className: 'country-filter',
-              label: '<b>Select Donors</b>',
+              label: '<b>Select donors</b>',
             }, false, 'donorSelectError', donorSelectErrorMessage);
 
             const contextFilter = addFilter({
@@ -149,7 +149,7 @@ const renderDonorsChart = () => {
                         ? `${params.value}${dataType === 'Percentage' ? '%' : ''} (US$ ${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
                         : `${params.value}${dataType === 'Percentage' ? '%' : ''}`;
 
-                      return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
+                      return `${donor} - ${params.name} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
                     },
                   },
                   label: {

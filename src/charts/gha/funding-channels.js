@@ -104,7 +104,7 @@ const renderFundingChannelsChart = () => {
               wrapper: filterWrapper,
               options: donors.sort(),
               className: 'country-filter',
-              label: '<b>Select Donor</b>',
+              label: '<b>Select donors</b>',
             });
             const chart = window.echarts.init(chartNode);
             renderDefaultChart(chart, cleanData(data), { years, channels });
