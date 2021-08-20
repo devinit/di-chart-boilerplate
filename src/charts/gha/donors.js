@@ -7,7 +7,7 @@ import PillWidget from '../../widgets/pills';
 
 // Your Code Goes Here i.e. functions
 
-let dataType = 'Percentage';
+let dataType = 'Absolute';
 
 const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').replace(' ', '').replace('%', '').trim()) : null);
 
@@ -59,7 +59,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
         formatter: (params) => {
           const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Percentage' ? 'Proportional' : 'Absolute'));
 
-          return `${channel} <br /> ${params.name} <br /> <strong>${params.value}% (US$ ${item.Value} million)</strong>`;
+          return `${channel} <br /> ${params.name} <br /> <strong>${dataType === 'Percentage' ? `${params.value} %` : `(US$ ${item.Value} million)`} </strong>`;
         },
       },
       cursor: 'auto',
@@ -112,7 +112,7 @@ const renderDonorsChart = () => {
 
             const contextFilter = addFilter({
               wrapper: filterWrapper,
-              options: ['Percentage', 'Absolute'],
+              options: ['Absolute', 'Percentage'],
               className: 'data-filter',
               label: '<b>Choose data</b>',
             });
