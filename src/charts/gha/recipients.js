@@ -33,9 +33,6 @@ const processOrgTypeData = (data, recipient, orgType) => {
       value: cleanValue(filteredData[year]) || null,
       emphasis: {
         focus: 'self',
-        label: {
-          show: true,
-        },
       },
     }));
 
@@ -82,16 +79,8 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
       name: channel,
       data: processData(data, years, recipient, channel).map((d) => ({
         value: d && Number(d.value).toFixed(2),
-        label: {
-          show: true,
-          position: 'top',
-          offset: [0, 8],
-        },
         emphasis: {
           focus: 'self',
-          label: {
-            show: true,
-          },
         },
       })),
       type: 'bar',
@@ -169,9 +158,6 @@ const renderRecipientChart = () => {
                     value: d && Number(d.value).toFixed(2),
                     emphasis: {
                       focus: 'self',
-                      label: {
-                        show: true,
-                      },
                     },
                   }),
                 ),

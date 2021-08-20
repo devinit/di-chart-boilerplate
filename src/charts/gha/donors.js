@@ -48,16 +48,8 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       name: channel,
       data: processData(data, years, 'All donors', channel, dataType === 'Percentage' ? 'Proportional' : 'Absolute').map((d) => ({
         value: d && Number(d.value),
-        label: {
-          show: true,
-          position: 'top',
-          offset: [0, 8],
-        },
         emphasis: {
           focus: 'self',
-          label: {
-            show: true,
-          },
         },
       })),
       type: 'bar',
@@ -144,9 +136,6 @@ const renderDonorsChart = () => {
                       value: d && Number(d.value),
                       emphasis: {
                         focus: 'self',
-                        label: {
-                          show: true,
-                        },
                       },
                     }),
                   ),

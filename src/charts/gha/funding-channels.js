@@ -48,9 +48,6 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
         value: d && Number(d.value).toFixed(2),
         emphasis: {
           focus: 'self',
-          label: {
-            show: true,
-          },
         },
       })),
       type: 'bar',
@@ -128,9 +125,6 @@ const renderFundingChannelsChart = () => {
                       value: d && Number(d.value).toFixed(2),
                       emphasis: {
                         focus: 'self',
-                        label: {
-                          show: true,
-                        },
                       },
                     }),
                   ),
