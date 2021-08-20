@@ -87,6 +87,10 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
       type: 'bar',
       stack: 'channels',
       cursor: 'auto',
+      tooltip: {
+        trigger: 'item',
+        formatter: (params) => `${channel} <br /> ${params.name} <br /> <strong>(US$ ${params.value} million)</strong>`,
+      },
     })),
   };
   defaultOptions.toolbox.feature.saveAsImage.name = 'recipients';
@@ -164,6 +168,10 @@ const renderRecipientChart = () => {
                 type: 'bar',
                 stack: recipient,
                 cursor: 'auto',
+                tooltip: {
+                  trigger: 'item',
+                  formatter: (params) => `${donor} <br /> ${params.name} <br /> <strong>(US$ ${params.value} million)</strong>`,
+                },
               }))
               .reduce((final, cur) => final.concat(cur), []);
             chart.setOption({ series }, { replaceMerge: ['series'] });
@@ -177,6 +185,10 @@ const renderRecipientChart = () => {
                 type: 'bar',
                 stack: recipient,
                 cursor: 'auto',
+                tooltip: {
+                  trigger: 'item',
+                  formatter: (params) => `${orgType} <br /> ${params.name} <br /> <strong>(US$ ${params.value} million)</strong>`,
+                },
               }))
               .reduce((final, cur) => final.concat(cur), []);
             chart.setOption({ series, grid: { bottom: '10%' } }, { replaceMerge: ['series'] });
