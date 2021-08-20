@@ -26,15 +26,6 @@ export const addFilter = ({
   }
   options.forEach((option) => createOption(selectElement, option, option === defaultOption));
   selectElement.classList.add('data-selector--active');
-  const selectError = document.createElement('span');
-  selectError.innerHTML = errorMessage;
-  selectError.style.color = 'red';
-  selectError.style.fontSize = '11px';
-  selectError.style.top = '15px';
-  selectError.style.position = 'relative';
-  selectError.style.padding = '5px';
-  selectError.style.display = 'none';
-  selectError.setAttribute('id', errorID);
 
   if (label) {
     // create labelled filter
@@ -44,8 +35,21 @@ export const addFilter = ({
     selectWrapper.classList.add('labelled-data-selector--wrapper');
     selectWrapper.appendChild(labelElement);
     selectWrapper.appendChild(selectElement);
-    selectWrapper.appendChild(selectError);
     wrapper.appendChild(selectWrapper);
+
+    if (errorID && errorMessage) {
+      const selectError = document.createElement('div');
+      selectError.classList.add('data-selector--wrapper');
+      selectError.innerHTML = errorMessage;
+      selectError.style.color = 'red';
+      selectError.style.fontSize = '11px';
+      selectError.style.position = 'relative';
+      selectError.style.padding = '5px';
+      selectError.style.paddingLeft = '20px';
+      selectError.style.display = 'none';
+      selectError.setAttribute('id', errorID);
+      wrapper.insertAdjacentElement('afterend', selectError);
+    }
 
     if (returnWrapper) {
       return [selectElement, selectWrapper];

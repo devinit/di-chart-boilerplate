@@ -7,6 +7,8 @@ import PillWidget from '../../widgets/pills';
 
 // Your Code Goes Here i.e. functions
 
+let dataType = 'Percentage';
+
 const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').replace(' ', '').replace('%', '').trim()) : null);
 
 const cleanData = (data) => data.map((d) => {
@@ -40,11 +42,11 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     yAxis: {
       type: 'value',
-      axisLabel: { formatter: '{value}%' },
+      axisLabel: { formatter: `{value}${dataType === 'Percentage' ? '%' : ''}` },
     },
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, 'All donors', channel).map((d) => ({
+      data: processData(data, years, 'All donors', channel, dataType === 'Percentage' ? 'Proportional' : 'Absolute').map((d) => ({
         value: d && Number(d.value),
         label: {
           show: true,
@@ -63,7 +65,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       tooltip: {
         trigger: 'item',
         formatter: (params) => {
-          const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === 'Absolute');
+          const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Percentage' ? 'Proportional' : 'Absolute'));
 
           return `${channel} <br /> ${params.name} <br /> <strong>${params.value}% (US$ ${item.Value} million)</strong>`;
         },
@@ -115,6 +117,14 @@ const renderDonorsChart = () => {
               className: 'country-filter',
               label: '<b>Select Donors</b>',
             }, false, 'donorSelectError', donorSelectErrorMessage);
+
+            const contextFilter = addFilter({
+              wrapper: filterWrapper,
+              options: ['Percentage', 'Absolute'],
+              className: 'data-filter',
+              label: '<b>Choose data</b>',
+            });
+
             const chart = window.echarts.init(chartNode);
             renderDefaultChart(chart, cleanData(data), { years, channels });
 
@@ -129,7 +139,7 @@ const renderDonorsChart = () => {
               const series = activeDonors
                 .map((donor) => channels.map((channel, index) => ({
                   name: channel,
-                  data: processData(cleanedData, years, donor, channel).map(
+                  data: processData(cleanedData, years, donor, channel, dataType === 'Percentage' ? 'Proportional' : 'Absolute').map(
                     (d) => ({
                       value: d && Number(d.value),
                       emphasis: {
@@ -145,10 +155,10 @@ const renderDonorsChart = () => {
                   tooltip: {
                     trigger: 'item',
                     formatter: (params) => {
-                      const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === 'Absolute');
+                      const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Percentage' ? 'Proportional' : 'Absolute'));
                       const value = item
-                        ? `${params.value}% (US$ ${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
-                        : `${params.value}%`;
+                        ? `${params.value}${dataType === 'Percentage' ? '%' : ''} (US$ ${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
+                        : `${params.value}${dataType === 'Percentage' ? '%' : ''}`;
 
                       return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
                     },
@@ -166,7 +176,13 @@ const renderDonorsChart = () => {
                   },
                 })))
                 .reduce((final, cur) => final.concat(cur), []);
-              chart.setOption({ series }, { replaceMerge: ['series'] });
+              chart.setOption({
+                yAxis: {
+                  type: 'value',
+                  axisLabel: { formatter: `{value}${dataType === 'Percentage' ? '%' : ''}` },
+                },
+                series,
+              }, { replaceMerge: ['series'] });
             };
 
             const onAdd = (value) => {
@@ -188,13 +204,24 @@ const renderDonorsChart = () => {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
                 }
                 if (pillWidget.pillNames.length >= 2) {
-                  error.style.display = 'inline';
+                  error.style.display = 'block';
                 } else {
                   pillWidget.add(value);
                   error.style.display = 'none';
                 }
               } else {
                 pillWidget.removeAll();
+              }
+            });
+
+            contextFilter.addEventListener('change', (event) => {
+              const { value } = event.currentTarget;
+              dataType = value;
+              if (pillWidget.pillNames.length > 1) {
+                const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Donor));
+                updateChartForDonorSeries(filteredData, pillWidget.pillNames);
+              } else {
+                renderDefaultChart(chart, cleanData(data), { years, channels });
               }
             });
 
