@@ -56,6 +56,7 @@ const getRecipientOrgType = (data, recipient) => {
 
 const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
   const option = {
+    color: colorways.leaf,
     legend: {
       show: true,
       top: 'top',
@@ -88,7 +89,6 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
       cursor: 'auto',
     })),
   };
-  defaultOptions.color = colorways.leaf;
   defaultOptions.toolbox.feature.saveAsImage.name = 'recipients';
   chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
 
