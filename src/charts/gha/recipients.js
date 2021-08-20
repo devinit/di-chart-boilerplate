@@ -177,6 +177,7 @@ const renderRecipientChart = () => {
                 ),
                 type: 'bar',
                 stack: recipient,
+                cursor: 'auto',
               }))
               .reduce((final, cur) => final.concat(cur), []);
             chart.setOption({ series }, { replaceMerge: ['series'] });
@@ -189,6 +190,7 @@ const renderRecipientChart = () => {
                 data: processOrgTypeData(updatedData, recipient, orgType),
                 type: 'bar',
                 stack: recipient,
+                cursor: 'auto',
               }))
               .reduce((final, cur) => final.concat(cur), []);
             chart.setOption({ series, grid: { bottom: '20%', top: '5%' } }, { replaceMerge: ['series'] });

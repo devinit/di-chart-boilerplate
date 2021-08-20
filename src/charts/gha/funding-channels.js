@@ -158,6 +158,7 @@ const renderFundingChannelsChart = () => {
                     formatter: () => `${donor}`,
                     fontSize: 16,
                   },
+                  cursor: 'auto',
                 })))
                 .reduce((final, cur) => final.concat(cur), []);
               chart.setOption({ series }, { replaceMerge: ['series'] });
