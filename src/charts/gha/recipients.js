@@ -145,7 +145,7 @@ const renderRecipientChart = () => {
             wrapper: filterWrapper,
             options: ['By Donor', 'By type of organisation receiving funding'],
             className: 'breakdown-filter',
-            label: '<b>Choose Breakdown</b>',
+            label: '<b>Choose breakdown</b>',
           });
           // defaults to donor breakdown
           const chart = window.echarts.init(chartNode);
