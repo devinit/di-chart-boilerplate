@@ -46,7 +46,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, 'All donors', channel, dataType === 'Percentage' ? 'Proportional' : 'Absolute').map((d) => ({
+      data: processData(data, years, '20 largest donors', channel, dataType === 'Percentage' ? 'Proportional' : 'Absolute').map((d) => ({
         value: d && Number(d.value),
         emphasis: {
           focus: 'self',
@@ -57,9 +57,10 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       tooltip: {
         trigger: 'item',
         formatter: (params) => {
-          const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Percentage' ? 'Proportional' : 'Absolute'));
+          const item = data.find((d) => d['IHA type'] === channel && d.Donor === '20 largest donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Percentage' ? 'Proportional' : 'Absolute'));
+          const updatedOrgType = channel.includes('Multilateral HA') ? channel.replace('Multilateral HA', 'Multilateral Humanitarian Assistance') : channel;
 
-          return `${channel} <br /> ${params.name} <br /> <strong>${dataType === 'Percentage' ? `${params.value} %` : `(US$ ${item.Value} million)`} </strong>`;
+          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Percentage' ? `${params.value} %` : `(US$ ${item.Value} million)`} </strong>`;
         },
       },
       cursor: 'auto',
@@ -94,8 +95,9 @@ const renderDonorsChart = () => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/charts/public/assets/data/GHA/2021/interactivity-donors.csv';
-          fetchCSVData(csv).then((data) => {
+          // const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/charts/public/assets/data/GHA/2021/interactivity-donors.csv';
+          const csv1 = '/public/assets/data/GHA/2021/interactivity-donors.csv';
+          fetchCSVData(csv1).then((data) => {
             const filterWrapper = addFilterWrapper(chartNode);
             // extract unique values
             const donors = [...new Set(data.map((d) => d.Donor))];
@@ -114,7 +116,7 @@ const renderDonorsChart = () => {
               wrapper: filterWrapper,
               options: ['Absolute', 'Percentage'],
               className: 'data-filter',
-              label: '<b>Choose data</b>',
+              label: '<b>Choose data </b>(HA = Humanitarian Assistance)',
             });
 
             const chart = window.echarts.init(chartNode);
@@ -177,7 +179,7 @@ const renderDonorsChart = () => {
 
             const onAdd = (value) => {
               // filter data to return only the selected items
-              const filteredData = value !== 'All donors' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
+              const filteredData = value !== '20 largest donors' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
               const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
               updateChartForDonorSeries(filteredData, selectedDonors);
             };
@@ -188,7 +190,7 @@ const renderDonorsChart = () => {
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
               const error = document.getElementById('donorSelectError');
-              if (value !== 'All donors') {
+              if (value !== '20 largest donors') {
                 // if it's the first pill, append pill widget
                 if (!pillWidget.pillNames.length) {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
@@ -226,7 +228,7 @@ const renderDonorsChart = () => {
                 countryFilter.disabled = false; // enable to select more donors
                 error.style.display = 'none';
               } else {
-                countryFilter.value = 'All donors'; // reset country filter selected value
+                countryFilter.value = '20 largest donors'; // reset country filter selected value
                 renderDefaultChart(chart, cleanData(data), { years, channels });
               }
             });
