@@ -1,74 +1,74 @@
 ﻿Destination country,Year,Donor rank,Donor organisation,USD deflated millions
-Syrian Arab Republic,2015,1,United States of America,811.9727817
-Syrian Arab Republic,2015,2,United Kingdom,331.9416079
-Syrian Arab Republic,2015,3,EC,209.0233232
-Syrian Arab Republic,2015,4,Kuwait,141.6452647
-Syrian Arab Republic,2015,5,Germany,122.0479668
-Syrian Arab Republic,2015,6,Private,89.9601732
-Syrian Arab Republic,2015,7,Norway,86.12585806
-Syrian Arab Republic,2015,8,Canada,54.98370479
-Syrian Arab Republic,2015,9,Netherlands,46.7260027
-Syrian Arab Republic,2015,10,World Food Programme,43.2753819
-Syrian Arab Republic,2015,-,All other donors,427.9587356
-Syrian Arab Republic,2016,1,United States of America,779.9779037
-Syrian Arab Republic,2016,2,Germany,455.5415521
-Syrian Arab Republic,2016,3,United Kingdom,352.3323615
-Syrian Arab Republic,2016,4,EC,276.135354
-Syrian Arab Republic,2016,5,Norway,106.0611139
-Syrian Arab Republic,2016,6,United Arab Emirates,82.59497239
-Syrian Arab Republic,2016,7,Denmark,67.6793519
-Syrian Arab Republic,2016,8,Japan,65.99813884
-Syrian Arab Republic,2016,9,Netherlands,55.32693152
-Syrian Arab Republic,2016,10,Canada,50.7306293
-Syrian Arab Republic,2016,-,All other donors,417.5254332
-Syrian Arab Republic,2017,1,Germany,603.047947
-Syrian Arab Republic,2017,2,United States of America,531.4255653
-Syrian Arab Republic,2017,3,United Kingdom,234.4059271
-Syrian Arab Republic,2017,4,EC,201.0607417
-Syrian Arab Republic,2017,5,Norway,131.5882252
-Syrian Arab Republic,2017,6,Canada,103.9743284
-Syrian Arab Republic,2017,7,Japan,103.4733598
-Syrian Arab Republic,2017,8,Saudi Arabia (Kingdom of),56.51775374
-Syrian Arab Republic,2017,9,Denmark,56.49590929
-Syrian Arab Republic,2017,10,Sweden,44.3830691
-Syrian Arab Republic,2017,-,All other donors,462.2545777
-Syrian Arab Republic,2018,1,United States of America,747.974245
-Syrian Arab Republic,2018,2,Germany,360.496774
-Syrian Arab Republic,2018,3,United Kingdom,280.7089903
-Syrian Arab Republic,2018,4,EC,222.540969
-Syrian Arab Republic,2018,5,Norway,154.0581417
-Syrian Arab Republic,2018,6,Canada,115.8422735
-Syrian Arab Republic,2018,7,Japan,76.83269313
-Syrian Arab Republic,2018,8,Sweden,49.19540493
-Syrian Arab Republic,2018,9,Denmark,46.26715851
-Syrian Arab Republic,2018,10,Netherlands,36.37050781
-Syrian Arab Republic,2018,-,All other donors,333.986504
-Syrian Arab Republic,2019,1,United States of America,809.8274662
-Syrian Arab Republic,2019,2,Germany,370.0579675
-Syrian Arab Republic,2019,3,United Kingdom,262.0242656
-Syrian Arab Republic,2019,4,EC,190.0305478
-Syrian Arab Republic,2019,5,Norway,133.0017805
-Syrian Arab Republic,2019,6,Canada,115.6300038
-Syrian Arab Republic,2019,7,Denmark,70.48282046
-Syrian Arab Republic,2019,8,Japan,56.48148138
-Syrian Arab Republic,2019,9,France,55.37385537
-Syrian Arab Republic,2019,10,Sweden,54.79572103
-Syrian Arab Republic,2019,-,All other donors,370.0543567
-Syrian Arab Republic,2020,1,United States of America,805.4144291
-Syrian Arab Republic,2020,2,Germany,434.9298368
-Syrian Arab Republic,2020,3,United Kingdom,254.0970842
-Syrian Arab Republic,2020,4,EC,250.9534406
-Syrian Arab Republic,2020,5,Norway,184.0234757
-Syrian Arab Republic,2020,6,Japan,95.44763609
-Syrian Arab Republic,2020,7,Denmark,70.59010138
-Syrian Arab Republic,2020,8,Canada,69.87336754
-Syrian Arab Republic,2020,9,Central Emergency Response Fund,58.4227391
-Syrian Arab Republic,2020,10,Sweden,49.84988419
-Syrian Arab Republic,2020,-,All other donors,324.754952
-Yemen,2015,1,United Arab Emirates,666.2016158
+Syria,2015,1,US,811.9727817
+Syria,2015,2,UK,331.9416079
+Syria,2015,3,EC,209.0233232
+Syria,2015,4,Kuwait,141.6452647
+Syria,2015,5,Germany,122.0479668
+Syria,2015,6,Private,89.9601732
+Syria,2015,7,Norway,86.12585806
+Syria,2015,8,Canada,54.98370479
+Syria,2015,9,Netherlands,46.7260027
+Syria,2015,10,World Food Programme,43.2753819
+Syria,2015,-,All other donors,427.9587356
+Syria,2016,1,US,779.9779037
+Syria,2016,2,Germany,455.5415521
+Syria,2016,3,UK,352.3323615
+Syria,2016,4,EC,276.135354
+Syria,2016,5,Norway,106.0611139
+Syria,2016,6,UAE,82.59497239
+Syria,2016,7,Denmark,67.6793519
+Syria,2016,8,Japan,65.99813884
+Syria,2016,9,Netherlands,55.32693152
+Syria,2016,10,Canada,50.7306293
+Syria,2016,-,All other donors,417.5254332
+Syria,2017,1,Germany,603.047947
+Syria,2017,2,US,531.4255653
+Syria,2017,3,UK,234.4059271
+Syria,2017,4,EC,201.0607417
+Syria,2017,5,Norway,131.5882252
+Syria,2017,6,Canada,103.9743284
+Syria,2017,7,Japan,103.4733598
+Syria,2017,8,Saudi Arabia (Kingdom of),56.51775374
+Syria,2017,9,Denmark,56.49590929
+Syria,2017,10,Sweden,44.3830691
+Syria,2017,-,All other donors,462.2545777
+Syria,2018,1,US,747.974245
+Syria,2018,2,Germany,360.496774
+Syria,2018,3,UK,280.7089903
+Syria,2018,4,EC,222.540969
+Syria,2018,5,Norway,154.0581417
+Syria,2018,6,Canada,115.8422735
+Syria,2018,7,Japan,76.83269313
+Syria,2018,8,Sweden,49.19540493
+Syria,2018,9,Denmark,46.26715851
+Syria,2018,10,Netherlands,36.37050781
+Syria,2018,-,All other donors,333.986504
+Syria,2019,1,US,809.8274662
+Syria,2019,2,Germany,370.0579675
+Syria,2019,3,UK,262.0242656
+Syria,2019,4,EC,190.0305478
+Syria,2019,5,Norway,133.0017805
+Syria,2019,6,Canada,115.6300038
+Syria,2019,7,Denmark,70.48282046
+Syria,2019,8,Japan,56.48148138
+Syria,2019,9,France,55.37385537
+Syria,2019,10,Sweden,54.79572103
+Syria,2019,-,All other donors,370.0543567
+Syria,2020,1,US,805.4144291
+Syria,2020,2,Germany,434.9298368
+Syria,2020,3,UK,254.0970842
+Syria,2020,4,EC,250.9534406
+Syria,2020,5,Norway,184.0234757
+Syria,2020,6,Japan,95.44763609
+Syria,2020,7,Denmark,70.59010138
+Syria,2020,8,Canada,69.87336754
+Syria,2020,9,Central Emergency Response Fund,58.4227391
+Syria,2020,10,Sweden,49.84988419
+Syria,2020,-,All other donors,324.754952
+Yemen,2015,1,UAE,666.2016158
 Yemen,2015,2,Saudi Arabia (Kingdom of),368.791334
-Yemen,2015,3,United States of America,232.5802002
-Yemen,2015,4,United Kingdom,123.0488232
+Yemen,2015,3,US,232.5802002
+Yemen,2015,4,UK,123.0488232
 Yemen,2015,5,Germany,76.63845478
 Yemen,2015,6,Qatar,68.37888261
 Yemen,2015,7,EC,47.35254878
@@ -76,10 +76,10 @@ Yemen,2015,8,Central Emergency Response Fund,46.57002618
 Yemen,2015,9,Japan,42.40440144
 Yemen,2015,10,Netherlands,29.10665904
 Yemen,2015,-,All other donors,153.3486741
-Yemen,2016,1,United Arab Emirates,531.9796874
+Yemen,2016,1,UAE,531.9796874
 Yemen,2016,2,Saudi Arabia (Kingdom of),370.8679764
-Yemen,2016,3,United States of America,358.4148439
-Yemen,2016,4,United Kingdom,187.9352507
+Yemen,2016,3,US,358.4148439
+Yemen,2016,4,UK,187.9352507
 Yemen,2016,5,EC,76.19706572
 Yemen,2016,6,Germany,61.62873923
 Yemen,2016,7,Kuwait,53.38292149
@@ -87,10 +87,10 @@ Yemen,2016,8,Japan,50.45791255
 Yemen,2016,9,World Food Programme,28.7159326
 Yemen,2016,10,Sweden,28.31445443
 Yemen,2016,-,All other donors,166.6433517
-Yemen,2017,1,United States of America,683.6628705
+Yemen,2017,1,US,683.6628705
 Yemen,2017,2,Saudi Arabia (Kingdom of),347.969946
-Yemen,2017,3,United Kingdom,269.3218266
-Yemen,2017,4,United Arab Emirates,221.3447512
+Yemen,2017,3,UK,269.3218266
+Yemen,2017,4,UAE,221.3447512
 Yemen,2017,5,Germany,216.6065535
 Yemen,2017,6,EC,140.7388119
 Yemen,2017,7,World Bank,81.24294849
@@ -98,10 +98,10 @@ Yemen,2017,8,Japan,64.51006487
 Yemen,2017,9,Canada,38.23241809
 Yemen,2017,10,Norway,37.90758464
 Yemen,2017,-,All other donors,399.7743463
-Yemen,2018,1,United Arab Emirates,2083.229673
+Yemen,2018,1,UAE,2083.229673
 Yemen,2018,2,Saudi Arabia (Kingdom of),1378.19585
-Yemen,2018,3,United States of America,416.3970265
-Yemen,2018,4,United Kingdom,310.396888
+Yemen,2018,3,US,416.3970265
+Yemen,2018,4,UK,310.396888
 Yemen,2018,5,Kuwait,260.748974
 Yemen,2018,6,Germany,157.5394626
 Yemen,2018,7,EC,134.875709
@@ -110,9 +110,9 @@ Yemen,2018,9,Central Emergency Response Fund,49.90929
 Yemen,2018,10,Sweden,42.375754
 Yemen,2018,-,All other donors,247.5486519
 Yemen,2019,1,Saudi Arabia (Kingdom of),1370.624232
-Yemen,2019,2,United States of America,901.5382801
-Yemen,2019,3,United Arab Emirates,499.0969947
-Yemen,2019,4,United Kingdom,260.9014492
+Yemen,2019,2,US,901.5382801
+Yemen,2019,3,UAE,499.0969947
+Yemen,2019,4,UK,260.9014492
 Yemen,2019,5,Germany,190.7493319
 Yemen,2019,6,EC,168.2063181
 Yemen,2019,7,Kuwait,121.7369001
@@ -120,10 +120,10 @@ Yemen,2019,8,Japan,43.24919943
 Yemen,2019,9,Private,40.65408563
 Yemen,2019,10,Denmark,37.9617394
 Yemen,2019,-,All other donors,378.7610103
-Yemen,2020,1,United States of America,670.8146343
+Yemen,2020,1,US,670.8146343
 Yemen,2020,2,Saudi Arabia (Kingdom of),479.6655613
 Yemen,2020,3,Germany,216.0049625
-Yemen,2020,4,United Kingdom,206.6768354
+Yemen,2020,4,UK,206.6768354
 Yemen,2020,5,EC,135.5144558
 Yemen,2020,6,Central Emergency Response Fund,63.03540274
 Yemen,2020,7,Japan,38.19504964
@@ -131,10 +131,10 @@ Yemen,2020,8,Private,37.66286051
 Yemen,2020,9,Canada,32.07048454
 Yemen,2020,10,Netherlands,27.62384168
 Yemen,2020,-,All other donors,245.0372563
-Lebanon,2015,1,United States of America,372.6124538
+Lebanon,2015,1,US,372.6124538
 Lebanon,2015,2,EC,159.8300433
 Lebanon,2015,3,Germany,149.5246836
-Lebanon,2015,4,United Kingdom,133.430083
+Lebanon,2015,4,UK,133.430083
 Lebanon,2015,5,World Food Programme,113.3933902
 Lebanon,2015,6,Kuwait,100.9763607
 Lebanon,2015,7,Netherlands,59.52523835
@@ -142,21 +142,21 @@ Lebanon,2015,8,Norway,40.47275298
 Lebanon,2015,9,Canada,38.04462095
 Lebanon,2015,10,Saudi Arabia (Kingdom of),36.19979558
 Lebanon,2015,-,All other donors,187.8658586
-Lebanon,2016,1,United States of America,279.9157017
+Lebanon,2016,1,US,279.9157017
 Lebanon,2016,2,Germany,222.576043
 Lebanon,2016,3,EC,199.0321526
 Lebanon,2016,4,World Food Programme,170.3159324
 Lebanon,2016,5,Private,97.5722274
-Lebanon,2016,6,United Kingdom,95.80341944
+Lebanon,2016,6,UK,95.80341944
 Lebanon,2016,7,Norway,61.86376884
 Lebanon,2016,8,Kuwait,49.74992289
 Lebanon,2016,9,Netherlands,41.54475186
 Lebanon,2016,10,France,40.25834179
 Lebanon,2016,-,All other donors,148.5417918
-Lebanon,2017,1,United States of America,296.8999394
+Lebanon,2017,1,US,296.8999394
 Lebanon,2017,2,Germany,209.7529734
 Lebanon,2017,3,EC,144.1965437
-Lebanon,2017,4,United Kingdom,125.9040418
+Lebanon,2017,4,UK,125.9040418
 Lebanon,2017,5,Canada,53.58533669
 Lebanon,2017,6,Norway,48.37243746
 Lebanon,2017,7,France,35.78469364
@@ -164,10 +164,10 @@ Lebanon,2017,8,Kuwait,32.88698128
 Lebanon,2017,9,Private,27.98593413
 Lebanon,2017,10,Japan,21.58018507
 Lebanon,2017,-,All other donors,133.3690145
-Lebanon,2018,1,United States of America,233.308
+Lebanon,2018,1,US,233.308
 Lebanon,2018,2,Germany,193.2158346
 Lebanon,2018,3,EC,113.8969098
-Lebanon,2018,4,United Kingdom,92.59879666
+Lebanon,2018,4,UK,92.59879666
 Lebanon,2018,5,Norway,63.40068784
 Lebanon,2018,6,Canada,58.51493249
 Lebanon,2018,7,Kuwait,35.17839303
@@ -175,10 +175,10 @@ Lebanon,2018,8,Japan,28.719467
 Lebanon,2018,9,Private,26.42933537
 Lebanon,2018,10,Italy,19.37713057
 Lebanon,2018,-,All other donors,124.7224837
-Lebanon,2019,1,United States of America,282.3687008
+Lebanon,2019,1,US,282.3687008
 Lebanon,2019,2,Germany,274.259787
 Lebanon,2019,3,EC,169.1524888
-Lebanon,2019,4,United Kingdom,72.08168982
+Lebanon,2019,4,UK,72.08168982
 Lebanon,2019,5,Canada,42.59626814
 Lebanon,2019,6,Norway,41.92982673
 Lebanon,2019,7,Kuwait Fund for Arab Economic Development,38.62322484
@@ -186,19 +186,19 @@ Lebanon,2019,8,Australia,37.60647657
 Lebanon,2019,9,Saudi Arabia (Kingdom of),22.94075481
 Lebanon,2019,10,Japan,15.72355674
 Lebanon,2019,-,All other donors,135.6144012
-Lebanon,2020,1,United States of America,379.001023
+Lebanon,2020,1,US,379.001023
 Lebanon,2020,2,EC,338.1101951
 Lebanon,2020,3,Germany,300.3332572
 Lebanon,2020,4,Norway,60.19457773
 Lebanon,2020,5,Canada,59.83603042
-Lebanon,2020,6,United Kingdom,54.23028937
+Lebanon,2020,6,UK,54.23028937
 Lebanon,2020,7,Netherlands,43.62769296
 Lebanon,2020,8,Private,42.06811609
 Lebanon,2020,9,France,38.98441401
 Lebanon,2020,10,Italy,27.04118565
 Lebanon,2020,-,All other donors,215.9284468
-South Sudan,2015,1,United States of America,405.6513288
-South Sudan,2015,2,United Kingdom,196.0214013
+South Sudan,2015,1,US,405.6513288
+South Sudan,2015,2,UK,196.0214013
 South Sudan,2015,3,EC,157.8177791
 South Sudan,2015,4,Japan,76.35311429
 South Sudan,2015,5,Germany,48.77431073
@@ -208,8 +208,8 @@ South Sudan,2015,8,Canada,41.55799175
 South Sudan,2015,9,Norway,39.07621656
 South Sudan,2015,10,Central Emergency Response Fund,26.90353581
 South Sudan,2015,-,All other donors,303.202868
-South Sudan,2016,1,United States of America,574.6161149
-South Sudan,2016,2,United Kingdom,177.7835908
+South Sudan,2016,1,US,574.6161149
+South Sudan,2016,2,UK,177.7835908
 South Sudan,2016,3,EC,176.5068155
 South Sudan,2016,4,Germany,95.66707122
 South Sudan,2016,5,Canada,52.9794764
@@ -219,9 +219,9 @@ South Sudan,2016,8,Norway,32.65239641
 South Sudan,2016,9,Japan,28.07055366
 South Sudan,2016,10,Private,27.08594731
 South Sudan,2016,-,All other donors,163.8266141
-South Sudan,2017,1,United States of America,541.7022267
+South Sudan,2017,1,US,541.7022267
 South Sudan,2017,2,Germany,136.3507601
-South Sudan,2017,3,United Kingdom,132.5431628
+South Sudan,2017,3,UK,132.5431628
 South Sudan,2017,4,EC,129.6780598
 South Sudan,2017,5,African Development Bank,46.68483825
 South Sudan,2017,6,Denmark,43.51547414
@@ -230,8 +230,8 @@ South Sudan,2017,8,Netherlands,39.3442537
 South Sudan,2017,9,Japan,28.45482707
 South Sudan,2017,10,Norway,25.44439306
 South Sudan,2017,-,All other donors,344.241696
-South Sudan,2018,1,United States of America,676.0848572
-South Sudan,2018,2,United Kingdom,164.7726285
+South Sudan,2018,1,US,676.0848572
+South Sudan,2018,2,UK,164.7726285
 South Sudan,2018,3,Germany,131.2745968
 South Sudan,2018,4,EC,68.69036731
 South Sudan,2018,5,African Development Bank,43.400944
@@ -241,8 +241,8 @@ South Sudan,2018,8,Sweden,29.10331
 South Sudan,2018,9,Norway,26.607091
 South Sudan,2018,10,Denmark,23.191425
 South Sudan,2018,-,All other donors,107.3806717
-South Sudan,2019,1,United States of America,708.6818727
-South Sudan,2019,2,United Kingdom,155.1196619
+South Sudan,2019,1,US,708.6818727
+South Sudan,2019,2,UK,155.1196619
 South Sudan,2019,3,Germany,124.3975338
 South Sudan,2019,4,EC,55.57511381
 South Sudan,2019,5,Norway,30.03639001
@@ -252,9 +252,9 @@ South Sudan,2019,8,Denmark,26.62168738
 South Sudan,2019,9,Netherlands,26.4136339
 South Sudan,2019,10,Sweden,25.93401528
 South Sudan,2019,-,All other donors,101.4092523
-South Sudan,2020,1,United States of America,751.8765943
+South Sudan,2020,1,US,751.8765943
 South Sudan,2020,2,Germany,130.633082
-South Sudan,2020,3,United Kingdom,102.8483287
+South Sudan,2020,3,UK,102.8483287
 South Sudan,2020,4,EC,96.28609883
 South Sudan,2020,5,Netherlands,37.89621813
 South Sudan,2020,6,Central Emergency Response Fund,33.28513394
@@ -263,74 +263,74 @@ South Sudan,2020,8,Norway,32.57170633
 South Sudan,2020,9,Canada,28.00380142
 South Sudan,2020,10,Switzerland,15.92006742
 South Sudan,2020,-,All other donors,119.1071405
-"Congo, The Democratic Republic of the",2015,1,United States of America,210.1093814
-"Congo, The Democratic Republic of the",2015,2,EC,71.18831316
-"Congo, The Democratic Republic of the",2015,3,United Kingdom,44.93014036
-"Congo, The Democratic Republic of the",2015,4,Sweden,25.16516264
-"Congo, The Democratic Republic of the",2015,5,Japan,21.90239397
-"Congo, The Democratic Republic of the",2015,6,Canada,16.1294175
-"Congo, The Democratic Republic of the",2015,7,Central Emergency Response Fund,15.61864814
-"Congo, The Democratic Republic of the",2015,8,Germany,14.39905133
-"Congo, The Democratic Republic of the",2015,9,Belgium,7.927375945
-"Congo, The Democratic Republic of the",2015,10,Switzerland,7.379494485
-"Congo, The Democratic Republic of the",2015,-,All other donors,52.77175752
-"Congo, The Democratic Republic of the",2016,1,United States of America,178.4843713
-"Congo, The Democratic Republic of the",2016,2,EC,64.56183631
-"Congo, The Democratic Republic of the",2016,3,United Kingdom,40.26099209
-"Congo, The Democratic Republic of the",2016,4,Germany,39.86176853
-"Congo, The Democratic Republic of the",2016,5,Sweden,31.03482016
-"Congo, The Democratic Republic of the",2016,6,Canada,18.13404338
-"Congo, The Democratic Republic of the",2016,7,Belgium,18.04891105
-"Congo, The Democratic Republic of the",2016,8,Central Emergency Response Fund,17.5893389
-"Congo, The Democratic Republic of the",2016,9,Japan,14.92761843
-"Congo, The Democratic Republic of the",2016,10,World Food Programme,10.66078542
-"Congo, The Democratic Republic of the",2016,-,All other donors,66.41335473
-"Congo, The Democratic Republic of the",2017,1,United States of America,210.4044122
-"Congo, The Democratic Republic of the",2017,2,EC,73.89714558
-"Congo, The Democratic Republic of the",2017,3,United Kingdom,67.14508934
-"Congo, The Democratic Republic of the",2017,4,Sweden,36.36656585
-"Congo, The Democratic Republic of the",2017,5,Germany,34.59979669
-"Congo, The Democratic Republic of the",2017,6,Central Emergency Response Fund,27.68217604
-"Congo, The Democratic Republic of the",2017,7,Belgium,23.05250682
-"Congo, The Democratic Republic of the",2017,8,Canada,17.21381515
-"Congo, The Democratic Republic of the",2017,9,Norway,12.18937202
-"Congo, The Democratic Republic of the",2017,10,Japan,9.421626419
-"Congo, The Democratic Republic of the",2017,-,All other donors,74.13964254
-"Congo, The Democratic Republic of the",2018,1,United States of America,385.5997436
-"Congo, The Democratic Republic of the",2018,2,United Kingdom,164.9925669
-"Congo, The Democratic Republic of the",2018,3,EC,74.179535
-"Congo, The Democratic Republic of the",2018,4,Germany,59.3428592
-"Congo, The Democratic Republic of the",2018,5,Central Emergency Response Fund,57.93008816
-"Congo, The Democratic Republic of the",2018,6,Belgium,50.53013177
-"Congo, The Democratic Republic of the",2018,7,Sweden,40.78058982
-"Congo, The Democratic Republic of the",2018,8,Canada,37.14419033
-"Congo, The Democratic Republic of the",2018,9,World Bank,29.149999
-"Congo, The Democratic Republic of the",2018,10,Norway,19.4800371
-"Congo, The Democratic Republic of the",2018,-,All other donors,93.85286262
-"Congo, The Democratic Republic of the",2019,1,United States of America,581.0957122
-"Congo, The Democratic Republic of the",2019,2,United Kingdom,150.2578342
-"Congo, The Democratic Republic of the",2019,3,Germany,81.08422716
-"Congo, The Democratic Republic of the",2019,4,EC,71.05500503
-"Congo, The Democratic Republic of the",2019,5,Central Emergency Response Fund,47.02485916
-"Congo, The Democratic Republic of the",2019,6,Sweden,41.42545875
-"Congo, The Democratic Republic of the",2019,7,Canada,28.90291103
-"Congo, The Democratic Republic of the",2019,8,Belgium,17.59837639
-"Congo, The Democratic Republic of the",2019,9,Switzerland,14.16564452
-"Congo, The Democratic Republic of the",2019,10,Netherlands,13.85792779
-"Congo, The Democratic Republic of the",2019,-,All other donors,82.10230796
-"Congo, The Democratic Republic of the",2020,1,United States of America,549.395696
-"Congo, The Democratic Republic of the",2020,2,United Kingdom,86.41310852
-"Congo, The Democratic Republic of the",2020,3,Germany,77.11200089
-"Congo, The Democratic Republic of the",2020,4,Central Emergency Response Fund,74.60587227
-"Congo, The Democratic Republic of the",2020,5,EC,52.8500536
-"Congo, The Democratic Republic of the",2020,6,Sweden,38.38706227
-"Congo, The Democratic Republic of the",2020,7,Canada,35.91809334
-"Congo, The Democratic Republic of the",2020,8,Netherlands,28.12260129
-"Congo, The Democratic Republic of the",2020,9,Norway,16.25588169
-"Congo, The Democratic Republic of the",2020,10,World Bank,15.40155065
-"Congo, The Democratic Republic of the",2020,-,All other donors,77.96037538
-Somalia,2015,1,United States of America,233.1383319
-Somalia,2015,2,United Kingdom,56.30090074
+"DRC",2015,1,US,210.1093814
+"DRC",2015,2,EC,71.18831316
+"DRC",2015,3,UK,44.93014036
+"DRC",2015,4,Sweden,25.16516264
+"DRC",2015,5,Japan,21.90239397
+"DRC",2015,6,Canada,16.1294175
+"DRC",2015,7,Central Emergency Response Fund,15.61864814
+"DRC",2015,8,Germany,14.39905133
+"DRC",2015,9,Belgium,7.927375945
+"DRC",2015,10,Switzerland,7.379494485
+"DRC",2015,-,All other donors,52.77175752
+"DRC",2016,1,US,178.4843713
+"DRC",2016,2,EC,64.56183631
+"DRC",2016,3,UK,40.26099209
+"DRC",2016,4,Germany,39.86176853
+"DRC",2016,5,Sweden,31.03482016
+"DRC",2016,6,Canada,18.13404338
+"DRC",2016,7,Belgium,18.04891105
+"DRC",2016,8,Central Emergency Response Fund,17.5893389
+"DRC",2016,9,Japan,14.92761843
+"DRC",2016,10,World Food Programme,10.66078542
+"DRC",2016,-,All other donors,66.41335473
+"DRC",2017,1,US,210.4044122
+"DRC",2017,2,EC,73.89714558
+"DRC",2017,3,UK,67.14508934
+"DRC",2017,4,Sweden,36.36656585
+"DRC",2017,5,Germany,34.59979669
+"DRC",2017,6,Central Emergency Response Fund,27.68217604
+"DRC",2017,7,Belgium,23.05250682
+"DRC",2017,8,Canada,17.21381515
+"DRC",2017,9,Norway,12.18937202
+"DRC",2017,10,Japan,9.421626419
+"DRC",2017,-,All other donors,74.13964254
+"DRC",2018,1,US,385.5997436
+"DRC",2018,2,UK,164.9925669
+"DRC",2018,3,EC,74.179535
+"DRC",2018,4,Germany,59.3428592
+"DRC",2018,5,Central Emergency Response Fund,57.93008816
+"DRC",2018,6,Belgium,50.53013177
+"DRC",2018,7,Sweden,40.78058982
+"DRC",2018,8,Canada,37.14419033
+"DRC",2018,9,World Bank,29.149999
+"DRC",2018,10,Norway,19.4800371
+"DRC",2018,-,All other donors,93.85286262
+"DRC",2019,1,US,581.0957122
+"DRC",2019,2,UK,150.2578342
+"DRC",2019,3,Germany,81.08422716
+"DRC",2019,4,EC,71.05500503
+"DRC",2019,5,Central Emergency Response Fund,47.02485916
+"DRC",2019,6,Sweden,41.42545875
+"DRC",2019,7,Canada,28.90291103
+"DRC",2019,8,Belgium,17.59837639
+"DRC",2019,9,Switzerland,14.16564452
+"DRC",2019,10,Netherlands,13.85792779
+"DRC",2019,-,All other donors,82.10230796
+"DRC",2020,1,US,549.395696
+"DRC",2020,2,UK,86.41310852
+"DRC",2020,3,Germany,77.11200089
+"DRC",2020,4,Central Emergency Response Fund,74.60587227
+"DRC",2020,5,EC,52.8500536
+"DRC",2020,6,Sweden,38.38706227
+"DRC",2020,7,Canada,35.91809334
+"DRC",2020,8,Netherlands,28.12260129
+"DRC",2020,9,Norway,16.25588169
+"DRC",2020,10,World Bank,15.40155065
+"DRC",2020,-,All other donors,77.96037538
+Somalia,2015,1,US,233.1383319
+Somalia,2015,2,UK,56.30090074
 Somalia,2015,3,EC,47.7050127
 Somalia,2015,4,Japan,28.4507334
 Somalia,2015,5,Central Emergency Response Fund,26.61517363
@@ -340,8 +340,8 @@ Somalia,2015,8,Canada,20.0336043
 Somalia,2015,9,Sweden,17.17955517
 Somalia,2015,10,Saudi Arabia (Kingdom of),15.18486643
 Somalia,2015,-,All other donors,89.96777742
-Somalia,2016,1,United States of America,187.2169678
-Somalia,2016,2,United Kingdom,116.9050734
+Somalia,2016,1,US,187.2169678
+Somalia,2016,2,UK,116.9050734
 Somalia,2016,3,EC,77.00765242
 Somalia,2016,4,Germany,76.09742089
 Somalia,2016,5,World Food Programme,57.48555558
@@ -351,8 +351,8 @@ Somalia,2016,8,Saudi Arabia (Kingdom of),23.63520578
 Somalia,2016,9,Japan,20.02783274
 Somalia,2016,10,Denmark,18.74578418
 Somalia,2016,-,All other donors,88.571372
-Somalia,2017,1,United States of America,376.9731197
-Somalia,2017,2,United Kingdom,248.3170229
+Somalia,2017,1,US,376.9731197
+Somalia,2017,2,UK,248.3170229
 Somalia,2017,3,EC,197.0052819
 Somalia,2017,4,Germany,133.1319687
 Somalia,2017,5,African Development Bank,37.2999655
@@ -362,8 +362,8 @@ Somalia,2017,8,Canada,31.93544496
 Somalia,2017,9,Japan,30.2703886
 Somalia,2017,10,Sweden,26.51539785
 Somalia,2017,-,All other donors,230.7966833
-Somalia,2018,1,United States of America,435.7772553
-Somalia,2018,2,United Kingdom,213.748717
+Somalia,2018,1,US,435.7772553
+Somalia,2018,2,UK,213.748717
 Somalia,2018,3,EC,146.3810753
 Somalia,2018,4,Germany,113.7668034
 Somalia,2018,5,Sweden,26.84723184
@@ -373,10 +373,10 @@ Somalia,2018,8,Central Emergency Response Fund,17.269031
 Somalia,2018,9,Norway,17.1574207
 Somalia,2018,10,World Bank,15
 Somalia,2018,-,All other donors,134.1287237
-Somalia,2019,1,United States of America,450.0998133
+Somalia,2019,1,US,450.0998133
 Somalia,2019,2,Germany,117.7861745
 Somalia,2019,3,EC,93.55844074
-Somalia,2019,4,United Kingdom,85.07299743
+Somalia,2019,4,UK,85.07299743
 Somalia,2019,5,Central Emergency Response Fund,47.16582792
 Somalia,2019,6,Sweden,30.95805991
 Somalia,2019,7,Switzerland,19.18221381
@@ -384,10 +384,10 @@ Somalia,2019,8,Norway,18.02984775
 Somalia,2019,9,Canada,17.93311272
 Somalia,2019,10,Denmark,14.11753611
 Somalia,2019,-,All other donors,114.3393833
-Somalia,2020,1,United States of America,473.7815908
+Somalia,2020,1,US,473.7815908
 Somalia,2020,2,Germany,102.5294033
 Somalia,2020,3,EC,78.50525559
-Somalia,2020,4,United Kingdom,72.69602142
+Somalia,2020,4,UK,72.69602142
 Somalia,2020,5,Central Emergency Response Fund,28.87124845
 Somalia,2020,6,Sweden,25.33869967
 Somalia,2020,7,Private,24.58383099
@@ -395,9 +395,9 @@ Somalia,2020,8,Canada,17.86609313
 Somalia,2020,9,Japan,16.88881835
 Somalia,2020,10,Norway,16.34930245
 Somalia,2020,-,All other donors,119.1727698
-Sudan,2015,1,United States of America,352.2560841
+Sudan,2015,1,US,352.2560841
 Sudan,2015,2,EC,51.86488643
-Sudan,2015,3,United Kingdom,39.55832382
+Sudan,2015,3,UK,39.55832382
 Sudan,2015,4,Central Emergency Response Fund,28.3264175
 Sudan,2015,5,Japan,22.21925153
 Sudan,2015,6,Canada,15.10975949
@@ -406,8 +406,8 @@ Sudan,2015,8,Germany,11.76754573
 Sudan,2015,9,Norway,11.32110197
 Sudan,2015,10,Switzerland,10.95538448
 Sudan,2015,-,All other donors,99.01751532
-Sudan,2016,1,United States of America,326.0107497
-Sudan,2016,2,United Kingdom,81.84613683
+Sudan,2016,1,US,326.0107497
+Sudan,2016,2,UK,81.84613683
 Sudan,2016,3,EC,71.28013005
 Sudan,2016,4,Germany,31.11125855
 Sudan,2016,5,Central Emergency Response Fund,26.11990453
@@ -417,9 +417,9 @@ Sudan,2016,8,Denmark,11.84166974
 Sudan,2016,9,Japan,10.21363366
 Sudan,2016,10,Switzerland,10.19880976
 Sudan,2016,-,All other donors,77.30854615
-Sudan,2017,1,United States of America,264.5142531
+Sudan,2017,1,US,264.5142531
 Sudan,2017,2,EC,76.57678472
-Sudan,2017,3,United Kingdom,74.08584414
+Sudan,2017,3,UK,74.08584414
 Sudan,2017,4,Germany,41.96819887
 Sudan,2017,5,Central Emergency Response Fund,31.78907878
 Sudan,2017,6,Sweden,15.51370004
@@ -428,8 +428,8 @@ Sudan,2017,8,Switzerland,9.875476989
 Sudan,2017,9,Denmark,7.304447875
 Sudan,2017,10,Japan,5.526312168
 Sudan,2017,-,All other donors,35.39148724
-Sudan,2018,1,United States of America,426.9658651
-Sudan,2018,2,United Kingdom,67.18376644
+Sudan,2018,1,US,426.9658651
+Sudan,2018,2,UK,67.18376644
 Sudan,2018,3,Saudi Arabia (Kingdom of),66.026089
 Sudan,2018,4,EC,54.75813654
 Sudan,2018,5,Sweden,23.105261
@@ -439,9 +439,9 @@ Sudan,2018,8,Canada,13.00850716
 Sudan,2018,9,Denmark,9.879416
 Sudan,2018,10,Switzerland,9.093037
 Sudan,2018,-,All other donors,25.43910601
-Sudan,2019,1,United States of America,353.2617869
+Sudan,2019,1,US,353.2617869
 Sudan,2019,2,EC,52.81594203
-Sudan,2019,3,United Kingdom,50.29378175
+Sudan,2019,3,UK,50.29378175
 Sudan,2019,4,Central Emergency Response Fund,44.20622616
 Sudan,2019,5,World Food Programme,29.12657105
 Sudan,2019,6,Sweden,20.93767034
@@ -450,19 +450,19 @@ Sudan,2019,8,Canada,10.85421246
 Sudan,2019,9,Switzerland,10.07240298
 Sudan,2019,10,Netherlands,8.844916128
 Sudan,2019,-,All other donors,45.0385891
-Sudan,2020,1,United States of America,427.9981547
+Sudan,2020,1,US,427.9981547
 Sudan,2020,2,EC,106.8926502
 Sudan,2020,3,Central Emergency Response Fund,103.47702
-Sudan,2020,4,United Kingdom,99.73187703
-Sudan,2020,5,United Arab Emirates,35.01147604
+Sudan,2020,4,UK,99.73187703
+Sudan,2020,5,UAE,35.01147604
 Sudan,2020,6,Germany,34.86437171
 Sudan,2020,7,Netherlands,20.04410598
 Sudan,2020,8,Sweden,17.20426866
 Sudan,2020,9,Canada,13.27540615
 Sudan,2020,10,Norway,12.39597868
 Sudan,2020,-,All other donors,74.31061933
-Ethiopia,2015,1,United States of America,192.2752708
-Ethiopia,2015,2,United Kingdom,70.55526927
+Ethiopia,2015,1,US,192.2752708
+Ethiopia,2015,2,UK,70.55526927
 Ethiopia,2015,3,EC,42.48149806
 Ethiopia,2015,4,Central Emergency Response Fund,28.87870505
 Ethiopia,2015,5,Netherlands,18.98004853
@@ -472,10 +472,10 @@ Ethiopia,2015,8,Japan,15.89375801
 Ethiopia,2015,9,Sweden,12.26651369
 Ethiopia,2015,10,Switzerland,11.21518042
 Ethiopia,2015,-,All other donors,52.94397631
-Ethiopia,2016,1,United States of America,646.372391
+Ethiopia,2016,1,US,646.372391
 Ethiopia,2016,2,EC,200.9794678
 Ethiopia,2016,3,Germany,105.8417972
-Ethiopia,2016,4,United Kingdom,102.2391475
+Ethiopia,2016,4,UK,102.2391475
 Ethiopia,2016,5,Canada,57.39455076
 Ethiopia,2016,6,World Food Programme,30.95111576
 Ethiopia,2016,7,Sweden,28.77482866
@@ -483,9 +483,9 @@ Ethiopia,2016,8,Private,26.66885186
 Ethiopia,2016,9,Japan,25.25649135
 Ethiopia,2016,10,Central Emergency Response Fund,21.71723777
 Ethiopia,2016,-,All other donors,127.953933
-Ethiopia,2017,1,United States of America,477.7451232
+Ethiopia,2017,1,US,477.7451232
 Ethiopia,2017,2,EC,119.9807337
-Ethiopia,2017,3,United Kingdom,75.2650528
+Ethiopia,2017,3,UK,75.2650528
 Ethiopia,2017,4,Germany,69.93076471
 Ethiopia,2017,5,World Bank,52.10361412
 Ethiopia,2017,6,Central Emergency Response Fund,33.10592473
@@ -494,9 +494,9 @@ Ethiopia,2017,8,China,22.04339477
 Ethiopia,2017,9,Canada,20.11015435
 Ethiopia,2017,10,Japan,11.63878674
 Ethiopia,2017,-,All other donors,82.23073942
-Ethiopia,2018,1,United States of America,564.908089
+Ethiopia,2018,1,US,564.908089
 Ethiopia,2018,2,EC,75.87576838
-Ethiopia,2018,3,United Kingdom,48.614645
+Ethiopia,2018,3,UK,48.614645
 Ethiopia,2018,4,Germany,32.16864222
 Ethiopia,2018,5,Central Emergency Response Fund,30.288894
 Ethiopia,2018,6,Sweden,28.01444398
@@ -505,8 +505,8 @@ Ethiopia,2018,8,"Korea, Republic of",12.055812
 Ethiopia,2018,9,Ireland,10.194121
 Ethiopia,2018,10,Switzerland,7.106928318
 Ethiopia,2018,-,All other donors,32.9221748
-Ethiopia,2019,1,United States of America,509.2357745
-Ethiopia,2019,2,United Kingdom,77.49821258
+Ethiopia,2019,1,US,509.2357745
+Ethiopia,2019,2,UK,77.49821258
 Ethiopia,2019,3,EC,62.3179912
 Ethiopia,2019,4,Germany,38.21384067
 Ethiopia,2019,5,Sweden,28.9200782
@@ -516,8 +516,8 @@ Ethiopia,2019,8,"Korea, Republic of",13.38230162
 Ethiopia,2019,9,Denmark,9.817740804
 Ethiopia,2019,10,Japan,8.511076295
 Ethiopia,2019,-,All other donors,48.50526766
-Ethiopia,2020,1,United States of America,524.0332006
-Ethiopia,2020,2,United Kingdom,106.6029408
+Ethiopia,2020,1,US,524.0332006
+Ethiopia,2020,2,UK,106.6029408
 Ethiopia,2020,3,EC,74.78972295
 Ethiopia,2020,4,Germany,41.54064644
 Ethiopia,2020,5,Japan,37.28704636
@@ -527,12 +527,12 @@ Ethiopia,2020,8,Denmark,14.71473684
 Ethiopia,2020,9,"Korea, Republic of",12.6751346
 Ethiopia,2020,10,Central Emergency Response Fund,8.761749929
 Ethiopia,2020,-,All other donors,72.19836335
-Turkey,2015,1,United States of America,114.6526098
+Turkey,2015,1,US,114.6526098
 Turkey,2015,2,EC,111.495861
 Turkey,2015,3,World Food Programme,41.90304171
 Turkey,2015,4,Netherlands,36.01921331
 Turkey,2015,5,Germany,33.17622743
-Turkey,2015,6,United Kingdom,20.07613672
+Turkey,2015,6,UK,20.07613672
 Turkey,2015,7,Saudi Arabia (Kingdom of),16.09096699
 Turkey,2015,8,Sheikh Thani bin Abdullah Foundation for Humanitarian Services (RAF),15.10196307
 Turkey,2015,9,Kuwait,13.73740866
@@ -540,7 +540,7 @@ Turkey,2015,10,Japan,13.39781267
 Turkey,2015,-,All other donors,73.18783552
 Turkey,2016,1,EC,228.8597746
 Turkey,2016,2,World Food Programme,164.7881711
-Turkey,2016,3,United States of America,117.1623629
+Turkey,2016,3,US,117.1623629
 Turkey,2016,4,Germany,63.84225912
 Turkey,2016,5,Kuwait,26.53940829
 Turkey,2016,6,Japan,20.21569682
@@ -550,7 +550,7 @@ Turkey,2016,9,Norway,9.96567072
 Turkey,2016,10,France,6.537221215
 Turkey,2016,-,All other donors,70.72250612
 Turkey,2017,1,EC,239.7379754
-Turkey,2017,2,United States of America,141.9790459
+Turkey,2017,2,US,141.9790459
 Turkey,2017,3,Germany,107.1720062
 Turkey,2017,4,Japan,21.07502331
 Turkey,2017,5,Kuwait,18.34195335
@@ -561,7 +561,7 @@ Turkey,2017,9,Private,3.270258674
 Turkey,2017,10,Mercy Corps,3.073699568
 Turkey,2017,-,All other donors,13.03582841
 Turkey,2018,1,EC,1050.816178
-Turkey,2018,2,United States of America,80.01163101
+Turkey,2018,2,US,80.01163101
 Turkey,2018,3,KFW Development,25.556218
 Turkey,2018,4,Kuwait,19.07111935
 Turkey,2018,5,Japan,9.540075357
@@ -572,8 +572,8 @@ Turkey,2018,9,"Korea, Republic of",1.953377381
 Turkey,2018,10,Switzerland,1.234510464
 Turkey,2018,-,All other donors,2.816046681
 Turkey,2019,1,EC,1246.819513
-Turkey,2019,2,United States of America,123.7412924
-Turkey,2019,3,United Kingdom,57.37189007
+Turkey,2019,2,US,123.7412924
+Turkey,2019,3,UK,57.37189007
 Turkey,2019,4,Kuwait Fund for Arab Economic Development,21.10558734
 Turkey,2019,5,KFW Development,10.6
 Turkey,2019,6,Japan,9.184251464
@@ -583,53 +583,53 @@ Turkey,2019,9,Kuwait,1.367549814
 Turkey,2019,10,United Nations Population Fund,1.160668836
 Turkey,2019,-,All other donors,4.820870298
 Turkey,2020,1,EC,585.6184492
-Turkey,2020,2,United States of America,185.0837347
+Turkey,2020,2,US,185.0837347
 Turkey,2020,3,Germany,47.4542928
 Turkey,2020,4,Japan,14.02540392
 Turkey,2020,5,Syria Cross-border Humanitarian Fund,13.05888713
-Turkey,2020,6,United Kingdom,3.741481044
+Turkey,2020,6,UK,3.741481044
 Turkey,2020,7,Norway,2.034812166
 Turkey,2020,8,Central Emergency Response Fund,1.311669065
 Turkey,2020,9,Switzerland,1.132586177
 Turkey,2020,10,France,1.127734105
 Turkey,2020,-,All other donors,8.183724742
-Iraq,2015,1,United States of America,310.4874809
+Iraq,2015,1,US,310.4874809
 Iraq,2015,2,EC,131.5473818
 Iraq,2015,3,Germany,117.4834517
 Iraq,2015,4,Japan,108.5752833
 Iraq,2015,5,Canada,57.37627732
-Iraq,2015,6,United Kingdom,52.55004816
+Iraq,2015,6,UK,52.55004816
 Iraq,2015,7,Netherlands,45.43173207
 Iraq,2015,8,Kuwait,41.59257798
 Iraq,2015,9,Norway,36.05822329
-Iraq,2015,10,United Arab Emirates,28.99286893
+Iraq,2015,10,UAE,28.99286893
 Iraq,2015,-,All other donors,196.5926951
-Iraq,2016,1,United States of America,561.9058714
+Iraq,2016,1,US,561.9058714
 Iraq,2016,2,Germany,509.4496466
 Iraq,2016,3,EC,193.0036211
-Iraq,2016,4,United Kingdom,125.5334713
+Iraq,2016,4,UK,125.5334713
 Iraq,2016,5,Kuwait,71.94015124
-Iraq,2016,6,United Arab Emirates,64.84236778
+Iraq,2016,6,UAE,64.84236778
 Iraq,2016,7,Canada,58.37526536
 Iraq,2016,8,Japan,48.34214066
 Iraq,2016,9,Central Emergency Response Fund,35.36409141
 Iraq,2016,10,Norway,34.17074069
 Iraq,2016,-,All other donors,240.8275658
-Iraq,2017,1,United States of America,476.8760106
+Iraq,2017,1,US,476.8760106
 Iraq,2017,2,Germany,381.6472332
 Iraq,2017,3,EC,131.0459048
 Iraq,2017,4,Japan,109.3256127
-Iraq,2017,5,United Kingdom,96.51441259
+Iraq,2017,5,UK,96.51441259
 Iraq,2017,6,Canada,61.50650672
 Iraq,2017,7,Kuwait,41.08897136
 Iraq,2017,8,France,27.60674645
 Iraq,2017,9,Sweden,24.61799614
 Iraq,2017,10,Norway,21.60407203
 Iraq,2017,-,All other donors,134.6156053
-Iraq,2018,1,United States of America,527.0236225
+Iraq,2018,1,US,527.0236225
 Iraq,2018,2,Germany,200.8692291
 Iraq,2018,3,EC,51.137639
-Iraq,2018,4,United Kingdom,51.04496459
+Iraq,2018,4,UK,51.04496459
 Iraq,2018,5,Japan,50.535351
 Iraq,2018,6,Canada,47.09835679
 Iraq,2018,7,Kuwait,21.74419
@@ -637,91 +637,91 @@ Iraq,2018,8,Norway,21.448442
 Iraq,2018,9,Australia,20.343437
 Iraq,2018,10,Netherlands,18.89302706
 Iraq,2018,-,All other donors,97.52296506
-Iraq,2019,1,United States of America,472.9416042
+Iraq,2019,1,US,472.9416042
 Iraq,2019,2,Germany,155.3949187
 Iraq,2019,3,EC,69.09094135
 Iraq,2019,4,Canada,44.80819327
 Iraq,2019,5,Japan,42.39137657
 Iraq,2019,6,Australia,24.13623789
 Iraq,2019,7,France,23.34853337
-Iraq,2019,8,United Kingdom,22.44932445
+Iraq,2019,8,UK,22.44932445
 Iraq,2019,9,Denmark,18.94081875
 Iraq,2019,10,Norway,15.12874265
 Iraq,2019,-,All other donors,95.29476807
-Iraq,2020,1,United States of America,388.1797244
+Iraq,2020,1,US,388.1797244
 Iraq,2020,2,Germany,112.1586282
 Iraq,2020,3,EC,71.90856983
 Iraq,2020,4,Japan,57.80862756
 Iraq,2020,5,Canada,46.37598477
 Iraq,2020,6,Australia,21.84996173
-Iraq,2020,7,United Kingdom,19.75974799
+Iraq,2020,7,UK,19.75974799
 Iraq,2020,8,Norway,19.32401223
 Iraq,2020,9,Sweden,12.73491775
 Iraq,2020,10,Kuwait,12.1988188
 Iraq,2020,-,All other donors,95.89643927
-All Recipient Countries,2015,1,United States of America,5398.315677
-All Recipient Countries,2015,2,EC,1808.273445
-All Recipient Countries,2015,3,United Kingdom,1383.260234
-All Recipient Countries,2015,4,Germany,912.9421784
-All Recipient Countries,2015,5,United Arab Emirates,764.8505746
-All Recipient Countries,2015,6,Japan,716.5674757
-All Recipient Countries,2015,7,Saudi Arabia (Kingdom of),583.5587157
-All Recipient Countries,2015,8,World Food Programme,525.0174971
-All Recipient Countries,2015,9,Canada,516.4106753
-All Recipient Countries,2015,10,Central Emergency Response Fund,512.8823369
-All Recipient Countries,2015,-,All other donors,4446.611172
-All Recipient Countries,2016,1,United States of America,6262.899385
-All Recipient Countries,2016,2,EC,2869.509488
-All Recipient Countries,2016,3,Germany,2371.986581
-All Recipient Countries,2016,4,United Kingdom,1749.870208
-All Recipient Countries,2016,5,United Arab Emirates,799.1940579
-All Recipient Countries,2016,6,World Food Programme,778.8853276
-All Recipient Countries,2016,7,Japan,675.1177558
-All Recipient Countries,2016,8,Canada,603.1587154
-All Recipient Countries,2016,9,Saudi Arabia (Kingdom of),502.7659597
-All Recipient Countries,2016,10,Central Emergency Response Fund,491.8527714
-All Recipient Countries,2016,-,All other donors,4281.553212
-All Recipient Countries,2017,1,United States of America,6115.837509
-All Recipient Countries,2017,2,EC,2737.615256
-All Recipient Countries,2017,3,Germany,2662.661982
-All Recipient Countries,2017,4,United Kingdom,1799.623016
-All Recipient Countries,2017,5,Japan,629.4202586
-All Recipient Countries,2017,6,Canada,603.0654322
-All Recipient Countries,2017,7,Saudi Arabia (Kingdom of),470.62547
-All Recipient Countries,2017,8,Central Emergency Response Fund,444.2276235
-All Recipient Countries,2017,9,Sweden,436.3723916
-All Recipient Countries,2017,10,Norway,422.850827
-All Recipient Countries,2017,-,All other donors,4200.504985
-All Recipient Countries,2018,1,United States of America,6720.592038
-All Recipient Countries,2018,2,EC,3155.606211
-All Recipient Countries,2018,3,United Arab Emirates,2149.929318
-All Recipient Countries,2018,4,Germany,1920.921179
-All Recipient Countries,2018,5,United Kingdom,1860.050803
-All Recipient Countries,2018,6,Saudi Arabia (Kingdom of),1539.17387
-All Recipient Countries,2018,7,Canada,636.3960903
-All Recipient Countries,2018,8,Sweden,522.6708786
-All Recipient Countries,2018,9,Norway,508.5780167
-All Recipient Countries,2018,10,Central Emergency Response Fund,488.0184716
-All Recipient Countries,2018,-,All other donors,3493.921541
-All Recipient Countries,2019,1,United States of America,7978.862529
-All Recipient Countries,2019,2,EC,3046.727868
-All Recipient Countries,2019,3,Germany,2094.196175
-All Recipient Countries,2019,4,United Kingdom,1966.792453
-All Recipient Countries,2019,5,Saudi Arabia (Kingdom of),1476.305019
-All Recipient Countries,2019,6,United Arab Emirates,611.349371
-All Recipient Countries,2019,7,Central Emergency Response Fund,545.2402516
-All Recipient Countries,2019,8,Canada,531.1340011
-All Recipient Countries,2019,9,Sweden,508.6693258
-All Recipient Countries,2019,10,Japan,442.6271652
-All Recipient Countries,2019,-,All other donors,3755.090405
-All Recipient Countries,2020,1,United States of America,8639.222985
-All Recipient Countries,2020,2,EC,3004.557899
-All Recipient Countries,2020,3,Germany,2422.046806
-All Recipient Countries,2020,4,United Kingdom,1734.498947
-All Recipient Countries,2020,5,Japan,934.8101701
-All Recipient Countries,2020,6,Central Emergency Response Fund,785.8329584
-All Recipient Countries,2020,7,Saudi Arabia (Kingdom of),579.0514169
-All Recipient Countries,2020,8,Canada,564.52724
-All Recipient Countries,2020,9,Norway,523.5765495
-All Recipient Countries,2020,10,Sweden,441.5097441
-All Recipient Countries,2020,-,All other donors,3606.148242
+10 largest recipients,2015,1,US,5398.315677
+10 largest recipients,2015,2,EC,1808.273445
+10 largest recipients,2015,3,UK,1383.260234
+10 largest recipients,2015,4,Germany,912.9421784
+10 largest recipients,2015,5,UAE,764.8505746
+10 largest recipients,2015,6,Japan,716.5674757
+10 largest recipients,2015,7,Saudi Arabia (Kingdom of),583.5587157
+10 largest recipients,2015,8,World Food Programme,525.0174971
+10 largest recipients,2015,9,Canada,516.4106753
+10 largest recipients,2015,10,Central Emergency Response Fund,512.8823369
+10 largest recipients,2015,-,All other donors,4446.611172
+10 largest recipients,2016,1,US,6262.899385
+10 largest recipients,2016,2,EC,2869.509488
+10 largest recipients,2016,3,Germany,2371.986581
+10 largest recipients,2016,4,UK,1749.870208
+10 largest recipients,2016,5,UAE,799.1940579
+10 largest recipients,2016,6,World Food Programme,778.8853276
+10 largest recipients,2016,7,Japan,675.1177558
+10 largest recipients,2016,8,Canada,603.1587154
+10 largest recipients,2016,9,Saudi Arabia (Kingdom of),502.7659597
+10 largest recipients,2016,10,Central Emergency Response Fund,491.8527714
+10 largest recipients,2016,-,All other donors,4281.553212
+10 largest recipients,2017,1,US,6115.837509
+10 largest recipients,2017,2,EC,2737.615256
+10 largest recipients,2017,3,Germany,2662.661982
+10 largest recipients,2017,4,UK,1799.623016
+10 largest recipients,2017,5,Japan,629.4202586
+10 largest recipients,2017,6,Canada,603.0654322
+10 largest recipients,2017,7,Saudi Arabia (Kingdom of),470.62547
+10 largest recipients,2017,8,Central Emergency Response Fund,444.2276235
+10 largest recipients,2017,9,Sweden,436.3723916
+10 largest recipients,2017,10,Norway,422.850827
+10 largest recipients,2017,-,All other donors,4200.504985
+10 largest recipients,2018,1,US,6720.592038
+10 largest recipients,2018,2,EC,3155.606211
+10 largest recipients,2018,3,UAE,2149.929318
+10 largest recipients,2018,4,Germany,1920.921179
+10 largest recipients,2018,5,UK,1860.050803
+10 largest recipients,2018,6,Saudi Arabia (Kingdom of),1539.17387
+10 largest recipients,2018,7,Canada,636.3960903
+10 largest recipients,2018,8,Sweden,522.6708786
+10 largest recipients,2018,9,Norway,508.5780167
+10 largest recipients,2018,10,Central Emergency Response Fund,488.0184716
+10 largest recipients,2018,-,All other donors,3493.921541
+10 largest recipients,2019,1,US,7978.862529
+10 largest recipients,2019,2,EC,3046.727868
+10 largest recipients,2019,3,Germany,2094.196175
+10 largest recipients,2019,4,UK,1966.792453
+10 largest recipients,2019,5,Saudi Arabia (Kingdom of),1476.305019
+10 largest recipients,2019,6,UAE,611.349371
+10 largest recipients,2019,7,Central Emergency Response Fund,545.2402516
+10 largest recipients,2019,8,Canada,531.1340011
+10 largest recipients,2019,9,Sweden,508.6693258
+10 largest recipients,2019,10,Japan,442.6271652
+10 largest recipients,2019,-,All other donors,3755.090405
+10 largest recipients,2020,1,US,8639.222985
+10 largest recipients,2020,2,EC,3004.557899
+10 largest recipients,2020,3,Germany,2422.046806
+10 largest recipients,2020,4,UK,1734.498947
+10 largest recipients,2020,5,Japan,934.8101701
+10 largest recipients,2020,6,Central Emergency Response Fund,785.8329584
+10 largest recipients,2020,7,Saudi Arabia (Kingdom of),579.0514169
+10 largest recipients,2020,8,Canada,564.52724
+10 largest recipients,2020,9,Norway,523.5765495
+10 largest recipients,2020,10,Sweden,441.5097441
+10 largest recipients,2020,-,All other donors,3606.148242
