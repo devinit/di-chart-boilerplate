@@ -1,5 +1,5 @@
 import deepMerge from 'deepmerge';
-import defaultOptions from '../echarts';
+import defaultOptions, { colorways } from '../echarts';
 import fetchCSVData from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 import PillWidget from '../../widgets/pills';
@@ -27,6 +27,7 @@ const processData = (data, years, donor, channel, valueType = 'Proportional') =>
 
 const renderDefaultChart = (chart, data, { years, channels }) => {
   const option = {
+    color: colorways.orange,
     legend: {
       show: true,
       top: 'top',
@@ -67,7 +68,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     })),
   };
   defaultOptions.toolbox.feature.saveAsImage.name = 'donors';
-  chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
+  chart.setOption(deepMerge(option, defaultOptions), { replaceMerge: ['series'] });
 
   return chart;
 };
