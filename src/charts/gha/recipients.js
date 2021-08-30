@@ -6,6 +6,8 @@ import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 // Your Code Goes Here i.e. functions
 
+const nf = new Intl.NumberFormat();
+
 const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').replace(' ', '').replace('%', '').trim()).toFixed(2) : null);
 
 const cleanData = (data, field = 'Value') => data.map((d) => {
@@ -73,8 +75,10 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
     yAxis: {
       type: 'value',
       name: 'US$ millions',
-      nameGap: 50,
-      nameLocation: 'middle',
+      nameLocation: 'end',
+      nameTextStyle: {
+        padding: [0, 50, 0, 0],
+      },
     },
     series: channels.map((channel) => ({
       name: channel,
@@ -89,7 +93,7 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
       cursor: 'auto',
       tooltip: {
         trigger: 'item',
-        formatter: (params) => `${channel} <br /> ${params.name} <br /> <strong>(US$ ${params.value} million)</strong>`,
+        formatter: (params) => `${channel} <br /> ${params.name} <br /> <strong>(US$${nf.format(Math.round(params.value))} million)</strong>`,
       },
     })),
   };
@@ -170,7 +174,7 @@ const renderRecipientChart = () => {
                 cursor: 'auto',
                 tooltip: {
                   trigger: 'item',
-                  formatter: (params) => `${donor} <br /> ${params.name} <br /> <strong>(US$ ${params.value} million)</strong>`,
+                  formatter: (params) => `${donor} <br /> ${params.name} <br /> <strong>(US$${nf.format(Math.round(params.value))} million)</strong>`,
                 },
               }))
               .reduce((final, cur) => final.concat(cur), []);
@@ -187,7 +191,7 @@ const renderRecipientChart = () => {
                 cursor: 'auto',
                 tooltip: {
                   trigger: 'item',
-                  formatter: (params) => `${orgType} <br /> ${params.name} <br /> <strong>(US$ ${params.value} million)</strong>`,
+                  formatter: (params) => `${orgType} <br /> ${params.name} <br /> <strong>(US$${nf.format(Math.round(params.value))} million)</strong>`,
                 },
               }))
               .reduce((final, cur) => final.concat(cur), []);

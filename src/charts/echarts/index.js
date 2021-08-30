@@ -44,6 +44,7 @@ export const mixedColourWay = () => {
 const defaultOptions = {
   color: colorways.default.concat(colorways.rainbow),
   legend: {
+    left: '10%',
     top: 10,
     textStyle: {
       fontFamily: 'Geomanist Regular,sans-serif',

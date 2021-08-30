@@ -7,6 +7,8 @@ import PillWidget from '../../widgets/pills';
 
 // Your Code Goes Here i.e. functions
 
+// const nf = new Intl.NumberFormat();
+
 let dataType = 'Absolute';
 
 const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').replace(' ', '').replace('%', '').trim()) : null);
@@ -61,7 +63,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
           const item = data.find((d) => d['IHA type'] === channel && d.Donor === '20 largest donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Percentage' ? 'Proportional' : 'Absolute'));
           const updatedOrgType = channel.includes('Multilateral HA') ? channel.replace('Multilateral HA', 'Multilateral Humanitarian Assistance') : channel;
 
-          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Percentage' ? `${params.value} %` : `(US$ ${item.Value} million)`} </strong>`;
+          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Percentage' ? `${params.value.toFixed(1)}%` : `(US$${item.Value} million)`} </strong>`;
         },
       },
       cursor: 'auto',
@@ -103,7 +105,7 @@ const renderDonorsChart = () => {
             const donors = [...new Set(data.map((d) => d.Donor))];
             const years = [...new Set(data.map((d) => d.Year))];
             const channels = [...new Set(data.map((d) => d['IHA type']))];
-            const donorSelectErrorMessage = 'You can compare two donors. Please remove one before adding another';
+            const donorSelectErrorMessage = 'You can compare two donors. Please remove one before adding another.';
             // create UI elements
             const countryFilter = addFilter({
               wrapper: filterWrapper,
@@ -147,9 +149,8 @@ const renderDonorsChart = () => {
                     trigger: 'item',
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Percentage' ? 'Proportional' : 'Absolute'));
-                      const value = item
-                        ? `${params.value}${dataType === 'Percentage' ? '%' : ''} (US$ ${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
-                        : `${params.value}${dataType === 'Percentage' ? '%' : ''}`;
+                      const value = dataType !== 'Percentage' ? `(US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
+                        : `${params.value.toFixed(1)}${dataType === 'Percentage' ? '%' : ''}`;
 
                       return `${donor} - ${params.name} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
                     },
