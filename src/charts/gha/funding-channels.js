@@ -42,6 +42,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     yAxis: {
       type: 'value',
       axisLabel: { formatter: '{value}%' },
+      max: 100,
     },
     series: channels.map((channel) => ({
       name: channel,
@@ -58,7 +59,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
         formatter: (params) => {
           const item = data.find((d) => d['Delivery Channel'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name);
 
-          return `${params.name} <br /> ${channel} <br /> <strong>${parseInt(params.value, 10).toFixed(1)}% (US$${item['USD deflated']} millions)</strong>`;
+          return `${channel} <br /> ${params.name} <br /> <strong>${parseInt(params.value, 10).toFixed(1)}% (US$${item['USD deflated']} millions)</strong>`;
         },
       },
       cursor: 'auto',
@@ -100,13 +101,14 @@ const renderFundingChannelsChart = () => {
             const donors = [...new Set(data.map((d) => d.Donor))];
             const years = [...new Set(data.map((d) => d.Year))];
             const channels = [...new Set(data.map((d) => d['Delivery Channel']))];
+            const channelSelectErrorMessage = 'You can compare two donors. Please remove one before adding another.';
             // create UI elements
             const countryFilter = addFilter({
               wrapper: filterWrapper,
               options: donors.sort(),
               className: 'country-filter',
               label: '<b>Select donors</b>',
-            });
+            }, false, 'channelSelectError', channelSelectErrorMessage);
             const chart = window.echarts.init(chartNode);
             renderDefaultChart(chart, cleanData(data), { years, channels });
 
@@ -139,7 +141,7 @@ const renderFundingChannelsChart = () => {
                         ? `${item.value.toFixed(1)}% (US$${toDollars(cleanValue(item['USD deflated']), 'decimal', 'never')} millions)`
                         : `${item.value.toFixed(1)}%`;
 
-                      return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
+                      return `${donor} - ${params.name} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
                     },
                   },
                   label: {
@@ -171,14 +173,18 @@ const renderFundingChannelsChart = () => {
               * */
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
+              const error = document.getElementById('channelSelectError');
               if (value !== 'All donors') {
                 // if it's the first pill, append pill widget
                 if (!pillWidget.pillNames.length) {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
-                } else {
-                  countryFilter.disabled = true; // ensure that only 2 countries can be selected
                 }
-                pillWidget.add(value);
+                if (pillWidget.pillNames.length >= 2) {
+                  error.style.display = 'block';
+                } else {
+                  pillWidget.add(value);
+                  error.style.display = 'none';
+                }
               } else {
                 pillWidget.removeAll();
               }
@@ -188,10 +194,11 @@ const renderFundingChannelsChart = () => {
 
             pillWidget.onRemove(() => {
               const hasPills = !!pillWidget.pillNames.length;
+              const error = document.getElementById('channelSelectError');
               if (hasPills) {
                 const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Donor));
                 updateChartForDonorSeries(filteredData, pillWidget.pillNames);
-                countryFilter.disabled = false; // enable to select more donors
+                error.style.display = 'none';
               } else {
                 countryFilter.value = 'All donors'; // reset country filter selected value
                 renderDefaultChart(chart, cleanData(data), { years, channels });
