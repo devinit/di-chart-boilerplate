@@ -130,9 +130,9 @@ const renderRecipientChart = () => {
           // create UI elements
           const [countryFilterA, countryFilterAWrapper] = addFilter({
             wrapper: filterWrapper,
-            options: recipients,
+            options: recipients.sort(),
             className: 'country-filter',
-            label: '<b>Select Recipient</b>',
+            label: '<b>Select recipient</b>',
             defaultOption: '10 largest recipients',
           }, true);
           // in case the recipients are different, we create another dropdown with the org type data
@@ -147,7 +147,7 @@ const renderRecipientChart = () => {
 
           const contextFilter = addFilter({
             wrapper: filterWrapper,
-            options: ['By Donor', 'By type of organisation receiving funding'],
+            options: ['By donor', 'By type of organisation receiving funding'],
             className: 'breakdown-filter',
             label: '<b>Choose breakdown</b>',
           });
@@ -213,7 +213,7 @@ const renderRecipientChart = () => {
           });
           contextFilter.addEventListener('change', (event) => {
             const { value } = event.currentTarget;
-            if (value === 'By Donor') {
+            if (value === 'By donor') {
               countryFilterAWrapper.classList.remove('display-none');
               countryFilterBWrapper.classList.add('display-none');
               countryFilterA.value = countryFilterB.value;
