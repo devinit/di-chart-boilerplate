@@ -95,6 +95,10 @@ const defaultOptions = {
     splitLine: {
       show: false,
     },
+    nameLocation: 'end',
+    nameTextStyle: {
+      padding: [0, 50, 0, 0],
+    },
   },
   grid: {
     left: '3%',

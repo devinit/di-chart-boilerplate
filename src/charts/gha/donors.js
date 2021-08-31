@@ -9,7 +9,7 @@ import PillWidget from '../../widgets/pills';
 
 // const nf = new Intl.NumberFormat();
 
-let dataType = 'Absolute';
+let dataType = 'Volumes';
 
 const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').replace(' ', '').replace('%', '').trim()) : null);
 
@@ -45,11 +45,12 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     yAxis: {
       type: 'value',
-      axisLabel: { formatter: `{value}${dataType === 'Percentage' ? '%' : ''}` },
+      axisLabel: { formatter: `{value}${dataType === 'Proportions' ? '%' : ''}` },
+      name: dataType === 'Proportions' ? '' : 'US$ millions',
     },
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, '20 largest donors', channel, dataType === 'Percentage' ? 'Proportional' : 'Absolute').map((d) => ({
+      data: processData(data, years, '20 largest donors', channel, dataType === 'Proportions' ? 'Proportional' : 'Absolute').map((d) => ({
         value: d && Number(d.value),
         emphasis: {
           focus: 'self',
@@ -60,10 +61,10 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       tooltip: {
         trigger: 'item',
         formatter: (params) => {
-          const item = data.find((d) => d['IHA type'] === channel && d.Donor === '20 largest donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Percentage' ? 'Proportional' : 'Absolute'));
+          const item = data.find((d) => d['IHA type'] === channel && d.Donor === '20 largest donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
           const updatedOrgType = channel.includes('Multilateral HA') ? channel.replace('Multilateral HA', 'Multilateral Humanitarian Assistance') : channel;
 
-          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Percentage' ? `${params.value.toFixed(1)}%` : `(US$${item.Value} million)`} </strong>`;
+          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Proportions' ? `${params.value.toFixed(1)}%` : `(US$${item.Value} million)`} </strong>`;
         },
       },
       cursor: 'auto',
@@ -116,9 +117,9 @@ const renderDonorsChart = () => {
 
             const contextFilter = addFilter({
               wrapper: filterWrapper,
-              options: ['Absolute', 'Percentage'],
+              options: ['Volumes', 'Proportions'],
               className: 'data-filter',
-              label: '<b>Choose data </b>(HA = Humanitarian Assistance)',
+              label: '<b>Display data as</b>',
             });
 
             const chart = window.echarts.init(chartNode);
@@ -135,7 +136,7 @@ const renderDonorsChart = () => {
               const series = activeDonors
                 .map((donor) => channels.map((channel, index) => ({
                   name: channel,
-                  data: processData(cleanedData, years, donor, channel, dataType === 'Percentage' ? 'Proportional' : 'Absolute').map(
+                  data: processData(cleanedData, years, donor, channel, dataType === 'Proportions' ? 'Proportional' : 'Absolute').map(
                     (d) => ({
                       value: d && Number(d.value),
                       emphasis: {
@@ -148,9 +149,9 @@ const renderDonorsChart = () => {
                   tooltip: {
                     trigger: 'item',
                     formatter: (params) => {
-                      const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Percentage' ? 'Proportional' : 'Absolute'));
-                      const value = dataType !== 'Percentage' ? `(US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
-                        : `${params.value.toFixed(1)}${dataType === 'Percentage' ? '%' : ''}`;
+                      const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
+                      const value = dataType !== 'Proportions' ? `(US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
+                        : `${params.value.toFixed(1)}${dataType === 'Proportions' ? '%' : ''}`;
 
                       return `${donor} - ${params.name} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
                     },
@@ -172,7 +173,7 @@ const renderDonorsChart = () => {
               chart.setOption({
                 yAxis: {
                   type: 'value',
-                  axisLabel: { formatter: `{value}${dataType === 'Percentage' ? '%' : ''}` },
+                  axisLabel: { formatter: `{value}${dataType === 'Proportions' ? '%' : ''}` },
                 },
                 series,
               }, { replaceMerge: ['series'] });
