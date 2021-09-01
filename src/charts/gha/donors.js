@@ -27,6 +27,14 @@ const processData = (data, years, donor, channel, valueType = 'Proportional') =>
   return sortedData;
 };
 
+const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style, currency: 'USD', signDisplay, maximumFractionDigits: 0,
+  });
+
+  return formatter.format(value);
+};
+
 const renderDefaultChart = (chart, data, { years, channels }) => {
   const option = {
     color: colorways.orange,
@@ -64,7 +72,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
           const item = data.find((d) => d['IHA type'] === channel && d.Donor === '20 largest donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
           const updatedOrgType = channel.includes('Multilateral HA') ? channel.replace('Multilateral HA', 'Multilateral Humanitarian Assistance') : channel;
 
-          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Proportions' ? `${params.value.toFixed(1)}%` : `(US$${item.Value} million)`} </strong>`;
+          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Proportions' ? `${params.value.toFixed(2)}%` : `(US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`} </strong>`;
         },
       },
       cursor: 'auto',
@@ -74,12 +82,6 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
   chart.setOption(deepMerge(option, defaultOptions), { replaceMerge: ['series'] });
 
   return chart;
-};
-
-const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
-  const formatter = new Intl.NumberFormat('en-US', { style, currency: 'USD', signDisplay });
-
-  return formatter.format(value);
 };
 
 /**
@@ -151,9 +153,9 @@ const renderDonorsChart = () => {
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
                       const value = dataType !== 'Proportions' ? `(US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
-                        : `${params.value.toFixed(1)}${dataType === 'Proportions' ? '%' : ''}`;
+                        : `${params.value.toFixed(2)}${dataType === 'Proportions' ? '%' : ''}`;
 
-                      return `${donor} - ${params.name} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
+                      return `${donor} - ${params.name} <br />${channel}: <strong style="padding-left:10px;">${value}</strong>`;
                     },
                   },
                   label: {
