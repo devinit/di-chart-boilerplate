@@ -11,7 +11,7 @@ const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').repl
 
 const cleanData = (data) => data.map((d) => {
   const clean = { ...d };
-  clean.value = cleanValue(d.Proportion);
+  clean.value = cleanValue(d.Proportions);
 
   return clean;
 });
@@ -21,6 +21,14 @@ const processData = (data, years, donor, channel) => {
   const sortedData = years.map((year) => filteredData.find((d) => d.Year === year));
 
   return sortedData;
+};
+
+const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style, currency: 'USD', signDisplay, maximumFractionDigits: 0,
+  });
+
+  return formatter.format(value);
 };
 
 const renderDefaultChart = (chart, data, { years, channels }) => {
@@ -42,7 +50,6 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     yAxis: {
       type: 'value',
       axisLabel: { formatter: '{value}%' },
-      max: 100,
     },
     series: channels.map((channel) => ({
       name: channel,
@@ -59,7 +66,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
         formatter: (params) => {
           const item = data.find((d) => d['Delivery Channel'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name);
 
-          return `${channel} <br /> ${params.name} <br /> <strong>${parseInt(params.value, 10).toFixed(1)}% (US$${item['USD deflated']} millions)</strong>`;
+          return `${channel} <br /> ${params.name} <br /> <strong>${Number(params.value, 10).toFixed(2)}% (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} millions)</strong>`;
         },
       },
       cursor: 'auto',
@@ -69,12 +76,6 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
   chart.setOption(deepMerge(option, defaultOptions), { replaceMerge: ['series'] });
 
   return chart;
-};
-
-const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
-  const formatter = new Intl.NumberFormat('en-US', { style, currency: 'USD', signDisplay });
-
-  return formatter.format(value);
 };
 
 /**
@@ -94,6 +95,7 @@ const renderFundingChannelsChart = () => {
            *
            * const chart = window.echarts.init(chartNode);
            */
+          // const csv = '/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
           const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/feature/chart-updates/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
           fetchCSVData(csv).then((data) => {
             const filterWrapper = addFilterWrapper(chartNode);
@@ -138,10 +140,10 @@ const renderFundingChannelsChart = () => {
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
                       const value = item
-                        ? `${item.value.toFixed(1)}% (US$${toDollars(cleanValue(item['USD deflated']), 'decimal', 'never')} millions)`
-                        : `${item.value.toFixed(1)}%`;
+                        ? `${item.value.toFixed(2)}% (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} millions)`
+                        : `${item.value.toFixed(2)}%`;
 
-                      return `${donor} - ${params.name} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
+                      return `${donor} - ${params.name} <br />${channel}:<strong style="padding-left:10px;">${value}</strong>`;
                     },
                   },
                   label: {
