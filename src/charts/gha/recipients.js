@@ -139,7 +139,7 @@ const renderRecipientChart = () => {
           const orgTypeRecipients = [...new Set(orgTypeData.map((d) => d['Destination Country']))];
           const [countryFilterB, countryFilterBWrapper] = addFilter({
             wrapper: filterWrapper,
-            options: orgTypeRecipients,
+            options: orgTypeRecipients.sort(),
             className: 'country-filter',
             label: '<b>Select recipient</b>',
           }, true);
@@ -174,7 +174,7 @@ const renderRecipientChart = () => {
                 cursor: 'auto',
                 tooltip: {
                   trigger: 'item',
-                  formatter: (params) => `${donor} <br /> ${params.name} <br /> <strong>(US$${nf.format(Math.round(params.value))} million)</strong>`,
+                  formatter: (params) => `${recipient} <br /> ${params.name} <br />${donor}: <strong>(US$${nf.format(Math.round(params.value))} million)</strong>`,
                 },
               }))
               .reduce((final, cur) => final.concat(cur), []);
