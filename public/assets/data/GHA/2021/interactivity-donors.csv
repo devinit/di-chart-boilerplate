@@ -1,64 +1,64 @@
 Year,IHA type,Value type,Donor,Donor ID,Value
-2011,Bilateral,Absolute,20 largest donors,20 largest donors,10147.42096
-2011,Multilateral through EU,Absolute,20 largest donors,20 largest donors,1654.469087
-2011,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,1805.933355
-2011,Bilateral,Proportional,20 largest donors,20 largest donors,0.745704927
-2011,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.121582199
-2011,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.132712874
-2012,Bilateral,Absolute,20 largest donors,20 largest donors,9074.395251
-2012,Multilateral through EU,Absolute,20 largest donors,20 largest donors,1661.20521
-2012,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,1492.087422
-2012,Bilateral,Proportional,20 largest donors,20 largest donors,0.742118652
-2012,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.135856036
-2012,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.122025311
-2013,Bilateral,Absolute,20 largest donors,20 largest donors,11208.36404
-2013,Multilateral through EU,Absolute,20 largest donors,20 largest donors,1786.205182
-2013,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,1531.816756
-2013,Bilateral,Proportional,20 largest donors,20 largest donors,0.77158655
-2013,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.122962806
-2013,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.105450644
-2014,Bilateral,Absolute,20 largest donors,20 largest donors,14371.36712
-2014,Multilateral through EU,Absolute,20 largest donors,20 largest donors,2049.175293
-2014,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,1674.43092
-2014,Bilateral,Proportional,20 largest donors,20 largest donors,0.794218751
-2014,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.113245555
-2014,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.092535694
-2015,Bilateral,Absolute,20 largest donors,20 largest donors,16237.76099
-2015,Multilateral through EU,Absolute,20 largest donors,20 largest donors,1818.955857
-2015,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,1926.485901
-2015,Bilateral,Proportional,20 largest donors,20 largest donors,0.812570497
-2015,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.091024241
-2015,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.096405262
-2016,Bilateral,Absolute,20 largest donors,20 largest donors,17002.91576
-2016,Multilateral through EU,Absolute,20 largest donors,20 largest donors,2491.616825
-2016,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,2334.543429
-2016,Bilateral,Proportional,20 largest donors,20 largest donors,0.778911382
-2016,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.114142111
-2016,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.106946507
-2017,Bilateral,Absolute,20 largest donors,20 largest donors,17993.61433
-2017,Multilateral through EU,Absolute,20 largest donors,20 largest donors,2231.266414
-2017,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,2625.35657
-2017,Bilateral,Proportional,20 largest donors,20 largest donors,0.787458532
-2017,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.097647407
-2017,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.114894061
-2018,Bilateral,Absolute,20 largest donors,20 largest donors,20187.63357
-2018,Multilateral through EU,Absolute,20 largest donors,20 largest donors,2001.883406
-2018,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,2904.57536
-2018,Bilateral,Proportional,20 largest donors,20 largest donors,0.804477536
-2018,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.079775087
-2018,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.115747377
-2019,Bilateral,Absolute,20 largest donors,20 largest donors,19025.20599
-2019,Multilateral through EU,Absolute,20 largest donors,20 largest donors,2191.518964
-2019,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,2848.722532
-2019,Bilateral,Proportional,20 largest donors,20 largest donors,0.790561073
-2019,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.091064958
-2019,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.118373969
-2020,Bilateral,Absolute,20 largest donors,20 largest donors,19070.10949
-2020,Multilateral through EU,Absolute,20 largest donors,20 largest donors,2587.502574
-2020,Multilateral through UN and others,Absolute,20 largest donors,20 largest donors,2490.878555
-2020,Bilateral,Proportional,20 largest donors,20 largest donors,0.789701923
-2020,Multilateral through EU,Proportional,20 largest donors,20 largest donors,0.107149661
-2020,Multilateral through UN and others,Proportional,20 largest donors,20 largest donors,0.103148416
+2011,Bilateral,Absolute,All donors,All donors,10147.42096
+2011,Multilateral through EU,Absolute,All donors,All donors,1654.469087
+2011,Multilateral through UN and others,Absolute,All donors,All donors,1805.933355
+2011,Bilateral,Proportional,All donors,All donors,0.745704927
+2011,Multilateral through EU,Proportional,All donors,All donors,0.121582199
+2011,Multilateral through UN and others,Proportional,All donors,All donors,0.132712874
+2012,Bilateral,Absolute,All donors,All donors,9074.395251
+2012,Multilateral through EU,Absolute,All donors,All donors,1661.20521
+2012,Multilateral through UN and others,Absolute,All donors,All donors,1492.087422
+2012,Bilateral,Proportional,All donors,All donors,0.742118652
+2012,Multilateral through EU,Proportional,All donors,All donors,0.135856036
+2012,Multilateral through UN and others,Proportional,All donors,All donors,0.122025311
+2013,Bilateral,Absolute,All donors,All donors,11208.36404
+2013,Multilateral through EU,Absolute,All donors,All donors,1786.205182
+2013,Multilateral through UN and others,Absolute,All donors,All donors,1531.816756
+2013,Bilateral,Proportional,All donors,All donors,0.77158655
+2013,Multilateral through EU,Proportional,All donors,All donors,0.122962806
+2013,Multilateral through UN and others,Proportional,All donors,All donors,0.105450644
+2014,Bilateral,Absolute,All donors,All donors,14371.36712
+2014,Multilateral through EU,Absolute,All donors,All donors,2049.175293
+2014,Multilateral through UN and others,Absolute,All donors,All donors,1674.43092
+2014,Bilateral,Proportional,All donors,All donors,0.794218751
+2014,Multilateral through EU,Proportional,All donors,All donors,0.113245555
+2014,Multilateral through UN and others,Proportional,All donors,All donors,0.092535694
+2015,Bilateral,Absolute,All donors,All donors,16237.76099
+2015,Multilateral through EU,Absolute,All donors,All donors,1818.955857
+2015,Multilateral through UN and others,Absolute,All donors,All donors,1926.485901
+2015,Bilateral,Proportional,All donors,All donors,0.812570497
+2015,Multilateral through EU,Proportional,All donors,All donors,0.091024241
+2015,Multilateral through UN and others,Proportional,All donors,All donors,0.096405262
+2016,Bilateral,Absolute,All donors,All donors,17002.91576
+2016,Multilateral through EU,Absolute,All donors,All donors,2491.616825
+2016,Multilateral through UN and others,Absolute,All donors,All donors,2334.543429
+2016,Bilateral,Proportional,All donors,All donors,0.778911382
+2016,Multilateral through EU,Proportional,All donors,All donors,0.114142111
+2016,Multilateral through UN and others,Proportional,All donors,All donors,0.106946507
+2017,Bilateral,Absolute,All donors,All donors,17993.61433
+2017,Multilateral through EU,Absolute,All donors,All donors,2231.266414
+2017,Multilateral through UN and others,Absolute,All donors,All donors,2625.35657
+2017,Bilateral,Proportional,All donors,All donors,0.787458532
+2017,Multilateral through EU,Proportional,All donors,All donors,0.097647407
+2017,Multilateral through UN and others,Proportional,All donors,All donors,0.114894061
+2018,Bilateral,Absolute,All donors,All donors,20187.63357
+2018,Multilateral through EU,Absolute,All donors,All donors,2001.883406
+2018,Multilateral through UN and others,Absolute,All donors,All donors,2904.57536
+2018,Bilateral,Proportional,All donors,All donors,0.804477536
+2018,Multilateral through EU,Proportional,All donors,All donors,0.079775087
+2018,Multilateral through UN and others,Proportional,All donors,All donors,0.115747377
+2019,Bilateral,Absolute,All donors,All donors,19025.20599
+2019,Multilateral through EU,Absolute,All donors,All donors,2191.518964
+2019,Multilateral through UN and others,Absolute,All donors,All donors,2848.722532
+2019,Bilateral,Proportional,All donors,All donors,0.790561073
+2019,Multilateral through EU,Proportional,All donors,All donors,0.091064958
+2019,Multilateral through UN and others,Proportional,All donors,All donors,0.118373969
+2020,Bilateral,Absolute,All donors,All donors,19070.10949
+2020,Multilateral through EU,Absolute,All donors,All donors,2587.502574
+2020,Multilateral through UN and others,Absolute,All donors,All donors,2490.878555
+2020,Bilateral,Proportional,All donors,All donors,0.789701923
+2020,Multilateral through EU,Proportional,All donors,All donors,0.107149661
+2020,Multilateral through UN and others,Proportional,All donors,All donors,0.103148416
 2011,Bilateral,Absolute,US,US,5010.378235
 2011,Multilateral through EU,Absolute,US,US,0
 2011,Multilateral through UN and others,Absolute,US,US,78.8779371
