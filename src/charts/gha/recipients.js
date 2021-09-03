@@ -176,7 +176,7 @@ const renderRecipientChart = () => {
                 cursor: 'auto',
                 tooltip: {
                   trigger: 'item',
-                  formatter: (params) => `${recipient} <br /> ${params.name} <br />${donor}: <strong>(US$${nf.format(Math.round(params.value))} million)</strong>`,
+                  formatter: (params) => `${recipient} <br /> ${params.name} <br />${donor}: <strong>US$${nf.format(Math.round(params.value))} million</strong>`,
                 },
               }))
               .reduce((final, cur) => final.concat(cur), []);
@@ -197,7 +197,7 @@ const renderRecipientChart = () => {
                 },
               }))
               .reduce((final, cur) => final.concat(cur), []);
-            chart.setOption({ series, grid: { bottom: '10%' } }, { replaceMerge: ['series'] });
+            chart.setOption({ series }, { replaceMerge: ['series'] });
           };
 
           /**
