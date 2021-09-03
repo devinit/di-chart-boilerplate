@@ -35,6 +35,24 @@ const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
   return formatter.format(value);
 };
 
+const getYaxisValue = () => {
+  if (dataType === 'Proportions') {
+    return {
+      type: 'value',
+      axisLabel: { formatter: '{value}%' },
+      name: '',
+      max: 100,
+    };
+  }
+
+  return {
+    type: 'value',
+    axisLabel: { formatter: '{value}' },
+    name: 'US$ millions',
+    max: null,
+  };
+};
+
 const renderDefaultChart = (chart, data, { years, channels }) => {
   const option = {
     color: colorways.orange,
@@ -51,15 +69,11 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       type: 'category',
       data: years,
     },
-    yAxis: {
-      type: 'value',
-      axisLabel: { formatter: `{value}${dataType === 'Proportions' ? '%' : ''}` },
-      name: dataType === 'Proportions' ? '' : 'US$ millions',
-    },
+    yAxis: getYaxisValue(),
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, '20 largest donors', channel, dataType === 'Proportions' ? 'Proportional' : 'Absolute').map((d) => ({
-        value: d && Number(d.value),
+      data: processData(data, years, 'All donors', channel, dataType === 'Proportions' ? 'Proportional' : 'Absolute').map((d) => ({
+        value: d && Number(dataType === 'Proportions' ? (d.value * 100) : d.value),
         emphasis: {
           focus: 'self',
         },
@@ -69,10 +83,10 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
       tooltip: {
         trigger: 'item',
         formatter: (params) => {
-          const item = data.find((d) => d['IHA type'] === channel && d.Donor === '20 largest donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
+          const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
           const updatedOrgType = channel.includes('Multilateral HA') ? channel.replace('Multilateral HA', 'Multilateral Humanitarian Assistance') : channel;
 
-          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Proportions' ? `${params.value.toFixed(2)}%` : `(US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`} </strong>`;
+          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Proportions' ? `${params.value.toFixed(2)}%` : `US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million`} </strong>`;
         },
       },
       cursor: 'auto',
@@ -140,7 +154,7 @@ const renderDonorsChart = () => {
                   name: channel,
                   data: processData(cleanedData, years, donor, channel, dataType === 'Proportions' ? 'Proportional' : 'Absolute').map(
                     (d) => ({
-                      value: d && Number(d.value),
+                      value: d && Number(dataType === 'Proportions' ? (d.value * 100) : d.value),
                       emphasis: {
                         focus: 'self',
                       },
@@ -152,7 +166,7 @@ const renderDonorsChart = () => {
                     trigger: 'item',
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
-                      const value = dataType !== 'Proportions' ? `(US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
+                      const value = dataType !== 'Proportions' ? `US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million`
                         : `${params.value.toFixed(2)}${dataType === 'Proportions' ? '%' : ''}`;
 
                       return `${donor} - ${params.name} <br />${channel}: <strong style="padding-left:10px;">${value}</strong>`;
@@ -173,17 +187,14 @@ const renderDonorsChart = () => {
                 })))
                 .reduce((final, cur) => final.concat(cur), []);
               chart.setOption({
-                yAxis: {
-                  type: 'value',
-                  axisLabel: { formatter: `{value}${dataType === 'Proportions' ? '%' : ''}` },
-                },
+                yAxis: getYaxisValue(),
                 series,
               }, { replaceMerge: ['series'] });
             };
 
             const onAdd = (value) => {
               // filter data to return only the selected items
-              const filteredData = value !== '20 largest donors' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
+              const filteredData = value !== 'All donors' ? data.filter((d) => pillWidget.pillNames.includes(d.Donor)) : data;
               const selectedDonors = pillWidget.pillNames.length ? pillWidget.pillNames : donors;
               updateChartForDonorSeries(filteredData, selectedDonors);
             };
@@ -194,7 +205,7 @@ const renderDonorsChart = () => {
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
               const error = document.getElementById('donorSelectError');
-              if (value !== '20 largest donors') {
+              if (value !== 'All donors') {
                 // if it's the first pill, append pill widget
                 if (!pillWidget.pillNames.length) {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
@@ -232,7 +243,7 @@ const renderDonorsChart = () => {
                 countryFilter.disabled = false; // enable to select more donors
                 error.style.display = 'none';
               } else {
-                countryFilter.value = '20 largest donors'; // reset country filter selected value
+                countryFilter.value = 'All donors'; // reset country filter selected value
                 renderDefaultChart(chart, cleanData(data), { years, channels });
               }
             });
