@@ -58,7 +58,7 @@ const getRecipientOrgType = (data, recipient) => {
 
 const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
   const option = {
-    color: colorways.leaf,
+    color: colorways.orange,
     legend: {
       show: true,
       top: 'top',
@@ -71,6 +71,7 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
     xAxis: {
       type: 'category',
       data: years,
+      position: 'bottom',
     },
     yAxis: {
       type: 'value',
@@ -93,8 +94,9 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
       cursor: 'auto',
       tooltip: {
         trigger: 'item',
-        formatter: (params) => `${channel} <br /> ${params.name} <br /> <strong>(US$${nf.format(Math.round(params.value))} million)</strong>`,
+        formatter: (params) => `${channel} <br /> ${params.name} <br /> <strong>US$${nf.format(Math.round(params.value))} million</strong>`,
       },
+      animation: false,
     })),
   };
   defaultOptions.toolbox.feature.saveAsImage.name = 'recipients';
@@ -191,7 +193,7 @@ const renderRecipientChart = () => {
                 cursor: 'auto',
                 tooltip: {
                   trigger: 'item',
-                  formatter: (params) => `${orgType} <br /> ${params.name} <br /> <strong>(US$${nf.format(Math.round(params.value))} million)</strong>`,
+                  formatter: (params) => `${orgType} <br /> ${params.name} <br /> <strong>US$${nf.format(Math.round(params.value))} million</strong>`,
                 },
               }))
               .reduce((final, cur) => final.concat(cur), []);
