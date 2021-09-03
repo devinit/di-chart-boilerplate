@@ -50,11 +50,12 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     yAxis: {
       type: 'value',
       axisLabel: { formatter: '{value}%' },
+      max: 100,
     },
     series: channels.map((channel) => ({
       name: channel,
       data: processData(data, years, 'All donors', channel).map((d) => ({
-        value: d && Number(d.value).toFixed(2),
+        value: d && Number(d.value * 100).toFixed(2),
         emphasis: {
           focus: 'self',
         },
@@ -127,7 +128,7 @@ const renderFundingChannelsChart = () => {
                   name: channel,
                   data: processData(cleanedData, years, donor, channel).map(
                     (d) => ({
-                      value: d && Number(d.value).toFixed(2),
+                      value: d && Number(d.value * 100).toFixed(2),
                       emphasis: {
                         focus: 'self',
                       },
