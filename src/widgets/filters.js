@@ -18,7 +18,7 @@ export const createOption = (selectElement, option, selected = false) => {
 
 export const addFilter = ({
   wrapper, options, allItemsLabel, className, label, defaultOption = '*',
-}, returnWrapper = false) => {
+}, returnWrapper = false, errorID, errorMessage) => {
   const selectElement = document.createElement('select');
   selectElement.classList.add(...['data-selector', 'js-plotly-chart-data-selector'].concat(className));
   if (allItemsLabel) {
@@ -36,6 +36,20 @@ export const addFilter = ({
     selectWrapper.appendChild(labelElement);
     selectWrapper.appendChild(selectElement);
     wrapper.appendChild(selectWrapper);
+
+    if (errorID && errorMessage) {
+      const selectError = document.createElement('div');
+      selectError.classList.add('data-selector--wrapper');
+      selectError.innerHTML = errorMessage;
+      selectError.style.color = 'red';
+      selectError.style.fontSize = '11px';
+      selectError.style.position = 'relative';
+      selectError.style.padding = '5px';
+      selectError.style.paddingLeft = '20px';
+      selectError.style.display = 'none';
+      selectError.setAttribute('id', errorID);
+      wrapper.insertAdjacentElement('afterend', selectError);
+    }
 
     if (returnWrapper) {
       return [selectElement, selectWrapper];

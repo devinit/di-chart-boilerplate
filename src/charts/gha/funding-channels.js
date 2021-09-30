@@ -1,5 +1,5 @@
 import deepMerge from 'deepmerge';
-import defaultOptions from '../echarts';
+import defaultOptions, { colorways } from '../echarts';
 import fetchCSVData from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 import PillWidget from '../../widgets/pills';
@@ -11,7 +11,7 @@ const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').repl
 
 const cleanData = (data) => data.map((d) => {
   const clean = { ...d };
-  clean.value = cleanValue(d.Proportion);
+  clean.value = cleanValue(d.Proportions);
 
   return clean;
 });
@@ -23,12 +23,24 @@ const processData = (data, years, donor, channel) => {
   return sortedData;
 };
 
+const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style, currency: 'USD', signDisplay, maximumFractionDigits: 0,
+  });
+
+  return formatter.format(value);
+};
+
 const renderDefaultChart = (chart, data, { years, channels }) => {
   const option = {
+    color: colorways.orange,
     legend: {
       show: true,
-      top: 'bottom',
-      padding: [5, 10, 15, 10],
+      top: 'top',
+      padding: [20, 10, 5, 10],
+      textStyle: {
+        fontSize: '1.3rem',
+      },
     },
     grid: { bottom: '10%' },
     xAxis: {
@@ -37,12 +49,17 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
     },
     yAxis: {
       type: 'value',
-      max: 100,
       axisLabel: { formatter: '{value}%' },
+      max: 100,
     },
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, 'All donors', channel).map((d) => Number(d.value)),
+      data: processData(data, years, 'All donors', channel).map((d) => ({
+        value: d && Number(d.value * 100).toFixed(2),
+        emphasis: {
+          focus: 'self',
+        },
+      })),
       type: 'bar',
       stack: 'channels',
       tooltip: {
@@ -50,20 +67,16 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
         formatter: (params) => {
           const item = data.find((d) => d['Delivery Channel'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name);
 
-          return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (US$ ${item['USD deflated']} millions)</strong>`;
+          return `${channel} <br /> ${params.name} <br /> <strong>${Number(params.value, 10).toFixed(2)}% (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} millions)</strong>`;
         },
       },
+      cursor: 'auto',
     })),
   };
-  chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
+  defaultOptions.toolbox.feature.saveAsImage.name = 'funding-channels';
+  chart.setOption(deepMerge(option, defaultOptions), { replaceMerge: ['series'] });
 
   return chart;
-};
-
-const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
-  const formatter = new Intl.NumberFormat('en-US', { style, currency: 'USD', signDisplay });
-
-  return formatter.format(value);
 };
 
 /**
@@ -83,20 +96,22 @@ const renderFundingChannelsChart = () => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/funding-channels/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
+          // const csv = '/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
+          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/feature/chart-updates/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
           fetchCSVData(csv).then((data) => {
             const filterWrapper = addFilterWrapper(chartNode);
             // extract unique values
             const donors = [...new Set(data.map((d) => d.Donor))];
             const years = [...new Set(data.map((d) => d.Year))];
             const channels = [...new Set(data.map((d) => d['Delivery Channel']))];
+            const channelSelectErrorMessage = 'You can compare two donors. Please remove one before adding another.';
             // create UI elements
             const countryFilter = addFilter({
               wrapper: filterWrapper,
               options: donors.sort(),
               className: 'country-filter',
-              label: 'Select Donor',
-            });
+              label: '<b>Select donors</b>',
+            }, false, 'channelSelectError', channelSelectErrorMessage);
             const chart = window.echarts.init(chartNode);
             renderDefaultChart(chart, cleanData(data), { years, channels });
 
@@ -112,7 +127,12 @@ const renderFundingChannelsChart = () => {
                 .map((donor) => channels.map((channel, index) => ({
                   name: channel,
                   data: processData(cleanedData, years, donor, channel).map(
-                    (d) => Number(d.value),
+                    (d) => ({
+                      value: d && Number(d.value * 100).toFixed(2),
+                      emphasis: {
+                        focus: 'self',
+                      },
+                    }),
                   ),
                   type: 'bar',
                   stack: donor,
@@ -121,10 +141,10 @@ const renderFundingChannelsChart = () => {
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
                       const value = item
-                        ? `${item.value}% (US$ ${toDollars(cleanValue(item['USD deflated']), 'decimal', 'never')} millions)`
-                        : `${item.value}%`;
+                        ? `${item.value.toFixed(2)}% (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} millions)`
+                        : `${item.value.toFixed(2)}%`;
 
-                      return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
+                      return `${donor} - ${params.name} <br />${channel}:<strong style="padding-left:10px;">${value}</strong>`;
                     },
                   },
                   label: {
@@ -138,6 +158,7 @@ const renderFundingChannelsChart = () => {
                     formatter: () => `${donor}`,
                     fontSize: 16,
                   },
+                  cursor: 'auto',
                 })))
                 .reduce((final, cur) => final.concat(cur), []);
               chart.setOption({ series }, { replaceMerge: ['series'] });
@@ -155,14 +176,18 @@ const renderFundingChannelsChart = () => {
               * */
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
+              const error = document.getElementById('channelSelectError');
               if (value !== 'All donors') {
                 // if it's the first pill, append pill widget
                 if (!pillWidget.pillNames.length) {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
-                } else {
-                  countryFilter.disabled = true; // ensure that only 2 countries can be selected
                 }
-                pillWidget.add(value);
+                if (pillWidget.pillNames.length >= 2) {
+                  error.style.display = 'block';
+                } else {
+                  pillWidget.add(value);
+                  error.style.display = 'none';
+                }
               } else {
                 pillWidget.removeAll();
               }
@@ -172,10 +197,11 @@ const renderFundingChannelsChart = () => {
 
             pillWidget.onRemove(() => {
               const hasPills = !!pillWidget.pillNames.length;
+              const error = document.getElementById('channelSelectError');
               if (hasPills) {
                 const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Donor));
                 updateChartForDonorSeries(filteredData, pillWidget.pillNames);
-                countryFilter.disabled = false; // enable to select more donors
+                error.style.display = 'none';
               } else {
                 countryFilter.value = 'All donors'; // reset country filter selected value
                 renderDefaultChart(chart, cleanData(data), { years, channels });

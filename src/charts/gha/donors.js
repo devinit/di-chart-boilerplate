@@ -1,11 +1,15 @@
 import deepMerge from 'deepmerge';
-import defaultOptions from '../echarts';
+import defaultOptions, { colorways } from '../echarts';
 import fetchCSVData from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 import PillWidget from '../../widgets/pills';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
+
+// const nf = new Intl.NumberFormat();
+
+let dataType = 'Volumes';
 
 const cleanValue = (value) => (value.trim() ? Number(value.replace(',', '').replace(' ', '').replace('%', '').trim()) : null);
 
@@ -23,47 +27,75 @@ const processData = (data, years, donor, channel, valueType = 'Proportional') =>
   return sortedData;
 };
 
+const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style, currency: 'USD', signDisplay, maximumFractionDigits: 0,
+  });
+
+  return formatter.format(value);
+};
+
+const getYaxisValue = () => {
+  if (dataType === 'Proportions') {
+    return {
+      type: 'value',
+      axisLabel: { formatter: '{value}%' },
+      name: '',
+      max: 100,
+    };
+  }
+
+  return {
+    type: 'value',
+    axisLabel: { formatter: '{value}' },
+    name: 'US$ millions',
+    max: null,
+  };
+};
+
 const renderDefaultChart = (chart, data, { years, channels }) => {
   const option = {
+    color: colorways.orange,
     legend: {
       show: true,
-      top: 'bottom',
-      padding: [5, 10, 15, 10],
+      top: 'top',
+      padding: [20, 10, 5, 10],
+      textStyle: {
+        fontSize: '1.3rem',
+      },
     },
     grid: { bottom: '10%' },
     xAxis: {
       type: 'category',
       data: years,
     },
-    yAxis: {
-      type: 'value',
-      max: 100,
-      axisLabel: { formatter: '{value}%' },
-    },
+    yAxis: getYaxisValue(),
     series: channels.map((channel) => ({
       name: channel,
-      data: processData(data, years, 'All donors', channel).map((d) => Number(d.value)),
+      data: processData(data, years, 'All donors', channel, dataType === 'Proportions' ? 'Proportional' : 'Absolute').map((d) => ({
+        value: d && Number(dataType === 'Proportions' ? (d.value * 100) : d.value),
+        emphasis: {
+          focus: 'self',
+        },
+      })),
       type: 'bar',
       stack: 'channels',
       tooltip: {
         trigger: 'item',
         formatter: (params) => {
-          const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === 'Absolute');
+          const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
+          const updatedOrgType = channel.includes('Multilateral HA') ? channel.replace('Multilateral HA', 'Multilateral Humanitarian Assistance') : channel;
 
-          return `${params.name} <br /> ${channel} <br /> <strong>${params.value}% (US$ ${item.Value} million)</strong>`;
+          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Proportions' ? `${params.value.toFixed(2)}%` : `US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million`} </strong>`;
         },
       },
+      cursor: 'auto',
     })),
   };
-  chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
+  defaultOptions.toolbox.feature.saveAsImage.name = 'donors';
+  chart.setOption(deepMerge(option, defaultOptions), { replaceMerge: ['series'] });
 
   return chart;
-};
-
-const toDollars = (value, style = 'currency', signDisplay = 'auto') => {
-  const formatter = new Intl.NumberFormat('en-US', { style, currency: 'USD', signDisplay });
-
-  return formatter.format(value);
 };
 
 /**
@@ -83,20 +115,29 @@ const renderDonorsChart = () => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/donors/public/assets/data/GHA/2021/interactivity-donors.csv';
+          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/feature/chart-updates/public/assets/data/GHA/2021/interactivity-donors.csv';
           fetchCSVData(csv).then((data) => {
             const filterWrapper = addFilterWrapper(chartNode);
             // extract unique values
             const donors = [...new Set(data.map((d) => d.Donor))];
             const years = [...new Set(data.map((d) => d.Year))];
             const channels = [...new Set(data.map((d) => d['IHA type']))];
+            const donorSelectErrorMessage = 'You can compare two donors. Please remove one before adding another.';
             // create UI elements
             const countryFilter = addFilter({
               wrapper: filterWrapper,
               options: donors.sort(),
               className: 'country-filter',
-              label: 'Select Donor',
+              label: '<b>Select donors</b>',
+            }, false, 'donorSelectError', donorSelectErrorMessage);
+
+            const contextFilter = addFilter({
+              wrapper: filterWrapper,
+              options: ['Volumes', 'Proportions'],
+              className: 'data-filter',
+              label: '<b>Display data as</b>',
             });
+
             const chart = window.echarts.init(chartNode);
             renderDefaultChart(chart, cleanData(data), { years, channels });
 
@@ -111,20 +152,24 @@ const renderDonorsChart = () => {
               const series = activeDonors
                 .map((donor) => channels.map((channel, index) => ({
                   name: channel,
-                  data: processData(cleanedData, years, donor, channel).map(
-                    (d) => Number(d.value),
+                  data: processData(cleanedData, years, donor, channel, dataType === 'Proportions' ? 'Proportional' : 'Absolute').map(
+                    (d) => ({
+                      value: d && Number(dataType === 'Proportions' ? (d.value * 100) : d.value),
+                      emphasis: {
+                        focus: 'self',
+                      },
+                    }),
                   ),
                   type: 'bar',
                   stack: donor,
                   tooltip: {
                     trigger: 'item',
                     formatter: (params) => {
-                      const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === 'Absolute');
-                      const value = item
-                        ? `${params.value}% (US$ ${toDollars(cleanValue(item.Value), 'decimal', 'never')} million)`
-                        : `${params.value}%`;
+                      const item = cleanedData.find((d) => d['IHA type'] === channel && d.Donor === donor && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
+                      const value = dataType !== 'Proportions' ? `US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million`
+                        : `${params.value.toFixed(2)}${dataType === 'Proportions' ? '%' : ''}`;
 
-                      return `${params.name} - ${donor} <br />${channel} <strong style="padding-left:10px;">${value}</strong>`;
+                      return `${donor} - ${params.name} <br />${channel}: <strong style="padding-left:10px;">${value}</strong>`;
                     },
                   },
                   label: {
@@ -138,9 +183,13 @@ const renderDonorsChart = () => {
                     formatter: () => `${donor}`,
                     fontSize: 16,
                   },
+                  cursor: 'auto',
                 })))
                 .reduce((final, cur) => final.concat(cur), []);
-              chart.setOption({ series }, { replaceMerge: ['series'] });
+              chart.setOption({
+                yAxis: getYaxisValue(),
+                series,
+              }, { replaceMerge: ['series'] });
             };
 
             const onAdd = (value) => {
@@ -155,27 +204,44 @@ const renderDonorsChart = () => {
               * */
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
+              const error = document.getElementById('donorSelectError');
               if (value !== 'All donors') {
                 // if it's the first pill, append pill widget
                 if (!pillWidget.pillNames.length) {
                   chartNode.parentElement.insertBefore(pillWidget.widget, chartNode);
-                } else {
-                  countryFilter.disabled = true; // ensure that only 2 countries can be selected
                 }
-                pillWidget.add(value);
+                if (pillWidget.pillNames.length >= 2) {
+                  error.style.display = 'block';
+                } else {
+                  pillWidget.add(value);
+                  error.style.display = 'none';
+                }
               } else {
                 pillWidget.removeAll();
+              }
+            });
+
+            contextFilter.addEventListener('change', (event) => {
+              const { value } = event.currentTarget;
+              dataType = value;
+              if (pillWidget.pillNames.length > 1) {
+                const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Donor));
+                updateChartForDonorSeries(filteredData, pillWidget.pillNames);
+              } else {
+                renderDefaultChart(chart, cleanData(data), { years, channels });
               }
             });
 
             pillWidget.onAdd(onAdd);
 
             pillWidget.onRemove(() => {
+              const error = document.getElementById('donorSelectError');
               const hasPills = !!pillWidget.pillNames.length;
               if (hasPills) {
                 const filteredData = data.filter((d) => pillWidget.pillNames.includes(d.Donor));
                 updateChartForDonorSeries(filteredData, pillWidget.pillNames);
                 countryFilter.disabled = false; // enable to select more donors
+                error.style.display = 'none';
               } else {
                 countryFilter.value = 'All donors'; // reset country filter selected value
                 renderDefaultChart(chart, cleanData(data), { years, channels });

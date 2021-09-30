@@ -7,6 +7,7 @@ const createPill = (pillParent, pill) => {
   // create and add remove button
   const removeButton = document.createElement('button');
   removeButton.setAttribute('type', 'button');
+  removeButton.style.top = '7px';
   pillElement.appendChild(removeButton);
   // create button icon
   const icon = document.createElement('i');
@@ -28,6 +29,7 @@ const addBorderColours = (elements, colours) => {
       element.style.borderColor = colours[index]; // eslint-disable-line
     }
     element.style.borderWidth = '2px'; // eslint-disable-line
+    element.style.fontSize = '1.3rem'; // eslint-disable-line
   });
 };
 
