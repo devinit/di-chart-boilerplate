@@ -97,7 +97,7 @@ const renderFundingChannelsChart = () => {
            * const chart = window.echarts.init(chartNode);
            */
           // const csv = '/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
-          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/feature/chart-updates/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
+          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/gha/2021/charts/public/assets/data/GHA/2021/funding-channels-interactive-data.csv';
           fetchCSVData(csv).then((data) => {
             const filterWrapper = addFilterWrapper(chartNode);
             // extract unique values
