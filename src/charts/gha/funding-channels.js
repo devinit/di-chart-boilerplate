@@ -67,7 +67,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
         formatter: (params) => {
           const item = data.find((d) => d['Delivery Channel'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name);
 
-          return `All donors, ${params.name} <br />${channel}: <strong>${Number(params.value, 10).toFixed(2)}% (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} millions)</strong>`;
+          return `All donors, ${params.name} <br />${channel}: <strong>${Number(params.value, 10).toFixed(2)}%</strong> (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} million)`;
         },
       },
       cursor: 'auto',
@@ -141,10 +141,10 @@ const renderFundingChannelsChart = () => {
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
                       const value = item
-                        ? `${item.value.toFixed(2)}% (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} millions)`
-                        : `${item.value.toFixed(2)}%`;
+                        ? `<strong>${item.value.toFixed(2)}%</strong> (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} million)`
+                        : `<strong>${item.value.toFixed(2)}%</strong>`;
 
-                      return `${donor}, ${params.name} <br />${channel}: <strong>${value}</strong>`;
+                      return `${donor}, ${params.name} <br />${channel}: ${value}`;
                     },
                   },
                   label: {
