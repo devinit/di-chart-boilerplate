@@ -75,10 +75,13 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
     },
     yAxis: {
       type: 'value',
+      nameRotate: 90,
       name: 'US$ millions',
-      nameLocation: 'end',
+      nameLocation: 'middle',
       nameTextStyle: {
-        padding: [0, 50, 0, 0],
+        verticalAlign: 'top',
+        align: 'right',
+        padding: [-60, 0, 0, 0],
       },
     },
     series: channels.map((channel) => ({
@@ -94,7 +97,7 @@ const renderDefaultChart = (chart, data, recipient, { years, channels }) => {
       cursor: 'auto',
       tooltip: {
         trigger: 'item',
-        formatter: (params) => `${channel} <br /> ${params.name} <br /> <strong>US$${nf.format(Math.round(params.value))} million</strong>`,
+        formatter: (params) => `${channel}, ${params.name} <br />10 largest recipients: <strong>US$${nf.format(Math.round(params.value))} million</strong>`,
       },
       animation: false,
     })),
@@ -176,7 +179,7 @@ const renderRecipientChart = () => {
                 cursor: 'auto',
                 tooltip: {
                   trigger: 'item',
-                  formatter: (params) => `${recipient} <br /> ${params.name} <br />${donor}: <strong>US$${nf.format(Math.round(params.value))} million</strong>`,
+                  formatter: (params) => `${donor}, ${params.name} <br/>${recipient}: <strong>US$${nf.format(Math.round(params.value))} million</strong>`,
                 },
               }))
               .reduce((final, cur) => final.concat(cur), []);
@@ -193,7 +196,7 @@ const renderRecipientChart = () => {
                 cursor: 'auto',
                 tooltip: {
                   trigger: 'item',
-                  formatter: (params) => `${orgType} <br /> ${params.name} <br /> <strong>US$${nf.format(Math.round(params.value))} million</strong>`,
+                  formatter: (params) => `${params.name} <br/>${orgType}: <strong>US$${nf.format(Math.round(params.value))} million</strong>`,
                 },
               }))
               .reduce((final, cur) => final.concat(cur), []);

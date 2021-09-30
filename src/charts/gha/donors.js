@@ -48,7 +48,14 @@ const getYaxisValue = () => {
   return {
     type: 'value',
     axisLabel: { formatter: '{value}' },
+    nameRotate: 90,
     name: 'US$ millions',
+    nameLocation: 'end',
+    nameTextStyle: {
+      verticalAlign: 'top',
+      align: 'right',
+      padding: [-58, 0, 0, 0],
+    },
     max: null,
   };
 };
@@ -86,7 +93,7 @@ const renderDefaultChart = (chart, data, { years, channels }) => {
           const item = data.find((d) => d['IHA type'] === channel && d.Donor === 'All donors' && `${d.Year}` === params.name && d['Value type'] === (dataType === 'Proportions' ? 'Proportional' : 'Absolute'));
           const updatedOrgType = channel.includes('Multilateral HA') ? channel.replace('Multilateral HA', 'Multilateral Humanitarian Assistance') : channel;
 
-          return `${updatedOrgType} <br /> ${params.name} <br /> <strong>${dataType === 'Proportions' ? `${params.value.toFixed(2)}%` : `US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million`} </strong>`;
+          return `All donors, ${params.name} <br />${updatedOrgType}: <strong>${dataType === 'Proportions' ? `${params.value.toFixed(2)}%` : `US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million`} </strong>`;
         },
       },
       cursor: 'auto',
@@ -169,7 +176,7 @@ const renderDonorsChart = () => {
                       const value = dataType !== 'Proportions' ? `US$${toDollars(cleanValue(item.Value), 'decimal', 'never')} million`
                         : `${params.value.toFixed(2)}${dataType === 'Proportions' ? '%' : ''}`;
 
-                      return `${donor} - ${params.name} <br />${channel}: <strong style="padding-left:10px;">${value}</strong>`;
+                      return `${donor}, ${params.name} <br />${channel}: <strong>${value}</strong>`;
                     },
                   },
                   label: {
