@@ -22,7 +22,7 @@ export const colorways = {
   lavendar: ['#42184c', '#632572', '#732c85', '#994d98', '#af73ae', '#cb98c4', '#deb5d6', '#ebcfe5'],
   bluebell: ['#0a3a64', '#00538e', '#1060a3', '#4397d3', '#77adde', '#a3c7eb', '#bcd4f0', '#d3e0f4'],
   leaf: ['#08492f', '#005b3e', '#00694a', '#3b8c62', '#74bf93', '#a2d1b0', '#b1d8bb', '#c5e1cb'],
-  orange: ['#972800', '#ca3600', '#ff5618', '#ff6831', '#ff7b4b', '#feb499', '#fec6b2', '#fed9cc'],
+  orange: ['#973915', '#d85b31', '#eb642b', '#f18e5e', '#f4a57c', '#f6bb9d'],
 };
 
 export const mixedColourWay = () => {
