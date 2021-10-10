@@ -141,8 +141,8 @@ const renderFundingChannelsChart = () => {
                     formatter: (params) => {
                       const item = cleanedData.find((d) => d['Delivery Channel'] === channel && d.Donor === donor && `${d.Year}` === params.name);
                       const value = item
-                        ? `<strong>${item.value.toFixed(2)}%</strong> (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} million)`
-                        : `<strong>${item.value.toFixed(2)}%</strong>`;
+                        ? `<strong>${(item.value * 100).toFixed(2)}%</strong> (US$${toDollars(cleanValue(item['US$ millions, constant 2019 prices']), 'decimal', 'never')} million)`
+                        : `<strong>${(item.value * 100).toFixed(2)}%</strong>`;
 
                       return `${donor}, ${params.name} <br />${channel}: ${value}`;
                     },
