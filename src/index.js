@@ -34,14 +34,19 @@ window.addEventListener('load', () => {
               label: 'Select Donor',
             });
 
+            if (window.DIState) {
+              window.DIState.setState({ country: 'United States' });
+            }
+
             // add event listeners
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
-              console.log(value);
-              // update state
+              if (window.DIState) {
+                window.DIState.setState({ country: value });
+              }
             });
 
-            // dichart.hideLoading();
+            dichart.hideLoading();
           });
         });
       },
