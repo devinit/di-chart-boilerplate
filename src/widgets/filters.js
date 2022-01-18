@@ -14,13 +14,18 @@ export const createOption = (selectElement, option) => {
 };
 
 export const addFilter = ({
-  wrapper, options, allItemsLabel, className, label,
+  wrapper, options, defaultOption, allItemsLabel, className, label,
 }) => {
   const selectElement = document.createElement('select');
   selectElement.classList.add(...['data-selector', 'js-plotly-chart-data-selector', className]);
-  createOption(selectElement, { label: allItemsLabel, value: '*' });
+  if (allItemsLabel) {
+    createOption(selectElement, { label: allItemsLabel, value: '*' });
+  }
   options.forEach((option) => createOption(selectElement, option));
   selectElement.classList.add('data-selector--active');
+  if (defaultOption) {
+    selectElement.value = defaultOption;
+  }
 
   if (label) {
     // create labelled filter
