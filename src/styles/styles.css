@@ -13,3 +13,7 @@
 .labelled-data-selector--wrapper {
   display: inline-block;
 }
+
+.dicharts--table-one-root .table-styled table {
+  width: 100%;
+}

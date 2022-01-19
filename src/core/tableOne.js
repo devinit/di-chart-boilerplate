@@ -1,22 +1,33 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableOne } from '../components/TableOne/TableOne';
-import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD } from '../utils/constants';
+import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD, YEARS } from '../utils/constants';
 import fetchCSVData, { filterDataByCountry, filterDataByPurpose } from '../utils/data';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
 
 const renderTable = (tableNode, data, country) => {
-  console.log(country, data);
-  PURPOSE_TO_FILTER_BY.forEach((purpose) => {
-    const purposeData = filterDataByPurpose(data, [purpose], PURPOSE_FIELD).filter((d) => d.year === '2018');
-    const sum = purposeData.reduce((_sum, prev) => _sum + Number(prev[VALUE_FIELD]), 0);
+  const yearRange = YEARS[1] - YEARS[0] + 1;
+  const headerRow = ['Purpose code'].concat([...Array(yearRange).keys()].map((key) => YEARS[0] + key));
 
-    console.log(sum);
-  });
+  const rows = [headerRow].concat(
+    PURPOSE_TO_FILTER_BY.map((purpose) => {
+      const purposeData = filterDataByPurpose(data, [purpose], PURPOSE_FIELD);
 
-  render(createElement(TableOne, { country }), tableNode);
+      return headerRow.reduce((row, column, index) => {
+        if (index === 0) {
+          return row.concat(purpose);
+        }
+        const yearData = purposeData.filter((d) => d.year === `${column}`);
+        const sum = yearData.reduce((_sum, prev) => _sum + Number(prev[VALUE_FIELD]), 0);
+
+        return row.concat(Math.round(sum));
+      }, []);
+    }),
+  );
+
+  render(createElement(TableOne, { country, rows }), tableNode);
 };
 
 /**
