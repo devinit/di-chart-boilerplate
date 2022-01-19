@@ -44,14 +44,12 @@ const init = (className) => {
               window.DIState.addListener(() => {
                 const state = window.DIState.getState;
                 const { country } = state;
-                if (!country) {
-                  const countryData = filterDataByPurpose(
-                    filterDataByCountry(data, defaultCountry, COUNTRY_FIELD),
-                    PURPOSE_TO_FILTER_BY,
-                    PURPOSE_FIELD,
-                  );
-                  renderTable(tableNode, countryData, defaultCountry);
-                }
+                const countryData = filterDataByPurpose(
+                  filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD),
+                  PURPOSE_TO_FILTER_BY,
+                  PURPOSE_FIELD,
+                );
+                renderTable(tableNode, countryData, country || defaultCountry);
               });
             } else {
               const countryData = filterDataByPurpose(
