@@ -1,10 +1,8 @@
+import { createElement } from 'react';
+import { render } from 'react-dom';
+import { TableOne } from '../components/TableOne/TableOne';
+import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD } from '../utils/constants';
 import fetchCSVData, { filterDataByCountry, filterDataByPurpose } from '../utils/data';
-import {
-  COUNTRY_FIELD,
-  PURPOSE_TO_FILTER_BY,
-  PURPOSE_FIELD,
-  VALUE_FIELD,
-} from '../utils/constants';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
@@ -17,6 +15,8 @@ const renderTable = (tableNode, data, country) => {
 
     console.log(sum);
   });
+
+  render(createElement(TableOne, { country }), tableNode);
 };
 
 /**

@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb-base', 'plugin:import/errors', 'plugin:react/recommended', 'plugin:jsx-a11y/recommended'],
+  extends: ['eslint:recommended', 'plugin:import/errors', 'plugin:react/recommended', 'plugin:jsx-a11y/recommended'],
   plugins: ['react', 'import', 'jsx-a11y'],
   parserOptions: {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
