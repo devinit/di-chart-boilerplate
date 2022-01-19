@@ -1,5 +1,6 @@
 import './styles/styles.css';
 import initTableOne from './core/tableOne';
+import initDonorFilter from './core/donorFilter';
 
 // Your Code Goes Here i.e. functions
 
@@ -7,5 +8,6 @@ import initTableOne from './core/tableOne';
  * Run your code after the page has loaded
  */
 window.addEventListener('load', () => {
+  initDonorFilter('dicharts--oda-root');
   initTableOne('dicharts--table-one-root');
 });
