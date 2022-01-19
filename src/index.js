@@ -1,8 +1,24 @@
 import './styles/styles.css';
-import fetchCSVData from './utils/data';
+import fetchCSVData, { filterDataByCountry, filterDataByPurpose } from './utils/data';
+import {
+  COUNTRY_FIELD,
+  PURPOSE_TO_FILTER_BY,
+  PURPOSE_FIELD,
+  VALUE_FIELD,
+} from './utils/constants';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
+
+const renderTable = (tableNode, data, country) => {
+  console.log(country, data);
+  PURPOSE_TO_FILTER_BY.forEach((purpose) => {
+    const purposeData = filterDataByPurpose(data, [purpose], PURPOSE_FIELD).filter((d) => d.year === '2018');
+    const sum = purposeData.reduce((_sum, prev) => _sum + Number(prev[VALUE_FIELD]), 0);
+
+    console.log(sum);
+  });
+};
 
 /**
  * Run your code after the page has loaded
@@ -11,9 +27,9 @@ window.addEventListener('load', () => {
   window.DICharts.handler.addChart({
     className: 'dicharts--oda-root',
     d3: {
-      onAdd: (chartNodes) => {
-        Array.prototype.forEach.call(chartNodes, (chartNode) => {
-          const dichart = new window.DICharts.Chart(chartNode.parentElement);
+      onAdd: (tableNodes) => {
+        Array.prototype.forEach.call(tableNodes, (tableNode) => {
+          const dichart = new window.DICharts.Chart(tableNode.parentElement);
           dichart.showLoading();
 
           /**
@@ -24,9 +40,27 @@ window.addEventListener('load', () => {
            */
           const csv = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH-and-FP-CRS-Data-2019.csv';
           fetchCSVData(csv).then((data) => {
-            console.log(data);
+            const defaultCountry = 'United States';
             if (window.DIState) {
-              window.DIState.setState({ country: 'United States' });
+              window.DIState.addListener(() => {
+                const state = window.DIState.getState;
+                const { country } = state;
+                if (!country) {
+                  const countryData = filterDataByPurpose(
+                    filterDataByCountry(data, defaultCountry, COUNTRY_FIELD),
+                    PURPOSE_TO_FILTER_BY,
+                    PURPOSE_FIELD,
+                  );
+                  renderTable(tableNode, countryData, defaultCountry);
+                }
+              });
+            } else {
+              const countryData = filterDataByPurpose(
+                filterDataByCountry(data, defaultCountry, COUNTRY_FIELD),
+                PURPOSE_TO_FILTER_BY,
+                PURPOSE_FIELD,
+              );
+              renderTable(tableNode, countryData, defaultCountry);
             }
 
             dichart.hideLoading();
