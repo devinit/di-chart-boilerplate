@@ -9,7 +9,11 @@ import fetchCSVData, { filterDataByCountry, filterDataByPurpose } from '../utils
 
 const renderTable = (tableNode, data, country) => {
   const yearRange = YEARS[1] - YEARS[0] + 1;
-  const headerRow = ['Purpose code'].concat([...Array(yearRange).keys()].map((key) => YEARS[0] + key));
+  const count = [];
+  for (const key of Array(yearRange).keys()) {
+    count.push(key);
+  }
+  const headerRow = ['Purpose code'].concat(count.map((key) => YEARS[0] + key));
 
   const rows = [headerRow].concat(
     PURPOSE_TO_FILTER_BY.map((purpose) => {
