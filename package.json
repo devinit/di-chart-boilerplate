@@ -36,6 +36,7 @@
     "src/**/*.js": "eslint --cache --fix"
   },
   "dependencies": {
-    "deepmerge": "^4.2.2"
+    "deepmerge": "^4.2.2",
+    "mobx": "^6.3.12"
   }
 }
