@@ -7,5 +7,5 @@ import initTableOne from './core/tableOne';
  * Run your code after the page has loaded
  */
 window.addEventListener('load', () => {
-  initTableOne('dicharts--oda-root');
+  initTableOne('dicharts--table-one-root');
 });
