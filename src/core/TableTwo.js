@@ -22,9 +22,9 @@ const init = (className) => {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
-              const { country, dataTwo: data } = state;
+              const { country, dataTwo: data, purpose } = state;
               if (country && data) {
-                console.log(data)
+                console.log(country)
                 if (!purposeField) {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
@@ -41,9 +41,10 @@ const init = (className) => {
                     label: 'Select Purpose Code',
                   });
                   purposeField.addEventListener('change', (event) => {
-                    console.log(event.target.value);
+                    window.DIState.setState({purpose: event.target.value})
                   });
                 }
+                console.log(purpose)
 
                 // FIXME: table goes here
 
