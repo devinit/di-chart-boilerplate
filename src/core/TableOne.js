@@ -57,7 +57,7 @@ const init = (className) => {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
-              const { country, crs_data_one: data } = state;
+              const { country, dataOne: data } = state;
               if (country && data) {
                 const countryData = filterDataByPurpose(
                   filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD),

@@ -1,6 +1,4 @@
-import {
-  makeObservable, observable, action, computed, autorun,
-} from 'mobx';
+import { makeObservable, observable, action, computed, autorun } from 'mobx';
 
 class State {
   constructor() {

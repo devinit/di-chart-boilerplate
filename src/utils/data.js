@@ -14,9 +14,14 @@ export const filterDataByPurpose = (data, purpose, purposeField) =>
 export const fetchCoreData = () => {
   const crs_data_csv_one =
     'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH-and-FP-CRS-Data-2019.csv';
+  const crs_data_csv_two =
+    'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
   if (window.DIState) {
     fetchCSVData(crs_data_csv_one).then((data) => {
-      window.DIState.setState({ crs_data_one: data });
+      window.DIState.setState({ dataOne: data });
+    });
+    fetchCSVData(crs_data_csv_two).then((data) => {
+      window.DIState.setState({ dataTwo: data });
     });
   } else {
     console.log('State is not defined');
