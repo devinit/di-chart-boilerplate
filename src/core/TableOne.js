@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableOne } from '../components/TableOne/TableOne';
 import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD, YEARS } from '../utils/constants';
-import fetchCSVData, { filterDataByCountry, filterDataByPurpose } from '../utils/data';
+import { filterDataByCountry, filterDataByPurpose } from '../utils/data';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
@@ -52,31 +52,25 @@ const init = (className) => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH-and-FP-CRS-Data-2019.csv';
-          fetchCSVData(csv).then((data) => {
-            const defaultCountry = 'United States';
-            if (window.DIState) {
-              window.DIState.addListener(() => {
-                const state = window.DIState.getState;
-                const { country } = state;
+          const defaultCountry = 'United States';
+          if (window.DIState) {
+            window.DIState.addListener(() => {
+              dichart.showLoading();
+              const state = window.DIState.getState;
+              const { country, crs_data_one: data } = state;
+              if (country && data) {
                 const countryData = filterDataByPurpose(
                   filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD),
                   PURPOSE_TO_FILTER_BY,
                   PURPOSE_FIELD,
                 );
                 renderTable(tableNode, countryData, country || defaultCountry);
-              });
-            } else {
-              const countryData = filterDataByPurpose(
-                filterDataByCountry(data, defaultCountry, COUNTRY_FIELD),
-                PURPOSE_TO_FILTER_BY,
-                PURPOSE_FIELD,
-              );
-              renderTable(tableNode, countryData, defaultCountry);
-            }
-
-            dichart.hideLoading();
-          });
+                dichart.hideLoading();
+              }
+            });
+          } else {
+            console.log('State is not defined');
+          }
         });
       },
     },
