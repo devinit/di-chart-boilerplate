@@ -1,4 +1,11 @@
+import { filterDataByPurpose, filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
+
+const renderTable = (data, country, purpose) => {
+  const purposeData = filterDataByPurpose(data, purpose, 'Code type');
+  const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
+  console.log(countrySpecificData)
+}
 
 const init = (className) => {
   window.DICharts.handler.addChart({
@@ -24,7 +31,6 @@ const init = (className) => {
               const state = window.DIState.getState;
               const { country, dataTwo: data, purpose } = state;
               if (country && data) {
-                console.log(country)
                 if (!purposeField) {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
@@ -48,7 +54,7 @@ const init = (className) => {
                     window.DIState.setState({purpose: event.target.value})
                   });
                 }
-                console.log(purpose)
+                renderTable(data, country, purpose);
 
                 // FIXME: table goes here
 
