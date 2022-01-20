@@ -2,6 +2,14 @@ import { filterDataByPurpose, filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
 const renderTable = (data, country, purpose) => {
+  const YEARS = [2016, 2019];
+  const yearRange = YEARS[1] - YEARS[0] + 1;
+  const count = []
+  for (const key of Array(yearRange).keys()) {
+    count.push(key);
+  }
+  const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
+  console.log(rowHeader)
   const purposeData = filterDataByPurpose(data, purpose, 'Code type');
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
   console.log(countrySpecificData)
