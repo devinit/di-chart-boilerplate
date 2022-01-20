@@ -7,7 +7,6 @@ const init = (className) => {
       onAdd: (chartNodes) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
-          // dichart.showLoading();
 
           /**
            * ECharts - prefix all browsers global with window
@@ -25,6 +24,7 @@ const init = (className) => {
               const state = window.DIState.getState;
               const { country, dataTwo: data } = state;
               if (country && data) {
+                console.log(data)
                 if (!purposeField) {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
@@ -40,7 +40,7 @@ const init = (className) => {
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
                   });
-                  purposeField.addEventListener('click', (event) => {
+                  purposeField.addEventListener('change', (event) => {
                     console.log(event.target.value);
                   });
                 }
