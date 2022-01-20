@@ -40,6 +40,10 @@ const init = (className) => {
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
                   });
+                  if (state) {
+                    window.DIState.setState({ purpose: 'Reproductive health care and family planning' });
+                  }
+
                   purposeField.addEventListener('change', (event) => {
                     window.DIState.setState({purpose: event.target.value})
                   });
