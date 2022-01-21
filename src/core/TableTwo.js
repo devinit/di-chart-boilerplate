@@ -1,6 +1,20 @@
 import { filterDataByPurpose, filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
+
+const getAllYearSortedData = (countryData, rowHeader) => {
+  const allYearlyData = [];
+  rowHeader.slice(2).forEach((year) => {
+    const yearlyData = [];
+    countryData.forEach((data) => {
+      console.log(data[year])
+       yearlyData.push(Math.round(data[year]));
+    })
+    allYearlyData.push(yearlyData.sort(function(a,b){return b-a}));
+  });
+
+  return allYearlyData;
+}
 const renderTable = (data, country, purpose) => {
   const YEARS = [2016, 2019];
   const yearRange = YEARS[1] - YEARS[0] + 1;
@@ -9,10 +23,11 @@ const renderTable = (data, country, purpose) => {
     count.push(key);
   }
   const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
-  console.log(rowHeader)
   const purposeData = filterDataByPurpose(data, purpose, 'Code type');
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
-  console.log(countrySpecificData)
+  const dataPerYear = getAllYearSortedData(countrySpecificData, rowHeader);
+  console.log(dataPerYear)
+
 }
 
 const init = (className) => {
