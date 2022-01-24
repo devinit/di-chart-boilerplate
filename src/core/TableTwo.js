@@ -7,7 +7,7 @@ const getGroupedData = (countryData) => {
   const sortedData = [];
   for(let count=0; count<10; count++){
     let maxRow = iteratorData.reduce((prev,current) => {
-        if(parseInt(prev['2019']) < parseInt(current['2019'])){
+        if(Number(prev['2019']) < Number(current['2019'])){
           return current
         }
         else{
@@ -22,6 +22,7 @@ const getGroupedData = (countryData) => {
 return {sortedData, unsortedData: iteratorData}
 
 };
+
 const sortedDataRows = (data) => {
   const fullRows = [];
   for(let i=0; i<10; i++){
@@ -29,7 +30,20 @@ const sortedDataRows = (data) => {
   }
 
   return fullRows;
-}
+};
+
+const unSortedDataRow = (data, years) => {
+  let sumArray = [];
+  years.forEach((year) => {
+    const sum = data.map(d => {
+      return Number(d[year])
+    }).reduce((prev, current) => Math.round(prev + current))
+    sumArray.push(sum)
+  });
+
+  return sumArray;
+};
+
 const renderTable = (data, country, purpose) => {
   const YEARS = [2016, 2019];
   const yearRange = YEARS[1] - YEARS[0] + 1;
@@ -37,11 +51,13 @@ const renderTable = (data, country, purpose) => {
   for (const key of Array(yearRange).keys()) {
     count.push(key);
   }
-  // const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
+  const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
   const purposeData = filterDataByPurpose(data, purpose, 'Code type');
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
-  const {sortedData} = getGroupedData(countrySpecificData);
-  sortedDataRows(sortedData)
+  const {sortedData, unsortedData} = getGroupedData(countrySpecificData);
+  const unsortedDataSum = unSortedDataRow(unsortedData, ['2016', '2017', '2018', '2019']);
+  const rows = rowHeader.concat(sortedDataRows(sortedData)).concat(['All other recipients(sum)'].concat(unsortedDataSum));
+  console.log(rows)
 }
 
 const init = (className) => {
