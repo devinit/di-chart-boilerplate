@@ -4,6 +4,7 @@ import { TableTwo } from '../components/TableTwo/TableTwo';
 import { filterDataByPurpose, filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
+const DATA_OPTION_COLUMN = 'Code type';
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
@@ -103,7 +104,7 @@ const init = (className) => {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
                     options: data.reduce((options, prev) => {
-                      const value = prev['Code type']; // TODO: use a constant or named variable
+                      const value = prev[DATA_OPTION_COLUMN];
                       if (!options.includes(value)) {
                         return options.concat(value);
                       }
