@@ -4,32 +4,36 @@ import { TableTwo } from '../components/TableTwo/TableTwo';
 import { filterDataByPurpose, filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
-
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
-  for(let count=0; count<10; count++){
-    let maxRow = iteratorData.reduce((prev,current) => {
-        if(Number(prev['2019']) < Number(current['2019'])){
-          return current
-        }
-        else{
-          return prev
-        }
-      });
-      sortedData.push(maxRow);
-      let maxRowIndex = iteratorData.indexOf(maxRow);
-      iteratorData.splice(maxRowIndex,1);
+  for (let count = 0; count < 10; count++) {
+    let maxRow = iteratorData.reduce((prev, current) => {
+      if (Number(prev['2019']) < Number(current['2019'])) {
+        return current;
+      } else {
+        return prev;
+      }
+    });
+    sortedData.push(maxRow);
+    let maxRowIndex = iteratorData.indexOf(maxRow);
+    iteratorData.splice(maxRowIndex, 1);
   }
 
-return {sortedData, unsortedData: iteratorData}
-
+  return { sortedData, unsortedData: iteratorData };
 };
 
 const sortedDataRows = (data) => {
   const fullRows = [];
-  for(let i=0; i<10; i++){
-    fullRows.push([i+1, data[i].recipient_name, Math.round(data[i]['2016']), Math.round(data[i]['2017']), Math.round(data[i]['2018']), Math.round(data[i]['2019'])])
+  for (let i = 0; i < 10; i++) {
+    fullRows.push([
+      i + 1,
+      data[i].recipient_name,
+      Math.round(data[i]['2016']),
+      Math.round(data[i]['2017']),
+      Math.round(data[i]['2018']),
+      Math.round(data[i]['2019']),
+    ]);
   }
 
   return fullRows;
@@ -38,10 +42,12 @@ const sortedDataRows = (data) => {
 const unSortedDataRow = (data, years) => {
   let sumArray = [];
   years.forEach((year) => {
-    const sum = data.map(d => {
-      return Number(d[year])
-    }).reduce((prev, current) => Math.round(prev + current))
-    sumArray.push(sum)
+    const sum = data
+      .map((d) => {
+        return Number(d[year]);
+      })
+      .reduce((prev, current) => Math.round(prev + current));
+    sumArray.push(sum);
   });
 
   return sumArray;
@@ -50,19 +56,24 @@ const unSortedDataRow = (data, years) => {
 const renderTable = (data, country, purpose, tableNode) => {
   const YEARS = [2016, 2019];
   const yearRange = YEARS[1] - YEARS[0] + 1;
-  const count = []
+  const count = [];
   for (const key of Array(yearRange).keys()) {
     count.push(key);
   }
   const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
   const purposeData = filterDataByPurpose(data, purpose, 'Code type');
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
-  const {sortedData, unsortedData} = getGroupedData(countrySpecificData);
-  const unsortedDataSum = unSortedDataRow(unsortedData, count.map((key) => (YEARS[0] + key).toString()));
-  const rows = [rowHeader].concat(sortedDataRows(sortedData)).concat([['All other recipients(sum)'].concat(unsortedDataSum)]);
+  const { sortedData, unsortedData } = getGroupedData(countrySpecificData);
+  const unsortedDataSum = unSortedDataRow(
+    unsortedData,
+    count.map((key) => (YEARS[0] + key).toString()),
+  );
+  const rows = [rowHeader]
+    .concat(sortedDataRows(sortedData))
+    .concat([['All other recipients(sum)'].concat(unsortedDataSum)]);
 
   render(createElement(TableTwo, { rows }), tableNode);
-}
+};
 
 const init = (className) => {
   window.DICharts.handler.addChart({
@@ -108,7 +119,7 @@ const init = (className) => {
                   }
 
                   purposeField.addEventListener('change', (event) => {
-                    window.DIState.setState({purpose: event.target.value})
+                    window.DIState.setState({ purpose: event.target.value });
                   });
                 }
                 renderTable(data, country, purpose, chartNode);
