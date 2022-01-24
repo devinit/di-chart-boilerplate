@@ -4,6 +4,12 @@ A starting point for creating a chart (D3, Plotly, ECharts)
 
 ## Usage
 
+### Pre-requisites
+
+	npm install -g nwb
+
+You must also ensure that your node.js/npm directory is on PATH.
+
 ### Dev
 
         npm start
