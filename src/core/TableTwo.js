@@ -2,8 +2,8 @@ import { filterDataByPurpose, filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
 
-const getAllSortedData = (countryData) => {
-  let iteratorData = countryData;
+const getGroupedData = (countryData) => {
+  let iteratorData = [...countryData];
   const sortedData = [];
   for(let count=0; count<10; count++){
     let maxRow = iteratorData.reduce((prev,current) => {
@@ -21,6 +21,14 @@ const getAllSortedData = (countryData) => {
 
 return {sortedData, unsortedData: iteratorData}
 
+};
+const sortedDataRows = (data) => {
+  const fullRows = [];
+  for(let i=0; i<10; i++){
+    fullRows.push([i+1, data[i].recipient_name, Math.round(data[i]['2016']), Math.round(data[i]['2017']), Math.round(data[i]['2018']), Math.round(data[i]['2019'])])
+  }
+
+  return fullRows;
 }
 const renderTable = (data, country, purpose) => {
   const YEARS = [2016, 2019];
@@ -29,12 +37,11 @@ const renderTable = (data, country, purpose) => {
   for (const key of Array(yearRange).keys()) {
     count.push(key);
   }
-  const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
+  // const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
   const purposeData = filterDataByPurpose(data, purpose, 'Code type');
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
-  const dataPerYear = getAllSortedData(countrySpecificData);
-  console.log(dataPerYear, rowHeader)
-
+  const {sortedData} = getGroupedData(countrySpecificData);
+  sortedDataRows(sortedData)
 }
 
 const init = (className) => {
