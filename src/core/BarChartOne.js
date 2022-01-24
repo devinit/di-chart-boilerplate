@@ -1,36 +1,85 @@
-// import deepMerge from 'deepmerge';
-// import defaultOptions from '../charts/echarts';
+import deepMerge from 'deepmerge';
+import defaultOptions from '../charts/echarts';
+import { toJS } from 'mobx';
 
-// const renderChart = (chartNode, data) => {
-//   // append the svg object to the body of the page
+const groupAndSum = (list) => {
+  const existingItems = {};
+  list.forEach((item) => {
+    if (!existingItems[item.year]) {
+      existingItems[item.year] = item;
 
-//   // get the data
-//   const chart = window.echarts.init(chartNode);
-//   const option = {
-//     legend: { show: false },
-//     yAxis: {
-//       type: 'category',
-//       data: data.map((d) => d.Country),
-//     },
-//     xAxis: {
-//       type: 'value',
-//     },
-//     series: [
-//       {
-//         name: 'Countries',
-//         data: data.map((d) => Number(d.Value)),
-//         type: 'bar',
-//         showBackground: true,
-//         backgroundStyle: {
-//           color: 'rgba(180, 180, 180, 0.2)',
-//         },
-//       },
-//     ],
-//   };
-//   chart.setOption(deepMerge(defaultOptions, option));
+      return;
+    }
+    
+    existingItems[item.year] = {
+      ...existingItems[item.year],
+      value: (parseFloat( item.value ? item.value : 0) + parseFloat(existingItems[item.year].value ? existingItems[item.year].value : 0)).toFixed(3),
+    }
+  });
+  
+  return Object.values(existingItems).map((item)=> item.value);
+};
 
-//   return chart;
-// };
+const extractChartFamilyPlanningData = (data) => {
+  const chartData = toJS(data);
+
+  const groupedFamilyPlanningData = chartData.filter((data) => data.purpose_name === 'Family planning').map((data) => {
+    return {
+      'year': data.year,
+      'value': data.usd_disbursement_deflated
+    };
+  });
+
+  return groupAndSum(groupedFamilyPlanningData);
+};
+
+const extractChartReproductiveHealthData = (data) => {
+  const chartData = toJS(data);
+
+  const groupedReproductiveData = chartData.filter((data) => data.purpose_name === 'Reproductive health care').map((data) => {
+    return {
+      'year': data.year,
+      'value': data.usd_disbursement_deflated
+    };
+  });
+
+  return groupAndSum(groupedReproductiveData);
+};
+
+const extractChartYears = (data) => {
+  const chartData = toJS(data);
+
+  return chartData.map((data) => data.year).filter((value, index, self) => self.indexOf(value) === index).sort();
+};
+
+const renderChart = (chartNode, data) => {
+  const chart = window.echarts.init(chartNode);
+  const option = {
+    legend: { show: true },
+    xAxis: {
+      type: 'category',
+      data: extractChartYears(data),
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        name: 'Family planning',
+        type: 'bar',
+        stack: 'oda',
+        data: extractChartFamilyPlanningData(data)
+      },
+      {
+        name: 'Reproductive Health Care',
+        type: 'bar',
+        stack: 'oda',
+        data: extractChartReproductiveHealthData(data)
+      },
+    ],
+  };
+  chart.setOption(deepMerge(defaultOptions, option));
+};
 
 const init = (className) => {
   window.DICharts.handler.addChart({
@@ -57,7 +106,7 @@ const init = (className) => {
               if (country && data) {
                 console.log(country, data);
                 // chart goes here
-                // const chart = renderChart(chartNode, data);
+                renderChart(chartNode, data);
 
                 dichart.hideLoading();
               }
