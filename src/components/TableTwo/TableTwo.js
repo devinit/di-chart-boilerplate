@@ -5,7 +5,7 @@ import Table from '../Table';
 const TableTwo = (props) => {
   const renderRows = (rows, header = false) =>
     rows.map((row, index) => (
-      <tr key={index}>{row.map((cell, key) => (header ? <th key={key}>{cell}</th> : <td key={key}>{cell}</td>))}</tr>
+      <tr key={index}>{row.map((cell, key) => (header ? <th key={key}>{cell}</th> : index === (rows.length - 1) && key === 0? <td colSpan={2} key={key}>{cell}</td>:<td key={key}>{cell}</td>))}</tr>
     ));
 
   return (
@@ -16,7 +16,7 @@ const TableTwo = (props) => {
           true,
         )}
       </thead>
-      <tbody>{renderRows(props.rows.filter((row, index) => (index > 0 && index < props.rows.length - 1)))}</tbody>
+      <tbody>{renderRows(props.rows.filter((row, index) => index > 0))}</tbody>
     </Table>
   );
 };
