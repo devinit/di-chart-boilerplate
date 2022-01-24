@@ -4,8 +4,6 @@ import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY } from '../utils/con
 import { filterDataByCountry, filterDataByPurpose } from '../utils/data';
 import { toJS } from 'mobx';
 
-let chart;
-
 const groupAndSum = (list) => {
   const existingItems = {};
   list.forEach((item) => {
@@ -23,21 +21,9 @@ const groupAndSum = (list) => {
   return Object.values(existingItems).map((item)=> item.value);
 };
 
-const extractChartFamilyPlanningData = (data) => {
+const extractChartData = (data, dataType) => {
   const chartData = toJS(data);
-  const groupedFamilyPlanningData = chartData.filter((data) => data.purpose_name === 'Family planning' && data.year >= 2010).map((data) => {
-    return {
-      'year': data.year,
-      'value': data.usd_disbursement_deflated
-    };
-  });
-
-  return groupAndSum(groupedFamilyPlanningData);
-};
-
-const extractChartReproductiveHealthData = (data) => {
-  const chartData = toJS(data);
-  const groupedReproductiveData = chartData.filter((data) => data.purpose_name === 'Reproductive health care' && data.year >= 2010).map((data) => {
+  const groupedReproductiveData = chartData.filter((data) => data.purpose_name === dataType && data.year >= 2010).map((data) => {
     return {
       'year': data.year,
       'value': data.usd_disbursement_deflated
@@ -54,7 +40,7 @@ const extractChartYears = (data) => {
 };
 
 const renderChart = (chartNode, data) => {
-  chart = chart ? chart : window.echarts.init(chartNode);
+  const chart = window.echarts.init(chartNode);
   const option = {
     legend: { show: true },
     xAxis: {
@@ -73,13 +59,13 @@ const renderChart = (chartNode, data) => {
         name: 'Family planning',
         type: 'bar',
         stack: 'oda',
-        data: extractChartFamilyPlanningData(data)
+        data: extractChartData(data, 'Family planning')
       },
       {
         name: 'Reproductive Health Care',
         type: 'bar',
         stack: 'oda',
-        data: extractChartReproductiveHealthData(data)
+        data: extractChartData(data, 'Reproductive health care')
       },
     ],
   };
@@ -115,10 +101,8 @@ const init = (className) => {
                   PURPOSE_TO_FILTER_BY,
                   PURPOSE_FIELD,
                 );
-                console.log(countryData);
                 // chart goes here
                 renderChart(chartNode, countryData);
-                // extractChartFamilyPlanningData(data);
 
                 dichart.hideLoading();
               }
