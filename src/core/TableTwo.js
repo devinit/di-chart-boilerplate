@@ -1,3 +1,6 @@
+import { createElement } from 'react';
+import { render } from 'react-dom';
+import { TableTwo } from '../components/TableTwo/TableTwo';
 import { filterDataByPurpose, filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
@@ -44,7 +47,7 @@ const unSortedDataRow = (data, years) => {
   return sumArray;
 };
 
-const renderTable = (data, country, purpose) => {
+const renderTable = (data, country, purpose, tableNode) => {
   const YEARS = [2016, 2019];
   const yearRange = YEARS[1] - YEARS[0] + 1;
   const count = []
@@ -56,8 +59,9 @@ const renderTable = (data, country, purpose) => {
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
   const {sortedData, unsortedData} = getGroupedData(countrySpecificData);
   const unsortedDataSum = unSortedDataRow(unsortedData, ['2016', '2017', '2018', '2019']);
-  const rows = rowHeader.concat(sortedDataRows(sortedData)).concat(['All other recipients(sum)'].concat(unsortedDataSum));
-  console.log(rows)
+  const rows = [rowHeader].concat(sortedDataRows(sortedData)).concat([['All other recipients(sum)'].concat(unsortedDataSum)]);
+
+  render(createElement(TableTwo, { rows }), tableNode);
 }
 
 const init = (className) => {
@@ -107,9 +111,7 @@ const init = (className) => {
                     window.DIState.setState({purpose: event.target.value})
                   });
                 }
-                renderTable(data, country, purpose);
-
-                // FIXME: table goes here
+                renderTable(data, country, purpose, chartNode);
 
                 dichart.hideLoading();
               }
