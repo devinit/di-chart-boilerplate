@@ -58,7 +58,7 @@ const renderTable = (data, country, purpose, tableNode) => {
   const purposeData = filterDataByPurpose(data, purpose, 'Code type');
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
   const {sortedData, unsortedData} = getGroupedData(countrySpecificData);
-  const unsortedDataSum = unSortedDataRow(unsortedData, ['2016', '2017', '2018', '2019']);
+  const unsortedDataSum = unSortedDataRow(unsortedData, [count.map((key) => YEARS[0] + key)]);
   const rows = [rowHeader].concat(sortedDataRows(sortedData)).concat([['All other recipients(sum)'].concat(unsortedDataSum)]);
 
   render(createElement(TableTwo, { rows }), tableNode);
