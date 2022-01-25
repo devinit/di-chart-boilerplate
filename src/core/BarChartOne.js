@@ -14,21 +14,26 @@ const groupAndSum = (list) => {
     }
     existingItems[item.year] = {
       ...existingItems[item.year],
-      value: (parseFloat( item.value ? item.value : 0) + parseFloat(existingItems[item.year].value ? existingItems[item.year].value : 0)).toFixed(3),
-    }
+      value: (
+        parseFloat(item.value ? item.value : 0) +
+        parseFloat(existingItems[item.year].value ? existingItems[item.year].value : 0)
+      ).toFixed(3),
+    };
   });
-  
-  return Object.values(existingItems).map((item)=> item.value);
+
+  return Object.values(existingItems).map((item) => item.value);
 };
 
 const extractChartData = (data, dataType) => {
   const chartData = toJS(data);
-  const groupedReproductiveData = chartData.filter((data) => data.purpose_name === dataType && data.year >= 2010).map((data) => {
-    return {
-      'year': data.year,
-      'value': data.usd_disbursement_deflated
-    };
-  });
+  const groupedReproductiveData = chartData
+    .filter((data) => data.purpose_name === dataType && data.year >= 2010)
+    .map((data) => {
+      return {
+        year: data.year,
+        value: data.usd_disbursement_deflated,
+      };
+    });
 
   return groupAndSum(groupedReproductiveData);
 };
@@ -36,7 +41,11 @@ const extractChartData = (data, dataType) => {
 const extractChartYears = (data) => {
   const chartData = toJS(data);
 
-  return chartData.filter((data) => data.year >= 2010).map((data) => data.year).filter((value, index, self) => self.indexOf(value) === index).sort();
+  return chartData
+    .filter((data) => data.year >= 2010)
+    .map((data) => data.year)
+    .filter((value, index, self) => self.indexOf(value) === index)
+    .sort();
 };
 
 const renderChart = (chartNode, data) => {
@@ -49,23 +58,25 @@ const renderChart = (chartNode, data) => {
     },
     yAxis: {
       type: 'value',
-      name: "USD$ millions (constant 2019 prices)",
-      nameLocation: "middle",
-      nameGap: 50
-
+      name: 'USD$ millions (constant 2019 prices)',
+      nameLocation: 'middle',
+      nameGap: 50,
+    },
+    grid: {
+      top: 60,
     },
     series: [
       {
         name: 'Family planning',
         type: 'bar',
         stack: 'oda',
-        data: extractChartData(data, 'Family planning')
+        data: extractChartData(data, 'Family planning'),
       },
       {
         name: 'Reproductive Health Care',
         type: 'bar',
         stack: 'oda',
-        data: extractChartData(data, 'Reproductive health care')
+        data: extractChartData(data, 'Reproductive health care'),
       },
     ],
   };
