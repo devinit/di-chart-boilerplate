@@ -4,6 +4,8 @@ import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY } from '../utils/con
 import { filterDataByCountry, filterDataByPurpose } from '../utils/data';
 import { toJS } from 'mobx';
 
+let chartSeries = [];
+
 const groupAndSum = (list) => {
   const existingItems = {};
   list.forEach((item) => {
@@ -48,6 +50,67 @@ const extractChartYears = (data) => {
     .sort();
 };
 
+const getSeries = (data) => {
+  chartSeries = [
+    {
+      name: 'Family planning',
+      type: 'bar',
+      stack: 'oda',
+      data: extractChartData(data, 'Family planning'),
+    },
+    {
+      name: 'Reproductive Health Care',
+      type: 'bar',
+      stack: 'oda',
+      data: extractChartData(data, 'Reproductive health care'),
+    },
+  ];
+
+  return chartSeries;
+};
+
+const seriesHandler = (data) => {
+  return getSeries(data).map((serie, index) => {
+    if (index === chartSeries.length - 1) {
+      return {
+        ...serie,
+        label: {
+          normal: {
+            show: true,
+            position: 'top',
+            formatter: (params) => {
+              let total = 0;
+              chartSeries.forEach((s) => {
+                const datum = s.data[params.dataIndex];
+                total += parseFloat(datum ? datum : 0);
+              });
+
+              return total.toFixed(3);
+            },
+          },
+        },
+      };
+    } else {
+      return serie;
+    }
+  });
+};
+
+const handleLegendSelectChanged = (event, series) => {
+  const includedSeriesNames = [];
+  for (const [name, value] of Object.entries(event.selected)) {
+    if (value) {
+      includedSeriesNames.push(name);
+    }
+  }
+
+  const includedSeries = series.filter((serie) => {
+    return includedSeriesNames.includes(serie.name);
+  });
+
+  return seriesHandler(includedSeries);
+};
+
 const renderChart = (chartNode, data) => {
   const chart = window.echarts.init(chartNode);
   const option = {
@@ -65,22 +128,15 @@ const renderChart = (chartNode, data) => {
     grid: {
       top: 60,
     },
-    series: [
-      {
-        name: 'Family planning',
-        type: 'bar',
-        stack: 'oda',
-        data: extractChartData(data, 'Family planning'),
-      },
-      {
-        name: 'Reproductive Health Care',
-        type: 'bar',
-        stack: 'oda',
-        data: extractChartData(data, 'Reproductive health care'),
-      },
-    ],
+    series: seriesHandler(data),
   };
+
   chart.setOption(deepMerge(defaultOptions, option));
+  chart.on('legendselectchanged', (event) => {
+    chart.setOption({
+      series: handleLegendSelectChanged(event, chartSeries),
+    });
+  });
 };
 
 const init = (className) => {
