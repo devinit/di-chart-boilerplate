@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableTwo } from '../components/TableTwo/TableTwo';
-import { filterDataByPurpose, filterDataByCountry } from '../utils/data';
+import { filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
 const DATA_PURPOSE_COLUMN = 'Code type';
@@ -62,7 +62,7 @@ const renderTable = (data, country, purpose, tableNode) => {
     count.push(key);
   }
   const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
-  const purposeData = filterDataByPurpose(data, purpose, DATA_PURPOSE_COLUMN);
+  const purposeData = data.filter((item) => purpose === item[DATA_PURPOSE_COLUMN])
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
   const { sortedData, unsortedData } = getGroupedData(countrySpecificData);
   const unsortedDataSum = unSortedDataRow(

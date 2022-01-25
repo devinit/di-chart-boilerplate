@@ -9,7 +9,7 @@ export const filterDataByCountry = (data, country, countryField) =>
   data.filter((item) => item[countryField] === country);
 export const filterDataByPurpose = (data, purpose, purposeField) =>
   // eslint-disable-next-line implicit-arrow-linebreak
-  data.filter((item) =>  purpose === item[purposeField]);
+  data.filter((item) => purpose.includes(item[purposeField]));
 
 export const fetchCoreData = () => {
   const crs_data_csv_one =
