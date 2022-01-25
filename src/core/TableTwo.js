@@ -9,16 +9,18 @@ const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
   for (let count = 0; count < 10; count++) {
-    let maxRow = iteratorData.reduce((prev, current) => {
-      if (Number(prev['2019']) < Number(current['2019'])) {
-        return current;
-      } else {
-        return prev;
-      }
-    });
-    sortedData.push(maxRow);
-    let maxRowIndex = iteratorData.indexOf(maxRow);
-    iteratorData.splice(maxRowIndex, 1);
+    if(iteratorData.length >= 1){
+      let maxRow = iteratorData.reduce((prev, current) => {
+        if (Number(prev['2019']) < Number(current['2019'])) {
+          return current;
+        } else {
+          return prev;
+        }
+      },);
+      sortedData.push(maxRow);
+      let maxRowIndex = iteratorData.indexOf(maxRow);
+      iteratorData.splice(maxRowIndex, 1);
+    }
   }
 
   return { sortedData, unsortedData: iteratorData };
@@ -27,14 +29,16 @@ const getGroupedData = (countryData) => {
 const sortedDataRows = (data) => {
   const fullRows = [];
   for (let i = 0; i < 10; i++) {
-    fullRows.push([
-      i + 1,
-      data[i].recipient_name,
-      Math.round(Number(data[i]['2016'])),
-      Math.round(Number(data[i]['2017'])),
-      Math.round(Number(data[i]['2018'])),
-      Math.round(Number(data[i]['2019'])),
-    ]);
+    if (data.length >= 1){
+      fullRows.push([
+        i + 1,
+        data[i].recipient_name,
+        Math.round(Number(data[i]['2016'])),
+        Math.round(Number(data[i]['2017'])),
+        Math.round(Number(data[i]['2018'])),
+        Math.round(Number(data[i]['2019'])),
+      ]);
+    }
   }
 
   return fullRows;
@@ -47,7 +51,7 @@ const unSortedDataRow = (data, years) => {
       .map((d) => {
         return Number(d[year]);
       })
-      .reduce((prev, current) => prev + current);
+      .reduce((prev, current) => prev + current, 0);
     sumArray.push(Math.round(sum));
   });
 
