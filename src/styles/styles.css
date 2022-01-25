@@ -21,3 +21,8 @@
 .auto-height {
   min-height: auto !important;
 }
+
+.dicharts--chart-one-root {
+  width: 100%;
+  min-height: 450px;
+}
