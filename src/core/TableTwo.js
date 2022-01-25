@@ -30,10 +30,10 @@ const sortedDataRows = (data) => {
     fullRows.push([
       i + 1,
       data[i].recipient_name,
-      Math.round(data[i]['2016']),
-      Math.round(data[i]['2017']),
-      Math.round(data[i]['2018']),
-      Math.round(data[i]['2019']),
+      Math.round(Number(data[i]['2016'])),
+      Math.round(Number(data[i]['2017'])),
+      Math.round(Number(data[i]['2018'])),
+      Math.round(Number(data[i]['2019'])),
     ]);
   }
 
