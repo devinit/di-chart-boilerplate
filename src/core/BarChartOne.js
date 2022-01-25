@@ -41,8 +41,9 @@ const seriesHandler = (data) => {
                 total += parseFloat(datum ? datum : 0);
               });
 
-              return total.toFixed(3);
+              return Math.round(total);
             },
+            color: '#000000',
           },
         },
       };
