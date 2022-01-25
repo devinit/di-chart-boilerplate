@@ -51,7 +51,7 @@ const extractChartYears = (data) => {
 const renderChart = (chartNode, data) => {
   const chart = window.echarts.init(chartNode);
   const option = {
-    legend: { show: true },
+    legend: { show: true, selectedMode: false },
     xAxis: {
       type: 'category',
       data: extractChartYears(data),
