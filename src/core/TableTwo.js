@@ -47,8 +47,8 @@ const unSortedDataRow = (data, years) => {
       .map((d) => {
         return Number(d[year]);
       })
-      .reduce((prev, current) => Math.round(prev + current));
-    sumArray.push(sum);
+      .reduce((prev, current) => prev + current);
+    sumArray.push(Math.round(sum));
   });
 
   return sumArray;
