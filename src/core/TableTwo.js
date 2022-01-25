@@ -9,14 +9,14 @@ const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
   for (let count = 0; count < 10; count++) {
-    if(iteratorData.length >= 1){
+    if (iteratorData.length >= 1) {
       let maxRow = iteratorData.reduce((prev, current) => {
         if (Number(prev['2019']) < Number(current['2019'])) {
           return current;
         } else {
           return prev;
         }
-      },);
+      });
       sortedData.push(maxRow);
       let maxRowIndex = iteratorData.indexOf(maxRow);
       iteratorData.splice(maxRowIndex, 1);
@@ -29,7 +29,7 @@ const getGroupedData = (countryData) => {
 const sortedDataRows = (data) => {
   const fullRows = [];
   for (let i = 0; i < 10; i++) {
-    if (data.length >= 1){
+    if (data.length >= 1) {
       fullRows.push([
         i + 1,
         data[i].recipient_name,
@@ -66,7 +66,7 @@ const renderTable = (data, country, purpose, tableNode) => {
     count.push(key);
   }
   const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
-  const purposeData = data.filter((item) => purpose === item[DATA_PURPOSE_COLUMN])
+  const purposeData = data.filter((item) => purpose === item[DATA_PURPOSE_COLUMN]);
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
   const { sortedData, unsortedData } = getGroupedData(countrySpecificData);
   const unsortedDataSum = unSortedDataRow(
