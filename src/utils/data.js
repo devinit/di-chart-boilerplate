@@ -17,6 +17,7 @@ export const fetchCoreData = () => {
   const crs_data_csv_two =
     'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
   if (window.DIState) {
+    window.DIState.setState({ country: 'United States' });
     fetchCSVData(crs_data_csv_one).then((data) => {
       window.DIState.setState({ dataOne: data });
     });
