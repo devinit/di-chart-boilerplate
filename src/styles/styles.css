@@ -17,3 +17,7 @@
 .charts__chart .table-styled table {
   width: 100%;
 }
+
+.auto-height {
+  min-height: auto !important;
+}

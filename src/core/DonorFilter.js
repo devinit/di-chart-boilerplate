@@ -46,6 +46,7 @@ const init = (className) => {
             });
 
             dichart.hideLoading();
+            chartNode.parentElement.classList.add('auto-height');
           });
         });
       },

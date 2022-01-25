@@ -66,6 +66,7 @@ const init = (className) => {
                 );
                 renderTable(tableNode, countryData, country || defaultCountry);
                 dichart.hideLoading();
+                tableNode.parentElement.classList.add('auto-height');
               }
             });
           } else {
