@@ -25,11 +25,9 @@ const getSeries = (data) => {
   return chartSeries;
 };
 
-const seriesHandler = (data, updateSeries) => {
-  const series = updateSeries ? data : getSeries(data);
-
-  return series.map((serie, index) => {
-    if (index === series.length - 1) {
+const seriesHandler = (data) => {
+  return getSeries(data).map((serie, index) => {
+    if (index === chartSeries.length - 1) {
       return {
         ...serie,
         label: {
@@ -38,7 +36,7 @@ const seriesHandler = (data, updateSeries) => {
             position: 'top',
             formatter: (params) => {
               let total = 0;
-              series.forEach((s) => {
+              chartSeries.forEach((s) => {
                 const datum = s.data[params.dataIndex];
                 total += parseFloat(datum ? datum : 0);
               });
@@ -54,25 +52,10 @@ const seriesHandler = (data, updateSeries) => {
   });
 };
 
-const handleLegendSelectChanged = (event, series) => {
-  const includedSeriesNames = [];
-  for (const [name, value] of Object.entries(event.selected)) {
-    if (value) {
-      includedSeriesNames.push(name);
-    }
-  }
-
-  const includedSeries = series.filter((serie) => {
-    return includedSeriesNames.includes(serie.name);
-  });
-
-  return seriesHandler(includedSeries, true);
-};
-
 const renderChart = (chartNode, data) => {
   const chart = window.echarts.init(chartNode);
   const option = {
-    legend: { show: true, selectedMode: true },
+    legend: { show: true, selectedMode: false },
     xAxis: {
       type: 'category',
       data: extractChartYears(data),
@@ -90,11 +73,6 @@ const renderChart = (chartNode, data) => {
   };
 
   chart.setOption(deepMerge(defaultOptions, option));
-  chart.on('legendselectchanged', (event) => {
-    chart.setOption({
-      series: handleLegendSelectChanged(event, chartSeries),
-    });
-  });
 };
 
 const init = (className) => {
