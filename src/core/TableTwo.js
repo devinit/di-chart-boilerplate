@@ -4,7 +4,7 @@ import { TableTwo } from '../components/TableTwo/TableTwo';
 import { filterDataByPurpose, filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
-const DATA_OPTION_COLUMN = 'Code type';
+const DATA_PURPOSE_COLUMN = 'Code type';
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
@@ -62,7 +62,7 @@ const renderTable = (data, country, purpose, tableNode) => {
     count.push(key);
   }
   const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
-  const purposeData = filterDataByPurpose(data, purpose, 'Code type');
+  const purposeData = filterDataByPurpose(data, purpose, DATA_PURPOSE_COLUMN);
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
   const { sortedData, unsortedData } = getGroupedData(countrySpecificData);
   const unsortedDataSum = unSortedDataRow(
@@ -104,7 +104,7 @@ const init = (className) => {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
                     options: data.reduce((options, prev) => {
-                      const value = prev[DATA_OPTION_COLUMN];
+                      const value = prev[DATA_PURPOSE_COLUMN];
                       if (!options.includes(value)) {
                         return options.concat(value);
                       }
