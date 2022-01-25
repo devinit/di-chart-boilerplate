@@ -2,53 +2,9 @@ import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
 import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY } from '../utils/constants';
 import { filterDataByCountry, filterDataByPurpose } from '../utils/data';
-import { toJS } from 'mobx';
+import { extractChartData, extractChartYears } from '../utils/barChartOne';
 
 let chartSeries = [];
-
-const groupAndSum = (list) => {
-  const existingItems = {};
-  list.forEach((item) => {
-    if (!existingItems[item.year]) {
-      existingItems[item.year] = item;
-
-      return;
-    }
-    existingItems[item.year] = {
-      ...existingItems[item.year],
-      value: (
-        parseFloat(item.value ? item.value : 0) +
-        parseFloat(existingItems[item.year].value ? existingItems[item.year].value : 0)
-      ).toFixed(3),
-    };
-  });
-
-  return Object.values(existingItems).map((item) => item.value);
-};
-
-const extractChartData = (data, dataType) => {
-  const chartData = toJS(data);
-  const groupedReproductiveData = chartData
-    .filter((data) => data.purpose_name === dataType && data.year >= 2010)
-    .map((data) => {
-      return {
-        year: data.year,
-        value: data.usd_disbursement_deflated,
-      };
-    });
-
-  return groupAndSum(groupedReproductiveData);
-};
-
-const extractChartYears = (data) => {
-  const chartData = toJS(data);
-
-  return chartData
-    .filter((data) => data.year >= 2010)
-    .map((data) => data.year)
-    .filter((value, index, self) => self.indexOf(value) === index)
-    .sort();
-};
 
 const getSeries = (data) => {
   chartSeries = [
@@ -69,9 +25,11 @@ const getSeries = (data) => {
   return chartSeries;
 };
 
-const seriesHandler = (data) => {
-  return getSeries(data).map((serie, index) => {
-    if (index === chartSeries.length - 1) {
+const seriesHandler = (data, updateSeries) => {
+  const series = updateSeries ? data : getSeries(data);
+
+  return series.map((serie, index) => {
+    if (index === series.length - 1) {
       return {
         ...serie,
         label: {
@@ -80,7 +38,7 @@ const seriesHandler = (data) => {
             position: 'top',
             formatter: (params) => {
               let total = 0;
-              chartSeries.forEach((s) => {
+              series.forEach((s) => {
                 const datum = s.data[params.dataIndex];
                 total += parseFloat(datum ? datum : 0);
               });
@@ -108,13 +66,13 @@ const handleLegendSelectChanged = (event, series) => {
     return includedSeriesNames.includes(serie.name);
   });
 
-  return seriesHandler(includedSeries);
+  return seriesHandler(includedSeries, true);
 };
 
 const renderChart = (chartNode, data) => {
   const chart = window.echarts.init(chartNode);
   const option = {
-    legend: { show: true, selectedMode: false },
+    legend: { show: true, selectedMode: true },
     xAxis: {
       type: 'category',
       data: extractChartYears(data),
