@@ -1,46 +1,10 @@
 import { toJS } from 'mobx';
-import { formatNumber } from './data';
+import { filterDataByPurpose, getYearRangeDataAsSum } from './data';
+import { PURPOSE_FIELD, VALUE_FIELD } from './constants';
 
-export const groupAndSum = (list) => {
-  const existingItems = {};
-  list.forEach((item) => {
-    if (!existingItems[item.year]) {
-      existingItems[item.year] = item;
-
-      return;
-    }
-    existingItems[item.year] = {
-      ...existingItems[item.year],
-      value: formatNumber(
-        parseFloat(item.value ? item.value : 0) +
-        parseFloat(existingItems[item.year].value ? existingItems[item.year].value : 0)
-      ),
-    };
-  });
-
-  return Object.values(existingItems).map((item) => item.value);
-};
-
-export const extractChartData = (data, dataType) => {
+export const extractChartData = (data, purpose, years) => {
   const chartData = toJS(data);
-  const filteredData = chartData
-    .filter((data) => data.purpose_name === dataType && data.year >= 2010)
-    .map((data) => {
-      return {
-        year: data.year,
-        value: data.usd_disbursement_deflated,
-      };
-    });
+  const filteredData = filterDataByPurpose(chartData, [purpose], PURPOSE_FIELD);
 
-  return groupAndSum(filteredData);
-};
-
-export const extractChartYears = (data) => {
-  const chartData = toJS(data);
-
-  return chartData
-    .filter((data) => data.year >= 2010)
-    .map((data) => data.year)
-    .filter((value, index, self) => self.indexOf(value) === index)
-    .sort();
+  return getYearRangeDataAsSum(filteredData, years, VALUE_FIELD);
 };

@@ -1,24 +1,16 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
-import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY } from '../utils/constants';
-import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
-import { extractChartData, extractChartYears } from '../utils/barChartOne';
+import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, YEARS } from '../utils/constants';
+import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearsFromRange } from '../utils/data';
+import { extractChartData } from '../utils/barChartOne';
 
-const getSeries = (data) => {
-  return [
-    {
-      name: 'Reproductive Health Care',
-      type: 'bar',
-      stack: 'oda',
-      data: extractChartData(data, 'Reproductive health care'),
-    },
-    {
-      name: 'Family planning',
-      type: 'bar',
-      stack: 'oda',
-      data: extractChartData(data, 'Family planning'),
-    }
-  ].map((serie, index, series) => {
+const getSeries = (data, years) => {
+  return PURPOSE_TO_FILTER_BY.map((purpose) => ({
+    name: purpose,
+    type: 'bar',
+    stack: 'oda',
+    data: extractChartData(data, purpose, years),
+  })).map((serie, index, series) => {
     if (index === series.length - 1) {
       return {
         ...serie,
@@ -47,11 +39,12 @@ const getSeries = (data) => {
 
 const renderChart = (chartNode, data) => {
   const chart = window.echarts.init(chartNode);
+  const years = getYearsFromRange(YEARS);
   const option = {
     legend: { show: true, selectedMode: false },
     xAxis: {
       type: 'category',
-      data: extractChartYears(data),
+      data: years,
     },
     yAxis: {
       type: 'value',
@@ -62,7 +55,7 @@ const renderChart = (chartNode, data) => {
     grid: {
       top: 60,
     },
-    series: getSeries(data),
+    series: getSeries(data, years),
   };
 
   chart.setOption(deepMerge(defaultOptions, option));
@@ -75,7 +68,6 @@ const init = (className) => {
       onAdd: (chartNodes) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
-          // dichart.showLoading();
 
           /**
            * ECharts - prefix all browsers global with window

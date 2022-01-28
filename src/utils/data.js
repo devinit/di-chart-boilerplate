@@ -31,4 +31,23 @@ export const fetchCoreData = () => {
   }
 };
 
+export const getYearsFromRange = (range) => {
+  const yearDiff = range[1] - range[0] + 1;
+  const count = [];
+  for (const key of Array(yearDiff).keys()) {
+    count.push(key);
+  }
+
+  return count.map((key) => range[0] + key);
+}
+
+export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
+  return yearRange.reduce((row, column) => {
+    const yearData = data.filter((d) => d.year === `${column}`);
+    const sum = yearData.reduce((_sum, prev) => formatNumber(_sum + formatNumber(Number(prev[valueField]) || 0)), 0);
+
+    return row.concat(sum);
+  }, []);
+}
+
 export default fetchCSVData;
