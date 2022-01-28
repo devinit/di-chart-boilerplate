@@ -1,33 +1,25 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
 import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY } from '../utils/constants';
-import { filterDataByCountry, filterDataByPurpose } from '../utils/data';
+import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
 import { extractChartData, extractChartYears } from '../utils/barChartOne';
 
-let chartSeries = [];
-
 const getSeries = (data) => {
-  chartSeries = [
-    {
-      name: 'Family planning',
-      type: 'bar',
-      stack: 'oda',
-      data: extractChartData(data, 'Family planning'),
-    },
+  return [
     {
       name: 'Reproductive Health Care',
       type: 'bar',
       stack: 'oda',
       data: extractChartData(data, 'Reproductive health care'),
     },
-  ];
-
-  return chartSeries;
-};
-
-const seriesHandler = (data) => {
-  return getSeries(data).map((serie, index) => {
-    if (index === chartSeries.length - 1) {
+    {
+      name: 'Family planning',
+      type: 'bar',
+      stack: 'oda',
+      data: extractChartData(data, 'Family planning'),
+    }
+  ].map((serie, index, series) => {
+    if (index === series.length - 1) {
       return {
         ...serie,
         label: {
@@ -35,21 +27,21 @@ const seriesHandler = (data) => {
             show: true,
             position: 'top',
             formatter: (params) => {
-              let total = 0;
-              chartSeries.forEach((s) => {
+              const total = series.reduce((total, s) => {
                 const datum = s.data[params.dataIndex];
-                total += parseFloat(datum ? datum : 0);
-              });
 
-              return Math.round(total);
+                return total + parseFloat(datum ? datum : 0);
+              }, 0);
+
+              return formatNumber(total);
             },
             color: '#000000',
           },
         },
       };
-    } else {
-      return serie;
     }
+
+    return serie;
   });
 };
 
@@ -70,7 +62,7 @@ const renderChart = (chartNode, data) => {
     grid: {
       top: 60,
     },
-    series: seriesHandler(data),
+    series: getSeries(data),
   };
 
   chart.setOption(deepMerge(defaultOptions, option));

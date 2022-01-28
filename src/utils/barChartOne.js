@@ -1,4 +1,5 @@
 import { toJS } from 'mobx';
+import { formatNumber } from './data';
 
 export const groupAndSum = (list) => {
   const existingItems = {};
@@ -10,10 +11,10 @@ export const groupAndSum = (list) => {
     }
     existingItems[item.year] = {
       ...existingItems[item.year],
-      value: (
+      value: formatNumber(
         parseFloat(item.value ? item.value : 0) +
         parseFloat(existingItems[item.year].value ? existingItems[item.year].value : 0)
-      ).toFixed(3),
+      ),
     };
   });
 
