@@ -24,7 +24,7 @@ const renderTable = (tableNode, data, country) => {
           return row.concat(purpose);
         }
         const yearData = purposeData.filter((d) => d.year === `${column}`);
-        const sum = yearData.reduce((_sum, prev) => _sum + Number(prev[VALUE_FIELD]), 0)/1000000;
+        const sum = yearData.reduce((_sum, prev) => _sum + Number(prev[VALUE_FIELD]), 0);
         // eslint-disable-next-line newline-before-return
         return row.concat(Math.round(sum));
       }, []);

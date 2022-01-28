@@ -23,11 +23,11 @@ export const groupAndSum = (list) => {
 export const extractChartData = (data, dataType) => {
   const chartData = toJS(data);
   const filteredData = chartData
-    .filter((data) => data.purpose_name === dataType && data.year >= 2010)
+    .filter((data) => data.purpose_name === dataType && data.year >= 2019 && data.year >= 2021)
     .map((data) => {
       return {
         year: data.year,
-        value: data.usd_disbursement_deflated,
+        value: data.x_transaction_value_usd_m_Sum,
       };
     });
 
@@ -38,7 +38,7 @@ export const extractChartYears = (data) => {
   const chartData = toJS(data);
 
   return chartData
-    .filter((data) => data.year >= 2010)
+    .filter((data) => data.year >= 2019 && data.year >= 2021)
     .map((data) => data.year)
     .filter((value, index, self) => self.indexOf(value) === index)
     .sort();
