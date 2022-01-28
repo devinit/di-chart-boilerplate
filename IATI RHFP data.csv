@@ -1,4 +1,4 @@
-﻿Transaction Year - Calculated,Reporting Organisation Narrative,aid_type_di_name,Sector Code - Calculated,DAC3 Sector Code - Calculated,Reporting Organisation Type Code,Reporting Organisation Type Name - Calculated,Recipient Code,Recipient Name,Flow Type Code - Calculated,Transaction Receiver Organisation Type,Transaction Type,x_transaction_value_usd_Sum,Channel of delivery,DI type of aid
+﻿year,Reporting Organisation Narrative,aid_type_di_name,Sector Code - Calculated,DAC3 Sector Code - Calculated,Reporting Organisation Type Code,Reporting Organisation Type Name - Calculated,Recipient Code,Recipient Name,Flow Type Code - Calculated,Transaction Receiver Organisation Type,Transaction Type,x_transaction_value_usd_Sum,Channel of delivery,DI type of aid
 2018,3ie,,13030,130,21,International NGO,998,"Developing countries, unspecified",,,Disbursement,131362.11,Not Reported,Not Reported
 2018,3ie,,13030,130,21,International NGO,998,"Developing countries, unspecified",,,Expenditure,122090.9311,Not Reported,Not Reported
 2018,Abt Associates Inc,Technical Assistance,13030,130,70,Private Sector,ZM,Zambia,50,,Expenditure,7382693.79,Not Reported,Technical Assistance
