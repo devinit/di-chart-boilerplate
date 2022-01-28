@@ -1,3 +1,5 @@
+export const formatNumber = (value) => Number(value.toFixed(2));
+
 const fetchCSVData = (url) =>
   // eslint-disable-next-line no-undef
   new Promise((resolve) => {

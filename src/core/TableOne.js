@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableOne } from '../components/TableOne/TableOne';
 import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD, YEARS } from '../utils/constants';
-import { filterDataByCountry, filterDataByPurpose } from '../utils/data';
+import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
@@ -24,9 +24,9 @@ const renderTable = (tableNode, data, country) => {
           return row.concat(purpose);
         }
         const yearData = purposeData.filter((d) => d.year === `${column}`);
-        const sum = yearData.reduce((_sum, prev) => _sum + Number(prev[VALUE_FIELD]), 0);
+        const sum = yearData.reduce((_sum, prev) => formatNumber(_sum + formatNumber(Number(prev[VALUE_FIELD]) || 0)), 0);
 
-        return row.concat(Math.round(sum));
+        return row.concat(sum);
       }, []);
     }),
   );
