@@ -13,11 +13,11 @@ export const filterDataByPurpose = (data, purpose, purposeField) =>
 
 export const fetchCoreData = () => {
   const crs_data_csv_one =
-    'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH-and-FP-CRS-Data-2019.csv';
+    'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/page/iati-gates/IATI%20RHFP%20data.csv';
   const crs_data_csv_two =
     'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
   if (window.DIState) {
-    window.DIState.setState({ country: 'United States' });
+    window.DIState.setState({ country: 'U.S. Agency for International Development' });
     fetchCSVData(crs_data_csv_one).then((data) => {
       window.DIState.setState({ dataOne: data });
     });

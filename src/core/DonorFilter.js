@@ -22,19 +22,19 @@ const init = (className) => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/rh-and-fp-dropdowns.csv';
+          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/page/iati-gates/IATI%20RHFP%20data.csv';
           fetchCSVData(csv).then((data) => {
             const filterWrapper = addFilterWrapper(chartNode);
             const countryFilter = addFilter({
               wrapper: filterWrapper,
-              options: data.map((d) => d.Donors),
-              defaultOption: 'United States',
+              options: data.map((d) => d['Reporting Organisation Narrative']),
+              defaultOption: 'U.S. Agency for International Development',
               className: 'country-filter',
               label: 'Select Donor',
             });
 
             if (window.DIState) {
-              window.DIState.setState({ country: 'United States' });
+              window.DIState.setState({ country: 'U.S. Agency for International Development' });
             }
 
             // add event listeners
