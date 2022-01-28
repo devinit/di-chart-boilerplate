@@ -65,9 +65,8 @@ const renderTable = (data, country, purpose, tableNode) => {
     count.push(key);
   }
   const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
-  console.log(data);
   const purposeData = data.filter((item) => purpose === item[DATA_PURPOSE_COLUMN]);
-  const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
+  const countrySpecificData = filterDataByCountry(purposeData, country, 'Reporting Organisation Narrative');
   const { sortedData, unsortedData } = getGroupedData(countrySpecificData);
   const unsortedDataSum = unSortedDataRow(
     unsortedData,
@@ -102,6 +101,7 @@ const init = (className) => {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
+              console.log()
               const { country, dataTwo: data, purpose } = state;
               if (country && data) {
                 if (!purposeField) {
@@ -115,12 +115,12 @@ const init = (className) => {
 
                       return options;
                     }, []),
-                    defaultOption: 'Reproductive health care and family planning',
+                    defaultOption: 'Reproductive health care',
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
                   });
                   if (state) {
-                    window.DIState.setState({ purpose: 'Reproductive health care and family planning' });
+                    window.DIState.setState({ purpose: 'Reproductive health care' });
                   }
 
                   purposeField.addEventListener('change', (event) => {
