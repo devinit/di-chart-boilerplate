@@ -10,7 +10,7 @@ import { filterDataByCountry } from '../utils/data';
 const renderTable = (tableNode, data, country) => {
   // TODO: table code goes here
   console.log(tableNode, data, country);
-  render(createElement(OdaAidTable, { country }));
+  render(createElement(OdaAidTable, { country }), tableNode);
 };
 
 /**
