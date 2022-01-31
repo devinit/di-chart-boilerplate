@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableOne } from '../components/TableOne/TableOne';
 import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD, YEARS } from '../utils/constants';
-import { filterDataByCountry, filterDataByPurpose, getYearRangeDataAsSum, getYearsFromRange } from '../utils/data';
+import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearRangeDataAsSum, getYearsFromRange } from '../utils/data';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
@@ -10,14 +10,21 @@ import { filterDataByCountry, filterDataByPurpose, getYearRangeDataAsSum, getYea
 const renderTable = (tableNode, data, country) => {
   const years = getYearsFromRange(YEARS);
   const headerRow = ['Purpose code'].concat(years);
+  const dataRows = PURPOSE_TO_FILTER_BY.map((purpose) => {
+    const purposeData = filterDataByPurpose(data, [purpose], PURPOSE_FIELD);
 
-  const rows = [headerRow].concat(
-    PURPOSE_TO_FILTER_BY.map((purpose) => {
-      const purposeData = filterDataByPurpose(data, [purpose], PURPOSE_FIELD);
+    return [purpose].concat(getYearRangeDataAsSum(purposeData, years, VALUE_FIELD));
+  });
+  const totalsRowCaption = 'Total';
+  const totalsRow = headerRow.map((cell, index) => {
+    if (index === 0) {
+      return totalsRowCaption;
+    }
 
-      return [purpose].concat(getYearRangeDataAsSum(purposeData, years, VALUE_FIELD));
-    }),
-  );
+    return formatNumber(dataRows.reduce((total, current) => total + current[index], 0));
+  });
+
+  const rows = [headerRow].concat(dataRows, [totalsRow]);
 
   render(createElement(TableOne, { country, rows }), tableNode);
 };
