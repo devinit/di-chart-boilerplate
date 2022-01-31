@@ -1,3 +1,5 @@
+
+export const DEFAULT_COUNTRY = 'United States';
 export const COUNTRY_FIELD = 'donor_name';
 export const PURPOSE_FIELD = 'purpose_name';
 export const PURPOSE_TO_FILTER_BY = ['Reproductive health care', 'Family planning'];
