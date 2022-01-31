@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableTwo } from '../components/TableTwo/TableTwo';
-import { filterDataByCountry } from '../utils/data';
+import { filterDataByCountry, formatNumber } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
 const DATA_PURPOSE_COLUMN = 'Code type';
@@ -33,10 +33,10 @@ const sortedDataRows = (data) => {
       fullRows.push([
         i + 1,
         data[i].recipient_name,
-        Math.round(Number(data[i]['2016'])),
-        Math.round(Number(data[i]['2017'])),
-        Math.round(Number(data[i]['2018'])),
-        Math.round(Number(data[i]['2019'])),
+        formatNumber(Number(data[i]['2016'])),
+        formatNumber(Number(data[i]['2017'])),
+        formatNumber(Number(data[i]['2018'])),
+        formatNumber(Number(data[i]['2019'])),
       ]);
     }
   }
@@ -52,7 +52,7 @@ const unSortedDataRow = (data, years) => {
         return Number(d[year]);
       })
       .reduce((prev, current) => prev + current, 0);
-    sumArray.push(Math.round(sum));
+    sumArray.push(formatNumber(sum));
   });
 
   return sumArray;
@@ -75,7 +75,7 @@ const renderTable = (data, country, purpose, tableNode) => {
   );
   const rows = [rowHeader]
     .concat(sortedDataRows(sortedData))
-    .concat([['All other recipients(sum)'].concat(unsortedDataSum)]);
+    .concat([['Total of all other recipients'].concat(unsortedDataSum)]);
 
   render(createElement(TableTwo, { rows }), tableNode);
 };
@@ -98,11 +98,12 @@ const init = (className) => {
           dichart.showLoading();
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeField;
+          let activePurpose = 'Reproductive health care and family planning';
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
-              const { country, dataTwo: data, purpose } = state;
+              const { country, dataTwo: data } = state;
               if (country && data) {
                 if (!purposeField) {
                   purposeField = addFilter({
@@ -115,19 +116,18 @@ const init = (className) => {
 
                       return options;
                     }, []),
-                    defaultOption: 'Reproductive health care and family planning',
+                    defaultOption: activePurpose,
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
                   });
-                  if (state) {
-                    window.DIState.setState({ purpose: 'Reproductive health care and family planning' });
-                  }
 
                   purposeField.addEventListener('change', (event) => {
-                    window.DIState.setState({ purpose: event.target.value });
+                    activePurpose = event.target.value;
+                    renderTable(data, country, activePurpose, chartNode);
                   });
                 }
-                renderTable(data, country, purpose, chartNode);
+
+                renderTable(data, country, activePurpose, chartNode);
 
                 dichart.hideLoading();
               }
