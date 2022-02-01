@@ -8,7 +8,7 @@ const OdaAidTable = (props) => {
   return (
     <Table>
       <thead>
-        <tr>ODA Table Goes Here</tr>
+        <tr><td>ODA Table Goes Here</td></tr>
       </thead>
     </Table>
   );
