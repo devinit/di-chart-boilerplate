@@ -14,23 +14,29 @@ export const filterDataByPurpose = (data, purpose, purposeField) =>
   data.filter((item) => purpose.includes(item[purposeField]));
 
 export const fetchCoreData = () => {
-  const crs_data_csv_one =
+  const crsDataCsvOne =
     'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH-and-FP-CRS-Data-2019.csv';
-  const crs_data_csv_two =
+  const crsDataCsvTwo =
     'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
-  const oda_aid_type_url = 'https://staging-ddw.devinit.org/api/dataset/data/1238/';
+  const odaAidTypeUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1238/';
+  const odaChannelsUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1237/';
   if (window.DIState) {
     window.DIState.setState({ country: 'United States' });
-    fetchCSVData(crs_data_csv_one).then((data) => {
+    fetchCSVData(crsDataCsvOne).then((data) => {
       window.DIState.setState({ dataOne: data });
     });
-    fetchCSVData(crs_data_csv_two).then((data) => {
+    fetchCSVData(crsDataCsvTwo).then((data) => {
       window.DIState.setState({ dataTwo: data });
     });
-    window.fetch(oda_aid_type_url)
+    window.fetch(odaAidTypeUrl)
       .then((response) => response.json())
       .then((data) => {
         window.DIState.setState({ odaAidType: data.results || [] });
+      });
+    window.fetch(odaChannelsUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        window.DIState.setState({ odaChannels: data.results || [] });
       });
 
   } else {
