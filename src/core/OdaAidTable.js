@@ -50,9 +50,8 @@ const init = (className) => {
               const state = window.DIState.getState;
               const { country, odaAidType: data } = state;
               if (country && data) {
-                // TODO: extract purpose names from the data and use them to create a dropdown - set a default
                 const purposeNames = getPurposeNames(data);
-                const activePurpose = purposeNames[0];
+                let activePurpose = purposeNames[0];
                 if(!purposeField){
                   purposeField = addFilter({
                     wrapper: filterWrapper,
@@ -62,8 +61,12 @@ const init = (className) => {
                     label: 'Select Purpose Code',
                   });
                 }
-
                 const countryData = filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD); // TODO: filter by purpose code
+                purposeField.addEventListener('change', (event) => {
+                  activePurpose = event.target.value;
+                  renderTable(tableNode,countryData, country || DEFAULT_COUNTRY);
+                });
+
                 renderTable(tableNode, countryData, country || DEFAULT_COUNTRY);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
