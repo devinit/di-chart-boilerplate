@@ -1,5 +1,4 @@
 export const formatNumber = (value) => Number(value.toFixed(2));
-import aidType from './temp/aidType.json';
 
 const fetchCSVData = (url) =>
   // eslint-disable-next-line no-undef
@@ -19,7 +18,7 @@ export const fetchCoreData = () => {
     'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH-and-FP-CRS-Data-2019.csv';
   const crs_data_csv_two =
     'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
-  // const oda_aid_type_url = 'https://staging-ddw.devinit.org/api/dataset/data/1238/';
+  const oda_aid_type_url = 'https://staging-ddw.devinit.org/api/dataset/data/1238/';
   if (window.DIState) {
     window.DIState.setState({ country: 'United States' });
     fetchCSVData(crs_data_csv_one).then((data) => {
@@ -28,10 +27,11 @@ export const fetchCoreData = () => {
     fetchCSVData(crs_data_csv_two).then((data) => {
       window.DIState.setState({ dataTwo: data });
     });
-    // fetchCSVData(oda_aid_type_url).then((data) => {
-    //   window.DIState.setState({ odaAidType: data });
-    // });
-    window.DIState.setState({ odaAidType: aidType.results });
+    window.fetch(oda_aid_type_url)
+      .then((response) => response.json())
+      .then((data) => {
+        window.DIState.setState({ odaAidType: data.results || [] });
+      });
 
   } else {
     console.log('State is not defined');
