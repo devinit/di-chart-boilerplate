@@ -6,6 +6,16 @@ import { filterDataByCountry } from '../utils/data';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
+const getPurposeNames = (data) => {
+  const purposeNames = []
+  data.forEach((record) => {
+    if(!purposeNames.includes(record.purpose_name)){
+      purposeNames.push(record.purpose_name)
+    }
+  })
+
+  return purposeNames
+}
 
 const renderTable = (tableNode, data, country) => {
   // TODO: table code goes here
@@ -38,6 +48,8 @@ const init = (className) => {
               const { country, odaAidType: data } = state;
               if (country && data) {
                 // TODO: extract purpose names from the data and use them to create a dropdown - set a default
+                const purposeNames = getPurposeNames(data);
+                console.log(purposeNames)
 
                 const countryData = filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD); // TODO: filter by purpose code
                 renderTable(tableNode, countryData, country || DEFAULT_COUNTRY);
