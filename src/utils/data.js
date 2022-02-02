@@ -18,6 +18,11 @@ export const filterDataByCountry = (data, country, countryField) =>
 export const filterDataByPurpose = (data, purpose, purposeField) =>
   // eslint-disable-next-line implicit-arrow-linebreak
   data.filter((item) => purpose.includes(item[purposeField]));
+export const extractPurposeCodes = (data, purposeField) => data.reduce((codes, prev) => {
+    const value = prev[purposeField];
+
+    return !codes.includes(value) ? codes.concat(value) : codes;
+  }, []);
 
 export const fetchCoreData = () => {
   const crsDataCsvOne =
