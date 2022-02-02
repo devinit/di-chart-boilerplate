@@ -1,5 +1,4 @@
 import deepMerge from 'deepmerge';
-import { toJS } from 'mobx';
 import defaultOptions from '../charts/echarts';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY } from '../utils/constants';
 import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose } from '../utils/data';
@@ -10,91 +9,66 @@ import { addFilter, addFilterWrapper } from '../widgets/filters';
 
 // Data Constants
 const PURPOSE_CODE_FIELD = 'purpose_name';
+const PARENT_FIELD = 'oecd_aggregated_channel';
+const CHILD_FIELD = 'oecd_channel_parent_name';
+const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
-const renderChart = (chartNode, _data) => {
-  console.log(_data.map((item) => toJS(item)));
-  // TODO: change code goes here
+const renderChart = (chartNode, data) => {
   const chart = window.echarts.init(chartNode);
-  const data = [
-    {
-      name: 'Grandpa',
-      children: [
-        {
-          name: 'Uncle Leo',
-          value: 15,
-          children: [
-            {
-              name: 'Cousin Jack',
-              value: 2
-            },
-            {
-              name: 'Cousin Mary',
-              value: 5,
-              children: [
-                {
-                  name: 'Jackson',
-                  value: 2
-                }
-              ]
-            },
-            {
-              name: 'Cousin Ben',
-              value: 4
-            }
-          ]
-        },
-        {
-          name: 'Father',
-          value: 10,
-          children: [
-            {
-              name: 'Me',
-              value: 5
-            },
-            {
-              name: 'Brother Peter',
-              value: 1
-            }
-          ]
-        }
-      ]
-    },
-    {
-      name: 'Nancy',
-      children: [
-        {
-          name: 'Uncle Nike',
-          children: [
-            {
-              name: 'Cousin Betty',
-              value: 1
-            },
-            {
-              name: 'Cousin Jenny',
-              value: 2
-            }
-          ]
-        }
-      ]
-    }
-  ];
   const option = {
+    // legend: { show: false, data: ['testing'] },
+    tooltip: { show: true, trigger: 'item' },
     xAxis: { show: false },
     yAxis: { show: false },
     series: {
+      // name: 'testing',
       type: 'sunburst',
-      // emphasis: {
-      //     focus: 'ancestor'
-      // },
+      emphasis: {
+          focus: 'ancestor'
+      },
       data,
       radius: [0, '90%'],
       label: {
-        rotate: 'radial'
-      }
+        rotate: 'tangential',
+        show: false
+      },
+      levels: [
+        {
+
+        }
+      ]
     }
   };
 
   chart.setOption(deepMerge(defaultOptions, option));
+};
+
+/**
+ * This is a single depth algorithm and isn't flexible enough to handled multiple generations of children
+ * To fix, it must call itself when rendering children - sadly, the data is not sophisticated enough to benefit from this
+ */
+const getChildren = (data, parent, fields) => {
+  const config = { name: parent };
+  const children = data.filter((item) => {
+      return item[fields.parent] === (typeof parent === 'string' ? parent : parent[fields.parent]);
+  });
+  if (children.length) {
+    config.children = children.map((child) => ({ name: child[fields.child], value: child[fields.value] }));
+  } else if (typeof parent === 'string') {
+    const parentObject = data.find((d) => d[fields.parent] === parent);
+    config.value = parentObject[fields.value]
+  } else {
+    config.value = parent[fields.value];
+  }
+
+  return config;
+}
+
+const parseIntoSunburstFormat = (data, fields) => { // fields = { parent: string, child: string, value: string }
+  const parents = data.reduce((parents, current) =>
+    parents.includes(current[fields.parent]) ? parents : parents.concat(current[fields.parent]), []);
+
+  return parents.map((parent) => getChildren(data, parent, fields));
 };
 
 const renderByCountryAndPurposeCode = (chartNode, data, country, purposeCode) => {
@@ -103,7 +77,9 @@ const renderByCountryAndPurposeCode = (chartNode, data, country, purposeCode) =>
     purposeCode,
     PURPOSE_CODE_FIELD
   );
-  renderChart(chartNode, countryData);
+  const sunburstData = parseIntoSunburstFormat(countryData, { parent: PARENT_FIELD, child: CHILD_FIELD, value: VALUE_FIELD });
+
+  renderChart(chartNode, sunburstData);
 }
 
 /**
@@ -156,7 +132,7 @@ const init = (className) => {
 
             renderByCountryAndPurposeCode(chartNode, data, country, activePurpose);
             dichart.hideLoading();
-            // tableNode.parentElement.classList.add('auto-height');
+            chartNode.parentElement.classList.add('auto-height');
           });
         });
       },
