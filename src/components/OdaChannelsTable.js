@@ -4,12 +4,20 @@ import Table from './Table';
 
 const OdaChannelsTable = (props) => {
   console.log(props);
+  const renderRows = (rows, header = false) =>
+    rows.map((row, index) => (
+      <tr key={index}>{row.map((cell, key) => (header ? <th key={key}>{cell}</th> : <td key={key}>{cell}</td>))}</tr>
+    ));
 
   return (
     <Table>
       <thead>
-        <tr><td>ODA Channels Table Goes Here</td></tr>
+        {renderRows(
+          props.rows.filter((row, index) => index === 0),
+          true,
+        )}
       </thead>
+      <tbody>{renderRows(props.rows.filter((row, index) => index > 0))}</tbody>
     </Table>
   );
 };
