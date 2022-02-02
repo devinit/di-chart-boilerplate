@@ -64,12 +64,12 @@ const init = (className) => {
               const state = window.DIState.getState;
               const { country, odaChannels: data, purpose } = state;
               if (country && data) {
+                const options = getPurposes(data);
                 const countryData = filterDataByPurpose(
                   filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD),
-                  purpose || 'Reproductive health care',
+                  purpose || options[0],
                   PURPOSE_FIELD,
                 );
-                const options = getPurposes(data);
                 if (!purposeField) {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
