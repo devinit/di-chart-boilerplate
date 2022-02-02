@@ -1,16 +1,33 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import OdaChannelsTable from '../components/OdaChannelsTable';
-import { COUNTRY_FIELD, DEFAULT_COUNTRY } from '../utils/constants';
-import { filterDataByCountry } from '../utils/data';
+import { CHANNEL_FIELD, CHANNEL_VALUE_FIELD, COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../utils/constants';
+import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
+import { addFilter, addFilterWrapper } from '../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
-// Your Code Goes Here i.e. functions
+const sumChannelData = (countryData) => {
+
+  return countryData.reduce((acc, data) => {
+    return {...acc, [data[CHANNEL_FIELD]]: (parseFloat(acc[data[CHANNEL_FIELD]] || 0) + parseFloat(data[CHANNEL_VALUE_FIELD] || 0)).toFixed(1) }
+  }, {});
+};
+
+const getRows = (tableData) => {
+  const sum = Object.keys(tableData).reduce((_sum, key) => formatNumber(_sum + formatNumber(Number(tableData[key]) || 0)), 0);
+
+  return Object.keys(tableData).map((dataKey) => {
+    return [dataKey, tableData[dataKey], ((((tableData[dataKey]/sum)*100) || 0).toFixed(1) || 0)];
+  }).concat([['All channels', sum, '100%']]);
+};
 
 const renderTable = (tableNode, data, country) => {
-  // TODO: table code goes here
+  const rowHeader = ['Channel', '2019', '% Total'];
   console.log(tableNode, data, country);
-  render(createElement(OdaChannelsTable, { country }), tableNode);
+  const tableData = getRows(sumChannelData(data));
+  const rows = [rowHeader].concat(tableData);
+
+  render(createElement(OdaChannelsTable, { rows }), tableNode);
 };
 
 /**
@@ -31,15 +48,42 @@ const init = (className) => {
            *
            * const chart = window.echarts.init(chartNode);
            */
+          const filterWrapper = addFilterWrapper(tableNode);
+          let purposeField;
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
-              const { country, odaChannels: data } = state;
+              const { country, odaChannels: data, purpose } = state;
               if (country && data) {
                 // TODO: extract purpose names from the data and use them to create a dropdown - set a default
+                const countryData = filterDataByPurpose(
+                  filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD),
+                  purpose || 'Reproductive health care',
+                  PURPOSE_FIELD,
+                );
+                if (!purposeField) {
+                  purposeField = addFilter({
+                    wrapper: filterWrapper,
+                    options: countryData.reduce((acc, item) => {
+                      if (!acc.includes(item[PURPOSE_FIELD])) {
+                        acc.concat(item[PURPOSE_FIELD]);
+                      }
 
-                const countryData = filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD); // TODO: filter by purpose code
+                      return acc;
+                    },[]),
+                    defaultOption: 'Reproductive health care',
+                    className: 'purpose-code-filter',
+                    label: 'Select Purpose Code',
+                  });
+                  if (state) {
+                    window.DIState.setState({ purpose: 'Reproductive health care and family planning' });
+                  }
+
+                  purposeField.addEventListener('change', (event) => {
+                    window.DIState.setState({ purpose: event.target.value });
+                  });
+                }
                 renderTable(tableNode, countryData, country || DEFAULT_COUNTRY);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');

@@ -6,7 +6,6 @@ import initBarChartOne from './core/BarChartOne';
 import initTableTwo from './core/TableTwo';
 import initOdaAidTable from './core/OdaAidTable';
 import initOdaChannelsTable from './core/OdaChannelsTable';
-import initTableThree from './core/TableThree';
 import { fetchCoreData } from './utils/data';
 
 // Your Code Goes Here i.e. functions
@@ -22,5 +21,4 @@ window.addEventListener('load', () => {
   initTableTwo('dicharts--table-two-root');
   initOdaAidTable('dicharts--oda-aid-table');
   initOdaChannelsTable('dicharts--oda-channels-table');
-  initTableThree('dicharts--table-three-root');
 });
