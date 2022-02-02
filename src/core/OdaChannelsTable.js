@@ -26,7 +26,7 @@ const getRows = (channelData) => {
   const sum = Object.keys(channelData).reduce((_sum, key) => formatNumber(_sum + formatNumber(Number(channelData[key]) || 0)), 0);
 
   return Object.keys(channelData).map((dataKey) => {
-    return [dataKey, channelData[dataKey], ((((channelData[dataKey]/sum)*100) || 0).toFixed(1) || 0)];
+    return [dataKey, channelData[dataKey], `${((((channelData[dataKey]/sum)*100) || 0).toFixed(1) || 0)}%`];
   }).concat([['All channels', sum, '100%']]);
 };
 
