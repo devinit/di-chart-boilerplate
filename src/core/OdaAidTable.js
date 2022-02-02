@@ -22,7 +22,12 @@ const filterDataByPurpose = (data, purpose) => (data.filter((item) => item.purpo
 const filterDataByYear = (data) => data.filter(item => item.year === YEAR)
 const getRows = (data) => {
   const rowLabels = data.map(item => item.aid_type_di_name);
-  console.log(rowLabels)
+  const rows = rowLabels.map(label => {
+    const row = [label].concat(data.find(item=> item.aid_type_di_name === label).usd_disbursement_deflated_Sum)
+
+    return row
+  })
+  console.log(rows)
 }
 
 const renderTable = (tableNode, data, country, purpose) => {
