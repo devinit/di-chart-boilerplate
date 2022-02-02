@@ -7,6 +7,7 @@ import { addFilter, addFilterWrapper } from '../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
+const YEAR = 2019;
 const getPurposeNames = (data) => {
   const purposeNames = []
   data.forEach((record) => {
@@ -17,10 +18,17 @@ const getPurposeNames = (data) => {
 
   return purposeNames
 }
+const filterDataByPurpose = (data, purpose) => (data.filter((item) => item.purpose_name === purpose));
+const filterDataByYear = (data) => data.filter(item => item.year === YEAR)
+const getRows = (data) => {
+  const rowLabels = data.map(item => item.aid_type_di_name);
+  console.log(rowLabels)
+}
 
-const renderTable = (tableNode, data, country) => {
-  // TODO: table code goes here
-  console.log(tableNode, data, country);
+const renderTable = (tableNode, data, country, purpose) => {
+  const countryData = filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD);
+  const purposeFilteredData = filterDataByPurpose(countryData, purpose);
+  getRows(filterDataByYear(purposeFilteredData))
   render(createElement(OdaAidTable, { country }), tableNode);
 };
 
@@ -42,11 +50,11 @@ const init = (className) => {
            *
            * const chart = window.echarts.init(chartNode);
            */
+          let purposeField;
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const filterWrapper = addFilterWrapper(tableNode);
-              let purposeField;
               const state = window.DIState.getState;
               const { country, odaAidType: data } = state;
               if (country && data) {
@@ -60,14 +68,14 @@ const init = (className) => {
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
                   });
-                }
-                const countryData = filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD); // TODO: filter by purpose code
-                purposeField.addEventListener('change', (event) => {
-                  activePurpose = event.target.value;
-                  renderTable(tableNode,countryData, country || DEFAULT_COUNTRY);
-                });
 
-                renderTable(tableNode, countryData, country || DEFAULT_COUNTRY);
+                  purposeField.addEventListener('change', (event) => {
+                    activePurpose = event.target.value;
+                    renderTable(tableNode,data, country || DEFAULT_COUNTRY, activePurpose);
+                  });
+                }
+
+                renderTable(tableNode, data, country || DEFAULT_COUNTRY, activePurpose);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
               }
