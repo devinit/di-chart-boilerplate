@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Table from './Table';
 
 const OdaChannelsTable = (props) => {
-  console.log(props);
   const renderRows = (rows, header = false) =>
     rows.map((row, index) => (
       <tr key={index}>{row.map((cell, key) => (header ? <th key={key}>{cell}</th> : <td key={key}>{cell}</td>))}</tr>
@@ -12,6 +11,7 @@ const OdaChannelsTable = (props) => {
   return (
     <Table>
       <thead>
+      <tr><td>{ props.country }: ODA by channel of delivery, 2019</td></tr>
         {renderRows(
           props.rows.filter((row, index) => index === 0),
           true,
