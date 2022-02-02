@@ -11,7 +11,6 @@ const OdaChannelsTable = (props) => {
   return (
     <Table>
       <thead>
-      <tr><td><h1>{ props.country }: ODA by channel of delivery, 2019</h1></td></tr>
         {renderRows(
           props.rows.filter((row, index) => index === 0),
           true,
