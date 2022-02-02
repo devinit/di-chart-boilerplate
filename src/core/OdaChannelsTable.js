@@ -6,25 +6,33 @@ import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
-const sumChannelData = (countryData) => {
+const getPurposes = (data) => {
+  return data.reduce((acc, item) => {
+    if (!acc.includes(item[PURPOSE_FIELD])) {
+      acc.push(item[PURPOSE_FIELD]);
+    }
 
+    return acc;
+  }, []);
+}
+
+const sumChannelData = (countryData) => {
   return countryData.reduce((acc, data) => {
     return {...acc, [data[CHANNEL_FIELD]]: (parseFloat(acc[data[CHANNEL_FIELD]] || 0) + parseFloat(data[CHANNEL_VALUE_FIELD] || 0)).toFixed(1) }
   }, {});
 };
 
-const getRows = (tableData) => {
-  const sum = Object.keys(tableData).reduce((_sum, key) => formatNumber(_sum + formatNumber(Number(tableData[key]) || 0)), 0);
+const getRows = (channelData) => {
+  const sum = Object.keys(channelData).reduce((_sum, key) => formatNumber(_sum + formatNumber(Number(channelData[key]) || 0)), 0);
 
-  return Object.keys(tableData).map((dataKey) => {
-    return [dataKey, tableData[dataKey], ((((tableData[dataKey]/sum)*100) || 0).toFixed(1) || 0)];
+  return Object.keys(channelData).map((dataKey) => {
+    return [dataKey, channelData[dataKey], ((((channelData[dataKey]/sum)*100) || 0).toFixed(1) || 0)];
   }).concat([['All channels', sum, '100%']]);
 };
 
-const renderTable = (tableNode, data, country) => {
+const renderTable = (tableNode, countryData) => {
   const rowHeader = ['Channel', '2019', '% Total'];
-  console.log(tableNode, data, country);
-  const tableData = getRows(sumChannelData(data));
+  const tableData = getRows(sumChannelData(countryData));
   const rows = [rowHeader].concat(tableData);
 
   render(createElement(OdaChannelsTable, { rows }), tableNode);
@@ -56,35 +64,29 @@ const init = (className) => {
               const state = window.DIState.getState;
               const { country, odaChannels: data, purpose } = state;
               if (country && data) {
-                // TODO: extract purpose names from the data and use them to create a dropdown - set a default
                 const countryData = filterDataByPurpose(
                   filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD),
                   purpose || 'Reproductive health care',
                   PURPOSE_FIELD,
                 );
+                const options = getPurposes(data);
                 if (!purposeField) {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
-                    options: countryData.reduce((acc, item) => {
-                      if (!acc.includes(item[PURPOSE_FIELD])) {
-                        acc.concat(item[PURPOSE_FIELD]);
-                      }
-
-                      return acc;
-                    },[]),
-                    defaultOption: 'Reproductive health care',
+                    options,
+                    defaultOption: options[0],
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
                   });
                   if (state) {
-                    window.DIState.setState({ purpose: 'Reproductive health care and family planning' });
+                    window.DIState.setState({ purpose: options[0] });
                   }
 
                   purposeField.addEventListener('change', (event) => {
                     window.DIState.setState({ purpose: event.target.value });
                   });
                 }
-                renderTable(tableNode, countryData, country || DEFAULT_COUNTRY);
+                renderTable(tableNode, countryData);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
               }
