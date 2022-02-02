@@ -9,31 +9,35 @@ import { addFilter, addFilterWrapper } from '../widgets/filters';
 // Your Code Goes Here i.e. functions
 const YEAR = 2019;
 const getPurposeNames = (data) => {
-  const purposeNames = []
+  const purposeNames = [];
   data.forEach((record) => {
-    if(!purposeNames.includes(record.purpose_name)){
-      purposeNames.push(record.purpose_name)
+    if (!purposeNames.includes(record.purpose_name)) {
+      purposeNames.push(record.purpose_name);
     }
-  })
+  });
 
-  return purposeNames
-}
-const filterDataByPurpose = (data, purpose) => (data.filter((item) => item.purpose_name === purpose));
-const filterDataByYear = (data) => data.filter(item => item.year === YEAR)
+  return purposeNames;
+};
+const filterDataByPurpose = (data, purpose) => data.filter((item) => item.purpose_name === purpose);
+const filterDataByYear = (data) => data.filter((item) => item.year === YEAR);
 const getRows = (data) => {
-  const rowLabels = data.map(item => item.aid_type_di_name);
-  const rows = rowLabels.map(label => {
-    const row = [label].concat(data.find(item=> item.aid_type_di_name === label).usd_disbursement_deflated_Sum)
+  const rowLabels = data.map((item) => item.aid_type_di_name);
+  const totalDisbursments = data
+    .map((item) => item.usd_disbursement_deflated_Sum)
+    .reduce((prev, current) => prev + current);
+  console.log(totalDisbursments);
+  const rows = rowLabels.map((label) => {
+    const row = [label].concat(data.find((item) => item.aid_type_di_name === label).usd_disbursement_deflated_Sum);
 
-    return row
-  })
-  console.log(rows)
-}
+    return row;
+  });
+  console.log(rows);
+};
 
 const renderTable = (tableNode, data, country, purpose) => {
   const countryData = filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD);
   const purposeFilteredData = filterDataByPurpose(countryData, purpose);
-  getRows(filterDataByYear(purposeFilteredData))
+  getRows(filterDataByYear(purposeFilteredData));
   render(createElement(OdaAidTable, { country }), tableNode);
 };
 
@@ -65,7 +69,7 @@ const init = (className) => {
               if (country && data) {
                 const purposeNames = getPurposeNames(data);
                 let activePurpose = purposeNames[0];
-                if(!purposeField){
+                if (!purposeField) {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
                     options: purposeNames,
@@ -76,7 +80,7 @@ const init = (className) => {
 
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;
-                    renderTable(tableNode,data, country || DEFAULT_COUNTRY, activePurpose);
+                    renderTable(tableNode, data, country || DEFAULT_COUNTRY, activePurpose);
                   });
                 }
 
