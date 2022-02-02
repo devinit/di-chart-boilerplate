@@ -30,12 +30,12 @@ const getRows = (channelData) => {
   }).concat([['All channels', sum, '100%']]);
 };
 
-const renderTable = (tableNode, countryData) => {
+const renderTable = (tableNode, countryData, country) => {
   const rowHeader = ['Channel', '2019', '% Total'];
   const tableData = getRows(sumChannelData(countryData));
   const rows = [rowHeader].concat(tableData);
 
-  render(createElement(OdaChannelsTable, { rows }), tableNode);
+  render(createElement(OdaChannelsTable, { country, rows }), tableNode);
 };
 
 /**
@@ -86,7 +86,7 @@ const init = (className) => {
                     window.DIState.setState({ purpose: event.target.value });
                   });
                 }
-                renderTable(tableNode, countryData);
+                renderTable(tableNode, countryData, country || DEFAULT_COUNTRY);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
               }
