@@ -22,7 +22,8 @@
   min-height: auto !important;
 }
 
-.dicharts--chart-one-root {
+.dicharts--chart-one-root,
+.dicharts--oda-channels-chart {
   width: 100%;
   min-height: 450px;
 }
