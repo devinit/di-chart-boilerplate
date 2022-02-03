@@ -20,25 +20,35 @@ const getPurposeNames = (data) => {
 };
 const filterDataByPurpose = (data, purpose) => data.filter((item) => item.purpose_name === purpose);
 const filterDataByYear = (data) => data.filter((item) => item.year === YEAR);
-const getRows = (data) => {
-  const rowLabels = data.map((item) => item.aid_type_di_name);
+
+const getRows = (unfilteredData, data) => {
+  const headerRow = [['Aid Type', '2019', '% Total']];
+  const allRowLabels = unfilteredData.reduce((acc, item) => {
+    if(!acc.includes(item.aid_type_di_name)) {
+      acc.push(item.aid_type_di_name);
+    }
+    
+    return acc;
+  }, []);
   const totalDisbursments = data
     .map((item) => item.usd_disbursement_deflated_Sum)
     .reduce((prev, current) => prev + current);
-  console.log(totalDisbursments);
-  const rows = rowLabels.map((label) => {
-    const row = [label].concat(data.find((item) => item.aid_type_di_name === label).usd_disbursement_deflated_Sum);
+  const rows = allRowLabels.map((label) => {
+    const row = data.find((item) => item.aid_type_di_name === label);
+    const rowValue = row ? row.usd_disbursement_deflated_Sum : 0;
+    const rowPercentage = `${(((rowValue / totalDisbursments)*100) || 0).toFixed(1)}%`;
 
-    return row;
+    return [label].concat(rowValue ? rowValue.toFixed(1) : '_', [rowPercentage]);
   });
-  console.log(rows);
+
+  return headerRow.concat(rows, [['Grand Total', totalDisbursments.toFixed(1), '100%']]);
 };
 
 const renderTable = (tableNode, data, country, purpose) => {
   const countryData = filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD);
   const purposeFilteredData = filterDataByPurpose(countryData, purpose);
-  getRows(filterDataByYear(purposeFilteredData));
-  render(createElement(OdaAidTable, { country }), tableNode);
+  const rows = getRows(data, filterDataByYear(purposeFilteredData));
+  render(createElement(OdaAidTable, { country, rows }), tableNode);
 };
 
 /**
@@ -63,13 +73,13 @@ const init = (className) => {
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
-              const filterWrapper = addFilterWrapper(tableNode);
               const state = window.DIState.getState;
               const { country, odaAidType: data } = state;
               if (country && data) {
                 const purposeNames = getPurposeNames(data);
                 let activePurpose = purposeNames[0];
                 if (!purposeField) {
+                  const filterWrapper = addFilterWrapper(tableNode);
                   purposeField = addFilter({
                     wrapper: filterWrapper,
                     options: purposeNames,
