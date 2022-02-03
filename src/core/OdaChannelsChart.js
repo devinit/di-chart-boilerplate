@@ -18,15 +18,15 @@ const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
 const renderChart = (chartNode, data, legendNode) => {
   const chart = window.echarts.init(chartNode);
+  // let activeItem = '';
   const option = {
     tooltip: { show: true, trigger: 'item' },
     xAxis: { show: false },
     yAxis: { show: false },
     series: {
-      // name: 'testing',
       type: 'sunburst',
       emphasis: {
-          focus: 'descendant'
+        focus: 'descendant'
       },
       data,
       radius: ['30%', '90%'],
@@ -37,9 +37,12 @@ const renderChart = (chartNode, data, legendNode) => {
     }
   };
   const colours = colorways.rainbow;
+  const legendItems = data.map((item, index) => {
+    return { caption: item.name, colour: colours[index] }
+  })
 
   chart.setOption({ ... deepMerge(defaultOptions, option), color: colours });
-  render(createElement(Legend, {}), legendNode);
+  render(createElement(Legend, { data: legendItems }), legendNode);
 };
 
 /**

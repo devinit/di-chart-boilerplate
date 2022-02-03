@@ -27,3 +27,36 @@
   width: 100%;
   min-height: 450px;
 }
+
+.custom-legend {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.legend-item {
+  width: fit-content;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  width: 20px;
+  height: 20px;
+  padding: 0.7rem;
+}
+
+.legend-item .text {
+  vertical-align: top;
+  margin-left: 5px;
+  font-size: 12px;
+}
