@@ -1,4 +1,4 @@
-const colorways = {
+export const colorways = {
   rainbow: [
     '#e84439',
     '#eb642b',
