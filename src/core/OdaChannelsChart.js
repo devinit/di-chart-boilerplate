@@ -1,5 +1,5 @@
 import deepMerge from 'deepmerge';
-import defaultOptions from '../charts/echarts';
+import defaultOptions, { colorways } from '../charts/echarts';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY } from '../utils/constants';
 import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
@@ -40,14 +40,14 @@ const renderChart = (chartNode, data) => {
     }
   };
 
-  chart.setOption(deepMerge(defaultOptions, option));
+  chart.setOption({ ... deepMerge(defaultOptions, option), color: colorways.rainbow });
 };
 
 /**
  * This is a single depth algorithm and isn't flexible enough to handled multiple generations of children
  * To fix, it must call itself when rendering children - sadly, the data is not sophisticated enough to benefit from this
  */
-const getChildren = (data, parent, fields) => {
+const getChildren = (data, parent, fields, color) => {
   const config = { name: parent };
   const children = data.filter((item) => {
       return item[fields.parent] === (typeof parent === 'string' ? parent : parent[fields.parent]);
@@ -60,6 +60,8 @@ const getChildren = (data, parent, fields) => {
   } else {
     config.value = parent[fields.value];
   }
+
+  if (color) config.itemStyle = { color };
 
   return config;
 }
