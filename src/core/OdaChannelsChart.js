@@ -1,5 +1,8 @@
+import { createElement } from 'react';
+import { render } from 'react-dom';
 import deepMerge from 'deepmerge';
 import defaultOptions, { colorways } from '../charts/echarts';
+import Legend from '../components/Legend';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY } from '../utils/constants';
 import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
@@ -13,10 +16,9 @@ const PARENT_FIELD = 'oecd_aggregated_channel';
 const CHILD_FIELD = 'oecd_channel_parent_name';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
-const renderChart = (chartNode, data) => {
+const renderChart = (chartNode, data, legendNode) => {
   const chart = window.echarts.init(chartNode);
   const option = {
-    // legend: { show: false, data: ['testing'] },
     tooltip: { show: true, trigger: 'item' },
     xAxis: { show: false },
     yAxis: { show: false },
@@ -32,15 +34,12 @@ const renderChart = (chartNode, data) => {
         rotate: 'tangential',
         show: false
       },
-      levels: [
-        {
-
-        }
-      ]
     }
   };
+  const colours = colorways.rainbow;
 
-  chart.setOption({ ... deepMerge(defaultOptions, option), color: colorways.rainbow });
+  chart.setOption({ ... deepMerge(defaultOptions, option), color: colours });
+  render(createElement(Legend, {}), legendNode);
 };
 
 /**
@@ -81,7 +80,7 @@ const parseIntoSunburstFormat = (data, fields) => { // fields = { parent: string
   return parents.map((parent) => getChildren(data, parent, fields));
 };
 
-const renderByCountryAndPurposeCode = (chartNode, data, country, purposeCode) => {
+const renderByCountryAndPurposeCode = (chartNode, data, country, purposeCode, legendNode) => {
   const countryData = filterDataByPurpose(
     filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD),
     purposeCode,
@@ -89,7 +88,7 @@ const renderByCountryAndPurposeCode = (chartNode, data, country, purposeCode) =>
   );
   const sunburstData = parseIntoSunburstFormat(countryData, { parent: PARENT_FIELD, child: CHILD_FIELD, value: VALUE_FIELD });
 
-  renderChart(chartNode, sunburstData);
+  renderChart(chartNode, sunburstData, legendNode);
 }
 
 /**
@@ -112,6 +111,7 @@ const init = (className) => {
 
             return;
           }
+          const legendNode = addFilterWrapper(chartNode);
 
           window.DIState.addListener(() => {
             const state = window.DIState.getState;
@@ -136,11 +136,11 @@ const init = (className) => {
 
               purposeCodeFilter.addEventListener('change', (event) => {
                 activePurpose = event.target.value;
-                renderByCountryAndPurposeCode(chartNode, data, country, activePurpose);
+                renderByCountryAndPurposeCode(chartNode, data, country, activePurpose, legendNode);
               });
             }
 
-            renderByCountryAndPurposeCode(chartNode, data, country, activePurpose);
+            renderByCountryAndPurposeCode(chartNode, data, country, activePurpose, legendNode);
             dichart.hideLoading();
             chartNode.parentElement.classList.add('auto-height');
           });
