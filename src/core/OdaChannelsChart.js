@@ -27,19 +27,23 @@ const renderChart = (chartNode, data, legendNode) => {
     yAxis: { show: false },
     series: {
       type: 'sunburst',
+      center: ['45%', '50%'],
       emphasis: {
         focus: 'descendant'
       },
+      sort: undefined,
       data: data.map((item, index) => {
         item.itemStyle = { color: colours[index] };
 
         return item;
       }),
-      radius: ['30%', '90%'],
-      label: {
-        rotate: 'tangential',
-        show: false
-      },
+      radius: ['20%', '100%'],
+      label: { show: false },
+      levels: [
+        { itemStyle: { color: '#333', opacity: 0.7 } },
+        { r: 145 },
+        { radius: [150, 160] }
+      ]
     },
     toolbox: {
       showTitle: false,
