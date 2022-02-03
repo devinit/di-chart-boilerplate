@@ -34,10 +34,21 @@
   flex-flow: row wrap;
 }
 
+.custom-legend.right {
+  display: block;
+  width: 300px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
 .legend-item {
   width: fit-content;
-  height: 20px;
   margin-right: 5px;
+}
+
+.right .legend-item {
+  margin-bottom: 5px;
 }
 
 .badge {
@@ -48,7 +59,7 @@
   line-height: 1;
   text-align: center;
   white-space: nowrap;
-  vertical-align: baseline;
+  vertical-align: middle;
   border-radius: 0.25rem;
   width: 20px;
   height: 20px;

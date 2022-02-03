@@ -39,6 +39,7 @@
     "src/**/*.js": "eslint --cache --fix"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "deepmerge": "^4.2.2",
     "mobx": "^6.3.12",
     "papaparse": "^5.3.1",
