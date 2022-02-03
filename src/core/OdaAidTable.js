@@ -6,7 +6,6 @@ import { filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
-// Your Code Goes Here i.e. functions
 const YEAR = 2019;
 const getPurposeNames = (data) => {
   const purposeNames = [];
@@ -38,7 +37,7 @@ const getRows = (unfilteredData, data) => {
     const rowValue = row ? row.usd_disbursement_deflated_Sum : 0;
     const rowPercentage = `${(((rowValue / totalDisbursments)*100) || 0).toFixed(1)}%`;
 
-    return [label].concat(rowValue ? rowValue.toFixed(1) : '_', [rowPercentage]);
+    return [label].concat(rowValue.toFixed(1), [rowPercentage]);
   });
 
   return headerRow.concat(rows, [['Grand Total', totalDisbursments.toFixed(1), '100%']]);
