@@ -5,7 +5,7 @@ import { TableTwo } from '../components/TableTwo/TableTwo';
 import { filterDataByCountry } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
-const DATA_PURPOSE_COLUMN = 'Sector Code - Calculated';
+const DATA_PURPOSE_COLUMN = 'Code type';
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
@@ -105,18 +105,18 @@ const init = (className) => {
               console.log()
               const { country, dataTwo: olddata, purpose } = state;
               let data = olddata;
-              if (country && olddata) {
+              if (country && data) {
                 if (!purposeField) {
                   const data = olddata.map((d) =>{
                     const hold = toJS(d)
-                    if (hold['Sector Code - Calculated'] === "13010"){
-                      hold['Sector Code - Calculated'] = "Population policy and administrative management"
-                    } else if (hold['Sector Code - Calculated'] === "13020"){
-                      hold['Sector Code - Calculated'] = "Reproductive health care"
-                    } else if (hold['Sector Code - Calculated'] === "13030"){
-                      hold['Sector Code - Calculated'] = "Family planning"
-                    } else if (hold['Sector Code - Calculated'] === "13081"){
-                      hold['Sector Code - Calculated'] = "Personnel development for population and reproductive health"
+                    if (hold['Sector Code'] === "13010"){
+                      hold['Sector Code'] = "Population policy and administrative management"
+                    } else if (hold['Sector Code'] === "13020"){
+                      hold['Sector Code'] = "Reproductive health care"
+                    } else if (hold['Sector Code'] === "13030"){
+                      hold['Sector Code'] = "Family planning"
+                    } else if (hold['Sector Code'] === "13081"){
+                      hold['Sector Code'] = "Personnel development for population and reproductive health"
                     }
                     
                     return hold
