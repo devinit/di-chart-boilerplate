@@ -1,4 +1,3 @@
-import { toJS } from 'mobx';
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableTwo } from '../components/TableTwo/TableTwo';
@@ -103,24 +102,9 @@ const init = (className) => {
               dichart.showLoading();
               const state = window.DIState.getState;
               console.log()
-              const { country, dataTwo: olddata, purpose } = state;
-              let data = olddata;
+              const { country, dataTwo: data, purpose } = state;
               if (country && data) {
                 if (!purposeField) {
-                  const data = olddata.map((d) =>{
-                    const hold = toJS(d)
-                    if (hold['Sector Code'] === "13010"){
-                      hold['Sector Code'] = "Population policy and administrative management"
-                    } else if (hold['Sector Code'] === "13020"){
-                      hold['Sector Code'] = "Reproductive health care"
-                    } else if (hold['Sector Code'] === "13030"){
-                      hold['Sector Code'] = "Family planning"
-                    } else if (hold['Sector Code'] === "13081"){
-                      hold['Sector Code'] = "Personnel development for population and reproductive health"
-                    }
-                    
-                    return hold
-                  })
                   purposeField = addFilter({
                     wrapper: filterWrapper,
                     options: data.reduce((options, prev) => {
