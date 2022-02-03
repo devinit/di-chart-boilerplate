@@ -1,9 +1,10 @@
+import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Legend = ({ data }) => {
+const Legend = ({ data, position }) => {
   return (
-    <div className="custom-legend">
+    <div className={classNames("custom-legend", { right: position === 'right' })}>
       {data.map((d) => (
         <div className="legend-item" key={d.caption}>
           <span className="badge" style={{backgroundColor: d.colour }}/>
@@ -17,6 +18,7 @@ const Legend = ({ data }) => {
 Legend.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   onClick: PropTypes.func,
+  position: PropTypes.string,
 }
 
 Legend.defaultProps = { data: [] };

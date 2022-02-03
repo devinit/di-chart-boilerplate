@@ -18,6 +18,8 @@ const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
 const renderChart = (chartNode, data, legendNode) => {
   const chart = window.echarts.init(chartNode);
+  const colours = colorways.rainbow;
+  const legendItems = data.map((item, index) => ({ caption: item.name, colour: colours[index] }));
   // let activeItem = '';
   const option = {
     tooltip: { show: true, trigger: 'item' },
@@ -28,21 +30,29 @@ const renderChart = (chartNode, data, legendNode) => {
       emphasis: {
         focus: 'descendant'
       },
-      data,
+      data: data.map((item, index) => {
+        item.itemStyle = { color: colours[index] };
+
+        return item;
+      }),
       radius: ['30%', '90%'],
       label: {
         rotate: 'tangential',
         show: false
       },
+    },
+    toolbox: {
+      showTitle: false,
+      feature: {
+        saveAsImage: {
+          show: false,
+        },
+      },
     }
   };
-  const colours = colorways.rainbow;
-  const legendItems = data.map((item, index) => {
-    return { caption: item.name, colour: colours[index] }
-  })
 
   chart.setOption({ ... deepMerge(defaultOptions, option), color: colours });
-  render(createElement(Legend, { data: legendItems }), legendNode);
+  render(createElement(Legend, { data: legendItems, position: 'right' }), legendNode);
 };
 
 /**
