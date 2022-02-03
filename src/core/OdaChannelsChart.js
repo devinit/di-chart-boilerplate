@@ -1,7 +1,7 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY } from '../utils/constants';
-import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose } from '../utils/data';
+import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
@@ -24,10 +24,10 @@ const renderChart = (chartNode, data) => {
       // name: 'testing',
       type: 'sunburst',
       emphasis: {
-          focus: 'ancestor'
+          focus: 'descendant'
       },
       data,
-      radius: [0, '90%'],
+      radius: ['30%', '90%'],
       label: {
         rotate: 'tangential',
         show: false
@@ -65,8 +65,16 @@ const getChildren = (data, parent, fields) => {
 }
 
 const parseIntoSunburstFormat = (data, fields) => { // fields = { parent: string, child: string, value: string }
-  const parents = data.reduce((parents, current) =>
-    parents.includes(current[fields.parent]) ? parents : parents.concat(current[fields.parent]), []);
+  const parents = data
+    .map((d) => {
+      if (d[fields.value]) {
+        d[fields.value] = formatNumber(d[fields.value]);
+      }
+
+      return d;
+    })
+    .reduce((parents, current) =>
+      parents.includes(current[fields.parent]) ? parents : parents.concat(current[fields.parent]), []);
 
   return parents.map((parent) => getChildren(data, parent, fields));
 };
