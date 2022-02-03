@@ -1,9 +1,15 @@
+import { parse } from 'papaparse';
+
 export const formatNumber = (value) => Number(value.toFixed(2));
 
 const fetchCSVData = (url) =>
   // eslint-disable-next-line no-undef
   new Promise((resolve) => {
-    window.d3.csv(url, (data) => resolve(data));
+    parse(url, {
+      download: true,
+      header: true,
+      complete: ({ data }) => resolve(data),
+    });
   });
 
 export const filterDataByCountry = (data, country, countryField) =>
