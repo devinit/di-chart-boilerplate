@@ -43,6 +43,21 @@
   bottom: -300px;
 }
 
+@media (max-width: 1200px) {
+  .custom-legend.right {
+    display: flex;
+    position: relative;
+    width: 100%;
+    bottom: auto;
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .custom-legend.right {
+      display: block;
+  }
+}
+
 .legend-item {
   width: fit-content;
   margin-right: 5px;
@@ -71,4 +86,10 @@
   vertical-align: top;
   margin-left: 5px;
   font-size: 12px;
+}
+
+@media screen and (max-width: 699px) {
+  .chart-container .charts__chart {
+      display: block;
+  }
 }
