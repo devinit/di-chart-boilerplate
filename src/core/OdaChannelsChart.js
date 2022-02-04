@@ -20,6 +20,11 @@ const renderChart = (chartNode, data, legendNode) => {
   const chart = window.echarts.init(chartNode);
   const colours = colorways.rainbow;
   const legendItems = data.map((item, index) => ({ caption: item.name, colour: colours[index] }));
+
+  const resetLegend = () => {
+    render(createElement(Legend, { data: legendItems, position: 'right' }), legendNode);
+  }
+
   // let activeItem = '';
   const option = {
     tooltip: {
@@ -31,7 +36,6 @@ const renderChart = (chartNode, data, legendNode) => {
         if(data.treePathInfo.length > 1) {
           const parent = data.treePathInfo[data.treePathInfo.length - 2];
           const percentage = formatNumber((data.value / parent.value) * 100);
-
           render(createElement(Legend, { data: legendItems.filter((item) => data.treePathInfo.find((d) => d.name === item.caption)), position: 'right' }), legendNode);
 
           return `${data.name} | ${formatNumber(data.value)} - ${percentage}%`;
@@ -73,13 +77,17 @@ const renderChart = (chartNode, data, legendNode) => {
   };
 
   chart.setOption({ ... deepMerge(defaultOptions, option), color: colours });
-  render(createElement(Legend, { data: legendItems, position: 'right' }), legendNode);
+  resetLegend();
 
   chart.on('click', function (params) {
     if (!params.name) { // reset legend on returning to original view
-      render(createElement(Legend, { data: legendItems, position: 'right' }), legendNode);
+      resetLegend()
     }
-});
+  });
+
+  chart.on('mouseout', function () {
+    resetLegend()
+  });
 };
 
 /**
