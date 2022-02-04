@@ -74,6 +74,12 @@ const renderChart = (chartNode, data, legendNode) => {
 
   chart.setOption({ ... deepMerge(defaultOptions, option), color: colours });
   render(createElement(Legend, { data: legendItems, position: 'right' }), legendNode);
+
+  chart.on('click', function (params) {
+    if (!params.name) { // reset legend on returning to original view
+      render(createElement(Legend, { data: legendItems, position: 'right' }), legendNode);
+    }
+});
 };
 
 /**
