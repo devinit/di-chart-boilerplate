@@ -22,12 +22,27 @@ const renderChart = (chartNode, data, legendNode) => {
   const legendItems = data.map((item, index) => ({ caption: item.name, colour: colours[index] }));
   // let activeItem = '';
   const option = {
-    tooltip: { show: true, trigger: 'item' },
+    tooltip: {
+      show: true,
+      trigger: 'item',
+      formatter: (data) => {
+        if (!data.name) return 'Go Back';
+
+        if(data.treePathInfo.length > 1) {
+          const parent = data.treePathInfo[data.treePathInfo.length - 2];
+          const percentage = formatNumber((data.value / parent.value) * 100);
+
+          return `${data.name} | ${formatNumber(data.value)} - ${percentage}%`;
+        }
+
+        return `${data.name} | ${formatNumber(data.value)}`;
+      }
+    },
     xAxis: { show: false },
     yAxis: { show: false },
     series: {
       type: 'sunburst',
-      center: ['45%', '50%'],
+      // center: ['45%', '50%'],
       emphasis: {
         focus: 'descendant'
       },
