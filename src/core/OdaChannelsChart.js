@@ -32,6 +32,8 @@ const renderChart = (chartNode, data, legendNode) => {
           const parent = data.treePathInfo[data.treePathInfo.length - 2];
           const percentage = formatNumber((data.value / parent.value) * 100);
 
+          render(createElement(Legend, { data: legendItems.filter((item) => data.treePathInfo.find((d) => d.name === item.caption)), position: 'right' }), legendNode);
+
           return `${data.name} | ${formatNumber(data.value)} - ${percentage}%`;
         }
 
