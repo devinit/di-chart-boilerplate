@@ -93,3 +93,12 @@
       display: block;
   }
 }
+
+.legend-item.label {
+  border-bottom: 2px solid;
+}
+
+.label .text {
+  text-transform: uppercase;
+  font-size: 13px;
+}
