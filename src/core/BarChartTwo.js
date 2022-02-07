@@ -33,7 +33,8 @@ const renderChart = (chartNode, data) => {
       type: 'value',
       axisLabel: {
         formatter: "{value} %"
-      }
+      },
+      max: 100,
     },
     grid: {
       top: 60,
