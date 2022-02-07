@@ -77,7 +77,7 @@ const renderChart = (chartNode, data, legendNode) => {
       levels: [
         { itemStyle: { color: '#333', opacity: 0.7 } },
         { r: 145 },
-        { radius: [150, 160] }
+        { radius: [150, 170] }
       ]
     },
     toolbox: {
