@@ -21,7 +21,13 @@ const SEPARATOR_LABEL = 'Breakdown';
 
 const createLegend = (node, items, position =  'right') => {
   render(createElement(Legend, { data: items, position }), node);
-}
+};
+
+const createActiveTreeLegend = (legendNode, activeItem, parent, activeLegend, color) => {
+  activeLegend.push({ caption: SEPARATOR_LABEL, label: true });
+  activeLegend = activeLegend.concat(getLegendItemsFromChartData(activeItem, parent, color));
+  createLegend(legendNode, activeLegend);
+};
 
 const getLegendItemsFromChartData = (data, parent, parentColour) =>
   data.children.sort((a, b) => a.value - b.value).reverse().map((child) => {
@@ -107,9 +113,7 @@ const renderChart = (chartNode, data, legendNode) => {
     const activeItemData = data.find((item) => item.name === params.name);
     if (activeItemData && activeItemData.children) {
       activeLevel = 1;
-      legend.push({ caption: SEPARATOR_LABEL, label: true });
-      legend = legend.concat(getLegendItemsFromChartData(activeItemData, params, params.color));
-      createLegend(legendNode, legend);
+      createActiveTreeLegend(legendNode, activeItemData, params, legend, params.color)
 
       return;
     }
@@ -118,9 +122,7 @@ const renderChart = (chartNode, data, legendNode) => {
     const parent = params.treePathInfo[params.treePathInfo.length - 2];
     const parentData = data.find((item) => item.name === parent.name);
     if (parentData && parentData.children) {
-      legend.push({ caption: SEPARATOR_LABEL, label: true });
-      legend = legend.concat(getLegendItemsFromChartData(parentData, parent, legend[0].colour));
-      createLegend(legendNode, legend);
+      createActiveTreeLegend(legendNode, parentData, parent, legend, legend[0].colour)
     } else {
       createLegend(legendNode, legend);
     }
@@ -133,9 +135,7 @@ const renderChart = (chartNode, data, legendNode) => {
     if(params.treePathInfo.length > 1) {
       const activeItemData = data.find((item) => item.name === params.name);
       if (activeItemData && activeItemData.children) {
-        legend.push({ caption: SEPARATOR_LABEL, label: true });
-        legend = legend.concat(getLegendItemsFromChartData(activeItemData, params, params.color));
-        createLegend(legendNode, legend);
+        createActiveTreeLegend(legendNode, activeItemData, params, legend, params.color)
 
         return;
       }
@@ -143,9 +143,7 @@ const renderChart = (chartNode, data, legendNode) => {
       const parent = params.treePathInfo[params.treePathInfo.length - 2];
       const parentData = data.find((item) => item.name === parent.name);
       if (parentData && parentData.children) {
-        legend.push({ caption: SEPARATOR_LABEL, label: true });
-        legend = legend.concat(getLegendItemsFromChartData(parentData, parent, legend[0].colour));
-        createLegend(legendNode, legend);
+        createActiveTreeLegend(legendNode, parentData, parent, legend, legend[0].colour)
       } else {
         createLegend(legendNode, legend);
       }
