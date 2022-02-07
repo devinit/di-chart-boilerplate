@@ -3,6 +3,7 @@ import './state';
 import initTableOne from './core/TableOne';
 import initDonorFilter from './core/DonorFilter';
 import initBarChartOne from './core/BarChartOne';
+import initBarChartTwo from './core/BarChartTwo';
 import initTableTwo from './core/TableTwo';
 import initOdaAidTable from './core/OdaAidTable';
 import initOdaChannelsTable from './core/OdaChannelsTable';
@@ -19,6 +20,7 @@ window.addEventListener('load', () => {
   initDonorFilter('dicharts--oda-root');
   initTableOne('dicharts--table-one-root');
   initBarChartOne('dicharts--chart-one-root');
+  initBarChartTwo('dicharts--chart-two-root');
   initTableTwo('dicharts--table-two-root');
   initOdaAidTable('dicharts--oda-aid-table');
   initOdaChannelsTable('dicharts--oda-channels-table');
