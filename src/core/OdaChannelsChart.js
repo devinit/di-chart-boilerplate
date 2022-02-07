@@ -21,8 +21,8 @@ const createLegend = (node, items, position =  'right') => {
   render(createElement(Legend, { data: items, position }), node);
 }
 
-const getLegendItemsFromChartData = (data, parent, parentColour) => {
-  return data.children.map((child) => {
+const getLegendItemsFromChartData = (data, parent, parentColour) =>
+  data.children.sort((a, b) => a.value - b.value).reverse().map((child) => {
     if (child.value) {
       const percent = formatNumber((child.value / parent.value) * 100);
       const colour = Colour(parentColour).lighten(0.2)
@@ -32,7 +32,6 @@ const getLegendItemsFromChartData = (data, parent, parentColour) => {
 
     return { caption: child.name, colour: '#333' };
   });
-}
 
 const renderChart = (chartNode, data, legendNode) => {
   const chart = window.echarts.init(chartNode);
