@@ -1,3 +1,4 @@
+import Colour from 'color';
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import deepMerge from 'deepmerge';
@@ -20,12 +21,13 @@ const createLegend = (node, items, position =  'right') => {
   render(createElement(Legend, { data: items, position }), node);
 }
 
-const getLegendItemsFromChartData = (data, parent) => {
+const getLegendItemsFromChartData = (data, parent, parentColour) => {
   return data.children.map((child) => {
     if (child.value) {
       const percent = formatNumber((child.value / parent.value) * 100);
+      const colour = Colour(parentColour).lighten(0.2)
 
-      return { caption: `${child.name} | ${child.value} - ${percent}%`, colour: '#333' };
+      return { caption: `${child.name} | ${child.value} - ${percent}%`, colour: colour.hex() };
     }
 
     return { caption: child.name, colour: '#333' };
@@ -107,7 +109,7 @@ const renderChart = (chartNode, data, legendNode) => {
       const activeItemData = data.find((item) => item.name === params.name);
       if (activeItemData && activeItemData.children) {
         legend.push({ caption: SEPARATOR_LABEL, label: true });
-        legend = legend.concat(getLegendItemsFromChartData(activeItemData, params));
+        legend = legend.concat(getLegendItemsFromChartData(activeItemData, params, params.color));
         createLegend(legendNode, legend);
 
         return;
@@ -117,7 +119,7 @@ const renderChart = (chartNode, data, legendNode) => {
       const parentData = data.find((item) => item.name === parent.name);
       if (parentData && parentData.children) {
         legend.push({ caption: SEPARATOR_LABEL, label: true });
-        legend = legend.concat(getLegendItemsFromChartData(parentData, parent));
+        legend = legend.concat(getLegendItemsFromChartData(parentData, parent, legend[0].colour));
         createLegend(legendNode, legend);
       } else {
         createLegend(legendNode, legend);
