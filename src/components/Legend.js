@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 const Legend = ({ data, position }) => {
   return (
     <div className={classNames("custom-legend", { right: position === 'right' })}>
-      {data.map((d) => (
-        <div className="legend-item" key={d.caption}>
-          <span className="badge" style={{backgroundColor: d.colour }}/>
+      {data.map((d, index) => (
+        <div className={classNames('legend-item', { label: d.label })} key={`${index}`}>
+          {!d.label && d.colour ? <span className="badge" style={{backgroundColor: d.colour }}/> : null}
           <span className="text">{d.caption}</span>
         </div>
       ))}
