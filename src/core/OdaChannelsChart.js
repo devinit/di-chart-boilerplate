@@ -17,6 +17,8 @@ const PARENT_FIELD = 'oecd_aggregated_channel';
 const CHILD_FIELD = 'oecd_channel_parent_name';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
+const SEPARATOR_LABEL = 'Breakdown';
+
 const createLegend = (node, items, position =  'right') => {
   render(createElement(Legend, { data: items, position }), node);
 }
@@ -75,7 +77,7 @@ const renderChart = (chartNode, data, legendNode) => {
       radius: ['20%', '100%'],
       label: { show: false },
       levels: [
-        { itemStyle: { color: '#333', opacity: 0.7 } },
+        { itemStyle: { color: '#333', opacity: 0.7 }, r: 120 },
         { r: 145 },
         { radius: [150, 170] }
       ]
@@ -92,17 +94,41 @@ const renderChart = (chartNode, data, legendNode) => {
 
   chart.setOption({ ... deepMerge(defaultOptions, option), color: colours });
   resetLegend();
+  let activeLevel = 0;
 
   chart.on('click', function (params) {
     if (!params.name) { // reset legend on returning to original view
-      resetLegend();
+      activeLevel = activeLevel - 1;
+      if(activeLevel === 0) resetLegend();
+
+      return;
+    }
+    let legend = legendItems.filter((item) => params.treePathInfo.find((d) => d.name === item.caption));
+    const activeItemData = data.find((item) => item.name === params.name);
+    if (activeItemData && activeItemData.children) {
+      activeLevel = 1;
+      legend.push({ caption: SEPARATOR_LABEL, label: true });
+      legend = legend.concat(getLegendItemsFromChartData(activeItemData, params, params.color));
+      createLegend(legendNode, legend);
+
+      return;
+    }
+
+    activeLevel = 2;
+    const parent = params.treePathInfo[params.treePathInfo.length - 2];
+    const parentData = data.find((item) => item.name === parent.name);
+    if (parentData && parentData.children) {
+      legend.push({ caption: SEPARATOR_LABEL, label: true });
+      legend = legend.concat(getLegendItemsFromChartData(parentData, parent, legend[0].colour));
+      createLegend(legendNode, legend);
+    } else {
+      createLegend(legendNode, legend);
     }
   });
 
   chart.on('mouseover', function (params) {
     if (!params.name) return;
 
-    const SEPARATOR_LABEL = 'Breakdown'
     let legend = legendItems.filter((item) => params.treePathInfo.find((d) => d.name === item.caption));
     if(params.treePathInfo.length > 1) {
       const activeItemData = data.find((item) => item.name === params.name);
@@ -127,7 +153,7 @@ const renderChart = (chartNode, data, legendNode) => {
   });
 
   chart.on('mouseout', function () {
-    resetLegend();
+    if (activeLevel === 0) resetLegend();
   });
 };
 
