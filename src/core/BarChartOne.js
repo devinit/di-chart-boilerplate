@@ -1,15 +1,15 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
-import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, YEARS } from '../utils/constants';
+import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD, YEARS } from '../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearsFromRange } from '../utils/data';
-import { extractChartData } from '../utils/barChartOne';
+import { extractChartData } from '../utils/barChart';
 
 const getSeries = (data, years) => {
   return PURPOSE_TO_FILTER_BY.map((purpose) => ({
     name: purpose,
     type: 'bar',
     stack: 'oda',
-    data: extractChartData(data, purpose, years),
+    data: extractChartData(data, purpose, years, VALUE_FIELD, PURPOSE_FIELD),
   })).map((serie, index, series) => {
     if (index === series.length - 1) {
       return {
