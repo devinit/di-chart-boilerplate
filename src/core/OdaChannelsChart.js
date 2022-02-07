@@ -16,32 +16,45 @@ const PARENT_FIELD = 'oecd_aggregated_channel';
 const CHILD_FIELD = 'oecd_channel_parent_name';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
+const createLegend = (node, items, position =  'right') => {
+  render(createElement(Legend, { data: items, position }), node);
+}
+
+const getLegendItemsFromChartData = (data, parent) => {
+  return data.children.map((child) => {
+    if (child.value) {
+      const percent = formatNumber((child.value / parent.value) * 100);
+
+      return { caption: `${child.name} | ${child.value} - ${percent}%`, colour: '#333' };
+    }
+
+    return { caption: child.name, colour: '#333' };
+  });
+}
+
 const renderChart = (chartNode, data, legendNode) => {
   const chart = window.echarts.init(chartNode);
   const colours = colorways.rainbow;
   const legendItems = data.map((item, index) => ({ caption: item.name, colour: colours[index] }));
 
-  const resetLegend = () => {
-    render(createElement(Legend, { data: legendItems, position: 'right' }), legendNode);
-  }
+  const resetLegend = () => createLegend(legendNode, legendItems);
 
   // let activeItem = '';
   const option = {
     tooltip: {
       show: true,
       trigger: 'item',
-      formatter: (data) => {
-        if (!data.name) return 'Go Back';
+      formatter: (params) => {
+        if (!params.name) return 'Go Back';
 
-        if(data.treePathInfo.length > 1) {
-          const parent = data.treePathInfo[data.treePathInfo.length - 2];
-          const percentage = formatNumber((data.value / parent.value) * 100);
-          render(createElement(Legend, { data: legendItems.filter((item) => data.treePathInfo.find((d) => d.name === item.caption)), position: 'right' }), legendNode);
+        if(params.treePathInfo.length > 1) {
+          const parent = params.treePathInfo[params.treePathInfo.length - 2];
+          const percentage = formatNumber((params.value / parent.value) * 100);
 
-          return `${data.name} | ${formatNumber(data.value)} - ${percentage}%`;
+          return `${params.name} | ${formatNumber(params.value)} - ${percentage}%`;
         }
 
-        return `${data.name} | ${formatNumber(data.value)}`;
+        return `${params.name} | ${formatNumber(params.value)}`;
       }
     },
     xAxis: { show: false },
@@ -81,12 +94,39 @@ const renderChart = (chartNode, data, legendNode) => {
 
   chart.on('click', function (params) {
     if (!params.name) { // reset legend on returning to original view
-      resetLegend()
+      resetLegend();
+    }
+  });
+
+  chart.on('mouseover', function (params) {
+    if (!params.name) return;
+
+    const SEPARATOR_LABEL = 'Breakdown'
+    let legend = legendItems.filter((item) => params.treePathInfo.find((d) => d.name === item.caption));
+    if(params.treePathInfo.length > 1) {
+      const activeItemData = data.find((item) => item.name === params.name);
+      if (activeItemData && activeItemData.children) {
+        legend.push({ caption: SEPARATOR_LABEL, label: true });
+        legend = legend.concat(getLegendItemsFromChartData(activeItemData, params));
+        createLegend(legendNode, legend);
+
+        return;
+      }
+
+      const parent = params.treePathInfo[params.treePathInfo.length - 2];
+      const parentData = data.find((item) => item.name === parent.name);
+      if (parentData && parentData.children) {
+        legend.push({ caption: SEPARATOR_LABEL, label: true });
+        legend = legend.concat(getLegendItemsFromChartData(parentData, parent));
+        createLegend(legendNode, legend);
+      } else {
+        createLegend(legendNode, legend);
+      }
     }
   });
 
   chart.on('mouseout', function () {
-    resetLegend()
+    resetLegend();
   });
 };
 
