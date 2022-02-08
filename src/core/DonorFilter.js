@@ -38,7 +38,7 @@ const init = (className) => {
                   }
 
                   return countries.concat(country);
-                }, []);
+                }, []).map((country) => ({ label: country, value: country }));
 
                 const countryFilter = addFilter({
                   wrapper: filterWrapper,
