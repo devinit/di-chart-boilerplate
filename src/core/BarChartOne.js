@@ -1,6 +1,6 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
-import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY } from '../utils/constants';
+import { COUNTRY_FIELD, DEFAULT_DONOR, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY } from '../utils/constants';
 import { filterDataByCountry, filterDataByPurpose } from '../utils/data';
 import { extractChartData, extractChartYears } from '../utils/barChartOne';
 
@@ -92,7 +92,7 @@ const init = (className) => {
            * const chart = window.echarts.init(chartNode);
            */
 
-          const defaultCountry = 'United States';
+          const defaultCountry = DEFAULT_DONOR;
           dichart.showLoading();
           if (window.DIState) {
             window.DIState.addListener(() => {

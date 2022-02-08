@@ -30,7 +30,7 @@ const init = (className) => {
               const state = window.DIState.getState;
               const { dataOne: data } = state;
 
-              if (data.length && !donors.length) {
+              if (data && data.length && !donors.length) {
                 donors = data.reduce((countries, current) => {
                   const country = current[COUNTRY_FIELD];
                   if (countries.includes(country)) {
