@@ -1,5 +1,5 @@
-import fetchCSVData from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
+import { COUNTRY_FIELD, DEFAULT_DONOR } from '../utils/constants';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
@@ -22,32 +22,51 @@ const init = (className) => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/page/iati-gates/IATI%20RHFP%20data.csv';
-          fetchCSVData(csv).then((data) => {
-            const filterWrapper = addFilterWrapper(chartNode);
-            const countryFilter = addFilter({
-              wrapper: filterWrapper,
-              options: data.map((d) => d['Reporting Organisation Narrative']),
-              defaultOption: 'U.S. Agency for International Development',
-              className: 'country-filter',
-              label: 'Select Donor',
-            });
+          let donors = [];
+          const filterWrapper = addFilterWrapper(chartNode);
+          if (window.DIState) {
+            window.DIState.addListener(() => {
+              dichart.showLoading();
+              const state = window.DIState.getState;
+              const { dataOne: data } = state;
 
-            if (window.DIState) {
-              window.DIState.setState({ country: 'U.S. Agency for International Development' });
-            }
+              if (data.length && !donors.length) {
+                donors = data.reduce((countries, current) => {
+                  const country = current[COUNTRY_FIELD];
+                  if (countries.includes(country)) {
+                    return countries;
+                  }
 
-            // add event listeners
-            countryFilter.addEventListener('change', (event) => {
-              const { value } = event.currentTarget;
-              if (window.DIState) {
-                window.DIState.setState({ country: value });
+                  return countries.concat(country);
+                }, []);
+
+                const countryFilter = addFilter({
+                  wrapper: filterWrapper,
+                  options: donors,
+                  defaultOption: DEFAULT_DONOR,
+                  className: 'country-filter',
+                  label: 'Select Donor',
+                });
+
+                if (window.DIState) {
+                  window.DIState.setState({ country: 'U.S. Agency for International Development' });
+                }
+
+                // add event listeners
+                countryFilter.addEventListener('change', (event) => {
+                  const { value } = event.currentTarget;
+                  if (window.DIState) {
+                    window.DIState.setState({ country: value });
+                  }
+                });
               }
-            });
 
-            dichart.hideLoading();
-            chartNode.parentElement.classList.add('auto-height');
-          });
+              dichart.hideLoading();
+              chartNode.parentElement.classList.add('auto-height');
+            });
+          } else {
+            console.log('State is not defined');
+          }
         });
       },
     },

@@ -1,3 +1,5 @@
+import { DEFAULT_DONOR } from "./constants";
+
 const fetchCSVData = (url) =>
   // eslint-disable-next-line no-undef
   new Promise((resolve) => {
@@ -12,16 +14,16 @@ export const filterDataByPurpose = (data, purpose, purposeField) =>
   data.filter((item) => purpose.includes(item[purposeField]));
 
 export const fetchCoreData = () => {
-  const crs_data_csv_one =
+  const dataOneUrl =
     'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/page/iati-gates/IATI%20RHFP%20data.csv';
-  const crs_data_csv_two =
+  const dataTwoUrl =
   'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/page/iati-gates/IATI%20RHFP%20data2.csv';
   if (window.DIState) {
-    window.DIState.setState({ country: 'U.S. Agency for International Development' });
-    fetchCSVData(crs_data_csv_one).then((data) => {
+    window.DIState.setState({ country: DEFAULT_DONOR });
+    fetchCSVData(dataOneUrl).then((data) => {
       window.DIState.setState({ dataOne: data });
     });
-    fetchCSVData(crs_data_csv_two).then((data) => {
+    fetchCSVData(dataTwoUrl).then((data) => {
       window.DIState.setState({ dataTwo: data });
     });
   } else {
