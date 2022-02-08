@@ -59,6 +59,7 @@ const unSortedDataRow = (data, years) => {
 };
 
 const renderTable = (data, country, purpose, tableNode) => {
+  console.log(country)
   const YEARS = [2016, 2019];
   const yearRange = YEARS[1] - YEARS[0] + 1;
   const count = [];

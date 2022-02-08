@@ -26,12 +26,12 @@ const getRows = (unfilteredData, data) => {
     if(!acc.includes(item.aid_type_di_name)) {
       acc.push(item.aid_type_di_name);
     }
-    
+
     return acc;
   }, []);
   const totalDisbursments = data
     .map((item) => item.usd_disbursement_deflated_Sum)
-    .reduce((prev, current) => prev + current);
+    .reduce((prev, current) => prev + current, 0);
   const rows = allRowLabels.map((label) => {
     const row = data.find((item) => item.aid_type_di_name === label);
     const rowValue = row ? row.usd_disbursement_deflated_Sum : 0;
