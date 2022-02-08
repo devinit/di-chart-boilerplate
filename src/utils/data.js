@@ -1,10 +1,18 @@
+import { parse } from 'papaparse';
 import { DEFAULT_DONOR } from "./constants";
+
+export const formatNumber = (value) => Number(value.toFixed(2));
 
 const fetchCSVData = (url) =>
   // eslint-disable-next-line no-undef
   new Promise((resolve) => {
-    window.d3.csv(url, (data) => resolve(data));
+    parse(url, {
+      download: true,
+      header: true,
+      complete: ({ data }) => resolve(data),
+    });
   });
+
 
 export const filterDataByCountry = (data, country, countryField) =>
   // eslint-disable-next-line implicit-arrow-linebreak
@@ -30,5 +38,24 @@ export const fetchCoreData = () => {
     console.log('State is not defined');
   }
 };
+
+export const getYearsFromRange = (range) => {
+  const yearDiff = range[1] - range[0] + 1;
+  const count = [];
+  for (const key of Array(yearDiff).keys()) {
+    count.push(key);
+  }
+
+  return count.map((key) => range[0] + key);
+}
+
+export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
+  return yearRange.reduce((row, column) => {
+    const yearData = data.filter((d) => d.year === `${column}`);
+    const sum = yearData.reduce((_sum, prev) => formatNumber(_sum + formatNumber(Number(prev[valueField]) || 0)), 0);
+
+    return row.concat(sum);
+  }, []);
+}
 
 export default fetchCSVData;
