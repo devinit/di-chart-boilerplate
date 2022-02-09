@@ -69,12 +69,14 @@ const init = (className) => {
            * const chart = window.echarts.init(chartNode);
            */
           let purposeField;
+          let activeCountry = DEFAULT_COUNTRY;
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
               const { country, odaAidType: data } = state;
-              if (country && data) {
+              activeCountry = country;
+              if (activeCountry && data) {
                 const purposeNames = getPurposeNames(data);
                 let activePurpose = purposeNames[0];
                 if (!purposeField) {
@@ -89,11 +91,11 @@ const init = (className) => {
 
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;
-                    renderTable(tableNode, data, country || DEFAULT_COUNTRY, activePurpose);
+                    renderTable(tableNode, data, activeCountry || DEFAULT_COUNTRY, activePurpose);
                   });
                 }
 
-                renderTable(tableNode, data, country || DEFAULT_COUNTRY, activePurpose);
+                renderTable(tableNode, data, activeCountry || DEFAULT_COUNTRY, activePurpose);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
               }
