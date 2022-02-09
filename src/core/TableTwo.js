@@ -8,6 +8,22 @@ const DATA_PURPOSE_COLUMN = 'Code type';
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
+  if (countryData.length < 10) {
+    for (let count = 0; count < countryData.length; count++) {
+      if (iteratorData.length >= 1) {
+        let maxRow = iteratorData.reduce((prev, current) => {
+          if (Number(prev['2019']) < Number(current['2019'])) {
+            return current;
+          } else {
+            return prev;
+          }
+        });
+        sortedData.push(maxRow);
+        let maxRowIndex = iteratorData.indexOf(maxRow);
+        iteratorData.splice(maxRowIndex, 1);
+      }
+    }
+  }
   for (let count = 0; count < 10; count++) {
     if (iteratorData.length >= 1) {
       let maxRow = iteratorData.reduce((prev, current) => {
@@ -28,20 +44,40 @@ const getGroupedData = (countryData) => {
 
 const sortedDataRows = (data) => {
   const fullRows = [];
-  for (let i = 0; i < 10; i++) {
-    if (data.length >= 1) {
-      fullRows.push([
-        i + 1,
-        data[i].recipient_name,
-        formatNumber(Number(data[i]['2016'])),
-        formatNumber(Number(data[i]['2017'])),
-        formatNumber(Number(data[i]['2018'])),
-        formatNumber(Number(data[i]['2019'])),
-      ]);
+  if (data.length < 10) {
+    if(data.length === 0){
+      return fullRows
     }
-  }
+    for (let i = 0; i < data.length; i++) {
+      if (data.length >= 1) {
+        fullRows.push([
+          i + 1,
+          data[i].recipient_name,
+          formatNumber(Number(data[i]['2016'])),
+          formatNumber(Number(data[i]['2017'])),
+          formatNumber(Number(data[i]['2018'])),
+          formatNumber(Number(data[i]['2019'])),
+        ]);
+      }
+    }
 
-  return fullRows;
+    return fullRows
+  } else {
+    for (let i = 0; i < 10; i++) {
+      if (data.length >= 1) {
+        fullRows.push([
+          i + 1,
+          data[i].recipient_name,
+          formatNumber(Number(data[i]['2016'])),
+          formatNumber(Number(data[i]['2017'])),
+          formatNumber(Number(data[i]['2018'])),
+          formatNumber(Number(data[i]['2019'])),
+        ]);
+      }
+    }
+
+    return fullRows;
+  }
 };
 
 const unSortedDataRow = (data, years) => {
@@ -60,6 +96,7 @@ const unSortedDataRow = (data, years) => {
 
 const renderTable = (data, country, purpose, tableNode) => {
   console.log(country)
+  console.log(purpose)
   const YEARS = [2016, 2019];
   const yearRange = YEARS[1] - YEARS[0] + 1;
   const count = [];
@@ -121,7 +158,6 @@ const init = (className) => {
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
                   });
-
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;
                     renderTable(data, country, activePurpose, chartNode);

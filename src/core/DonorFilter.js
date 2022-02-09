@@ -40,6 +40,7 @@ const init = (className) => {
             // add event listeners
             countryFilter.addEventListener('change', (event) => {
               const { value } = event.currentTarget;
+              console.log(value)
               if (window.DIState) {
                 window.DIState.setState({ country: value });
               }
