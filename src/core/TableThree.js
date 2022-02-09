@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { TableOne } from '../components/TableOne/TableOne';
 import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
-import { ALTERNATIVE_PURPOSE_TO_FILTER_BY, CHANNEL_FIELD, COUNTRY_FIELD, PURPOSE_FIELD, VALUE_FIELD } from '../utils/constants';
+import { ALTERNATIVE_PURPOSE_TO_FILTER_BY, CHANNEL_FIELD, COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, VALUE_FIELD } from '../utils/constants';
 
 const sumChannelData = (countryData) => {
   const yearData = countryData.filter((item) => item['year'] === '2019');
@@ -52,12 +52,14 @@ const init = (className) => {
           dichart.showLoading();
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeField;
+          let activeCountry = DEFAULT_COUNTRY;
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
               const { country, dataOne: data, purpose } = state;
-              if (country && data) {
+              activeCountry = country;
+              if (activeCountry && data) {
                 if (!purposeField) {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
@@ -74,7 +76,7 @@ const init = (className) => {
                     window.DIState.setState({ purpose: event.target.value });
                   });
                 }
-                renderTable(data, country, purpose, chartNode);
+                renderTable(data, activeCountry, purpose, chartNode);
 
                 dichart.hideLoading();
               }
