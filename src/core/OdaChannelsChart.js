@@ -219,6 +219,7 @@ const init = (className) => {
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeCodeFilter;
           let activePurpose;
+          let activeCountry = DEFAULT_COUNTRY;
           if (!window.DIState) {
             console.log('State is not defined');
 
@@ -229,7 +230,8 @@ const init = (className) => {
           window.DIState.addListener(() => {
             const state = window.DIState.getState;
             const { country, odaChannels: data } = state;
-            if (!country || !data) { // required country and data
+            activeCountry = country;
+            if (!activeCountry || !data) { // required country and data
               dichart.hideLoading();
 
               return;
@@ -249,11 +251,11 @@ const init = (className) => {
 
               purposeCodeFilter.addEventListener('change', (event) => {
                 activePurpose = event.target.value;
-                renderByCountryAndPurposeCode(chartNode, data, country, activePurpose, legendNode);
+                renderByCountryAndPurposeCode(chartNode, data, activeCountry, activePurpose, legendNode);
               });
             }
 
-            renderByCountryAndPurposeCode(chartNode, data, country, activePurpose, legendNode);
+            renderByCountryAndPurposeCode(chartNode, data, activeCountry, activePurpose, legendNode);
             dichart.hideLoading();
             chartNode.parentElement.classList.add('auto-height');
           });
