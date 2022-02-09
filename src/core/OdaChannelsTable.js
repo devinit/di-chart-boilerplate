@@ -58,15 +58,17 @@ const init = (className) => {
            */
           const filterWrapper = addFilterWrapper(tableNode);
           let purposeField;
+          let activeCountry = DEFAULT_COUNTRY;
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
               const { country, odaChannels: data, purpose } = state;
-              if (country && data) {
+              activeCountry = country;
+              if (activeCountry && data) {
                 const options = getPurposes(data);
                 const countryData = filterDataByPurpose(
-                  filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD),
+                  filterDataByCountry(data, activeCountry || DEFAULT_COUNTRY, COUNTRY_FIELD),
                   purpose || options[0],
                   PURPOSE_FIELD,
                 );
@@ -86,7 +88,7 @@ const init = (className) => {
                     window.DIState.setState({ purpose: event.target.value });
                   });
                 }
-                renderTable(tableNode, countryData, country || DEFAULT_COUNTRY);
+                renderTable(tableNode, countryData, activeCountry || DEFAULT_COUNTRY);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
               }
