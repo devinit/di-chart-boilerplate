@@ -1,6 +1,7 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableTwo } from '../components/TableTwo/TableTwo';
+import { DEFAULT_COUNTRY } from '../utils/constants';
 import { filterDataByCountry, formatNumber } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
@@ -95,8 +96,6 @@ const unSortedDataRow = (data, years) => {
 };
 
 const renderTable = (data, country, purpose, tableNode) => {
-  console.log(country)
-  console.log(purpose)
   const YEARS = [2016, 2019];
   const yearRange = YEARS[1] - YEARS[0] + 1;
   const count = [];
@@ -137,12 +136,14 @@ const init = (className) => {
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeField;
           let activePurpose = 'Reproductive health care and family planning';
+          let activeCountry = DEFAULT_COUNTRY;
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
               const { country, dataTwo: data } = state;
-              if (country && data) {
+              activeCountry = country;
+              if (activeCountry && data) {
                 if (!purposeField) {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
@@ -160,11 +161,11 @@ const init = (className) => {
                   });
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;
-                    renderTable(data, country, activePurpose, chartNode);
+                    renderTable(data, activeCountry, activePurpose, chartNode);
                   });
                 }
 
-                renderTable(data, country, activePurpose, chartNode);
+                renderTable(data, activeCountry, activePurpose, chartNode);
 
                 dichart.hideLoading();
               }
