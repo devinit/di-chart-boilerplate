@@ -23,9 +23,9 @@ export const filterDataByPurpose = (data, purpose, purposeField) =>
 
 export const fetchCoreData = () => {
   const dataOneUrl =
-    'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/page/iati-gates/IATI%20RHFP%20data.csv';
+    'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/IATI-RHFP-data-v1.csv';
   const dataTwoUrl =
-  'https://raw.githubusercontent.com/devinit/di-chart-boilerplate/page/iati-gates/IATI%20RHFP%20data2.csv';
+  'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/IATI-RHFP-data-v2.csv';
   if (window.DIState) {
     window.DIState.setState({ country: DEFAULT_DONOR });
     fetchCSVData(dataOneUrl).then((data) => {
