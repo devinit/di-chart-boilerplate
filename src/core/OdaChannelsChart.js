@@ -215,7 +215,6 @@ const init = (className) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
           // init filter dependencies
-          dichart.showLoading();
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeCodeFilter;
           let activePurpose;
@@ -228,12 +227,11 @@ const init = (className) => {
           const legendNode = addFilterWrapper(chartNode);
 
           window.DIState.addListener(() => {
+            dichart.showLoading();
             const state = window.DIState.getState;
             const { country, odaChannels: data } = state;
             activeCountry = country;
             if (!activeCountry || !data) { // required country and data
-              dichart.hideLoading();
-
               return;
             }
 
