@@ -114,7 +114,7 @@ const init = (className) => {
                       }
 
                       return options;
-                    }, []),
+                    }, []).filter((d) => !!d).map((country) => ({ label: country, value: country })),
                     defaultOption: 'Reproductive health care',
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
