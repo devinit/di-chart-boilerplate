@@ -26,8 +26,6 @@ export const extractPurposeCodes = (data, purposeField) =>
   }, []);
 
 export const fetchCoreData = () => {
-  // const crsDataCsvOne =
-  //   'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH-and-FP-CRS-Data-2019.csv';
   const crsDataOneUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1241/';
   const crsDataCsvTwo = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
   const odaAidTypeUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1238/';
