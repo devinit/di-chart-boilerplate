@@ -78,12 +78,13 @@ export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
 };
 
 export const getYearRangeData = (data, yearRange, valueField) => {
-  return yearRange.map((year) =>  {
+  return yearRange.map((year) => {
     const yearValue = data.find((item) => item.year === year);
-    if (yearValue) {return formatNumber(yearValue[valueField])}
+    if (yearValue) {
+      return formatNumber(yearValue[valueField]);
+    }
 
     return 0;
-
   });
 };
 
