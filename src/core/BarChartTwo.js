@@ -1,8 +1,14 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
 import { AIDTYPE_PURPOSE_FIELD, AIDTYPE_VALUE_FIELD, COUNTRY_FIELD } from '../utils/constants';
-import { filterDataByCountry, getYearsFromRange } from '../utils/data';
+import { filterDataByCountry, filterDataByPurpose, getYearsFromRange, getYearRangeDataAsSum } from '../utils/data';
 import { extractChartData, getPercentages, groupAidTypeSums } from '../utils/barChart';
+
+export const getYearSum = (data, purpose, years) => {
+  const filteredData = filterDataByPurpose(data, [purpose], AIDTYPE_PURPOSE_FIELD);
+
+  return getYearRangeDataAsSum(filteredData, years, AIDTYPE_VALUE_FIELD);
+};
 
 const getSeries = (data, years) => {
 
@@ -26,8 +32,9 @@ const getSeries = (data, years) => {
     tooltip: {
       trigger: 'item',
       formatter: (params) => {
+        const actualValue = getYearSum(data, barChartCategory, [params.name]);
 
-        return `${barChartCategory}, ${Number(params.value, 10).toFixed(2)}%`;
+        return `${barChartCategory}: ${Number(params.value, 10).toFixed(2)}% - ${actualValue}`;
       },
     },
   }));
@@ -53,7 +60,6 @@ const renderChart = (chartNode, data) => {
       top: 60,
     },
     series: getSeries(data, years),
-    cursor: 'auto',
   };
 
   chart.setOption(deepMerge(defaultOptions, option));
