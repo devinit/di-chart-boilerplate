@@ -1,17 +1,20 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableTwo } from '../components/TableTwo/TableTwo';
-import { filterDataByCountry } from '../utils/data';
+import { filterDataByCountry, formatNumber, getYearsFromRange } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
+import { PURPOSE_TO_FILTER_BY } from '../utils/constants';
 
 const DATA_PURPOSE_COLUMN = 'Code type';
+const YEAR_RANGE = [2019, 2021];
+
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
   for (let count = 0; count < 10; count++) {
     if (iteratorData.length >= 1) {
       let maxRow = iteratorData.reduce((prev, current) => {
-        if (Number(prev['2021']) < Number(current['2021'])) {
+        if (Number(prev[`${YEAR_RANGE[1]}`]) < Number(current[`${YEAR_RANGE[1]}`])) {
           return current;
         } else {
           return prev;
@@ -26,17 +29,14 @@ const getGroupedData = (countryData) => {
   return { sortedData, unsortedData: iteratorData };
 };
 
-const sortedDataRows = (data) => {
+const sortedDataRows = (data, years) => {
   const fullRows = [];
   for (let i = 0; i < 10; i++) {
     if (data.length >= 1) {
-      fullRows.push([
-        i + 1,
-        data[i].recipient_name,
-        Math.round(Number(data[i]['2019'])),
-        Math.round(Number(data[i]['2020'])),
-        Math.round(Number(data[i]['2021'])),
-      ]);
+      const rank = i + 1;
+      fullRows.push(
+        [rank, data[i].recipient_name].concat(years.map((year) => formatNumber(Number(data[i][`${year}`]))))
+      );
     }
   }
 
@@ -47,33 +47,23 @@ const unSortedDataRow = (data, years) => {
   let sumArray = [];
   years.forEach((year) => {
     const sum = data
-      .map((d) => {
-        return Number(d[year]);
-      })
+      .map((d) => Number(d[year]) || 0)
       .reduce((prev, current) => prev + current, 0);
-    sumArray.push(Math.round(sum));
+    sumArray.push(formatNumber(sum));
   });
 
   return sumArray;
 };
 
 const renderTable = (data, country, purpose, tableNode) => {
-  const YEARS = [2019, 2021];
-  const yearRange = YEARS[1] - YEARS[0] + 1;
-  const count = [];
-  for (const key of Array(yearRange).keys()) {
-    count.push(key);
-  }
-  const rowHeader = ['Rank', 'Recipient'].concat(count.map((key) => YEARS[0] + key));
+  const years = getYearsFromRange(YEAR_RANGE);
+  const rowHeader = ['Rank', 'Recipient'].concat(years);
   const purposeData = data.filter((item) => purpose === item[DATA_PURPOSE_COLUMN]);
   const countrySpecificData = filterDataByCountry(purposeData, country, 'Reporting Organisation Narrative');
   const { sortedData, unsortedData } = getGroupedData(countrySpecificData);
-  const unsortedDataSum = unSortedDataRow(
-    unsortedData,
-    count.map((key) => (YEARS[0] + key).toString()),
-  );
+  const unsortedDataSum = unSortedDataRow(unsortedData, years);
   const rows = [rowHeader]
-    .concat(sortedDataRows(sortedData))
+    .concat(sortedDataRows(sortedData, years))
     .concat([['All other recipients (sum)'].concat(unsortedDataSum)]);
 
   render(createElement(TableTwo, { rows }), tableNode);
@@ -87,13 +77,6 @@ const init = (className) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
 
-          /**
-           * ECharts - prefix all browsers global with window
-           * i.e window.echarts - echarts won't work without it
-           *
-           * const chart = window.echarts.init(chartNode);
-           */
-
           dichart.showLoading();
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeField;
@@ -101,7 +84,6 @@ const init = (className) => {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
-              console.log()
               const { country, dataTwo: data, purpose } = state;
               if (country && data) {
                 if (!purposeField) {
@@ -115,13 +97,11 @@ const init = (className) => {
 
                       return options;
                     }, []).filter((d) => !!d).map((country) => ({ label: country, value: country })),
-                    defaultOption: 'Reproductive health care',
+                    defaultOption: PURPOSE_TO_FILTER_BY[0],
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
                   });
-                  if (state) {
-                    window.DIState.setState({ purpose: 'Reproductive health care' });
-                  }
+                  window.DIState.setState({ purpose: PURPOSE_TO_FILTER_BY[0] });
 
                   purposeField.addEventListener('change', (event) => {
                     window.DIState.setState({ purpose: event.target.value });
