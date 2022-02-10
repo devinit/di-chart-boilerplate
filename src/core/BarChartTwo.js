@@ -2,21 +2,34 @@ import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
 import { AIDTYPE_PURPOSE_FIELD, AIDTYPE_VALUE_FIELD, COUNTRY_FIELD } from '../utils/constants';
 import { filterDataByCountry, getYearsFromRange } from '../utils/data';
-import { getChartPercentages } from '../utils/barChart';
+import { extractChartData, getPercentages, groupAidTypeSums } from '../utils/barChart';
 
 const getSeries = (data, years) => {
 
-  return data.reduce((acc, item)=> {
-      if(!acc.includes(item.aid_type_di_name)) {
-        acc.push(item.aid_type_di_name);
-      }
+  const aid_type_di_names = data.reduce((acc, item)=> {
+    if(!acc.includes(item.aid_type_di_name)) {
+      acc.push(item.aid_type_di_name);
+    }
 
-      return acc;
-    },[]).map((barChartCategory) => ({
+    return acc;
+  },[]);
+
+  const chartData = aid_type_di_names.map((aid_type_di_name) => extractChartData(data, aid_type_di_name, years, AIDTYPE_VALUE_FIELD, AIDTYPE_PURPOSE_FIELD));
+  const groupedSums = groupAidTypeSums(chartData);
+  const percents = getPercentages(chartData, groupedSums);
+
+  return aid_type_di_names.map((barChartCategory, index) => ({
     name: barChartCategory,
     type: 'bar',
     stack: 'oda',
-    data: getChartPercentages(data, barChartCategory, years, AIDTYPE_VALUE_FIELD, AIDTYPE_PURPOSE_FIELD),
+    data: percents[index],
+    tooltip: {
+      trigger: 'item',
+      formatter: (params) => {
+
+        return `${barChartCategory}, ${Number(params.value, 10).toFixed(2)}%`;
+      },
+    },
   }));
 };
 
@@ -40,6 +53,7 @@ const renderChart = (chartNode, data) => {
       top: 60,
     },
     series: getSeries(data, years),
+    cursor: 'auto',
   };
 
   chart.setOption(deepMerge(defaultOptions, option));

@@ -8,13 +8,29 @@ export const extractChartData = (data, purpose, years, valueField, purposeField)
   return getYearRangeDataAsSum(filteredData, years, valueField);
 };
 
-export const getChartPercentages = (data, purpose, years, valueField, purposeField) => {
-  const yearRangeDataSums = extractChartData(data, purpose, years, valueField, purposeField);
-  const total = yearRangeDataSums.reduce((acc, item) => item + acc, 0);
-  const percentages = [];
-  for (let i = 0; i < yearRangeDataSums.length; i++) {
-    percentages.push(Math.round((yearRangeDataSums[i]/total)*100));
+export const groupAidTypeSums = (chartData) => {
+  let chartTotals = {};
+  for (let i = 0; i < chartData.length; i++) {
+    const chartDataItem = chartData[i];
+    for (let k = 0; k < chartData.length; k++) {
+      chartTotals[k] = chartTotals[k] ? chartTotals[k] : [];
+      chartTotals[k].push(chartDataItem[k]);
+    }
   }
 
-  return percentages;
+  return chartTotals;
 };
+
+export const getPercentages = (chartData, groupedSums) => {
+  const percentages = Object.keys(groupedSums).map((item) => {
+    return { 
+      [item]: groupedSums[item].reduce((acc, item) => acc + item, 0)
+    };
+  });
+
+  return chartData.map((item) => {
+    return item.map((arr, index) => {
+       return (((percentages[index] ? parseFloat(arr) : 0)/parseFloat(percentages[index] ? percentages[index][index] : 1)))*100; 
+    }).filter((percentage) => percentage !== 0);
+  });
+}
