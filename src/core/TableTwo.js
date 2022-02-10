@@ -1,7 +1,6 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableTwo } from '../components/TableTwo/TableTwo';
-import { PURPOSE_TO_FILTER_BY } from '../utils/constants';
 import { filterDataByCountry, formatNumber, getYearsFromRange } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
@@ -78,6 +77,7 @@ const init = (className) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
 
+          const DEFAULT_PURPOSE = 'Reproductive health care and family planning';
           dichart.showLoading();
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeField;
@@ -98,11 +98,11 @@ const init = (className) => {
 
                       return options;
                     }, []).filter((d) => !!d).map((country) => ({ label: country, value: country })),
-                    defaultOption: PURPOSE_TO_FILTER_BY[0],
+                    defaultOption: DEFAULT_PURPOSE,
                     className: 'purpose-code-filter',
                     label: 'Select Purpose Code',
                   });
-                  window.DIState.setState({ purpose: PURPOSE_TO_FILTER_BY[0] });
+                  window.DIState.setState({ purpose: DEFAULT_PURPOSE });
 
                   purposeField.addEventListener('change', (event) => {
                     window.DIState.setState({ purpose: event.target.value });
