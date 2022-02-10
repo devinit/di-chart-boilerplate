@@ -1,9 +1,9 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableTwo } from '../components/TableTwo/TableTwo';
+import { PURPOSE_TO_FILTER_BY } from '../utils/constants';
 import { filterDataByCountry, formatNumber, getYearsFromRange } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
-import { PURPOSE_TO_FILTER_BY } from '../utils/constants';
 
 const DATA_PURPOSE_COLUMN = 'Code type';
 const YEAR_RANGE = [2019, 2021];
@@ -11,10 +11,11 @@ const YEAR_RANGE = [2019, 2021];
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
+  const maxYear = YEAR_RANGE[1];
   for (let count = 0; count < 10; count++) {
     if (iteratorData.length >= 1) {
       let maxRow = iteratorData.reduce((prev, current) => {
-        if (Number(prev[`${YEAR_RANGE[1]}`]) < Number(current[`${YEAR_RANGE[1]}`])) {
+        if (Number(prev[`${maxYear}`]) < Number(current[`${maxYear}`])) {
           return current;
         } else {
           return prev;
