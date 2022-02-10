@@ -89,6 +89,7 @@ const init = (className) => {
                   PURPOSE_TO_FILTER_BY,
                   PURPOSE_FIELD,
                 );
+                console.log(countryData)
                 // chart goes here
                 renderChart(chartNode, countryData);
 

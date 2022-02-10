@@ -18,38 +18,43 @@ export const filterDataByCountry = (data, country, countryField) =>
 export const filterDataByPurpose = (data, purpose, purposeField) =>
   // eslint-disable-next-line implicit-arrow-linebreak
   data.filter((item) => purpose.includes(item[purposeField]));
-export const extractPurposeCodes = (data, purposeField) => data.reduce((codes, prev) => {
+export const extractPurposeCodes = (data, purposeField) =>
+  data.reduce((codes, prev) => {
     const value = prev[purposeField];
 
     return !codes.includes(value) ? codes.concat(value) : codes;
   }, []);
 
 export const fetchCoreData = () => {
-  const crsDataCsvOne =
-    'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH-and-FP-CRS-Data-2019.csv';
-  const crsDataCsvTwo =
-    'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
+  // const crsDataCsvOne =
+  //   'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH-and-FP-CRS-Data-2019.csv';
+  const crsDataOneUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1241/';
+  const crsDataCsvTwo = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
   const odaAidTypeUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1238/';
   const odaChannelsUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1237/';
   if (window.DIState) {
     window.DIState.setState({ country: 'United States' });
-    fetchCSVData(crsDataCsvOne).then((data) => {
-      window.DIState.setState({ dataOne: data });
-    });
+    window
+      .fetch(crsDataOneUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        window.DIState.setState({ dataOne: data.results || [] });
+      });
     fetchCSVData(crsDataCsvTwo).then((data) => {
       window.DIState.setState({ dataTwo: data });
     });
-    window.fetch(odaAidTypeUrl)
+    window
+      .fetch(odaAidTypeUrl)
       .then((response) => response.json())
       .then((data) => {
         window.DIState.setState({ odaAidType: data.results || [] });
       });
-    window.fetch(odaChannelsUrl)
+    window
+      .fetch(odaChannelsUrl)
       .then((response) => response.json())
       .then((data) => {
         window.DIState.setState({ odaChannels: data.results || [] });
       });
-
   } else {
     console.log('State is not defined');
   }
@@ -63,7 +68,7 @@ export const getYearsFromRange = (range) => {
   }
 
   return count.map((key) => range[0] + key);
-}
+};
 
 export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
   return yearRange.reduce((row, column) => {
@@ -72,6 +77,12 @@ export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
 
     return row.concat(sum);
   }, []);
-}
+};
+
+export const getYearRangeData = (data, yearRange, valueField) => {
+  return yearRange.map((year) => {
+    return formatNumber(data.find((item) => item.year === year)[valueField]);
+  });
+};
 
 export default fetchCSVData;
