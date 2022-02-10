@@ -7,6 +7,8 @@ A starting point for creating a chart (D3, Plotly, ECharts)
 ### Pre-requisites
 
 	npm install -g nwb
+	
+	npm install papaparse
 
 You must also ensure that your node.js/npm directory is on PATH.
 
