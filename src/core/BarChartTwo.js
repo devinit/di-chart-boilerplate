@@ -1,17 +1,49 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
-import { AIDTYPE_PURPOSE_FIELD, AIDTYPE_VALUE_FIELD, COUNTRY_FIELD } from '../utils/constants';
+import { AIDTYPE_PURPOSE_FIELD, CHANNEL_VALUE_FIELD, COUNTRY_FIELD } from '../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, getYearsFromRange, getYearRangeDataAsSum } from '../utils/data';
-import { extractChartData, getPercentages, groupAidTypeSums } from '../utils/barChart';
+import { extractChartData } from '../utils/barChart';
 
-export const getYearSum = (data, purpose, years) => {
+const getYearSum = (data, purpose, years) => {
   const filteredData = filterDataByPurpose(data, [purpose], AIDTYPE_PURPOSE_FIELD);
 
-  return getYearRangeDataAsSum(filteredData, years, AIDTYPE_VALUE_FIELD);
+  return getYearRangeDataAsSum(filteredData, years, CHANNEL_VALUE_FIELD);
 };
 
-const getSeries = (data, years) => {
+const groupAidTypeSums = (chartData) => {
+  let chartTotals = {};
+  for (let i = 0; i < chartData.length; i++) {
+    const chartDataItem = chartData[i];
+    for (let k = 0; k < chartDataItem.length; k++) {
+      chartTotals[k] = chartTotals[k] ? chartTotals[k] : [];
+      chartTotals[k].push(chartDataItem[k]);
+    }
+  }
 
+  return chartTotals;
+};
+
+const getPercentages = (chartData, groupedSums) => {
+  const percentages = Object.keys(groupedSums).map((item) => {
+    return { 
+      [item]: groupedSums[item].reduce((acc, item) => acc + item, 0)
+    };
+  });
+
+  return chartData.map((item) => {
+    return item.map((arr, index) => {
+      const numerator = parseFloat(arr);
+      const denominator = parseFloat(percentages[index] ? percentages[index][index] : 1);
+      if (isNaN(numerator) || isNaN(denominator) || numerator === 0 || numerator === 0) {
+        return 0;
+      } else {
+        return ((numerator/denominator))*100;
+      }
+    });
+  });
+}
+
+const getSeries = (data, years) => {
   const aid_type_di_names = data.reduce((acc, item)=> {
     if(!acc.includes(item.aid_type_di_name)) {
       acc.push(item.aid_type_di_name);
@@ -20,7 +52,7 @@ const getSeries = (data, years) => {
     return acc;
   },[]);
 
-  const chartData = aid_type_di_names.map((aid_type_di_name) => extractChartData(data, aid_type_di_name, years, AIDTYPE_VALUE_FIELD, AIDTYPE_PURPOSE_FIELD));
+  const chartData = aid_type_di_names.map((aid_type_di_name) => extractChartData(data, aid_type_di_name, years, CHANNEL_VALUE_FIELD, AIDTYPE_PURPOSE_FIELD));
   const groupedSums = groupAidTypeSums(chartData);
   const percents = getPercentages(chartData, groupedSums);
 
