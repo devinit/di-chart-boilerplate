@@ -1,7 +1,7 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
 import { AIDTYPE_PURPOSE_FIELD, CHANNEL_VALUE_FIELD, COUNTRY_FIELD } from '../utils/constants';
-import { filterDataByCountry, filterDataByPurpose, getYearsFromRange, getYearRangeDataAsSum } from '../utils/data';
+import { filterDataByCountry, filterDataByPurpose, getYearsFromRange, getYearRangeDataAsSum, formatNumber } from '../utils/data';
 import { extractChartData } from '../utils/barChart';
 
 const getYearSum = (data, purpose, years) => {
@@ -25,7 +25,7 @@ const groupAidTypeSums = (chartData) => {
 
 const getPercentages = (chartData, groupedSums) => {
   const percentages = Object.keys(groupedSums).map((item) => {
-    return { 
+    return {
       [item]: groupedSums[item].reduce((acc, item) => acc + item, 0)
     };
   });
@@ -61,22 +61,24 @@ const getSeries = (data, years) => {
     type: 'bar',
     stack: 'oda',
     data: percents[index],
-    tooltip: {
-      trigger: 'item',
-      formatter: (params) => {
-        const actualValue = getYearSum(data, barChartCategory, [params.name]);
-
-        return `${barChartCategory}: ${Number(params.value, 10).toFixed(2)}% - ${actualValue}`;
-      },
-    },
   }));
 };
+
+const getTooltipItem = (data, params) => {
+  const actualValue = getYearSum(data, params.seriesName, [params.name]);
+
+  return `<div style="margin-bottom:8px;">${params.seriesName}: <span style="font-weight: bold;">${formatNumber(Number(params.value, 10))}% - ${actualValue}</span></div>`;
+}
 
 const renderChart = (chartNode, data) => {
   const chart = window.echarts.init(chartNode);
   const years = getYearsFromRange([2015, 2019]);
   const option = {
     legend: { show: true, selectedMode: false },
+    tooltip: {
+      trigger: 'axis',
+      formatter: (params) => params.sort((a, b) => a.value - b.value).reverse().map((param) => getTooltipItem(data, param)).join(''),
+    },
     xAxis: {
       type: 'category',
       data: years,
