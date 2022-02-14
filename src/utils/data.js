@@ -1,6 +1,10 @@
 import { parse } from 'papaparse';
 
-export const formatNumber = (value) => Number(value.toFixed(2));
+export const formatNumber = (value, defaultForNan = '') => {
+  const formattedNumber = Number(Number(value).toFixed(2));
+
+  return isNaN(formattedNumber) ? defaultForNan : formattedNumber;
+}
 
 const fetchCSVData = (url) =>
   // eslint-disable-next-line no-undef
