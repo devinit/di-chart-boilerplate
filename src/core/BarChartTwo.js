@@ -10,30 +10,30 @@ const getYearSum = (data, purpose, years) => {
   return getYearRangeDataAsSum(filteredData, years, CHANNEL_VALUE_FIELD);
 };
 
-const groupAidTypeSums = (chartData) => {
-  let chartTotals = {};
+const groupAidTypeColumns = (chartData) => {
+  let chartColumnGroups = {};
   for (let i = 0; i < chartData.length; i++) {
     const chartDataItem = chartData[i];
     for (let k = 0; k < chartDataItem.length; k++) {
-      chartTotals[k] = chartTotals[k] ? chartTotals[k] : [];
-      chartTotals[k].push(chartDataItem[k]);
+      chartColumnGroups[k] = chartColumnGroups[k] ? chartColumnGroups[k] : [];
+      chartColumnGroups[k].push(chartDataItem[k]);
     }
   }
 
-  return chartTotals;
+  return chartColumnGroups;
 };
 
-const getPercentages = (chartData, groupedSums) => {
-  const percentages = Object.keys(groupedSums).map((item) => {
+const getPercentages = (chartData, groupedColumnData) => {
+  const dataSums = Object.keys(groupedColumnData).map((item) => {
     return {
-      [item]: groupedSums[item].reduce((acc, item) => acc + item, 0)
+      [item]: groupedColumnData[item].reduce((acc, item) => acc + item, 0)
     };
   });
 
   return chartData.map((item) => {
     return item.map((arr, index) => {
       const numerator = parseFloat(arr);
-      const denominator = parseFloat(percentages[index] ? percentages[index][index] : 1);
+      const denominator = parseFloat(dataSums[index] ? dataSums[index][index] : 1);
       if (isNaN(numerator) || isNaN(denominator) || numerator === 0 || numerator === 0) {
         return 0;
       } else {
@@ -53,8 +53,11 @@ const getSeries = (data, years) => {
   },[]);
 
   const chartData = aid_type_di_names.map((aid_type_di_name) => extractChartData(data, aid_type_di_name, years, CHANNEL_VALUE_FIELD, AIDTYPE_PURPOSE_FIELD));
-  const groupedSums = groupAidTypeSums(chartData);
-  const percents = getPercentages(chartData, groupedSums);
+  console.log(chartData);
+  const groupedColumnData = groupAidTypeColumns(chartData);
+  console.log(groupedColumnData);
+  const percents = getPercentages(chartData, groupedColumnData);
+  console.log(percents);
 
   return aid_type_di_names.map((barChartCategory, index) => ({
     name: barChartCategory,
@@ -96,7 +99,7 @@ const renderChart = (chartNode, data) => {
     series: getSeries(data, years),
   };
 
-  chart.setOption(deepMerge(defaultOptions, option));
+  chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
 };
 
 const init = (className) => {
