@@ -1,8 +1,9 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
-import { AIDTYPE_PURPOSE_FIELD, CHANNEL_VALUE_FIELD, COUNTRY_FIELD } from '../utils/constants';
+import { AIDTYPE_PURPOSE_FIELD, CHANNEL_VALUE_FIELD, COUNTRY_FIELD, PURPOSE_FIELD } from '../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, getYearsFromRange, getYearRangeDataAsSum, formatNumber } from '../utils/data';
 import { extractChartData } from '../utils/barChart';
+import { addFilter, addFilterWrapper } from '../widgets/filters';
 
 const getYearSum = (data, purpose, years) => {
   const filteredData = filterDataByPurpose(data, [purpose], AIDTYPE_PURPOSE_FIELD);
@@ -53,11 +54,8 @@ const getSeries = (data, years) => {
   },[]);
 
   const chartData = aid_type_di_names.map((aid_type_di_name) => extractChartData(data, aid_type_di_name, years, CHANNEL_VALUE_FIELD, AIDTYPE_PURPOSE_FIELD));
-  console.log(chartData);
   const groupedColumnData = groupAidTypeColumns(chartData);
-  console.log(groupedColumnData);
   const percents = getPercentages(chartData, groupedColumnData);
-  console.log(percents);
 
   return aid_type_di_names.map((barChartCategory, index) => ({
     name: barChartCategory,
@@ -119,13 +117,46 @@ const init = (className) => {
 
           const defaultCountry = 'United States';
           dichart.showLoading();
+          const filterWrapper = addFilterWrapper(chartNode);
+          let purposeField;
+          let activePurpose = 'Reproductive health care';
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
               const { country, odaAidType: data } = state;
               if (country && data) {
-                const countryData = filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD);
+                const countryData = filterDataByPurpose(
+                  filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD),
+                  [activePurpose],
+                  PURPOSE_FIELD,
+                );
+                if (!purposeField) {
+                  purposeField = addFilter({
+                    wrapper: filterWrapper,
+                    options: data.reduce((options, prev) => {
+                      const value = prev[PURPOSE_FIELD];
+                      if (!options.includes(value)) {
+                        return options.concat(value);
+                      }
+
+                      return options;
+                    }, []),
+                    defaultOption: activePurpose,
+                    className: 'purpose-code-filter',
+                    label: 'Select Purpose Code',
+                  });
+                  purposeField.addEventListener('change', (event) => {
+                    activePurpose = event.target.value;
+                    const { country } = window.DIState.getState;
+                    const countryData = filterDataByPurpose(
+                      filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD),
+                      [activePurpose],
+                      PURPOSE_FIELD,
+                    );
+                    renderChart(chartNode, countryData);
+                  });
+                }
                 renderChart(chartNode, countryData);
 
                 dichart.hideLoading();
