@@ -72,7 +72,7 @@ const getSeries = (data, years) => {
 const getTooltipItem = (data, params) => {
   const actualValue = formatNumber(getYearSum(data, params.seriesName, [params.name]));
 
-  return `<div style="margin-bottom:8px;">${params.seriesName}: <span style="font-weight: bold;">${formatNumber(Number(params.value, 10))}% - ${actualValue}</span></div>`;
+  return `<div style="margin-bottom:8px;">${params.marker}${params.seriesName}: <span style="font-weight: bold;">${formatNumber(Number(params.value, 10))}% - ${actualValue}</span></div>`;
 }
 
 const renderChart = (chartNode, data) => {
