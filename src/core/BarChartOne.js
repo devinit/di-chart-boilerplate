@@ -70,13 +70,6 @@ const init = (className) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
 
-          /**
-           * ECharts - prefix all browsers global with window
-           * i.e window.echarts - echarts won't work without it
-           *
-           * const chart = window.echarts.init(chartNode);
-           */
-
           const defaultCountry = 'United States';
           dichart.showLoading();
           if (window.DIState) {

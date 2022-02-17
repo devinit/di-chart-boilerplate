@@ -44,12 +44,6 @@ const init = (className) => {
           const dichart = new window.DICharts.Chart(tableNode.parentElement);
           dichart.showLoading();
 
-          /**
-           * ECharts - prefix all browsers global with window
-           * i.e window.echarts - echarts won't work without it
-           *
-           * const chart = window.echarts.init(chartNode);
-           */
           const defaultCountry = 'United States';
           if (window.DIState) {
             window.DIState.addListener(() => {

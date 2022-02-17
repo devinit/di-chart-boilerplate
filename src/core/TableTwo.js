@@ -116,12 +116,12 @@ const init = (className) => {
   window.DICharts.handler.addChart({
     className,
     echarts: {
-      onAdd: (chartNodes) => {
-        Array.prototype.forEach.call(chartNodes, (chartNode) => {
-          const dichart = new window.DICharts.Chart(chartNode.parentElement);
+      onAdd: (tableNodes) => {
+        Array.prototype.forEach.call(tableNodes, (tableNode) => {
+          const dichart = new window.DICharts.Chart(tableNode.parentElement);
 
           dichart.showLoading();
-          const filterWrapper = addFilterWrapper(chartNode);
+          const filterWrapper = addFilterWrapper(tableNode);
           let purposeField;
           let activePurpose = DEFAULT_PURPOSE;
           let activeCountry = DEFAULT_COUNTRY;
@@ -146,13 +146,14 @@ const init = (className) => {
                   });
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;
-                    renderTable(data, activeCountry, activePurpose, chartNode);
+                    renderTable(data, activeCountry, activePurpose, tableNode);
                   });
                 }
 
-                renderTable(data, activeCountry, activePurpose, chartNode);
+                renderTable(data, activeCountry, activePurpose, tableNode);
 
                 dichart.hideLoading();
+                tableNode.parentElement.classList.add('auto-height');
               }
             });
           } else {
