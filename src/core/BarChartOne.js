@@ -54,9 +54,7 @@ const renderChart = (chartNode, data) => {
       nameLocation: 'middle',
       nameGap: 50,
     },
-    grid: {
-      top: 60,
-    },
+    grid: { top: 60 },
     series: getSeries(data, years),
   };
 

@@ -24,6 +24,19 @@ export const colorways = {
   leaf: ['#08492f', '#005b3e', '#00694a', '#3b8c62', '#74bf93', '#a2d1b0', '#b1d8bb', '#c5e1cb'],
 };
 
+export const getThematicColoursMix = (exclude = ['rainbow']) => {
+  const numberOfThematicColours = colorways.default.length;
+  const themes = Object.keys(colorways).filter((theme) => !exclude.includes(theme));
+  const colours = [];
+
+  for (const iterator of Array(numberOfThematicColours - 1).keys()) {
+    const randomIndex = Math.floor((Math.random() * 7) + 1);
+    colours.push(colorways[themes[iterator]][randomIndex]);
+  }
+
+  return colours;
+}
+
 // default echart options for DI charts
 const defaultOptions = {
   legend: {
@@ -37,6 +50,7 @@ const defaultOptions = {
     textStyle: {
       fontFamily: 'Geomanist Regular,sans-serif',
     },
+    axisPointer: { type: 'none' }
   },
   toolbox: {
     showTitle: false,
@@ -58,7 +72,7 @@ const defaultOptions = {
       },
     },
   },
-  color: colorways.default,
+  color: getThematicColoursMix(),
   xAxis: {
     axisLabel: {
       fontFamily: 'Geomanist Regular,sans-serif',
