@@ -70,6 +70,7 @@ const renderChart = (chartNode, data, legendNode) => {
     yAxis: { show: false },
     series: {
       type: 'sunburst',
+      nodeClick: false,
       // center: ['45%', '50%'],
       emphasis: {
         focus: 'descendant'
