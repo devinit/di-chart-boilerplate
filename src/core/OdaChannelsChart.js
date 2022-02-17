@@ -1,9 +1,10 @@
 import Colour from 'color';
-import { createElement } from 'react';
-import { render } from 'react-dom';
 import deepMerge from 'deepmerge';
+import { createElement } from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
 import defaultOptions, { colorways } from '../charts/echarts';
 import Legend from '../components/Legend';
+import NoData from '../components/NoData';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY } from '../utils/constants';
 import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
@@ -42,6 +43,18 @@ const getLegendItemsFromChartData = (data, parent, parentColour) =>
   });
 
 const renderChart = (chartNode, data, legendNode) => {
+  if (!data.length) {
+    chartNode.classList.add('invisible');
+    legendNode.classList.add('no-data--wrapper');
+    unmountComponentAtNode(legendNode);
+    render(createElement(NoData), legendNode);
+
+    return;
+  } else {
+    chartNode.classList.remove('invisible');
+    legendNode.classList.remove('no-data--wrapper');
+  }
+
   const chart = window.echarts.init(chartNode);
   const colours = colorways.rainbow;
   const legendItems = data.map((item, index) => ({ caption: item.name, colour: colours[index] }));
