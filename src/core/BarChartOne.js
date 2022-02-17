@@ -18,6 +18,7 @@ const getSeries = (data, years) => {
           normal: {
             show: true,
             position: 'top',
+            fontFamily: 'Geomanist Regular,sans-serif',
             formatter: (params) => {
               const total = series.reduce((total, s) => {
                 const datum = s.data[params.dataIndex];

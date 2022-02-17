@@ -42,6 +42,7 @@ const defaultOptions = {
     showTitle: false,
     feature: {
       saveAsImage: {
+        show: false,
         title: 'Save as image',
         pixelRatio: 2,
       },
@@ -76,6 +77,7 @@ const defaultOptions = {
       show: false,
     },
   },
+  axisPointer: { type: 'none' },
   grid: {
     top: 10,
   },
