@@ -6,6 +6,7 @@ import { filterDataByCountry, formatNumber } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
 const DATA_PURPOSE_COLUMN = 'Code type';
+const DEFAULT_PURPOSE = 'Reproductive health care and family planning';
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
@@ -81,18 +82,12 @@ const sortedDataRows = (data) => {
   }
 };
 
-const unSortedDataRow = (data, years) => {
-  let sumArray = [];
-  years.forEach((year) => {
-    const sum = data
-      .map((d) => {
-        return Number(d[year]);
-      })
-      .reduce((prev, current) => prev + current, 0);
-    sumArray.push(formatNumber(sum));
-  });
+const getUnsortedDataRow = (data, years) => {
+  return years.map((year) => {
+    const sum = data.map((d) => Number(d[year])).reduce((prev, current) => prev + current, 0);
 
-  return sumArray;
+    return formatNumber(sum);
+  });
 };
 
 const renderTable = (data, country, purpose, tableNode) => {
@@ -106,7 +101,7 @@ const renderTable = (data, country, purpose, tableNode) => {
   const purposeData = data.filter((item) => purpose === item[DATA_PURPOSE_COLUMN]);
   const countrySpecificData = filterDataByCountry(purposeData, country, 'donor_name');
   const { sortedData, unsortedData } = getGroupedData(countrySpecificData);
-  const unsortedDataSum = unSortedDataRow(
+  const unsortedDataSum = getUnsortedDataRow(
     unsortedData,
     count.map((key) => (YEARS[0] + key).toString()),
   );
@@ -125,17 +120,10 @@ const init = (className) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
 
-          /**
-           * ECharts - prefix all browsers global with window
-           * i.e window.echarts - echarts won't work without it
-           *
-           * const chart = window.echarts.init(chartNode);
-           */
-
           dichart.showLoading();
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeField;
-          let activePurpose = 'Reproductive health care and family planning';
+          let activePurpose = DEFAULT_PURPOSE;
           let activeCountry = DEFAULT_COUNTRY;
           if (window.DIState) {
             window.DIState.addListener(() => {
@@ -149,15 +137,12 @@ const init = (className) => {
                     wrapper: filterWrapper,
                     options: data.reduce((options, prev) => {
                       const value = prev[DATA_PURPOSE_COLUMN];
-                      if (!options.includes(value)) {
-                        return options.concat(value);
-                      }
 
-                      return options;
+                      return value && !options.includes(value) ? options.concat(value) : options;
                     }, []),
                     defaultOption: activePurpose,
                     className: 'purpose-code-filter',
-                    label: 'Select Purpose Code',
+                    label: 'Select purpose code',
                   });
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;

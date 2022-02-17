@@ -1,7 +1,7 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
 import { extractChartData } from '../utils/chart';
-import { COUNTRY_FIELD, PURPOSE_FIELD } from '../utils/constants';
+import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearRangeDataAsSum, getYearsFromRange } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
@@ -112,14 +112,7 @@ const init = (className) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
 
-          /**
-           * ECharts - prefix all browsers global with window
-           * i.e window.echarts - echarts won't work without it
-           *
-           * const chart = window.echarts.init(chartNode);
-           */
-
-          const defaultCountry = 'United States';
+          const defaultCountry = DEFAULT_COUNTRY;
           dichart.showLoading();
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeField;
@@ -140,7 +133,7 @@ const init = (className) => {
                     wrapper: filterWrapper,
                     options: data.reduce((options, prev) => {
                       const value = prev[PURPOSE_FIELD];
-                      if (!options.includes(value)) {
+                      if (value && !options.includes(value)) {
                         return options.concat(value);
                       }
 
