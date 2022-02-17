@@ -23,8 +23,10 @@ const renderTable = (tableNode, data, country) => {
 
     return formatNumber(dataRows.reduce((total, current) => total + current[index], 0));
   });
+  // formatting is done after calculating the total to eliminate rounding errors
+  const formattedDataRow = dataRows.map((row) => row.map((cell) => typeof cell === 'number' ? formatNumber(cell) : cell));
 
-  const rows = [headerRow].concat(dataRows, [totalsRow]);
+  const rows = [headerRow].concat(formattedDataRow, [totalsRow]);
 
   render(createElement(TableOne, { country, rows }), tableNode);
 };

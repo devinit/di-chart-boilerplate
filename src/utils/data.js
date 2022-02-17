@@ -87,7 +87,7 @@ export const getYearRangeData = (data, yearRange, valueField) => {
   return yearRange.map((year) => {
     const yearValue = data.find((item) => item.year === year);
 
-    return yearValue ? formatNumber(yearValue[valueField]) : 0;
+    return yearValue ? yearValue[valueField] : 0;
   });
 };
 
