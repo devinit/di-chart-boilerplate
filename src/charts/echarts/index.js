@@ -72,7 +72,7 @@ const defaultOptions = {
       },
     },
   },
-  color: getThematicColoursMix(),
+  color: colorways.rainbow,
   xAxis: {
     axisLabel: {
       fontFamily: 'Geomanist Regular,sans-serif',
