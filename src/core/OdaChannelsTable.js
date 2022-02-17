@@ -7,33 +7,27 @@ import { addFilter, addFilterWrapper } from '../widgets/filters';
 
 const CHANNEL_FIELD = 'oecd_aggregated_channel';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
+const YEARS = [2019]
 
-const getPurposes = (data) => {
-  return data.reduce((acc, item) => {
-    if (!acc.includes(item[PURPOSE_FIELD])) {
-      acc.push(item[PURPOSE_FIELD]);
-    }
-
-    return acc;
-  }, []);
-}
+const getPurposes = (data) =>
+  data.reduce((acc, item) => !acc.includes(item[PURPOSE_FIELD]) ? acc.concat(item[PURPOSE_FIELD]) : acc, []);
 
 const sumChannelData = (countryData) => {
   return countryData.reduce((acc, data) => {
-    return {...acc, [data[CHANNEL_FIELD]]: (parseFloat(acc[data[CHANNEL_FIELD]] || 0) + parseFloat(data[VALUE_FIELD] || 0)).toFixed(1) }
+    return {...acc, [data[CHANNEL_FIELD]]: parseFloat(acc[data[CHANNEL_FIELD]] || 0) + parseFloat(data[VALUE_FIELD] || 0) }
   }, {});
 };
 
 const getRows = (channelData) => {
-  const sum = Object.keys(channelData).reduce((_sum, key) => formatNumber(_sum + formatNumber(Number(channelData[key]) || 0)), 0);
+  const sum = Object.keys(channelData).reduce((_sum, key) => _sum + Number(channelData[key] || 0), 0);
 
-  return Object.keys(channelData).map((dataKey) => {
-    return [dataKey, channelData[dataKey], `${((((channelData[dataKey]/sum)*100) || 0).toFixed(1) || 0)}%`];
-  }).concat([['All channels', sum, '100%']]);
+  return Object.keys(channelData).map((dataKey) =>
+    [dataKey, formatNumber(channelData[dataKey]), `${(formatNumber(((channelData[dataKey]/sum)*100) || 0) || 0)}%`])
+      .concat([['All channels', formatNumber(sum), sum ? '100%' : '0%']]);
 };
 
 const renderTable = (tableNode, countryData, country) => {
-  const rowHeader = ['Channel', '2019', '% Total'];
+  const rowHeader = ['Channel'].concat(YEARS, '% Total');
   const tableData = getRows(sumChannelData(countryData));
   const rows = [rowHeader].concat(tableData);
 
@@ -52,12 +46,6 @@ const init = (className) => {
           const dichart = new window.DICharts.Chart(tableNode.parentElement);
           dichart.showLoading();
 
-          /**
-           * ECharts - prefix all browsers global with window
-           * i.e window.echarts - echarts won't work without it
-           *
-           * const chart = window.echarts.init(chartNode);
-           */
           const filterWrapper = addFilterWrapper(tableNode);
           let purposeField;
           let activeCountry = DEFAULT_COUNTRY;

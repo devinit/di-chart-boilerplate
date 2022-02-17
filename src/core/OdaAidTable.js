@@ -40,7 +40,7 @@ const getRows = (unfilteredData, data) => {
     return [label].concat(formatNumber(rowValue), [rowPercentage]);
   });
 
-  return headerRow.concat(rows, [['Total', formatNumber(totalDisbursments), '100%']]);
+  return headerRow.concat(rows, [['Total', formatNumber(totalDisbursments), totalDisbursments ? '100%' : '0%']]);
 };
 
 const renderTable = (tableNode, data, country, purpose) => {
