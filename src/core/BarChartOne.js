@@ -9,6 +9,7 @@ const getSeries = (data, years) => {
     name: purpose,
     type: 'bar',
     stack: 'oda',
+    tooltip: { valueFormatter: (value) => formatNumber(value) },
     data: extractChartData(data, purpose, years, CHANNEL_VALUE_FIELD, PURPOSE_FIELD),
   })).map((serie, index, series) => {
     if (index === series.length - 1) {

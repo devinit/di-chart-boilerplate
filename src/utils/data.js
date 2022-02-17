@@ -74,10 +74,8 @@ export const getYearsFromRange = (range) => {
 
 export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
   return yearRange.reduce((row, column) => {
-    const yearData = data.filter((d) => {
-      return parseInt(d.year) === parseInt(column);
-    });
-    const sum = yearData.reduce((_sum, prev) => formatNumber(_sum + formatNumber(Number(prev[valueField]) || 0)), 0);
+    const yearData = data.filter((d) => `${d.year}` === `${column}`);
+    const sum = yearData.reduce((_sum, prev) => _sum + Number(prev[valueField] || 0), 0);
 
     return row.concat(sum);
   }, []);
