@@ -1,10 +1,12 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import OdaChannelsTable from '../components/OdaChannelsTable';
-import { CHANNEL_FIELD, CHANNEL_VALUE_FIELD, COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../utils/constants';
+import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
-// import d3 from 'd3'; // eslint-disable-line import/no-unresolved
+
+const CHANNEL_FIELD = 'oecd_aggregated_channel';
+const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
 const getPurposes = (data) => {
   return data.reduce((acc, item) => {
@@ -18,7 +20,7 @@ const getPurposes = (data) => {
 
 const sumChannelData = (countryData) => {
   return countryData.reduce((acc, data) => {
-    return {...acc, [data[CHANNEL_FIELD]]: (parseFloat(acc[data[CHANNEL_FIELD]] || 0) + parseFloat(data[CHANNEL_VALUE_FIELD] || 0)).toFixed(1) }
+    return {...acc, [data[CHANNEL_FIELD]]: (parseFloat(acc[data[CHANNEL_FIELD]] || 0) + parseFloat(data[VALUE_FIELD] || 0)).toFixed(1) }
   }, {});
 };
 

@@ -1,16 +1,17 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
-import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, CHANNEL_VALUE_FIELD, YEARS } from '../utils/constants';
+import { extractChartData } from '../utils/chart';
+import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, YEARS } from '../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearsFromRange } from '../utils/data';
-import { extractChartData } from '../utils/barChart';
 
+const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 const getSeries = (data, years) => {
   return PURPOSE_TO_FILTER_BY.map((purpose) => ({
     name: purpose,
     type: 'bar',
     stack: 'oda',
     tooltip: { valueFormatter: (value) => formatNumber(value) },
-    data: extractChartData(data, purpose, years, CHANNEL_VALUE_FIELD, PURPOSE_FIELD),
+    data: extractChartData(data, purpose, years, VALUE_FIELD, PURPOSE_FIELD),
   })).map((serie, index, series) => {
     if (index === series.length - 1) {
       return {

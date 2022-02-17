@@ -1,14 +1,18 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
-import { AIDTYPE_PURPOSE_FIELD, CHANNEL_VALUE_FIELD, COUNTRY_FIELD, PURPOSE_FIELD } from '../utils/constants';
-import { filterDataByCountry, filterDataByPurpose, getYearsFromRange, getYearRangeDataAsSum, formatNumber } from '../utils/data';
-import { extractChartData } from '../utils/barChart';
+import { extractChartData } from '../utils/chart';
+import { COUNTRY_FIELD, PURPOSE_FIELD } from '../utils/constants';
+import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearRangeDataAsSum, getYearsFromRange } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
+
+
+const AIDTYPE_PURPOSE_FIELD = 'aid_type_di_name';
+const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
 const getYearSum = (data, purpose, years) => {
   const filteredData = filterDataByPurpose(data, [purpose], AIDTYPE_PURPOSE_FIELD);
 
-  return getYearRangeDataAsSum(filteredData, years, CHANNEL_VALUE_FIELD);
+  return getYearRangeDataAsSum(filteredData, years, VALUE_FIELD);
 };
 
 const groupAidTypeColumns = (chartData) => {
@@ -45,19 +49,19 @@ const getPercentages = (chartData, groupedColumnData) => {
 }
 
 const getSeries = (data, years) => {
-  const aid_type_di_names = data.reduce((acc, item)=> {
-    if(!acc.includes(item.aid_type_di_name)) {
-      acc.push(item.aid_type_di_name);
+  const aidTypes = data.reduce((types, item)=> {
+    if(!types.includes(item[AIDTYPE_PURPOSE_FIELD])) {
+      types.push(item[AIDTYPE_PURPOSE_FIELD]);
     }
 
-    return acc;
+    return types;
   },[]);
 
-  const chartData = aid_type_di_names.map((aid_type_di_name) => extractChartData(data, aid_type_di_name, years, CHANNEL_VALUE_FIELD, AIDTYPE_PURPOSE_FIELD));
+  const chartData = aidTypes.map((aidType) => extractChartData(data, aidType, years, VALUE_FIELD, AIDTYPE_PURPOSE_FIELD));
   const groupedColumnData = groupAidTypeColumns(chartData);
   const percents = getPercentages(chartData, groupedColumnData);
 
-  return aid_type_di_names.map((barChartCategory, index) => ({
+  return aidTypes.map((barChartCategory, index) => ({
     name: barChartCategory,
     type: 'bar',
     stack: 'oda',
@@ -66,7 +70,7 @@ const getSeries = (data, years) => {
 };
 
 const getTooltipItem = (data, params) => {
-  const actualValue = getYearSum(data, params.seriesName, [params.name]);
+  const actualValue = formatNumber(getYearSum(data, params.seriesName, [params.name]));
 
   return `<div style="margin-bottom:8px;">${params.seriesName}: <span style="font-weight: bold;">${formatNumber(Number(params.value, 10))}% - ${actualValue}</span></div>`;
 }
@@ -78,7 +82,7 @@ const renderChart = (chartNode, data) => {
     legend: { show: true, selectedMode: false },
     tooltip: {
       trigger: 'axis',
-      formatter: (params) => params.sort((a, b) => a.value - b.value).reverse().map((param) => getTooltipItem(data, param)).join(''),
+      formatter: (params) => params.map((param) => getTooltipItem(data, param)).join(''),
     },
     xAxis: {
       type: 'category',
