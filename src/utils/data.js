@@ -24,12 +24,22 @@ export const filterDataByCountry = (data, country, countryField) =>
 export const filterDataByPurpose = (data, purpose, purposeField) =>
   // eslint-disable-next-line implicit-arrow-linebreak
   data.filter((item) => purpose.includes(item[purposeField]));
+export const extractPurposeCodes = (data, purposeField) =>
+  data.reduce((codes, prev) => {
+    const value = prev[purposeField];
+
+    return !codes.includes(value) & typeof value !== "undefined" ? codes.concat(value) : codes;
+  }, []);
 
 export const fetchCoreData = () => {
   const dataOneUrl =
     'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/IATI-RHFP-data-v1.csv';
   const dataTwoUrl =
   'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/IATI-RHFP-data-v2.csv';
+  const dataThreeUrl =
+  'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/iati_rhfp3.csv';
+  const dataFourUrl =
+  'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/iati_rhfp4.csv';
   if (window.DIState) {
     window.DIState.setState({ country: DEFAULT_DONOR });
     fetchCSVData(dataOneUrl).then((data) => {
@@ -37,6 +47,12 @@ export const fetchCoreData = () => {
     });
     fetchCSVData(dataTwoUrl).then((data) => {
       window.DIState.setState({ dataTwo: data });
+    });
+    fetchCSVData(dataThreeUrl).then((data) => {
+      window.DIState.setState({ dataThree: data });
+    });
+    fetchCSVData(dataFourUrl).then((data) => {
+      window.DIState.setState({ dataFour: data });
     });
   } else {
     console.log('State is not defined');
