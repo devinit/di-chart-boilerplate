@@ -10,7 +10,7 @@ const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 const YEARS = [2019]
 
 const getPurposes = (data) =>
-  data.reduce((acc, item) => !acc.includes(item[PURPOSE_FIELD]) ? acc.concat(item[PURPOSE_FIELD]) : acc, []);
+  data.reduce((acc, item) => item[PURPOSE_FIELD] && !acc.includes(item[PURPOSE_FIELD]) ? acc.concat(item[PURPOSE_FIELD]) : acc, []);
 
 const sumChannelData = (countryData) => {
   return countryData.reduce((acc, data) => {
