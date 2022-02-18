@@ -36,7 +36,7 @@ const getLegendItemsFromChartData = (data, parent, parentColour) =>
       const percent = formatNumber((child.value / parent.value) * 100);
       const colour = Colour(parentColour).lighten(0.2)
 
-      return { caption: `${child.name} | US$${child.value} million - ${percent}%`, colour: colour.hex() };
+      return { caption: `${child.name} | US$${formatNumber(child.value)} million - ${percent}%`, colour: colour.hex() };
     }
 
     return { caption: child.name, colour: '#333' };
