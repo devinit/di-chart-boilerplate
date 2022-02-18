@@ -165,7 +165,7 @@ const renderChart = (chartNode, data, legendNode) => {
   });
 
   chart.on('mouseout', function () {
-    if (activeLevel === 0) resetLegend();
+    resetLegend();
   });
 };
 
