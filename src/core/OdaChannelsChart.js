@@ -114,33 +114,6 @@ const renderChart = (chartNode, data, legendNode) => {
 
   chart.setOption({ ... deepMerge(defaultOptions, option), color: colours });
   resetLegend();
-  let activeLevel = 0;
-
-  chart.on('click', function (params) {
-    if (!params.name) { // reset legend on returning to original view
-      activeLevel = activeLevel - 1;
-      if(activeLevel === 0) resetLegend();
-
-      return;
-    }
-    let legend = legendItems.filter((item) => params.treePathInfo.find((d) => d.name === item.caption));
-    const activeItemData = data.find((item) => item.name === params.name);
-    if (activeItemData && activeItemData.children) {
-      activeLevel = 1;
-      createActiveTreeLegend(legendNode, activeItemData, params, legend, params.color)
-
-      return;
-    }
-
-    activeLevel = 2;
-    const parent = params.treePathInfo[params.treePathInfo.length - 2];
-    const parentData = data.find((item) => item.name === parent.name);
-    if (parentData && parentData.children) {
-      createActiveTreeLegend(legendNode, parentData, parent, legend, legend[0].colour)
-    } else {
-      createLegend(legendNode, legend);
-    }
-  });
 
   chart.on('mouseover', function (params) {
     if (!params.name) return;
