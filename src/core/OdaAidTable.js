@@ -80,7 +80,7 @@ const init = (className) => {
                     options: purposeNames,
                     defaultOption: activePurpose,
                     className: 'purpose-code-filter',
-                    label: 'Select Purpose Code',
+                    label: 'Select purpose code',
                   });
 
                   purposeField.addEventListener('change', (event) => {

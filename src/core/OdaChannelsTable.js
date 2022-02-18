@@ -68,7 +68,7 @@ const init = (className) => {
                     options,
                     defaultOption: options[0],
                     className: 'purpose-code-filter',
-                    label: 'Select Purpose Code',
+                    label: 'Select purpose code',
                   });
                   if (state) {
                     window.DIState.setState({ purpose: options[0] });

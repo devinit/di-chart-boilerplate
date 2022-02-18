@@ -66,7 +66,7 @@ const init = (className) => {
                     options: ALTERNATIVE_PURPOSE_TO_FILTER_BY,
                     defaultOption: 'Reproductive health care and family planning',
                     className: 'purpose-code-filter',
-                    label: 'Select Purpose Code',
+                    label: 'Select purpose code',
                   });
                   if (state) {
                     window.DIState.setState({ purpose: 'Reproductive health care and family planning' });
