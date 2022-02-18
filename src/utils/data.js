@@ -1,9 +1,13 @@
 import { parse } from 'papaparse';
 
 export const formatNumber = (value, defaultForNan = '') => {
-  const formattedNumber = Number(Number(value).toFixed(2));
+  const formattedNumber = Number(value);
 
-  return isNaN(formattedNumber) ? defaultForNan : formattedNumber;
+  if (isNaN(formattedNumber)) {
+    return defaultForNan;
+  }
+
+  return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(formattedNumber);
 }
 
 const fetchCSVData = (url) =>
