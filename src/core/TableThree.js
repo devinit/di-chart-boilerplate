@@ -18,7 +18,7 @@ const getRows = (tableData) => {
 
   return Object.keys(tableData).map((dataKey) => {
     return [dataKey, tableData[dataKey], (((tableData[dataKey]/sum)*100).toFixed(1) || 0)];
-  }).concat([['All channels', sum, '100%']]);
+  }).concat([['Total', sum, '100%']]);
 };
 
 const renderTable = (data, country, purpose, tableNode) => {
