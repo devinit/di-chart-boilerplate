@@ -10,7 +10,7 @@ const getSeries = (data, years) => {
     name: purpose,
     type: 'bar',
     stack: 'oda',
-    tooltip: { valueFormatter: (value) => formatNumber(value) },
+    tooltip: { valueFormatter: (value) => `US$${formatNumber(value)} million` },
     data: extractChartData(data, purpose, years, VALUE_FIELD, PURPOSE_FIELD),
   })).map((serie, index, series) => {
     if (index === series.length - 1) {
@@ -51,7 +51,7 @@ const renderChart = (chartNode, data) => {
     },
     yAxis: {
       type: 'value',
-      name: 'USD$ millions (constant 2019 prices)',
+      name: 'US$ millions (constant 2019 prices)',
       nameLocation: 'middle',
       nameGap: 50,
     },

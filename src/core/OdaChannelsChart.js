@@ -36,7 +36,7 @@ const getLegendItemsFromChartData = (data, parent, parentColour) =>
       const percent = formatNumber((child.value / parent.value) * 100);
       const colour = Colour(parentColour).lighten(0.2)
 
-      return { caption: `${child.name} | ${child.value} - ${percent}%`, colour: colour.hex() };
+      return { caption: `${child.name} | US$${child.value} million - ${percent}%`, colour: colour.hex() };
     }
 
     return { caption: child.name, colour: '#333' };
@@ -73,10 +73,10 @@ const renderChart = (chartNode, data, legendNode) => {
           const parent = params.treePathInfo[params.treePathInfo.length - 2];
           const percentage = formatNumber((params.value / parent.value) * 100);
 
-          return `${params.name} | ${formatNumber(params.value)} - ${percentage}%`;
+          return `${params.name} | US$${formatNumber(params.value)} million - ${percentage}%`;
         }
 
-        return `${params.name} | ${formatNumber(params.value)}`;
+        return `${params.name} | US$${formatNumber(params.value)} million`;
       }
     },
     xAxis: { show: false },
