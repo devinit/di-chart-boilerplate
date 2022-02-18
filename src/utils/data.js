@@ -34,17 +34,15 @@ export const extractPurposeCodes = (data, purposeField) =>
   }, []);
 
 export const fetchCoreData = () => {
-  const crsDataOneUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1241/';
+  const crsDataOneUrl = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20and%20FP%20Purpose%20code%20trends%20chart%20OECD.csv';
   const crsDataCsvTwo = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
   const odaAidTypeUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1238/';
   const odaChannelsUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1237/';
   if (window.DIState) {
     window.DIState.setState({ country: 'United States' });
-    window
-      .fetch(crsDataOneUrl)
-      .then((response) => response.json())
+    fetchCSVData(crsDataOneUrl)
       .then((data) => {
-        window.DIState.setState({ dataOne: data.results || [] });
+        window.DIState.setState({ dataOne: data || [] });
       });
     fetchCSVData(crsDataCsvTwo).then((data) => {
       window.DIState.setState({ dataTwo: data });
@@ -87,9 +85,12 @@ export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
 
 export const getYearRangeData = (data, yearRange, valueField) => {
   return yearRange.map((year) => {
-    const yearValue = data.find((item) => item.year === year);
+    const yearValue = data.find((item) => `${item.year}` === `${year}`);
+    if (yearValue) {
+      return Number(yearValue[valueField]) || '';
+    }
 
-    return yearValue ? yearValue[valueField] : 0;
+    return 'No data'
   });
 };
 
