@@ -10,11 +10,11 @@ const YEAR = 2019;
 const AIDTYPE_FIELD = 'aid_type_di_name';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
-const getPurposeNames = (data) => {
+const getPurposeNames = (data, purposeField = PURPOSE_FIELD) => {
   const purposeNames = [];
   data.forEach((record) => {
-    if (!purposeNames.includes(record.purpose_name)) {
-      purposeNames.push(record.purpose_name);
+    if (record[purposeField] && !purposeNames.includes(record[purposeField])) {
+      purposeNames.push(record[purposeField]);
     }
   });
 

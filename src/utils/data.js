@@ -36,7 +36,7 @@ export const extractPurposeCodes = (data, purposeField) =>
 export const fetchCoreData = () => {
   const crsDataOneUrl = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20and%20FP%20Purpose%20code%20trends%20chart%20OECD.csv';
   const crsDataCsvTwo = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv';
-  const odaAidTypeUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1238/';
+  const odaAidTypeUrl = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20FP%20aid%20type%20OECD.csv';
   const odaChannelsUrl = 'https://staging-ddw.devinit.org/api/dataset/data/1237/';
   if (window.DIState) {
     window.DIState.setState({ country: 'United States' });
@@ -47,11 +47,9 @@ export const fetchCoreData = () => {
     fetchCSVData(crsDataCsvTwo).then((data) => {
       window.DIState.setState({ dataTwo: data });
     });
-    window
-      .fetch(odaAidTypeUrl)
-      .then((response) => response.json())
+    fetchCSVData(odaAidTypeUrl)
       .then((data) => {
-        window.DIState.setState({ odaAidType: data.results || [] });
+        window.DIState.setState({ odaAidType: data || [] });
       });
     window
       .fetch(odaChannelsUrl)
