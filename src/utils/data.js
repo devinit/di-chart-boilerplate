@@ -71,11 +71,12 @@ export const getYearsFromRange = (range) => {
 
 export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
   return yearRange.reduce((row, column) => {
-    const yearData = data.filter((d) => d.year === `${column}`);
+    const yearData = data.filter((d) => Number(d.Year) === Number(`${column}`));
     const sum = yearData.reduce((_sum, prev) => formatNumber(_sum + formatNumber(Number(prev[valueField]) || 0)), 0);
 
     return row.concat(sum);
   }, []);
+  
 }
 
 export default fetchCSVData;

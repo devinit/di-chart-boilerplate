@@ -5,6 +5,7 @@ import initDonorFilter from './core/DonorFilter';
 import initBarChartOne from './core/BarChartOne';
 import initTableTwo from './core/TableTwo';
 import initIATIAidTable from './core/IATIAidTable';
+import initBarChartTwo from './core/BarChartTwo';
 import initIATIChannelsTable from './core/IATIChannelsTable';
 import initIATIChannelsChart from './core/IATIChannelsChart';
 import { fetchCoreData } from './utils/data';
@@ -21,7 +22,7 @@ window.addEventListener('load', () => {
   initBarChartOne('dicharts--iati-chart-one-root');
   initTableTwo('dicharts--iati-table-two-root');
   initIATIAidTable('dicharts--iati-aid-table');
-  initIATIChannelsTable('dicharts--iati-channels-table');
+  initBarChartTwo('dicharts--chart-two-root')
   initIATIChannelsTable('dicharts--iati-channels-table');
   initIATIChannelsChart('dicharts--iati-channels-chart');
 });
