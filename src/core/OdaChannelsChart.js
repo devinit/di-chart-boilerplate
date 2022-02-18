@@ -169,7 +169,7 @@ const parseIntoSunburstFormat = (data, fields) => { // fields = { parent: string
   const parents = data
     .map((d) => {
       if (d[fields.value]) {
-        d[fields.value] = formatNumber(d[fields.value]);
+        return { ...d, [fields.value]: formatNumber(d[fields.value]) };
       }
 
       return d;
