@@ -10,6 +10,11 @@ export const formatNumber = (value, defaultForNan = '') => {
   return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(formattedNumber);
 }
 
+export const parseValuesToNumbers = (data, valueField) => data.map((item) => ({
+  ...item,
+  [valueField]: item[valueField] ? Number(item[valueField]) : 'NA'
+}));
+
 const fetchCSVData = (url) =>
   // eslint-disable-next-line no-undef
   new Promise((resolve) => {

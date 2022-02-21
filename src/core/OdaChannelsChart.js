@@ -6,7 +6,7 @@ import defaultOptions, { colorways } from '../charts/echarts';
 import Legend from '../components/Legend';
 import NoData from '../components/NoData';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY } from '../utils/constants';
-import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
+import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber, parseValuesToNumbers } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
@@ -236,11 +236,11 @@ const init = (className) => {
 
               purposeCodeFilter.addEventListener('change', (event) => {
                 activePurpose = event.target.value;
-                renderByCountryAndPurposeCode(chartNode, data, activeCountry, activePurpose, legendNode);
+                renderByCountryAndPurposeCode(chartNode, parseValuesToNumbers(data, VALUE_FIELD), activeCountry, activePurpose, legendNode);
               });
             }
 
-            renderByCountryAndPurposeCode(chartNode, data, activeCountry, activePurpose, legendNode);
+            renderByCountryAndPurposeCode(chartNode, parseValuesToNumbers(data, VALUE_FIELD), activeCountry, activePurpose, legendNode);
             dichart.hideLoading();
             chartNode.parentElement.classList.add('auto-height');
           });
