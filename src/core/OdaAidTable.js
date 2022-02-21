@@ -20,18 +20,19 @@ const getPurposeNames = (data, purposeField = PURPOSE_FIELD) => {
 
   return purposeNames;
 };
-const filterDataByYear = (data) => data.filter((item) => item.year === YEAR);
+const filterDataByYear = (data) => data.filter((item) => `${item.year}` === `${YEAR}`);
 
 const getRows = (unfilteredData, data) => {
   const headerRow = [['Aid Type', YEAR, '% Total']];
   const allRowLabels = unfilteredData.reduce((acc, item) => {
-    if(!acc.includes(item[AIDTYPE_FIELD])) {
-      acc.push(item[AIDTYPE_FIELD]);
+    const aidType = item[AIDTYPE_FIELD];
+    if(aidType && !acc.includes(aidType)) {
+      acc.push(aidType);
     }
 
     return acc;
   }, []);
-  const totalDisbursments = data.map((item) => item[VALUE_FIELD]).reduce((prev, current) => prev + current, 0);
+  const totalDisbursments = data.map((item) => Number(item[VALUE_FIELD])).reduce((prev, current) => prev + current, 0);
   const rows = allRowLabels.map((label) => {
     const row = data.find((item) => item[AIDTYPE_FIELD] === label);
     const rowValue = row ? row[VALUE_FIELD] : 0;
