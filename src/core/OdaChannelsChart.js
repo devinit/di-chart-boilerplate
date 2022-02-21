@@ -1,11 +1,10 @@
 import Colour from 'color';
 import deepMerge from 'deepmerge';
 import { createElement } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import { render } from 'react-dom';
 import defaultOptions, { colorways } from '../charts/echarts';
 import Legend from '../components/Legend';
-import NoData from '../components/NoData';
-import { COUNTRY_FIELD, DEFAULT_COUNTRY } from '../utils/constants';
+import { addNoData, COUNTRY_FIELD, DEFAULT_COUNTRY, removeNoData } from '../utils';
 import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber, parseValuesToNumbers } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
@@ -45,14 +44,12 @@ const getLegendItemsFromChartData = (data, parent, parentColour) =>
 const renderChart = (chartNode, data, legendNode) => {
   if (!data.length) {
     chartNode.classList.add('invisible');
-    legendNode.classList.add('no-data--wrapper');
-    unmountComponentAtNode(legendNode);
-    render(createElement(NoData), legendNode);
+    addNoData(legendNode);
 
     return;
   } else {
     chartNode.classList.remove('invisible');
-    legendNode.classList.remove('no-data--wrapper');
+    removeNoData(legendNode);
   }
 
   const chart = window.echarts.init(chartNode);
