@@ -10,6 +10,8 @@ export const addNoData = (rootNode) => {
 
 export const removeNoData = (rootNode) => {
   rootNode.classList.remove('no-data--wrapper');
+  unmountComponentAtNode(rootNode);
 }
 
 export * from './constants';
+export * from './chart';

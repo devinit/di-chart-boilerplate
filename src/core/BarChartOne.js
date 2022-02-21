@@ -1,8 +1,17 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
-import { extractChartData } from '../utils/chart';
-import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, YEARS } from '../utils/constants';
+import {
+  addNoData,
+  COUNTRY_FIELD,
+  extractChartData,
+  PURPOSE_FIELD,
+  PURPOSE_TO_FILTER_BY,
+  removeNoData,
+  toggleShowChart,
+  YEARS,
+} from '../utils';
 import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearsFromRange } from '../utils/data';
+import { addFilterWrapper } from '../widgets/filters';
 
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 const getSeries = (data, years) => {
@@ -40,7 +49,17 @@ const getSeries = (data, years) => {
   });
 };
 
-const renderChart = (chartNode, data) => {
+const renderChart = (chartNode, noDataNode, data) => {
+  if (!data.length) {
+    toggleShowChart(chartNode, false);
+    addNoData(noDataNode);
+
+    return;
+  } else {
+    toggleShowChart(chartNode);
+    removeNoData(noDataNode);
+  }
+
   const chart = window.echarts.init(chartNode);
   const years = getYearsFromRange(YEARS);
   const option = {
@@ -72,6 +91,7 @@ const init = (className) => {
 
           const defaultCountry = 'United States';
           dichart.showLoading();
+          const noDataNode = addFilterWrapper(chartNode);
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
@@ -84,7 +104,7 @@ const init = (className) => {
                   PURPOSE_FIELD,
                 );
                 // chart goes here
-                renderChart(chartNode, countryData);
+                renderChart(chartNode, noDataNode, countryData);
 
                 dichart.hideLoading();
               }

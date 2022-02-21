@@ -1,7 +1,14 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../charts/echarts';
-import { extractChartData } from '../utils/chart';
-import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../utils/constants';
+import {
+  COUNTRY_FIELD,
+  DEFAULT_COUNTRY,
+  PURPOSE_FIELD,
+  extractChartData,
+  toggleShowChart,
+  removeNoData,
+  addNoData,
+} from '../utils';
 import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearRangeDataAsSum, getYearsFromRange } from '../utils/data';
 import { addFilter, addFilterWrapper } from '../widgets/filters';
 
@@ -81,7 +88,17 @@ const getTooltipItem = (data, params) => {
     </div>`;
 }
 
-const renderChart = (chartNode, data) => {
+const renderChart = (chartNode, noDataNode, data) => {
+  if (!data.length) {
+    toggleShowChart(chartNode, false);
+    addNoData(noDataNode);
+
+    return;
+  } else {
+    toggleShowChart(chartNode);
+    removeNoData(noDataNode);
+  }
+
   const chart = window.echarts.init(chartNode);
   const years = getYearsFromRange([2015, 2019]);
   const option = {
@@ -121,6 +138,7 @@ const init = (className) => {
           const defaultCountry = DEFAULT_COUNTRY;
           dichart.showLoading();
           const filterWrapper = addFilterWrapper(chartNode);
+          const noDataNode = addFilterWrapper(chartNode);
           let purposeField;
           let activePurpose = 'Reproductive health care';
           if (window.DIState) {
@@ -157,10 +175,10 @@ const init = (className) => {
                       [activePurpose],
                       PURPOSE_FIELD,
                     );
-                    renderChart(chartNode, countryData);
+                    renderChart(chartNode, noDataNode, countryData);
                   });
                 }
-                renderChart(chartNode, countryData);
+                renderChart(chartNode, noDataNode, countryData);
 
                 dichart.hideLoading();
               }
