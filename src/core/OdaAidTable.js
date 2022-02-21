@@ -9,6 +9,7 @@ import { addFilter, addFilterWrapper } from '../widgets/filters';
 const YEAR = 2019;
 const AIDTYPE_FIELD = 'aid_type_di_name';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
+const NO_DATA = 'No data';
 
 const getPurposeNames = (data, purposeField = PURPOSE_FIELD) => {
   const purposeNames = [];
@@ -35,13 +36,13 @@ const getRows = (unfilteredData, data) => {
   const totalDisbursments = data.map((item) => Number(item[VALUE_FIELD])).reduce((prev, current) => prev + current, 0);
   const rows = allRowLabels.map((label) => {
     const row = data.find((item) => item[AIDTYPE_FIELD] === label);
-    const rowValue = row ? row[VALUE_FIELD] : 0;
-    const rowPercentage = `${(formatNumber((rowValue / totalDisbursments)*100) || 0)}%`;
+    const rowValue = row ? row[VALUE_FIELD] : NO_DATA;
+    const rowPercentage = rowValue !== NO_DATA ? `${(formatNumber((rowValue / totalDisbursments)*100) || 0)}%` : NO_DATA;
 
-    return [label].concat(formatNumber(rowValue), [rowPercentage]);
+    return [label].concat(formatNumber(rowValue, 'No data'), [rowPercentage]);
   });
 
-  return headerRow.concat(rows, [['Total', formatNumber(totalDisbursments), totalDisbursments ? '100%' : '0%']]);
+  return headerRow.concat(rows, [['Total', formatNumber(totalDisbursments, 'No data'), totalDisbursments ? '100%' : '0%']]);
 };
 
 const renderTable = (tableNode, data, country, purpose) => {

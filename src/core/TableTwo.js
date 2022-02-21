@@ -55,10 +55,10 @@ const sortedDataRows = (data) => {
         fullRows.push([
           i + 1,
           data[i].recipient_name,
-          formatNumber(Number(data[i]['2016'])),
-          formatNumber(Number(data[i]['2017'])),
-          formatNumber(Number(data[i]['2018'])),
-          formatNumber(Number(data[i]['2019'])),
+          formatNumber(Number(data[i]['2016']), 'No data'),
+          formatNumber(Number(data[i]['2017']), 'No data'),
+          formatNumber(Number(data[i]['2018']), 'No data'),
+          formatNumber(Number(data[i]['2019']), 'No data'),
         ]);
       }
     }
@@ -70,10 +70,10 @@ const sortedDataRows = (data) => {
         fullRows.push([
           i + 1,
           data[i].recipient_name,
-          formatNumber(Number(data[i]['2016'])),
-          formatNumber(Number(data[i]['2017'])),
-          formatNumber(Number(data[i]['2018'])),
-          formatNumber(Number(data[i]['2019'])),
+          formatNumber(Number(data[i]['2016']), 'No data'),
+          formatNumber(Number(data[i]['2017']), 'No data'),
+          formatNumber(Number(data[i]['2018']), 'No data'),
+          formatNumber(Number(data[i]['2019']), 'No data'),
         ]);
       }
     }
@@ -86,7 +86,7 @@ const getUnsortedDataRow = (data, years) => {
   return years.map((year) => {
     const sum = data.map((d) => Number(d[year])).reduce((prev, current) => prev + current, 0);
 
-    return formatNumber(sum);
+    return formatNumber(sum, 'No data');
   });
 };
 
