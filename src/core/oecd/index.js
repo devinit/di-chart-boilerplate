@@ -13,7 +13,12 @@ import { fetchCoreData } from '../../utils/data';
 // Your Code Goes Here i.e. functions
 
 const init = () => {
-  fetchCoreData();
+  fetchCoreData([
+    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20and%20FP%20Purpose%20code%20trends%20chart%20OECD.csv', state: 'dataOne' },
+    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv', state: 'dataTwo' },
+    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20FP%20aid%20type%20OECD.csv', state: 'odaAidType' },
+    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20FP%20channels%20OECD.csv', state: 'odaChannels' },
+  ]);
   initDonorFilter('dicharts--oda-root');
   initTableOne('dicharts--table-one-root');
   initBarChartOne('dicharts--chart-one-root');
