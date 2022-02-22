@@ -18,7 +18,7 @@ const init = () => {
     { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv', state: 'dataTwo' },
     { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20FP%20aid%20type%20OECD.csv', state: 'odaAidType' },
     { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20FP%20channels%20OECD.csv', state: 'odaChannels' },
-  ]);
+  ], { country: 'United States' });
   initDonorFilter('dicharts--donor-selector');
   initTableOne('dicharts--table-one');
   initBarChartOne('dicharts--chart-one');

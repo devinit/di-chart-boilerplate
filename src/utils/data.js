@@ -38,9 +38,10 @@ export const extractPurposeCodes = (data, purposeField) =>
     return value && !codes.includes(value) ? codes.concat(value) : codes;
   }, []);
 
-export const fetchCoreData = (sources) => {
+export const fetchCoreData = (sources, defaultState) => {
   if (window.DIState && sources.length) {
-    window.DIState.setState({ country: 'United States' });
+    if (defaultState) window.DIState.setState(defaultState);
+
     sources.forEach(({ url, state }) => {
       fetchCSVData(url)
         .then((data) => {
