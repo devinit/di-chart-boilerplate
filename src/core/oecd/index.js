@@ -1,3 +1,5 @@
+import '../../styles/oecd.css';
+
 import initTableOne from './TableOne';
 import initDonorFilter from './DonorFilter';
 import initBarChartOne from './BarChartOne';

@@ -1,0 +1,11 @@
+.dicharts--oda-root {
+  display: none;
+}
+
+
+.dicharts--chart-one-root,
+.dicharts--oda-channels-chart,
+.dicharts--chart-two-root {
+  width: 100%;
+  min-height: 450px;
+}
