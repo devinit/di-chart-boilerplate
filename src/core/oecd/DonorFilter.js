@@ -1,5 +1,5 @@
-import fetchCSVData from '../utils/data';
-import { addFilter, addFilterWrapper } from '../widgets/filters';
+import fetchCSVData from '../../utils/data';
+import { addFilter, addFilterWrapper } from '../../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions

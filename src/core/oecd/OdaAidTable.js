@@ -1,9 +1,9 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
-import { OdaAidTable } from '../components/OdaAidTable';
-import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../utils/constants';
-import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
-import { addFilter, addFilterWrapper } from '../widgets/filters';
+import { OdaAidTable } from '../../components/OdaAidTable';
+import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../../utils/constants';
+import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
+import { addFilter, addFilterWrapper } from '../../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 const YEAR = 2019;

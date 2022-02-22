@@ -1,9 +1,9 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
-import { TableOne } from '../components/TableOne/TableOne';
-import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
-import { addFilter, addFilterWrapper } from '../widgets/filters';
-import { ALTERNATIVE_PURPOSE_TO_FILTER_BY, CHANNEL_FIELD, COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, VALUE_FIELD } from '../utils/constants';
+import { TableOne } from '../../components/TableOne/TableOne';
+import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
+import { addFilter, addFilterWrapper } from '../../widgets/filters';
+import { ALTERNATIVE_PURPOSE_TO_FILTER_BY, CHANNEL_FIELD, COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, VALUE_FIELD } from '../../utils/constants';
 
 const sumChannelData = (countryData) => {
   const yearData = countryData.filter((item) => item['year'] === '2019');

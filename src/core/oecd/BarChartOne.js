@@ -1,5 +1,5 @@
 import deepMerge from 'deepmerge';
-import defaultOptions from '../charts/echarts';
+import defaultOptions from '../../charts/echarts';
 import {
   addNoData,
   COUNTRY_FIELD,
@@ -9,9 +9,9 @@ import {
   removeNoData,
   toggleShowChart,
   YEARS,
-} from '../utils';
-import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearsFromRange } from '../utils/data';
-import { addFilterWrapper } from '../widgets/filters';
+} from '../../utils';
+import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearsFromRange } from '../../utils/data';
+import { addFilterWrapper } from '../../widgets/filters';
 
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 const getSeries = (data, years) => {

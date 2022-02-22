@@ -1,9 +1,9 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
-import OdaChannelsTable from '../components/OdaChannelsTable';
-import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../utils/constants';
-import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../utils/data';
-import { addFilter, addFilterWrapper } from '../widgets/filters';
+import OdaChannelsTable from '../../components/OdaChannelsTable';
+import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../../utils/constants';
+import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
+import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 const CHANNEL_FIELD = 'oecd_aggregated_channel';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';

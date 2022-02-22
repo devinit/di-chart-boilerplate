@@ -1,5 +1,5 @@
 import deepMerge from 'deepmerge';
-import defaultOptions from '../charts/echarts';
+import defaultOptions from '../../charts/echarts';
 import {
   COUNTRY_FIELD,
   DEFAULT_COUNTRY,
@@ -8,9 +8,9 @@ import {
   toggleShowChart,
   removeNoData,
   addNoData,
-} from '../utils';
-import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearRangeDataAsSum, getYearsFromRange } from '../utils/data';
-import { addFilter, addFilterWrapper } from '../widgets/filters';
+} from '../../utils';
+import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearRangeDataAsSum, getYearsFromRange } from '../../utils/data';
+import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 
 const AIDTYPE_PURPOSE_FIELD = 'aid_type_di_name';

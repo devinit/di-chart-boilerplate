@@ -1,9 +1,9 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
-import { TableTwo } from '../components/TableTwo/TableTwo';
-import { DEFAULT_COUNTRY } from '../utils/constants';
-import { filterDataByCountry, formatNumber } from '../utils/data';
-import { addFilter, addFilterWrapper } from '../widgets/filters';
+import { TableTwo } from '../../components/TableTwo/TableTwo';
+import { DEFAULT_COUNTRY } from '../../utils/constants';
+import { filterDataByCountry, formatNumber } from '../../utils/data';
+import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 const DATA_PURPOSE_COLUMN = 'Code type';
 const DEFAULT_PURPOSE = 'Reproductive health care and family planning';

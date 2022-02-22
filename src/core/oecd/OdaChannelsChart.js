@@ -2,11 +2,11 @@ import Colour from 'color';
 import deepMerge from 'deepmerge';
 import { createElement } from 'react';
 import { render } from 'react-dom';
-import defaultOptions, { colorways } from '../charts/echarts';
-import Legend from '../components/Legend';
-import { addNoData, COUNTRY_FIELD, DEFAULT_COUNTRY, removeNoData } from '../utils';
-import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber, parseValuesToNumbers } from '../utils/data';
-import { addFilter, addFilterWrapper } from '../widgets/filters';
+import defaultOptions, { colorways } from '../../charts/echarts';
+import Legend from '../../components/Legend';
+import { addNoData, COUNTRY_FIELD, DEFAULT_COUNTRY, removeNoData } from '../../utils';
+import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber, parseValuesToNumbers } from '../../utils/data';
+import { addFilter, addFilterWrapper } from '../../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions

@@ -1,8 +1,8 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
-import { TableOne } from '../components/TableOne/TableOne';
-import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, YEARS } from '../utils/constants';
-import { filterDataByCountry, filterDataByPurpose, formatNumber,getYearRangeData, getYearsFromRange } from '../utils/data';
+import { TableOne } from '../../components/TableOne/TableOne';
+import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, YEARS } from '../../utils/constants';
+import { filterDataByCountry, filterDataByPurpose, formatNumber,getYearRangeData, getYearsFromRange } from '../../utils/data';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
