@@ -19,14 +19,14 @@ const init = () => {
     { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20FP%20aid%20type%20OECD.csv', state: 'odaAidType' },
     { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20FP%20channels%20OECD.csv', state: 'odaChannels' },
   ]);
-  initDonorFilter('dicharts--oda-root');
-  initTableOne('dicharts--table-one-root');
-  initBarChartOne('dicharts--chart-one-root');
-  initBarChartTwo('dicharts--chart-two-root');
-  initTableTwo('dicharts--table-two-root');
-  initOdaAidTable('dicharts--oda-aid-table');
-  initOdaChannelsTable('dicharts--oda-channels-table');
-  initOdaChannelsChart('dicharts--oda-channels-chart');
+  initDonorFilter('dicharts--donor-selector');
+  initTableOne('dicharts--table-one');
+  initBarChartOne('dicharts--chart-one');
+  initBarChartTwo('dicharts--chart-two');
+  initTableTwo('dicharts--table-two');
+  initOdaAidTable('dicharts--table-three');
+  initOdaChannelsTable('dicharts--table-four');
+  initOdaChannelsChart('dicharts--chart-three');
 };
 
 export default init;
