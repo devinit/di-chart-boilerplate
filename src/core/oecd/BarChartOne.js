@@ -10,7 +10,7 @@ import {
   toggleShowChart,
   YEARS,
 } from '../../utils';
-import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearsFromRange } from '../../utils/data';
+import { filterDataByDonor, filterDataByPurpose, formatNumber, getYearsFromRange } from '../../utils/data';
 import { addFilterWrapper } from '../../widgets/filters';
 
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
@@ -99,7 +99,7 @@ const init = (className) => {
               const { country, dataOne: data } = state;
               if (country && data) {
                 const countryData = filterDataByPurpose(
-                  filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD),
+                  filterDataByDonor(data, country || defaultCountry, COUNTRY_FIELD),
                   PURPOSE_TO_FILTER_BY,
                   PURPOSE_FIELD,
                 );

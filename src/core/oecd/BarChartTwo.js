@@ -9,7 +9,7 @@ import {
   removeNoData,
   addNoData,
 } from '../../utils';
-import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearRangeDataAsSum, getYearsFromRange } from '../../utils/data';
+import { filterDataByDonor, filterDataByPurpose, formatNumber, getYearRangeDataAsSum, getYearsFromRange } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 
@@ -148,7 +148,7 @@ const init = (className) => {
               const { country, odaAidType: data } = state;
               if (country && data) {
                 const countryData = filterDataByPurpose(
-                  filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD),
+                  filterDataByDonor(data, country || defaultCountry, COUNTRY_FIELD),
                   [activePurpose],
                   PURPOSE_FIELD,
                 );
@@ -171,7 +171,7 @@ const init = (className) => {
                     activePurpose = event.target.value;
                     const { country } = window.DIState.getState;
                     const countryData = filterDataByPurpose(
-                      filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD),
+                      filterDataByDonor(data, country || defaultCountry, COUNTRY_FIELD),
                       [activePurpose],
                       PURPOSE_FIELD,
                     );

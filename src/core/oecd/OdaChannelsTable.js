@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { render } from 'react-dom';
 import OdaChannelsTable from '../../components/OdaChannelsTable';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../../utils/constants';
-import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
+import { filterDataByDonor, filterDataByPurpose, formatNumber } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 const CHANNEL_FIELD = 'oecd_aggregated_channel';
@@ -58,7 +58,7 @@ const init = (className) => {
               if (activeCountry && data) {
                 const options = getPurposes(data);
                 const countryData = filterDataByPurpose(
-                  filterDataByCountry(data, activeCountry || DEFAULT_COUNTRY, COUNTRY_FIELD),
+                  filterDataByDonor(data, activeCountry || DEFAULT_COUNTRY, COUNTRY_FIELD),
                   purpose || options[0],
                   PURPOSE_FIELD,
                 );
