@@ -2,6 +2,7 @@ import { fetchCoreData } from '../../utils/data';
 import { DEFAULT_DONOR } from '../../utils/iati';
 import initDonorFilter from './DonorFilter';
 import initTableOne from './TableOne';
+import initTableTwo from './TableTwo';
 
 const init = () => {
   fetchCoreData([
@@ -12,6 +13,12 @@ const init = () => {
   ], { country: DEFAULT_DONOR });
   initDonorFilter('dicharts--donor-selector')
   initTableOne('dicharts--table-one');
+  // initBarChartOne('dicharts--iati-chart-one-root');
+  initTableTwo('dicharts--table-two');
+  // initIATIAidTable('dicharts--iati-aid-table');
+  // initBarChartTwo('dicharts--chart-two-root')
+  // initIATIChannelsTable('dicharts--iati-channels-table');
+  // initIATIChannelsChart('dicharts--iati-channels-chart');
 };
 
 export default init;
