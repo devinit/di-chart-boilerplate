@@ -21,14 +21,26 @@ const init = (className) => {
               const { dataOne: data } = state;
 
               if (data && data.length && !donors.length) {
-                donors = data.reduce((countries, current) => {
-                  const country = current[COUNTRY_FIELD];
-                  if (countries.includes(country)) {
-                    return countries;
-                  }
+                donors = data
+                  .reduce((countries, current) => {
+                    const country = current[COUNTRY_FIELD];
 
-                  return countries.concat(country);
-                }, []).filter((country) => !!country).map((country) => ({ label: country, value: country }));
+                    return countries.includes(country) ? countries : countries.concat(country);
+                  }, [])
+                  .filter((country) => !!country)
+                  .sort((a, b) => {
+                    var countryA = a.toUpperCase(); // ignore upper and lowercase
+                    var countryB = b.toUpperCase();
+                    if (countryA < countryB) {
+                      return -1;
+                    }
+                    if (countryA > countryB) {
+                      return 1;
+                    }
+
+                    return 0;
+                  })
+                  .map((country) => ({ label: country, value: country }));
 
                 const countryFilter = addFilter({
                   wrapper: filterWrapper,
