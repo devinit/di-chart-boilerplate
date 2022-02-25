@@ -1,6 +1,7 @@
 import { fetchCoreData } from '../../utils/data';
 import { DEFAULT_DONOR } from '../../utils/iati';
 import initDonorFilter from './DonorFilter';
+import initTableOne from './TableOne';
 
 const init = () => {
   fetchCoreData([
@@ -10,6 +11,7 @@ const init = () => {
     { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/iati_rhfp4.csv', state: 'dataFour' },
   ], { country: DEFAULT_DONOR });
   initDonorFilter('dicharts--donor-selector')
+  initTableOne('dicharts--table-one');
 };
 
 export default init;
