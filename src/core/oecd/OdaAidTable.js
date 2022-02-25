@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { render } from 'react-dom';
 import { OdaAidTable } from '../../components/OdaAidTable';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../../utils/constants';
-import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
+import { filterDataByDonor, filterDataByPurpose, formatNumber } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
@@ -46,7 +46,7 @@ const getRows = (unfilteredData, data) => {
 };
 
 const renderTable = (tableNode, data, country, purpose) => {
-  const countryData = filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD);
+  const countryData = filterDataByDonor(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD);
   const purposeFilteredData = filterDataByPurpose(countryData, purpose, PURPOSE_FIELD);
   const rows = getRows(data, filterDataByYear(purposeFilteredData));
   render(createElement(OdaAidTable, { country, rows }), tableNode);

@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 import defaultOptions, { colorways } from '../../charts/echarts';
 import Legend from '../../components/Legend';
 import { addNoData, COUNTRY_FIELD, DEFAULT_COUNTRY, removeNoData } from '../../utils';
-import { extractPurposeCodes, filterDataByCountry, filterDataByPurpose, formatNumber, parseValuesToNumbers } from '../../utils/data';
+import { extractPurposeCodes, filterDataByDonor, filterDataByPurpose, formatNumber, parseValuesToNumbers } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
@@ -179,7 +179,7 @@ const parseIntoSunburstFormat = (data, fields) => { // fields = { parent: string
 
 const renderByCountryAndPurposeCode = (chartNode, data, country, purposeCode, legendNode) => {
   const countryData = filterDataByPurpose(
-    filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD),
+    filterDataByDonor(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD),
     purposeCode,
     PURPOSE_CODE_FIELD
   );
