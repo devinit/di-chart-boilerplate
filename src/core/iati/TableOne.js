@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableOne } from '../../components/TableOne/TableOne';
 import { COUNTRY_FIELD, DEFAULT_DONOR, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD, YEARS } from '../../utils/iati';
-import { filterDataByCountry, filterDataByPurpose } from '../../utils/data';
+import { filterDataByDonor, filterDataByPurpose } from '../../utils/data';
 
 
 const renderTable = (tableNode, data, country) => {
@@ -52,7 +52,7 @@ const init = (className) => {
 
               if (country && data) {
                 const countryData = filterDataByPurpose(
-                  filterDataByCountry(data, country || DEFAULT_DONOR, COUNTRY_FIELD),
+                  filterDataByDonor(data, country || DEFAULT_DONOR, COUNTRY_FIELD),
                   PURPOSE_TO_FILTER_BY,
                   PURPOSE_FIELD,
                 );
