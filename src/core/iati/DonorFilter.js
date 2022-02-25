@@ -47,10 +47,10 @@ const init = (className) => {
                   const { value } = event.currentTarget;
                   window.DIState.setState({ country: value });
                 });
-              }
 
-              dichart.hideLoading();
-              chartNode.parentElement.classList.add('auto-height');
+                dichart.hideLoading();
+                chartNode.parentElement.classList.add('auto-height');
+              }
             });
           } else {
             console.log('State is not defined');
