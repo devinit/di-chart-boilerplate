@@ -1,6 +1,5 @@
 import './styles/styles.css';
 import './state';
-// import { fetchCoreData } from './utils/data';
 import initIATI from './core/iati';
 
 // Your Code Goes Here i.e. functions
