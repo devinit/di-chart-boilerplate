@@ -6,6 +6,7 @@ import initBarChartOne from './BarChartOne';
 import initDonorFilter from './DonorFilter';
 import initTableOne from './TableOne';
 import initTableTwo from './TableTwo';
+import initIATIAidTable from './TableThree';
 
 const init = () => {
   fetchCoreData([
@@ -18,7 +19,7 @@ const init = () => {
   initTableOne('dicharts--table-one');
   initBarChartOne('dicharts--chart-one');
   initTableTwo('dicharts--table-two');
-  // initIATIAidTable('dicharts--iati-aid-table');
+  initIATIAidTable('dicharts--table-three');
   // initBarChartTwo('dicharts--chart-two-root')
   // initIATIChannelsTable('dicharts--iati-channels-table');
   // initIATIChannelsChart('dicharts--iati-channels-chart');
