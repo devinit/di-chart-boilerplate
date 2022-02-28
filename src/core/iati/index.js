@@ -1,12 +1,13 @@
-import '../../styles/iati.css'
-
+import '../../styles/iati.css';
 import { fetchCoreData } from '../../utils/data';
 import { DEFAULT_DONOR } from '../../utils/iati';
 import initBarChartOne from './BarChartOne';
+import initBarChartTwo from './BarChartTwo';
 import initDonorFilter from './DonorFilter';
 import initTableOne from './TableOne';
-import initTableTwo from './TableTwo';
 import initIATIAidTable from './TableThree';
+import initTableTwo from './TableTwo';
+
 
 const init = () => {
   fetchCoreData([
@@ -20,7 +21,7 @@ const init = () => {
   initBarChartOne('dicharts--chart-one');
   initTableTwo('dicharts--table-two');
   initIATIAidTable('dicharts--table-three');
-  // initBarChartTwo('dicharts--chart-two-root')
+  initBarChartTwo('dicharts--chart-two');
   // initIATIChannelsTable('dicharts--iati-channels-table');
   // initIATIChannelsChart('dicharts--iati-channels-chart');
 };
