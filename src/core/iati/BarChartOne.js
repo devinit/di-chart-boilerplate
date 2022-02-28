@@ -1,8 +1,11 @@
 import deepMerge from 'deepmerge';
 import { toJS } from 'mobx';
 import defaultOptions from '../../charts/echarts';
-import { COUNTRY_FIELD, DEFAULT_DONOR, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, YEARS } from '../../utils/iati';
+import { COUNTRY_FIELD, DEFAULT_DONOR, PURPOSE_TO_FILTER_BY, YEARS } from '../../utils/iati';
 import { filterDataByDonor, filterDataByPurpose, formatNumber, getYearsFromRange } from '../../utils/data';
+
+const VALUE_FIELD = 'x_transaction_value_usd_m_Sum';
+const PURPOSE_FIELD = 'purpose_name';
 
 const groupAndSum = (list) => {
   const existingItems = {};
@@ -27,11 +30,11 @@ const groupAndSum = (list) => {
 const extractChartData = (data, dataType) => {
   const chartData = toJS(data);
   const filteredData = chartData
-    .filter((data) => data.purpose_name === dataType && data.year >= 2019 && data.year <= 2021)
+    .filter((data) => data[PURPOSE_FIELD] === dataType && data.year >= 2019 && data.year <= 2021)
     .map((data) => {
       return {
         year: data.year,
-        value: data.x_transaction_value_usd_m_Sum,
+        value: data[VALUE_FIELD],
       };
     });
 
@@ -53,6 +56,7 @@ const getSeries = (data, years) => {
     name: purpose,
     type: 'bar',
     stack: 'oda',
+    tooltip: { valueFormatter: (value) => `US$${formatNumber(value)} million` },
     data: extractChartData(data, purpose, years),
   })).map((serie, index, series) => {
     if (index === series.length - 1) {
