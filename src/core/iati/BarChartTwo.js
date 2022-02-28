@@ -7,13 +7,17 @@ import {
   formatNumber,
   getYearRangeDataAsSum,
   getYearsFromRange,
+  mapYearToExpectedFormat
 } from '../../utils/data';
-import { COUNTRY_FIELD2, DEFAULT_DONOR, PURPOSE_FIELD2 } from '../../utils/iati/constants';
+import { DEFAULT_DONOR } from '../../utils/iati/constants';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 
 const AIDTYPE_PURPOSE_FIELD = 'Aid Type Di Name';
 const VALUE_FIELD = 'Usd Disbursement Deflated Sum';
+const PURPOSE_FIELD = 'Purpose Name';
+const DONOR_FIELD = 'Donor Name';
+const YEAR_FIELD = 'Year';
 
 const getYearSum = (data, purpose, years) => {
   const filteredData = filterDataByPurpose(data, [purpose], AIDTYPE_PURPOSE_FIELD);
@@ -134,16 +138,19 @@ const init = (className) => {
               const state = window.DIState.getState;
               const { country, dataFour: data } = state;
               if (country && data) {
-                const countryData = filterDataByPurpose(
-                  filterDataByDonor(data, country || defaultCountry, COUNTRY_FIELD2),
-                  [activePurpose],
-                  PURPOSE_FIELD2,
+                const countryData = mapYearToExpectedFormat(
+                  filterDataByPurpose(
+                    filterDataByDonor(data, country || defaultCountry, DONOR_FIELD),
+                    [activePurpose],
+                    PURPOSE_FIELD,
+                  ),
+                  YEAR_FIELD,
                 );
                 if (!purposeField) {
                   purposeField = addFilter({
                     wrapper: filterWrapper,
                     options: data.reduce((options, prev) => {
-                      const value = prev[PURPOSE_FIELD2];
+                      const value = prev[PURPOSE_FIELD];
                       if (value && !options.includes(value)) {
                         return options.concat(value);
                       }
@@ -157,10 +164,13 @@ const init = (className) => {
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;
                     const { country } = window.DIState.getState;
-                    const countryData = filterDataByPurpose(
-                      filterDataByDonor(data, country || defaultCountry, COUNTRY_FIELD2),
-                      [activePurpose],
-                      PURPOSE_FIELD2,
+                    const countryData = mapYearToExpectedFormat(
+                      filterDataByPurpose(
+                        filterDataByDonor(data, country || defaultCountry, DONOR_FIELD),
+                        [activePurpose],
+                        PURPOSE_FIELD,
+                      ),
+                      YEAR_FIELD,
                     );
                     renderChart(chartNode, countryData);
                   });
