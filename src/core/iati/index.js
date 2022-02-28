@@ -22,8 +22,8 @@ const init = () => {
   initTableTwo('dicharts--table-two');
   initIATIAidTable('dicharts--table-three');
   initBarChartTwo('dicharts--chart-two');
-  // initIATIChannelsTable('dicharts--iati-channels-table');
-  // initIATIChannelsChart('dicharts--iati-channels-chart');
+  // initIATIChannelsTable('dicharts--table-four');
+  // initIATIChannelsChart('dicharts--chart-three');
 };
 
 export default init;
