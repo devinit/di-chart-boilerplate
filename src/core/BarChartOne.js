@@ -42,6 +42,7 @@ const renderChart = (chartNode, data) => {
   const years = getYearsFromRange(YEARS);
   const option = {
     legend: { show: true, selectedMode: false },
+  
     xAxis: {
       type: 'category',
       data: years,

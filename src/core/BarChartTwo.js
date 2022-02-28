@@ -56,6 +56,7 @@ const getSeries = (data, years) => {
 
     return types;
   },[]);
+
   const chartData = aidTypes.map((aidType) => extractChartData(data, aidType, years, VALUE_FIELD, AIDTYPE_PURPOSE_FIELD));
   const groupedColumnData = groupAidTypeColumns(chartData);
   const percents = getPercentages(chartData, groupedColumnData);
@@ -105,7 +106,7 @@ const renderChart = (chartNode, data) => {
     },
     series: getSeries(data, years),
   };
-
+  console.log(option)
   chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
 };
 

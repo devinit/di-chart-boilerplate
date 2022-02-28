@@ -6,8 +6,6 @@ import initBarChartOne from './core/BarChartOne';
 import initTableTwo from './core/TableTwo';
 import initIATIAidTable from './core/IATIAidTable';
 import initBarChartTwo from './core/BarChartTwo';
-import initIATIChannelsTable from './core/IATIChannelsTable';
-import initIATIChannelsChart from './core/IATIChannelsChart';
 import { fetchCoreData } from './utils/data';
 
 // Your Code Goes Here i.e. functions
@@ -23,6 +21,4 @@ window.addEventListener('load', () => {
   initTableTwo('dicharts--iati-table-two-root');
   initIATIAidTable('dicharts--iati-aid-table');
   initBarChartTwo('dicharts--chart-two-root')
-  initIATIChannelsTable('dicharts--iati-channels-table');
-  initIATIChannelsChart('dicharts--iati-channels-chart');
 });
