@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableOne } from '../../components/TableOne/TableOne';
 import { COUNTRY_FIELD, DEFAULT_DONOR, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD, YEARS } from '../../utils/iati';
-import { filterDataByDonor, filterDataByPurpose } from '../../utils/data';
+import { filterDataByDonor, filterDataByPurpose, formatNumber } from '../../utils/data';
 
 
 const renderTable = (tableNode, data, country) => {
@@ -24,7 +24,7 @@ const renderTable = (tableNode, data, country) => {
         const yearData = purposeData.filter((d) => d.year === `${column}`);
         const sum = yearData.reduce((_sum, prev) => _sum + Number(prev[VALUE_FIELD]), 0);
 
-        return row.concat(Math.round(sum));
+        return row.concat(formatNumber(sum));
       }, []);
     }),
   );
