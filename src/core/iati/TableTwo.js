@@ -35,7 +35,7 @@ const sortedDataRows = (data, years) => {
     if (data.length >= 1) {
       const rank = i + 1;
       fullRows.push(
-        [rank, data[i].recipient_name].concat(years.map((year) => data[i][`${year}`] ? formatNumber(data[i][`${year}`]) : ''))
+        [rank, data[i].recipient_name].concat(years.map((year) => data[i][`${year}`] ? formatNumber(data[i][`${year}`], 'No data') : 'No data'))
       );
     }
   }
