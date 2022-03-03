@@ -1,8 +1,10 @@
 import deepMerge from 'deepmerge';
 import { toJS } from 'mobx';
 import defaultOptions from '../../charts/echarts';
-import { COUNTRY_FIELD, DEFAULT_DONOR, PURPOSE_TO_FILTER_BY, YEARS } from '../../utils/iati';
+import { addNoData, removeNoData, toggleShowChart } from '../../utils';
 import { filterDataByDonor, filterDataByPurpose, formatNumber, getYearsFromRange } from '../../utils/data';
+import { COUNTRY_FIELD, DEFAULT_DONOR, PURPOSE_TO_FILTER_BY, YEARS } from '../../utils/iati';
+import { addFilterWrapper } from '../../widgets/filters';
 
 const VALUE_FIELD = 'x_transaction_value_usd_m_Sum';
 const PURPOSE_FIELD = 'purpose_name';
@@ -85,7 +87,17 @@ const getSeries = (data, years) => {
   });
 };
 
-const renderChart = (chartNode, data) => {
+const renderChart = (chartNode, noDataNode, data) => {
+  if (!data.length) {
+    toggleShowChart(chartNode, false);
+    addNoData(noDataNode);
+
+    return;
+  } else {
+    toggleShowChart(chartNode);
+    removeNoData(noDataNode);
+  }
+
   const chart = window.echarts.init(chartNode);
   const years = getYearsFromRange(YEARS);
   const option = deepMerge(defaultOptions, {
@@ -120,6 +132,7 @@ const init = (className) => {
 
           const defaultCountry = DEFAULT_DONOR;
           dichart.showLoading();
+          const noDataNode = addFilterWrapper(chartNode);
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
@@ -131,7 +144,7 @@ const init = (className) => {
                   PURPOSE_TO_FILTER_BY,
                   PURPOSE_FIELD,
                 );
-                renderChart(chartNode, countryData);
+                renderChart(chartNode, noDataNode, countryData);
 
                 dichart.hideLoading();
               }
