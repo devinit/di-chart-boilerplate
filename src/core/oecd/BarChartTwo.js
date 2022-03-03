@@ -101,7 +101,7 @@ const renderChart = (chartNode, noDataNode, data) => {
 
   const chart = window.echarts.init(chartNode);
   const years = getYearsFromRange([2015, 2019]);
-  const option = {
+  const option = deepMerge(defaultOptions, {
     legend: { show: true, selectedMode: false },
     tooltip: {
       trigger: 'axis',
@@ -122,9 +122,11 @@ const renderChart = (chartNode, noDataNode, data) => {
       top: 60,
     },
     series: getSeries(data, years),
-  };
+  });
 
-  chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
+  option.color = ['#f8c1b2', '#f0826d', '#bc2629', '#8f1b13'].concat(option.color);
+
+  chart.setOption(option, { replaceMerge: ['series'] });
 };
 
 const init = (className) => {
