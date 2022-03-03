@@ -1,6 +1,6 @@
 import deepMerge from 'deepmerge';
 import defaultOptions from '../../charts/echarts';
-import { extractChartData } from '../../utils/chart';
+import { addNoData, extractChartData, removeNoData, toggleShowChart } from '../../utils';
 import {
   filterDataByDonor,
   filterDataByPurpose,
@@ -90,7 +90,17 @@ const getTooltipItem = (data, params) => {
     </div>`;
 }
 
-const renderChart = (chartNode, data) => {
+const renderChart = (chartNode, noDataNode, data) => {
+  if (!data.length) {
+    toggleShowChart(chartNode, false);
+    addNoData(noDataNode);
+
+    return;
+  } else {
+    toggleShowChart(chartNode);
+    removeNoData(noDataNode);
+  }
+
   const chart = window.echarts.init(chartNode);
   const years = getYearsFromRange([2017, 2021]);
   const option = deepMerge(defaultOptions, {
@@ -131,6 +141,7 @@ const init = (className) => {
           const defaultCountry = DEFAULT_DONOR;
           dichart.showLoading();
           const filterWrapper = addFilterWrapper(chartNode);
+          const noDataNode = addFilterWrapper(chartNode);
           let purposeField;
           let activePurpose = 'Reproductive health care';
           if (window.DIState) {
@@ -173,10 +184,10 @@ const init = (className) => {
                       ),
                       YEAR_FIELD,
                     );
-                    renderChart(chartNode, countryData);
+                    renderChart(chartNode, noDataNode, countryData);
                   });
                 }
-                renderChart(chartNode, countryData);
+                renderChart(chartNode, noDataNode, countryData);
 
                 dichart.hideLoading();
               }
