@@ -88,7 +88,7 @@ const getSeries = (data, years) => {
 const renderChart = (chartNode, data) => {
   const chart = window.echarts.init(chartNode);
   const years = getYearsFromRange(YEARS);
-  const option = {
+  const option = deepMerge(defaultOptions, {
     legend: { show: true, selectedMode: false },
     xAxis: {
       type: 'category',
@@ -104,9 +104,10 @@ const renderChart = (chartNode, data) => {
       top: 60,
     },
     series: getSeries(data, years),
-  };
+  });
+  option.color = ['#e84439', '#f8c1b2'].concat(option.color),
 
-  chart.setOption(deepMerge(defaultOptions, option));
+  chart.setOption(option);
 };
 
 const init = (className) => {
