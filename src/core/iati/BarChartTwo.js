@@ -106,7 +106,7 @@ const renderChart = (chartNode, data) => {
     yAxis: {
       type: 'value',
       axisLabel: {
-        formatter: "{value} %"
+        formatter: "{value}%"
       },
       max: 100,
     },
