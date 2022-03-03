@@ -93,7 +93,7 @@ const getTooltipItem = (data, params) => {
 const renderChart = (chartNode, data) => {
   const chart = window.echarts.init(chartNode);
   const years = getYearsFromRange([2017, 2021]);
-  const option = {
+  const option = deepMerge(defaultOptions, {
     legend: { show: true, selectedMode: false },
     tooltip: {
       trigger: 'axis',
@@ -114,9 +114,10 @@ const renderChart = (chartNode, data) => {
       top: 60,
     },
     series: getSeries(data, years),
-  };
+  });
+  option.color = ['#f8c1b2', '#f0826d', '#e84439', '#bc2629', '#8f1b13'].concat(option.color);
 
-  chart.setOption(deepMerge(defaultOptions, option), { replaceMerge: ['series'] });
+  chart.setOption(option, { replaceMerge: ['series'] });
 };
 
 const init = (className) => {
