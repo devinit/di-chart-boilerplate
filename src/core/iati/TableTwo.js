@@ -31,7 +31,7 @@ const getGroupedData = (countryData) => {
 
 const sortedDataRows = (data, years) => {
   const fullRows = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < data.length; i++) {
     if (data.length >= 1) {
       const rank = i + 1;
       fullRows.push(
