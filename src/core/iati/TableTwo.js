@@ -74,12 +74,12 @@ const init = (className) => {
     className,
     echarts: {
       onAdd: (chartNodes) => {
-        Array.prototype.forEach.call(chartNodes, (chartNode) => {
-          const dichart = new window.DICharts.Chart(chartNode.parentElement);
+        Array.prototype.forEach.call(chartNodes, (tableNode) => {
+          const dichart = new window.DICharts.Chart(tableNode.parentElement);
 
           const DEFAULT_PURPOSE = 'Reproductive health care and family planning';
           dichart.showLoading();
-          const filterWrapper = addFilterWrapper(chartNode);
+          const filterWrapper = addFilterWrapper(tableNode);
           let purposeField;
           if (window.DIState) {
             window.DIState.addListener(() => {
@@ -108,9 +108,10 @@ const init = (className) => {
                     window.DIState.setState({ purpose: event.target.value });
                   });
                 }
-                renderTable(data, country, purpose, chartNode);
+                renderTable(data, country, purpose, tableNode);
 
                 dichart.hideLoading();
+                tableNode.parentElement.classList.add('auto-height');
               }
             });
           } else {
