@@ -30,7 +30,7 @@ const init = (className) => {
               options: data.map((d) => d.Donors),
               defaultOption: 'United States',
               className: 'country-filter',
-              label: 'Select Donor',
+              label: 'Select donor',
             });
 
             if (window.DIState) {
