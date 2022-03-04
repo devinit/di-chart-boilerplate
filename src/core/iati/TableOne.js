@@ -2,16 +2,12 @@ import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableOne } from '../../components/TableOne/TableOne';
 import { COUNTRY_FIELD, DEFAULT_DONOR, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, VALUE_FIELD, YEARS } from '../../utils/iati';
-import { filterDataByDonor, filterDataByPurpose, formatNumber } from '../../utils/data';
+import { filterDataByDonor, filterDataByPurpose, formatNumber, getYearsFromRange } from '../../utils/data';
 
 
 const renderTable = (tableNode, data, country) => {
-  const yearRange = YEARS[1] - YEARS[0] + 1;
-  const count = [];
-  for (const key of Array(yearRange).keys()) {
-    count.push(key);
-  }
-  const headerRow = ['Purpose code'].concat(count.map((key) => YEARS[0] + key));
+  const years = getYearsFromRange(YEARS);
+  const headerRow = ['Purpose code'].concat(years);
 
   const rows = [headerRow].concat(
     PURPOSE_TO_FILTER_BY.map((purpose) => {
