@@ -22,7 +22,9 @@ const renderTable = (tableNode, data, country) => {
       return totalsRowCaption;
     }
 
-    return formatNumber(dataRows.reduce((total, current) => total + current[index], 0));
+    return formatNumber(
+      dataRows.reduce((total, current) => (typeof current[index] === 'number' ? total + current[index] : total), 0),
+    );
   });
   // formatting is done after calculating the total to eliminate rounding errors
   const formattedDataRow = dataRows.map((row) => row.map((cell) => typeof cell === 'number' ? formatNumber(cell) : cell));
