@@ -1,4 +1,4 @@
-export const DEFAULT_DONOR = 'U.S. Agency for International Development';
+export const DEFAULT_DONOR = 'US';
 export const COUNTRY_FIELD = 'Reporting Organisation Narrative';
 export const COUNTRY_FIELD2 = 'Donor Name';
 export const PURPOSE_FIELD = 'purpose_name';
