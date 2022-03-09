@@ -9,6 +9,10 @@ const CHANNEL_FIELD = 'oecd_aggregated_channel';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 const YEARS = [2019]
 
+const channelMappings = {
+  'University, College Or Other Teaching Institution, Research Institute Or Think?Tank': 'University, other teaching institution, research institute or think-tank'
+}
+
 const getPurposes = (data) =>
   data.reduce((acc, item) => item[PURPOSE_FIELD] && !acc.includes(item[PURPOSE_FIELD]) ? acc.concat(item[PURPOSE_FIELD]) : acc, []);
 
@@ -21,8 +25,11 @@ const sumChannelData = (countryData) => {
 const getRows = (channelData) => {
   const sum = Object.keys(channelData).reduce((_sum, key) => _sum + Number(channelData[key] || 0), 0);
 
-  return Object.keys(channelData).map((dataKey) =>
-    [dataKey, formatNumber(channelData[dataKey]), `${(formatNumber(((channelData[dataKey]/sum)*100) || 0) || 0)}%`])
+  return Object.keys(channelData).map((dataKey) => {
+    const channel = channelMappings[dataKey] || dataKey;
+
+    return [channel, formatNumber(channelData[dataKey]), `${(formatNumber(((channelData[dataKey]/sum)*100) || 0) || 0)}%`]
+  })
       .concat([['Total', formatNumber(sum), sum ? '100%' : '0%']]);
 };
 

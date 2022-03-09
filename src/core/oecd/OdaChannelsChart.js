@@ -19,6 +19,10 @@ const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
 const SEPARATOR_LABEL = 'Breakdown';
 
+const channelMappings = {
+  'University, College Or Other Teaching Institution, Research Institute Or Think?Tank': 'University, other teaching institution, research institute or think-tank'
+}
+
 const createLegend = (node, items, position =  'right') => {
   render(createElement(Legend, { data: items, position }), node);
 };
@@ -163,7 +167,18 @@ const getChildren = (data, parent, fields, color) => {
 }
 
 const parseIntoSunburstFormat = (data, fields) => { // fields = { parent: string, child: string, value: string }
-  const parents = data
+  const cleanData = data
+    .map((d) => {
+      const cleanData = {
+        ...d,
+        [fields.parent]: channelMappings[d[fields.parent]] || d[fields.parent],
+        [fields.child]: channelMappings[d[fields.child]] || d[fields.child]
+      };
+
+      return cleanData;
+    });
+
+  const parents = cleanData
     .map((d) => {
       if (d[fields.value]) {
         return { ...d, [fields.value]: formatNumber(d[fields.value]) };
@@ -174,7 +189,7 @@ const parseIntoSunburstFormat = (data, fields) => { // fields = { parent: string
     .reduce((parents, current) =>
       parents.includes(current[fields.parent]) ? parents : parents.concat(current[fields.parent]), []);
 
-  return parents.map((parent) => getChildren(data, parent, fields));
+  return parents.map((parent) => getChildren(cleanData, parent, fields));
 };
 
 const renderByCountryAndPurposeCode = (chartNode, data, country, purposeCode, legendNode) => {
