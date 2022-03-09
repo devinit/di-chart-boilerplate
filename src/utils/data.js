@@ -1,4 +1,5 @@
 import { parse } from 'papaparse';
+import { NO_DATA } from './constants';
 
 export const formatNumber = (value, defaultForNan = '') => {
   const formattedNumber = Number(value);
@@ -79,7 +80,7 @@ export const getYearRangeData = (data, yearRange, valueField) => {
       return Number(yearValue[valueField]) || '';
     }
 
-    return 0
+    return NO_DATA;
   });
 };
 

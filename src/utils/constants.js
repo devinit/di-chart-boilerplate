@@ -7,3 +7,4 @@ export const ALTERNATIVE_PURPOSE_TO_FILTER_BY = ['Reproductive health care and f
 export const VALUE_FIELD = 'usd_disbursement_deflated';
 export const CHANNEL_FIELD = 'oecd_aggregated_channel';
 export const YEARS = [2010, 2019];
+export const NO_DATA = 0;

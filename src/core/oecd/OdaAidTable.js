@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { OdaAidTable } from '../../components/OdaAidTable';
-import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../../utils/constants';
+import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, NO_DATA } from '../../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
@@ -9,7 +9,6 @@ import { addFilter, addFilterWrapper } from '../../widgets/filters';
 const YEAR = 2019;
 const AIDTYPE_FIELD = 'aid_type_di_name';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
-const NO_DATA = 0;
 
 const getPurposeNames = (data, purposeField = PURPOSE_FIELD) => {
   const purposeNames = [];

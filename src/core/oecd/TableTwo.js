@@ -1,9 +1,10 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableTwo } from '../../components/TableTwo/TableTwo';
-import { DEFAULT_COUNTRY } from '../../utils/constants';
+import { DEFAULT_COUNTRY, NO_DATA } from '../../utils/constants';
 import { filterDataByCountry, formatNumber } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
+
 
 const DATA_PURPOSE_COLUMN = 'Code type';
 const DEFAULT_PURPOSE = 'Reproductive health care and family planning';
@@ -55,10 +56,10 @@ const sortedDataRows = (data) => {
         fullRows.push([
           i + 1,
           data[i].recipient_name,
-          formatNumber(Number(data[i]['2016']), 0),
-          formatNumber(Number(data[i]['2017']), 0),
-          formatNumber(Number(data[i]['2018']), 0),
-          formatNumber(Number(data[i]['2019']), 0),
+          formatNumber(Number(data[i]['2016']), NO_DATA),
+          formatNumber(Number(data[i]['2017']), NO_DATA),
+          formatNumber(Number(data[i]['2018']), NO_DATA),
+          formatNumber(Number(data[i]['2019']), NO_DATA),
         ]);
       }
     }
@@ -70,10 +71,10 @@ const sortedDataRows = (data) => {
         fullRows.push([
           i + 1,
           data[i].recipient_name,
-          formatNumber(Number(data[i]['2016']), 0),
-          formatNumber(Number(data[i]['2017']), 0),
-          formatNumber(Number(data[i]['2018']), 0),
-          formatNumber(Number(data[i]['2019']), 0),
+          formatNumber(Number(data[i]['2016']), NO_DATA),
+          formatNumber(Number(data[i]['2017']), NO_DATA),
+          formatNumber(Number(data[i]['2018']), NO_DATA),
+          formatNumber(Number(data[i]['2019']), NO_DATA),
         ]);
       }
     }
@@ -86,7 +87,7 @@ const getUnsortedDataRow = (data, years) => {
   return years.map((year) => {
     const sum = data.map((d) => Number(d[year])).reduce((prev, current) => prev + current, 0);
 
-    return formatNumber(sum, 0);
+    return formatNumber(sum, NO_DATA);
   });
 };
 
