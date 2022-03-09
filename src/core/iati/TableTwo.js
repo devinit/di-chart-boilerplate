@@ -6,6 +6,7 @@ import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 const DATA_PURPOSE_COLUMN = 'Code type';
 const YEAR_RANGE = [2019, 2021];
+const NO_DATA = 0;
 
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
@@ -35,7 +36,7 @@ const sortedDataRows = (data, years) => {
     if (data.length >= 1) {
       const rank = i + 1;
       fullRows.push(
-        [rank, data[i].recipient_name].concat(years.map((year) => data[i][`${year}`] ? formatNumber(data[i][`${year}`], 'No data') : 'No data'))
+        [rank, data[i].recipient_name].concat(years.map((year) => data[i][`${year}`] ? formatNumber(data[i][`${year}`], NO_DATA) : NO_DATA))
       );
     }
   }
