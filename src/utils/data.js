@@ -79,7 +79,7 @@ export const getYearRangeData = (data, yearRange, valueField) => {
       return Number(yearValue[valueField]) || '';
     }
 
-    return 'No data'
+    return 0
   });
 };
 

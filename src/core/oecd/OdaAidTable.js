@@ -9,7 +9,7 @@ import { addFilter, addFilterWrapper } from '../../widgets/filters';
 const YEAR = 2019;
 const AIDTYPE_FIELD = 'aid_type_di_name';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
-const NO_DATA = 'No data';
+const NO_DATA = 0;
 
 const getPurposeNames = (data, purposeField = PURPOSE_FIELD) => {
   const purposeNames = [];
@@ -39,10 +39,10 @@ const getRows = (unfilteredData, data) => {
     const rowValue = row ? row[VALUE_FIELD] : NO_DATA;
     const rowPercentage = rowValue !== NO_DATA ? `${(formatNumber((rowValue / totalDisbursments)*100) || 0)}%` : NO_DATA;
 
-    return [label].concat(formatNumber(rowValue, 'No data'), [rowPercentage]);
+    return [label].concat(formatNumber(rowValue, 0), [rowPercentage]);
   });
 
-  return headerRow.concat(rows, [['Total', formatNumber(totalDisbursments, 'No data'), totalDisbursments ? '100%' : '0%']]);
+  return headerRow.concat(rows, [['Total', formatNumber(totalDisbursments, 0), totalDisbursments ? '100%' : '0%']]);
 };
 
 const renderTable = (tableNode, data, country, purpose) => {
