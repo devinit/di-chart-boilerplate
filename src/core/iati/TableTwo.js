@@ -8,6 +8,8 @@ const DATA_PURPOSE_COLUMN = 'Code type';
 const YEAR_RANGE = [2019, 2021];
 const NO_DATA = 0;
 
+const formatYear = (year) => `${year}.0`;
+
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];
@@ -15,7 +17,7 @@ const getGroupedData = (countryData) => {
   for (let count = 0; count < 10; count++) {
     if (iteratorData.length >= 1) {
       let maxRow = iteratorData.reduce((prev, current) => {
-        if (Number(prev[`${maxYear}`]) < Number(current[`${maxYear}`])) {
+        if (Number(prev[formatYear(maxYear)]) < Number(current[formatYear(maxYear)])) {
           return current;
         } else {
           return prev;
@@ -36,7 +38,9 @@ const sortedDataRows = (data, years) => {
     if (data.length >= 1) {
       const rank = i + 1;
       fullRows.push(
-        [rank, data[i].recipient_name].concat(years.map((year) => data[i][`${year}`] ? formatNumber(data[i][`${year}`], NO_DATA) : NO_DATA))
+        [rank, data[i].recipient_name].concat(
+          years.map((year) => (data[i][formatYear(year)] ? formatNumber(data[i][formatYear(year)], NO_DATA) : NO_DATA)),
+        ),
       );
     }
   }
@@ -48,7 +52,7 @@ const unSortedDataRow = (data, years) => {
   let sumArray = [];
   years.forEach((year) => {
     const sum = data
-      .map((d) => Number(d[year]) || 0)
+      .map((d) => parseFloat(Number(d[formatYear(year)])) || 0)
       .reduce((prev, current) => prev + current, 0);
     sumArray.push(formatNumber(sum));
   });
