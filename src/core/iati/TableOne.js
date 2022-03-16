@@ -17,7 +17,7 @@ const renderTable = (tableNode, data, country) => {
         if (index === 0) {
           return row.concat(purpose);
         }
-        const yearData = purposeData.filter((d) => d.year === `${column}`);
+        const yearData = purposeData.filter((d) => parseFloat(d.year) === column);
         const sum = yearData.reduce((_sum, prev) => _sum + Number(prev[VALUE_FIELD]), 0);
 
         return row.concat(formatNumber(sum));
