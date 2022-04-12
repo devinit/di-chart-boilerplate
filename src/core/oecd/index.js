@@ -14,10 +14,10 @@ import { fetchCoreData } from '../../utils/data';
 
 const init = () => {
   fetchCoreData([
-    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20and%20FP%20Purpose%20code%20trends%20chart%20OECD.csv', state: 'dataOne' },
-    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor-by-recip-2019.csv', state: 'dataTwo' },
-    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20FP%20aid%20type%20OECD.csv', state: 'odaAidType' },
-    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH%20FP%20channels%20OECD.csv', state: 'odaChannels' },
+    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH_and_FP_Purpose_code_trends_chart_OECD.csv', state: 'dataOne' },
+    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/donor_by_recip_2019.csv', state: 'dataTwo' },
+    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH_FP_aid_type_OECD.csv', state: 'odaAidType' },
+    { url: 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/RH_FP_channels_OECD.csv', state: 'odaChannels' },
   ], { country: 'United States' });
   initDonorFilter('dicharts--donor-selector');
   initTableOne('dicharts--table-one');
