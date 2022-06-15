@@ -15,7 +15,7 @@ const getGroupedData = (countryData) => {
     for (let count = 0; count < countryData.length; count++) {
       if (iteratorData.length >= 1) {
         let maxRow = iteratorData.reduce((prev, current) => {
-          if (Number(prev['2019']) < Number(current['2019'])) {
+          if (Number(prev['2020']) < Number(current['2020'])) {
             return current;
           } else {
             return prev;
@@ -30,7 +30,7 @@ const getGroupedData = (countryData) => {
   for (let count = 0; count < 10; count++) {
     if (iteratorData.length >= 1) {
       let maxRow = iteratorData.reduce((prev, current) => {
-        if (Number(prev['2019']) < Number(current['2019'])) {
+        if (Number(prev['2020']) < Number(current['2020'])) {
           return current;
         } else {
           return prev;
@@ -60,6 +60,7 @@ const sortedDataRows = (data) => {
           formatNumber(Number(data[i]['2017']), NO_DATA),
           formatNumber(Number(data[i]['2018']), NO_DATA),
           formatNumber(Number(data[i]['2019']), NO_DATA),
+          formatNumber(Number(data[i]['2020']), NO_DATA),
         ]);
       }
     }
@@ -75,6 +76,7 @@ const sortedDataRows = (data) => {
           formatNumber(Number(data[i]['2017']), NO_DATA),
           formatNumber(Number(data[i]['2018']), NO_DATA),
           formatNumber(Number(data[i]['2019']), NO_DATA),
+          formatNumber(Number(data[i]['2020']), NO_DATA),
         ]);
       }
     }
@@ -92,7 +94,7 @@ const getUnsortedDataRow = (data, years) => {
 };
 
 const renderTable = (data, country, purpose, tableNode) => {
-  const YEARS = [2016, 2019];
+  const YEARS = [2016, 2020];
   const yearRange = YEARS[1] - YEARS[0] + 1;
   const count = [];
   for (const key of Array(yearRange).keys()) {

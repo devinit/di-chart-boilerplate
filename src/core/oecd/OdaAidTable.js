@@ -6,7 +6,7 @@ import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../ut
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
-const YEAR = 2019;
+const YEAR = 2020;
 const AIDTYPE_FIELD = 'aid_type_di_name';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 

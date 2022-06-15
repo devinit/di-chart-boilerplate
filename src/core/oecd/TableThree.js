@@ -6,7 +6,7 @@ import { addFilter, addFilterWrapper } from '../../widgets/filters';
 import { ALTERNATIVE_PURPOSE_TO_FILTER_BY, CHANNEL_FIELD, COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, VALUE_FIELD } from '../../utils/constants';
 
 const sumChannelData = (countryData) => {
-  const yearData = countryData.filter((item) => item['year'] === '2019');
+  const yearData = countryData.filter((item) => item['year'] === '2020');
 
   return yearData.reduce((acc, data) => {
     return {...acc, [data[CHANNEL_FIELD]]: (parseFloat(acc[data[CHANNEL_FIELD]] || 0) + parseFloat(data[VALUE_FIELD] || 0)).toFixed(1) }
@@ -22,7 +22,7 @@ const getRows = (tableData) => {
 };
 
 const renderTable = (data, country, purpose, tableNode) => {
-  const rowHeader = ['Channel', '2019', '% Total'];
+  const rowHeader = ['Channel', '2020', '% Total'];
   const countryData = filterDataByPurpose(
     filterDataByCountry(data, country, COUNTRY_FIELD),
     purpose || 'Reproductive health care and family planning',

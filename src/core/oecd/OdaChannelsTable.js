@@ -7,7 +7,7 @@ import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 const CHANNEL_FIELD = 'oecd_aggregated_channel';
 const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
-const YEARS = [2019]
+const YEARS = [2020]
 
 const channelMappings = {
   'University, College Or Other Teaching Institution, Research Institute Or Think?Tank': 'University, other teaching institution, research institute or think-tank'

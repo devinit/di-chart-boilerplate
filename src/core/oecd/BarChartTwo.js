@@ -100,7 +100,7 @@ const renderChart = (chartNode, noDataNode, data) => {
   }
 
   const chart = window.echarts.init(chartNode);
-  const years = getYearsFromRange([2015, 2019]);
+  const years = getYearsFromRange([2016, 2020]);
   const option = deepMerge(defaultOptions, {
     legend: { show: true, selectedMode: false },
     tooltip: {
