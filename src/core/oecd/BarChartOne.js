@@ -70,7 +70,7 @@ const renderChart = (chartNode, noDataNode, data) => {
     },
     yAxis: {
       type: 'value',
-      name: 'US$ millions (constant 2019 prices)',
+      name: 'US$ millions (constant 2020 prices)',
       nameLocation: 'middle',
       nameGap: 50,
     },
