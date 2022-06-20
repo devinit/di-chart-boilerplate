@@ -2,6 +2,10 @@
 
 A starting point for creating a chart (D3, Plotly, ECharts)
 
+## Specifics for Gates OECD ##
+
+You will need to change all '2020' only in utils/constants.js to the new year during update. You will also need to adjust parts of the wagtail but these should be clear.
+
 ## Usage
 
 ### Dev
