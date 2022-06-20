@@ -70,7 +70,7 @@ const renderChart = (chartNode, noDataNode, data) => {
     },
     yAxis: {
       type: 'value',
-      name: 'US$ millions (constant 2020 prices)',
+      name: 'US$ millions (constant '.concat(years[years.length-1],' prices)'),
       nameLocation: 'middle',
       nameGap: 50,
     },
@@ -79,6 +79,7 @@ const renderChart = (chartNode, noDataNode, data) => {
   });
 
 
+  console.log(years.length)
   option.color = ['#e84439', '#f8c1b2'].concat(option.color),
 
   chart.setOption(option);
