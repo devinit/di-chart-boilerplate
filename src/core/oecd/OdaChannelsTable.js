@@ -1,13 +1,9 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import OdaChannelsTable from '../../components/OdaChannelsTable';
-import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD } from '../../utils/constants';
+import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, VALUE_FIELD_AIDTYPE, CHANNEL_FIELD, YEARsingle } from '../../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
-
-const CHANNEL_FIELD = 'oecd_aggregated_channel';
-const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
-const YEARS = [2020]
 
 const channelMappings = {
   'University, College Or Other Teaching Institution, Research Institute Or Think?Tank': 'University, other teaching institution, research institute or think-tank'
@@ -18,7 +14,7 @@ const getPurposes = (data) =>
 
 const sumChannelData = (countryData) => {
   return countryData.reduce((acc, data) => {
-    return {...acc, [data[CHANNEL_FIELD]]: parseFloat(acc[data[CHANNEL_FIELD]] || 0) + parseFloat(data[VALUE_FIELD] || 0) }
+    return {...acc, [data[CHANNEL_FIELD]]: parseFloat(acc[data[CHANNEL_FIELD]] || 0) + parseFloat(data[VALUE_FIELD_AIDTYPE] || 0) }
   }, {});
 };
 
@@ -34,7 +30,7 @@ const getRows = (channelData) => {
 };
 
 const renderTable = (tableNode, countryData, country) => {
-  const rowHeader = ['Channel'].concat(YEARS, '% Total');
+  const rowHeader = ['Channel'].concat(YEARsingle, '% Total');
   const tableData = getRows(sumChannelData(countryData));
   const rows = [rowHeader].concat(tableData);
 

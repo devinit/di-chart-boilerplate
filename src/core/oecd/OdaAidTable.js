@@ -1,14 +1,10 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { OdaAidTable } from '../../components/OdaAidTable';
-import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, NO_DATA } from '../../utils/constants';
+import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, NO_DATA, YEARsingle, AIDTYPE_FIELD, VALUE_FIELD_AIDTYPE } from '../../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
-
-const YEAR = 2020;
-const AIDTYPE_FIELD = 'aid_type_di_name';
-const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
 
 const getPurposeNames = (data, purposeField = PURPOSE_FIELD) => {
   const purposeNames = [];
@@ -20,10 +16,10 @@ const getPurposeNames = (data, purposeField = PURPOSE_FIELD) => {
 
   return purposeNames;
 };
-const filterDataByYear = (data) => data.filter((item) => `${item.year}` === `${YEAR}`);
+const filterDataByYear = (data) => data.filter((item) => `${item.year}` === `${YEARsingle}`);
 
 const getRows = (unfilteredData, data) => {
-  const headerRow = [['Aid Type', YEAR, '% Total']];
+  const headerRow = [['Aid Type', YEARsingle, '% Total']];
   const allRowLabels = unfilteredData.reduce((acc, item) => {
     const aidType = item[AIDTYPE_FIELD];
     if(aidType && !acc.includes(aidType)) {
@@ -32,10 +28,10 @@ const getRows = (unfilteredData, data) => {
 
     return acc;
   }, []);
-  const totalDisbursments = data.map((item) => Number(item[VALUE_FIELD])).reduce((prev, current) => prev + current, 0);
+  const totalDisbursments = data.map((item) => Number(item[VALUE_FIELD_AIDTYPE])).reduce((prev, current) => prev + current, 0);
   const rows = allRowLabels.map((label) => {
     const row = data.find((item) => item[AIDTYPE_FIELD] === label);
-    const rowValue = row ? row[VALUE_FIELD] : NO_DATA;
+    const rowValue = row ? row[VALUE_FIELD_AIDTYPE] : NO_DATA;
     const rowPercentage = rowValue !== NO_DATA ? `${(formatNumber((rowValue / totalDisbursments)*100) || 0)}%` : NO_DATA;
 
     return [label].concat(formatNumber(rowValue, 0), [rowPercentage]);
