@@ -79,7 +79,6 @@ const renderChart = (chartNode, noDataNode, data) => {
   });
 
 
-  console.log(years.length)
   option.color = ['#e84439', '#f8c1b2'].concat(option.color),
 
   chart.setOption(option);

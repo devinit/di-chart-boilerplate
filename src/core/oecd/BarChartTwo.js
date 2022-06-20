@@ -8,6 +8,7 @@ import {
   toggleShowChart,
   removeNoData,
   addNoData,
+  YEARSsmall,
 } from '../../utils';
 import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearRangeDataAsSum, getYearsFromRange } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
@@ -100,7 +101,7 @@ const renderChart = (chartNode, noDataNode, data) => {
   }
 
   const chart = window.echarts.init(chartNode);
-  const years = getYearsFromRange([2016, 2020]);
+  const years = getYearsFromRange(YEARSsmall);
   const option = deepMerge(defaultOptions, {
     legend: { show: true, selectedMode: false },
     tooltip: {
