@@ -31,10 +31,7 @@ const renderEChart = () => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
 
           // Render echarts coding here
-          const chart = window.echarts.init(chartNode, null, {
-            width: 1000,
-            height: 600
-          });
+          const chart = window.echarts.init(chartNode);
           const option = {
             responsive: false,
             xAxis: {
