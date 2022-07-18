@@ -13,7 +13,7 @@ import {
 import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearsFromRange } from '../../utils/data';
 import { addFilterWrapper } from '../../widgets/filters';
 
-const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
+const VALUE_FIELD = 'value';
 const getSeries = (data, years) => {
   return PURPOSE_TO_FILTER_BY.map((purpose) => ({
     name: purpose,

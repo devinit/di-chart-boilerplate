@@ -7,7 +7,7 @@ import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 
 const DATA_PURPOSE_COLUMN = 'Code type';
-const DEFAULT_PURPOSE = 'Reproductive health care and family planning';
+const DEFAULT_PURPOSE = 'Reproductive health';
 const getGroupedData = (countryData) => {
   let iteratorData = [...countryData];
   const sortedData = [];

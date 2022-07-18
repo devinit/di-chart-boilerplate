@@ -66,7 +66,7 @@ export const getYearsFromRange = (range) => {
 
 export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
   return yearRange.reduce((row, column) => {
-    const yearData = data.filter((d) => `${d.year}` === `${column}`);
+    const yearData = data.filter((d) => `${d.Year}` === `${column}`);
     const sum = yearData.reduce((_sum, prev) => _sum + Number(prev[valueField] || 0), 0);
 
     return row.concat(sum);
@@ -75,7 +75,8 @@ export const getYearRangeDataAsSum = (data, yearRange, valueField) => {
 
 export const getYearRangeData = (data, yearRange, valueField) => {
   return yearRange.map((year) => {
-    const yearValue = data.find((item) => `${item.year}` === `${year}`);
+    const yearValue = data.find((item) => `${item.Year}` === `${year}`);
+    
     if (yearValue) {
       return Number(yearValue[valueField]) || '';
     }

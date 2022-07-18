@@ -6,7 +6,7 @@ import { filterDataByCountry, filterDataByPurpose, formatNumber,getYearRangeData
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
 // Your Code Goes Here i.e. functions
-const VALUE_FIELD = 'usd_disbursement_deflated_Sum';
+const VALUE_FIELD = 'value';
 
 const renderTable = (tableNode, data, country) => {
   const years = getYearsFromRange(YEARS);
