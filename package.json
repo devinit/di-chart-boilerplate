@@ -33,11 +33,6 @@
   "author": "",
   "license": "MIT",
   "repository": "",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "src/**/*.js": "eslint --cache --fix"
   },
