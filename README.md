@@ -1,6 +1,6 @@
 # DI Chart Boilerplate
 
-A starting point for creating a chart (D3, Plotly, ECharts)
+A starting point for creating charts & maps (D3, Plotly, ECharts)
 
 ## Usage
 
