@@ -6,10 +6,21 @@ import { addFilterWrapper } from '../../widgets/filters';
 import Select from '../../component/Select';
 import ChartFilters from '../../component/ChartFilters';
 
+
+const updateChart = (chart, data) => {
+  const option = {
+    series: [{
+      name: 'Sale',
+      type: 'bar',
+      data,
+    }],
+  };
+  chart.setOption(deepMerge(option, defaultOptions), { replaceMerge: ['series'] });
+};
+
 /**
  * Run your code after the page has loaded
  */
-
 const renderEChart = () => {
   window.DICharts.handler.addChart({
     className: 'dicharts--echarts-boilerplate-chart',
@@ -47,18 +58,21 @@ const renderEChart = () => {
           root.render(
             <ChartFilters selectErrorMessage={selectErrorMessage}>
               <Select
-                label="Select up to two donors"
+                label="Select multiplier"
                 options={[
-                  { value: 'chocolate', label: 'Chocolate' },
-                  { value: 'strawberry', label: 'Strawberry' },
-                  { value: 'vanilla', label: 'Vanilla' }
+                  { value: 1, label: 'Chocolate' },
+                  { value: 2, label: 'Strawberry' },
+                  { value: 3, label: 'Vanilla' }
                 ]}
                 classNamePrefix="donors-select"
-                isMulti
                 isClearable={false}
                 defaultValue={[{ value: 'chocolate', label: 'Chocolate', isCloseable: true }]}
                 onChange={ (item) => {
                   console.log(item.value);
+                  if (item.value) {
+                    const updatedData = [5, 20, 36, 10, 10, 20, 4].map(value => value * Math.random() * item.value);
+                    updateChart(chart, updatedData);
+                  }
                 }}
                 css={{ minWidth: '100px' }}
               />    
