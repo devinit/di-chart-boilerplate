@@ -32,6 +32,11 @@ export const filterDataByCountry = (data, country, countryField) =>
 export const filterDataByPurpose = (data, purpose, purposeField) =>
   // eslint-disable-next-line implicit-arrow-linebreak
   data.filter((item) => purpose.includes(item[purposeField]));
+export const filterDataByYear = (data, year, yearField) => {
+  // eslint-disable-next-line implicit-arrow-linebreak
+  const year2 = year.toString();
+
+  return data.filter((item) => year2.includes(item[yearField]))};
 export const extractPurposeCodes = (data, purposeField) =>
   data.reduce((codes, prev) => {
     const value = prev[purposeField];
@@ -79,6 +84,24 @@ export const getYearRangeData = (data, yearRange, valueField) => {
     
     if (yearValue) {
       return Number(yearValue[valueField]) || '';
+    }
+
+    return NO_DATA;
+  });
+};
+
+export const getPropData = (data, Y_var_titles, valueField1,valueField2) => {
+  return Y_var_titles.map((y_var) => {
+    const Value = data.find((item) => `${item.y_variable}` === `${y_var}`);
+    
+    if (Value) {
+      const text1 = String(Number(Value[valueField1]).toFixed(4)*100);
+      const text1b = "%"
+      const text2 = " (";
+      const text3 = String(Number(Value[valueField2]).toFixed(1));
+      const text4 = ")";
+    
+      return text1.concat(text1b,text2,text3,text4) || '';
     }
 
     return NO_DATA;
