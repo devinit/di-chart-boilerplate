@@ -9,9 +9,7 @@ import { filterDataByPurpose, filterDataByCountry, filterDataByYear, formatNumbe
 
 const renderTable = (tableNode, data, country) => {
 
-  console.log(data);
-
-  const headerRow = ['Purpose','% of RMNCH'.concat(' (',String(Number(data[0]['RMNCH (total)']).toFixed(2)),')'),'% of Health ODA'.concat(' (',String(Number(data[0]['health']).toFixed(2)),')'),'% of total ODA'.concat(' (',String(Number(data[0]['total']).toFixed(2)),')')];
+  const headerRow = ['Purpose','% of RMNCH'.concat(' (',String(Number(data[0]['RMNCH (total)']).toFixed(1)),')'),'% of Health ODA'.concat(' (',String(Number(data[0]['health']).toFixed(1)),')'),'% of total ODA'.concat(' (',String(Number(data[0]['total']).toFixed(1)),')')];
   
   const dataRows = MUSKOKA_PURPOSE_TO_FILTER_BY.map((purpose) => {
     const purpose_data = filterDataByPurpose(data, purpose, "x_variable")
@@ -47,7 +45,6 @@ const init = (className) => {
               const state = window.DIState.getState;
               const { year, country, dataThree: data } = state;
               if (country && data) {
-                console.log(filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD2))
                 const countryData = filterDataByYear(
                   filterDataByCountry(data, country || defaultCountry, COUNTRY_FIELD2),
                   year || defaultYear, // This is variable but needs to be sorted to be that.

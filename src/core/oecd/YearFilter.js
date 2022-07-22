@@ -24,6 +24,8 @@ const init = (className) => {
            */
           const csv = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/year_dropdown.csv';
           fetchCSVData(csv).then((data) => {
+            data = data.filter((item) => item['year'] !== "");
+            console.log(data);
             const filterWrapper = addFilterWrapper(chartNode);
             const countryFilter = addFilter({
               wrapper: filterWrapper,

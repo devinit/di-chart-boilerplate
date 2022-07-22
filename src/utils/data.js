@@ -95,10 +95,10 @@ export const getPropData = (data, Y_var_titles, valueField1,valueField2) => {
     const Value = data.find((item) => `${item.y_variable}` === `${y_var}`);
     
     if (Value) {
-      const text1 = String(Number(Value[valueField1]).toFixed(4)*100);
+      const text1 = String(Math.round(10000*Value[valueField1])/100);
       const text1b = "%"
       const text2 = " (";
-      const text3 = String(Number(Value[valueField2]).toFixed(1));
+      const text3 = String(parseFloat(Value[valueField2]).toFixed(1));
       const text4 = ")";
     
       return text1.concat(text1b,text2,text3,text4) || '';
