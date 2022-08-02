@@ -24,6 +24,7 @@ const init = (className) => {
            */
           const csv = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/rh-and-fp-dropdowns.csv';
           fetchCSVData(csv).then((data) => {
+            data = data.filter((item) => item['Donors'] !== "")
             const filterWrapper = addFilterWrapper(chartNode);
             const countryFilter = addFilter({
               wrapper: filterWrapper,
