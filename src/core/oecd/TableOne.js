@@ -16,7 +16,7 @@ const renderTable = (tableNode, data, country) => {
 
     return [purpose].concat(getYearRangeData(purposeData, years, VALUE_FIELD));
   });
-  const totalsRowCaption = 'Total';
+  const totalsRowCaption = 'RMNCH (total)';
   const totalsRow = headerRow.map((cell, index) => {
     if (index === 0) {
       return totalsRowCaption;
