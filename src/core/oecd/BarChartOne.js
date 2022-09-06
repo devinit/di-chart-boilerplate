@@ -79,7 +79,7 @@ const renderChart = (chartNode, noDataNode, data) => {
   });
 
 
-  option.color = ['#e84439', '#f8c1b2'].concat(option.color),
+  option.color = ['#e84439', '#f8c1b2', '#f0826d','#bc2629'].concat(option.color),
 
   chart.setOption(option);
 };

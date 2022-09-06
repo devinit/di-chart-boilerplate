@@ -10,7 +10,7 @@ const VALUE_FIELD = 'value';
 
 const renderTable = (tableNode, data, country) => {
   const years = getYearsFromRange(YEARS);
-  const headerRow = ['Purpose code'].concat(years);
+  const headerRow = ['RMNCH category'].concat(years);
   const dataRows = PURPOSE_TO_FILTER_BY.map((purpose) => {
     const purposeData = filterDataByPurpose(data, [purpose], PURPOSE_FIELD);
 
