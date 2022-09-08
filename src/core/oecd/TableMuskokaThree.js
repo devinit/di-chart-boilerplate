@@ -9,7 +9,34 @@ import { filterDataByPurpose, filterDataByCountry, filterDataByYear, formatNumbe
 
 const renderTable = (tableNode, data, country) => {
 
-  const headerRow = ['Purpose','% of RMNCH'.concat(' (',String(Number(data[0]['RMNCH (total)']).toFixed(1)),')'),'% of Health ODA'.concat(' (',String(Number(data[0]['health']).toFixed(1)),')'),'% of total ODA'.concat(' (',String(Number(data[0]['total']).toFixed(1)),')')];
+  var rmnch_attr;
+  var health_attr;
+  var total_attr;
+  console.log(data);
+  if (data[0] === undefined){
+    rmnch_attr = 'NA'
+    health_attr = 'NA'
+    total_attr = 'NA'
+  } else{
+      if (typeof data[0]['RMNCH (total)'] !== undefined){
+        rmnch_attr = String(Number(data[0]['RMNCH (total)']).toFixed(1));
+      } else {
+        rmnch_attr = "NA";
+      }
+      if (typeof data[0]['health'] !== undefined){
+        health_attr = String(Number(data[0]['health']).toFixed(1));
+      } else {
+        health_attr = "NA";
+      }
+      if (typeof data[0]['total'] !== undefined){
+        total_attr = String(Number(data[0]['total']).toFixed(1));
+      } else {
+        total_attr = "NA";
+      }
+  }
+
+
+  const headerRow = ['Purpose','% of RMNCH'.concat(' (',rmnch_attr,')'),'% of Health ODA'.concat(' (',health_attr,')'),'% of total ODA'.concat(' (',total_attr,')')];
   
   const dataRows = MUSKOKA_PURPOSE_TO_FILTER_BY.map((purpose) => {
     const purpose_data = filterDataByPurpose(data, purpose, "x_variable")
@@ -43,6 +70,7 @@ const init = (className) => {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
+              console.log(state);
               const { year, country, dataThree: data } = state;
               if (country && data) {
                 const countryData = filterDataByYear(
@@ -50,6 +78,7 @@ const init = (className) => {
                   year || defaultYear, // This is variable but needs to be sorted to be that.
                   yearField2
                 );
+                console.log(countryData);
                 renderTable(tableNode, countryData, country || defaultCountry);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
