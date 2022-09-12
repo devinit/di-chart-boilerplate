@@ -15,6 +15,7 @@ export const YEARsingle = 2020;
 export const NO_DATA = 0;
 export const AIDTYPE_FIELD = 'aid_type_di_name';
 export const VALUE_FIELD_AIDTYPE = 'usd_disbursement_deflated_Sum';
-export const yearField = 'Year'
-export const yearField2 = 'year'
+export const yearField = 'Year';
+export const yearField2 = 'year';
+export const nonbilats = ['African Development Fund', 'Arab Fund (AFESD)', 'Asian Development Bank', 'EU Institutions', 'Global Environment Facility', 'Inter-American Development Bank', 'International Development Association', 'Islamic Development Bank', 'OPEC Fund for International Development', 'UN Peacebuilding Fund', 'UNDP', 'UNECE', 'UNFPA', 'UNICEF', 'World Health Organisation', 'All donors (total)', 'DAC donors (total)', 'Non-DAC donors (total)', 'Multilateral donors (total)'];
 

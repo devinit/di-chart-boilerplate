@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
 import { TableOne } from '../../components/TableOne/TableOne';
-import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, YEARS } from '../../utils/constants';
+import { COUNTRY_FIELD, PURPOSE_FIELD, PURPOSE_TO_FILTER_BY, YEARS, nonbilats } from '../../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber,getYearRangeData, getYearsFromRange } from '../../utils/data';
 // import d3 from 'd3'; // eslint-disable-line import/no-unresolved
 
@@ -11,7 +11,17 @@ const VALUE_FIELD = 'value';
 const renderTable = (tableNode, data, country) => {
   const years = getYearsFromRange(YEARS);
   const headerRow = ['RMNCH category'].concat(years);
-  const dataRows = PURPOSE_TO_FILTER_BY.map((purpose) => {
+  var PURPOSE_TO_FILTER_BY_ADAPTED = Object.create(PURPOSE_TO_FILTER_BY)
+  if (nonbilats.includes(country)){
+    for( var i = 0; i < PURPOSE_TO_FILTER_BY_ADAPTED.length; i++){ 
+    
+      if ( PURPOSE_TO_FILTER_BY_ADAPTED[i] === "Core contributions to multilaterals benefiting RMNCH") { 
+  
+          PURPOSE_TO_FILTER_BY_ADAPTED.splice(i, 1); 
+      } 
+    }
+  }
+  const dataRows = PURPOSE_TO_FILTER_BY_ADAPTED.map((purpose) => {
     const purposeData = filterDataByPurpose(data, [purpose], PURPOSE_FIELD);
 
     return [purpose].concat(getYearRangeData(purposeData, years, VALUE_FIELD));

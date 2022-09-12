@@ -9,13 +9,25 @@ import {
   removeNoData,
   toggleShowChart,
   YEARS,
+  nonbilats
 } from '../../utils';
 import { filterDataByCountry, filterDataByPurpose, formatNumber, getYearsFromRange } from '../../utils/data';
 import { addFilterWrapper } from '../../widgets/filters';
 
 const VALUE_FIELD = 'value';
 const getSeries = (data, years) => {
-  return PURPOSE_TO_FILTER_BY.map((purpose) => ({
+  var PURPOSE_TO_FILTER_BY_ADAPTED = PURPOSE_TO_FILTER_BY.slice()
+
+  if (nonbilats.includes(data[0]['Donor.Name'])){
+    for( var i = 0; i < PURPOSE_TO_FILTER_BY_ADAPTED.length; i++){ 
+      if ( PURPOSE_TO_FILTER_BY_ADAPTED[i] === "Core contributions to multilaterals benefiting RMNCH") { 
+    
+        PURPOSE_TO_FILTER_BY_ADAPTED.splice(i, 1);
+      } 
+    }
+  }
+
+  return PURPOSE_TO_FILTER_BY_ADAPTED.map((purpose) => ({
     name: purpose,
     type: 'bar',
     stack: 'oda',
@@ -81,7 +93,7 @@ const renderChart = (chartNode, noDataNode, data) => {
 
   option.color = ['#e84439', '#f8c1b2', '#f0826d','#bc2629'].concat(option.color),
 
-  chart.setOption(option);
+  chart.setOption(option,true);
 };
 
 const init = (className) => {
@@ -91,7 +103,6 @@ const init = (className) => {
       onAdd: (chartNodes) => {
         Array.prototype.forEach.call(chartNodes, (chartNode) => {
           const dichart = new window.DICharts.Chart(chartNode.parentElement);
-
           const defaultCountry = 'United States';
           dichart.showLoading();
           const noDataNode = addFilterWrapper(chartNode);
@@ -107,7 +118,7 @@ const init = (className) => {
                   PURPOSE_FIELD,
                 );
                 // chart goes here
-                renderChart(chartNode, noDataNode, countryData);
+                renderChart(chartNode, noDataNode, countryData,country);
 
                 dichart.hideLoading();
               }

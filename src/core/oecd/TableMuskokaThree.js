@@ -12,7 +12,6 @@ const renderTable = (tableNode, data, country) => {
   var rmnch_attr;
   var health_attr;
   var total_attr;
-  console.log(data);
   if (data[0] === undefined){
     rmnch_attr = 'NA'
     health_attr = 'NA'
@@ -70,7 +69,6 @@ const init = (className) => {
             window.DIState.addListener(() => {
               dichart.showLoading();
               const state = window.DIState.getState;
-              console.log(state);
               const { year, country, dataThree: data } = state;
               if (country && data) {
                 const countryData = filterDataByYear(
@@ -78,7 +76,6 @@ const init = (className) => {
                   year || defaultYear, // This is variable but needs to be sorted to be that.
                   yearField2
                 );
-                console.log(countryData);
                 renderTable(tableNode, countryData, country || defaultCountry);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
