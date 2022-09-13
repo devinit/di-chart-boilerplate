@@ -145,7 +145,7 @@ const init = (className) => {
                     }, []),
                     defaultOption: activePurpose,
                     className: 'purpose-code-filter',
-                    label: 'Select purpose code',
+                    label: 'Select RMNCH category',
                   });
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;

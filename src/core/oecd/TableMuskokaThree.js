@@ -35,7 +35,7 @@ const renderTable = (tableNode, data, country) => {
   }
 
 
-  const headerRow = ['Purpose','% of RMNCH'.concat(' (',rmnch_attr,')'),'% of Health ODA'.concat(' (',health_attr,')'),'% of total ODA'.concat(' (',total_attr,')')];
+  const headerRow = ['RMNCH category','% of RMNCH'.concat(' (',rmnch_attr,')'),'% of Health ODA'.concat(' (',health_attr,')'),'% of total ODA'.concat(' (',total_attr,')')];
   
   const dataRows = MUSKOKA_PURPOSE_TO_FILTER_BY.map((purpose) => {
     const purpose_data = filterDataByPurpose(data, purpose, "x_variable")
