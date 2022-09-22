@@ -1,12 +1,14 @@
 import { parse } from 'papaparse';
 import { NO_DATA } from './constants';
 
-export const formatNumber = (value, defaultForNan = '') => {
+export const formatNumber = (value, defaultForNan = "0") => {
   const formattedNumber = Number(value);
 
   if (isNaN(formattedNumber)) {
     return defaultForNan;
   }
+
+  
 
   return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(formattedNumber);
 }
@@ -94,7 +96,7 @@ export const getPropData = (data, Y_var_titles, valueField1,valueField2) => {
   return Y_var_titles.map((y_var) => {
     const Value = data.find((item) => `${item.y_variable}` === `${y_var}`);
     
-    if (Value) {
+    if ((Value) && (Value[valueField1]!=="NA")) {
       const text1 = String(Math.round(10000*Value[valueField1])/100);
       const text1b = "%"
       const text2 = " (";

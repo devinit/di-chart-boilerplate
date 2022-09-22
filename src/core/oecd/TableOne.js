@@ -36,9 +36,11 @@ const renderTable = (tableNode, data, country) => {
       dataRows.reduce((total, current) => (typeof current[index] === 'number' ? total + current[index] : total), 0),
     );
   });
-  // formatting is done after calculating the total to eliminate rounding errors
-  const formattedDataRow = dataRows.map((row) => row.map((cell) => typeof cell === 'number' ? formatNumber(cell) : cell));
 
+  console.log(dataRows);
+  // formatting is done after calculating the total to eliminate rounding errors
+  const formattedDataRow = dataRows.map((row) => row.map((cell) => typeof cell === 'number' && cell!== '' ? formatNumber(cell) : cell === '' ? 0 : cell));
+ 
   const rows = [headerRow].concat(formattedDataRow, [totalsRow]);
 
   render(createElement(TableOne, { country, rows }), tableNode);

@@ -13,24 +13,33 @@ const renderTable = (tableNode, data, country) => {
   var health_attr;
   var total_attr;
   if (data[0] === undefined){
-    rmnch_attr = 'NA'
-    health_attr = 'NA'
-    total_attr = 'NA'
+    rmnch_attr = 0
+    health_attr = 0
+    total_attr = 0
   } else{
       if (typeof data[0]['RMNCH (total)'] !== undefined){
         rmnch_attr = String(Number(data[0]['RMNCH (total)']).toFixed(1));
+        if (isNaN(rmnch_attr)){
+          rmnch_attr = 0;
+        }
       } else {
-        rmnch_attr = "NA";
+        rmnch_attr = 0;
       }
       if (typeof data[0]['health'] !== undefined){
         health_attr = String(Number(data[0]['health']).toFixed(1));
+        if (isNaN(health_attr)){
+          health_attr = 0;
+        }
       } else {
-        health_attr = "NA";
+        health_attr = 0;
       }
       if (typeof data[0]['total'] !== undefined){
         total_attr = String(Number(data[0]['total']).toFixed(1));
+        if (isNaN(total_attr)){
+          total_attr = 0;
+        }
       } else {
-        total_attr = "NA";
+        total_attr = 0;
       }
   }
 
