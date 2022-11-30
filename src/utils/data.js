@@ -28,4 +28,15 @@ export const parseValuesToNumbers = (data, valueField) =>
     [valueField]: item[valueField] ? Number(item[valueField]) : 'NA',
   }));
 
+export const getYearsFromRange = (range) => {
+  const yearDiff = range[1] - range[0] + 1;
+  const count = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const key of Array(yearDiff).keys()) {
+    count.push(key);
+  }
+
+  return count.map((key) => range[0] + key);
+};
+
 export default fetchCSVData;
