@@ -1,19 +1,20 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import deepMerge from 'deepmerge';
-import defaultOptions, { handleResize } from './index';
-import { addFilterWrapper } from '../../widgets/filters';
-import Select from '../../component/Select';
-import ChartFilters from '../../component/ChartFilters';
-
+import defaultOptions, { handleResize } from '../charts/echarts/index';
+import { addFilterWrapper } from '../widgets/filters';
+import Select from '../components/Select';
+import ChartFilters from '../components/ChartFilters';
 
 const updateChart = (chart, data) => {
   const option = {
-    series: [{
-      name: 'Sale',
-      type: 'bar',
-      data,
-    }],
+    series: [
+      {
+        name: 'Sale',
+        type: 'bar',
+        data,
+      },
+    ],
   };
   chart.setOption(deepMerge(option, defaultOptions), { replaceMerge: ['series'] });
 };
@@ -40,11 +41,13 @@ const renderEChart = () => {
             yAxis: {
               type: 'value',
             },
-            series: [{
-              name: 'Sale',
-              type: 'bar',
-              data: [5, 20, 36, 10, 10, 20, 4],
-            }],
+            series: [
+              {
+                name: 'Sale',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20, 4],
+              },
+            ],
           };
           chart.setOption(deepMerge(option, defaultOptions), { replaceMerge: ['series'] });
 
@@ -59,20 +62,20 @@ const renderEChart = () => {
                 options={[
                   { value: 1, label: 'Chocolate' },
                   { value: 2, label: 'Strawberry' },
-                  { value: 3, label: 'Vanilla' }
+                  { value: 3, label: 'Vanilla' },
                 ]}
                 classNamePrefix="donors-select"
                 isClearable={false}
                 defaultValue={[{ value: 'chocolate', label: 'Chocolate', isCloseable: true }]}
-                onChange={ (item) => {
-                  console.log(item.value);
+                onChange={(item) => {
+                  window.console.log(item.value);
                   if (item.value) {
-                    const updatedData = [5, 20, 36, 10, 10, 20, 4].map(value => value * Math.random() * item.value);
+                    const updatedData = [5, 20, 36, 10, 10, 20, 4].map((value) => value * Math.random() * item.value);
                     updateChart(chart, updatedData);
                   }
                 }}
                 css={{ minWidth: '100px' }}
-              />    
+              />
             </ChartFilters>
           );
 
