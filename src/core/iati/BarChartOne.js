@@ -108,7 +108,7 @@ const renderChart = (chartNode, noDataNode, data) => {
     },
     yAxis: {
       type: 'value',
-      name: 'USD$ millions (current prices)',
+      name: 'US$ millions (current prices)',
       nameLocation: 'middle',
       nameGap: 50,
     },
