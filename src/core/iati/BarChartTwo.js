@@ -9,7 +9,7 @@ import {
   getYearsFromRange,
   mapYearToExpectedFormat
 } from '../../utils/data';
-import { DEFAULT_DONOR } from '../../utils/iati/constants';
+import { DEFAULT_DONOR, YEARS } from '../../utils/iati/constants';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
 
 
@@ -18,7 +18,7 @@ const VALUE_FIELD = 'Usd Disbursement Deflated Sum';
 const PURPOSE_FIELD = 'Purpose Name';
 const DONOR_FIELD = 'Donor Name';
 const YEAR_FIELD = 'Year';
-const YEAR_RANGE = [2019, 2021];
+const YEAR_RANGE = YEARS;
 
 const getYearSum = (data, purpose, years) => {
   const filteredData = filterDataByPurpose(data, [purpose], AIDTYPE_PURPOSE_FIELD);

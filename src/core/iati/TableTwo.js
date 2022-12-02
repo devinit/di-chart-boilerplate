@@ -3,9 +3,10 @@ import { render } from 'react-dom';
 import { TableTwo } from '../../components/TableTwo/TableTwo';
 import { filterDataByDonor, formatNumber, getYearsFromRange } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
+import { YEARS } from '../../utils/iati/constants';
 
 const DATA_PURPOSE_COLUMN = 'Code type';
-const YEAR_RANGE = [2019, 2021];
+const YEAR_RANGE = YEARS;
 const NO_DATA = 0;
 
 const formatYear = (year) => `${year}.0`;
