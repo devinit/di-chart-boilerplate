@@ -40,7 +40,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "classnames": "^2.3.2",
-    "core-js": "^3.27.2",
+    "core-js": "^3.28.0",
     "deepmerge": "^4.3.0",
     "expect.js": "^0.3.1",
     "mobx": "^6.8.0",
