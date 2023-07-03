@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" id="viewport" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>DI Chart Boilerplate</title>
     <meta name="description" content="" />
@@ -16,71 +16,86 @@
   <body class="body">
     <div class="ui-base">
       <main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
-        <section class="section">
-          <div class="row row--narrow">
-            <h3 class="type-l type-l--trailer">D3 Chart</h3>
-            <div class="chart-container chart-container--full">
-              <div class="charts__chart">
-                <!-- CODE TO COPY STARTS HERE {% endcomment %} -->
-                <div class="dicharts--d3-boilerplate-chart"></div>
-                <!-- CODE TO COPY ENDS HERE {% endcomment %} -->
+        <div class="page-container">
+          <div class="all-charts">
+            <section class="section">
+              <div class="row row--narrow">
+                <h3 class="type-l type-l--trailer">D3 Chart</h3>
+                <div class="chart-container chart-container--full">
+                  <div class="charts__chart">
+                    <!-- CODE TO COPY STARTS HERE {% endcomment %} -->
+                    <div class="dicharts--d3-boilerplate-chart"></div>
+                    <!-- CODE TO COPY ENDS HERE {% endcomment %} -->
 
-                <div class="chart-loading">
-                  <div class="chart-loading__block">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="chart-loading">
+                      <div class="chart-loading__block">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
 
-        <section class="section">
-          <div class="row row--narrow">
-            <h3 class="type-l type-l--trailer">E-Charts</h3>
-            <div class="chart-container chart-container--full">
-              <div class="charts__chart">
-                <!-- CODE TO COPY STARTS HERE {% endcomment %} -->
-                <div class="dicharts--echarts-boilerplate-chart"></div>
-                <!-- CODE TO COPY ENDS HERE {% endcomment %} -->
+            <section class="section">
+              <div class="row row--narrow">
+                <h3 class="type-l type-l--trailer">E-Charts</h3>
+                <div class="chart-container chart-container--full">
+                  <div class="charts__chart">
+                    <!-- CODE TO COPY STARTS HERE {% endcomment %} -->
+                    <div class="dicharts--echarts-boilerplate-chart"></div>
+                    <!-- CODE TO COPY ENDS HERE {% endcomment %} -->
 
-                <div class="chart-loading">
-                  <div class="chart-loading__block">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="chart-loading">
+                      <div class="chart-loading__block">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
 
-        <section class="section">
-          <div class="row row--narrow">
-            <h3 class="type-l type-l--trailer">Example Table</h3>
-            <div class="chart-container chart-container--full">
-              <div class="charts__chart">
-                <!-- CODE TO COPY STARTS HERE {% endcomment %} -->
-                <div class="dicharts--table-example"></div>
-                <!-- CODE TO COPY ENDS HERE {% endcomment %} -->
+            <section class="section">
+              <div class="row row--narrow">
+                <h3 class="type-l type-l--trailer">Example Table</h3>
+                <div class="chart-container chart-container--full">
+                  <div class="charts__chart">
+                    <!-- CODE TO COPY STARTS HERE {% endcomment %} -->
+                    <div class="dicharts--table-example"></div>
+                    <!-- CODE TO COPY ENDS HERE {% endcomment %} -->
 
-                <div class="chart-loading">
-                  <div class="chart-loading__block">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="chart-loading">
+                      <div class="chart-loading__block">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+            </section>
+          </div>
+          <!-- Add this to preview the charts at different screen sizes -->
+          <div class="preview-pane">
+            <div class="iframeWrapper">
+              <section class="section">
+                  <div class="dicharts--chart-views"></div>
+              </section>
+              <iframe src="http://localhost:3000/" allow="fullscreen" width="100%" height="1000" id="preview-iframe">
+              </iframe>
+            </div>
             </div>
           </div>
-        </section>
+        </div>
       </main>
     </div>
 
