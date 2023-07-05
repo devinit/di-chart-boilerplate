@@ -5,53 +5,66 @@ export default function barChartVertical(targetNode, dataset) {
   const { data } = dataset;
   const [col_x, col_y] = dataset.columns;
   const svg = d3.select(targetNode).append('svg');
-  const svgWidth = targetNode.clientWidth;
-  const svgHeight = targetNode.clientHeight;
 
-  svg.attr('width', svgWidth).attr('height', svgHeight);
+  function drawChart() {
+    svg.selectAll('.charts__data--bar-vertical').remove();
+    svg.selectAll('.charts__text').remove();
+    const svgWidth = targetNode.clientWidth;
+    const svgHeight = targetNode.clientHeight;
 
-  const margin = {
-    top: 20, right: 20, bottom: 70, left: 70,
-  };
-  const width = +svg.attr('width') - margin.left - margin.right;
-  const height = +svg.attr('height') - margin.top - margin.bottom;
+    svg.attr('viewBox', `0 0 ${svgWidth} ${svgHeight}`).attr('preserveAspectRatio', 'xMidYMid meet');
 
-  const g = svg.append('g')
-    .attr('transform', `translate(${margin.left},${margin.top})`);
+    const margin = {
+      top: 20,
+      right: 20,
+      bottom: 70,
+      left: 70,
+    };
+    const width = svgWidth - margin.left - margin.right;
+    const height = svgHeight - margin.top - margin.bottom;
 
-  // X axis
-  const x = d3.scaleBand()
-    .range([0, width])
-    .domain(data.map((d) => d[col_x]))
-    .padding(0.2);
-  g.append('g')
-    .attr('class', 'charts__text charts__text--x-axis')
-    .attr('transform', `translate(0,${height})`)
-    .call(d3.axisBottom(x))
-    .selectAll('text')
-    .attr('transform', 'translate(-10,0)rotate(-45)')
-    .style('text-anchor', 'end');
+    // const width = +svg.attr('width') - margin.left - margin.right;
+    // const height = +svg.attr('height') - margin.top - margin.bottom;
 
-  // Add Y axis
-  const y = d3.scaleLinear()
-    .domain([0, d3.max(data, (d) => +d[col_y])])
-    .nice()
-    .range([height, 0]);
-  g.append('g')
-    .attr('class', 'charts__text charts__text--y-axis')
-    .call(d3.axisLeft(y));
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-  // Bars
-  g.append('g')
-    .attr('class', 'charts__data')
-    .selectAll('bar')
-    .data(data)
-    .enter()
-    .append('rect')
-    .attr('x', (d) => x(d[col_x]))
-    .attr('y', (d) => y(d[col_y]))
-    .attr('width', x.bandwidth())
-    .attr('height', (d) => height - y(d[col_y]))
-    .attr('fill', '#69b3a2')
-    .attr('class', (d, i, n) => `charts__data--bar-vertical charts__data--${i}`);
+    // X axis
+    const x = d3
+      .scaleBand()
+      .range([0, width])
+      .domain(data.map((d) => d[col_x]))
+      .padding(0.2);
+    g.append('g')
+      .attr('class', 'charts__text charts__text--x-axis')
+      .attr('transform', `translate(0,${height})`)
+      .call(d3.axisBottom(x))
+      .selectAll('text')
+      .attr('transform', 'translate(-10,0)rotate(-45)')
+      .style('text-anchor', 'end');
+
+    // Add Y axis
+    const y = d3
+      .scaleLinear()
+      .domain([0, d3.max(data, (d) => +d[col_y])])
+      .nice()
+      .range([height, 0]);
+    g.append('g').attr('class', 'charts__text charts__text--y-axis').call(d3.axisLeft(y));
+
+    // Bars
+    g.append('g')
+      .attr('class', 'charts__data')
+      .selectAll('bar')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('x', (d) => x(d[col_x]))
+      .attr('y', (d) => y(d[col_y]))
+      .attr('width', x.bandwidth())
+      .attr('height', (d) => height - y(d[col_y]))
+      .attr('fill', '#69b3a2')
+      .attr('class', (d, i, n) => `charts__data--bar-vertical charts__data--${i}`);
+  }
+
+  window.addEventListener('resize', drawChart);
+  drawChart();
 }

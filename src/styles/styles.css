@@ -125,8 +125,11 @@
 
 .preview-pane {
  height: 100%;
+ /* width: 100%; */
  border: 1px solid #ccc ;
  padding-left: 20px;
+ overflow-y: auto;
+ overflow-x: auto;
 }
 
 .iframeWrapper {
@@ -136,9 +139,9 @@
 .all-charts {
   width: 100%;
 }
-.preview-pane > svg, canvas{
+/* .preview-pane > svg, canvas{
   max-width: 100%;
   width: 100% !important;
   height: 100% !important;
   aspect-ratio: auto;
-}
+} */
