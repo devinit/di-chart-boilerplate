@@ -9,6 +9,7 @@ export default function barChartVertical(targetNode, dataset) {
   function drawChart() {
     svg.selectAll('.charts__data--bar-vertical').remove();
     svg.selectAll('.charts__text').remove();
+
     const svgWidth = targetNode.clientWidth;
     const svgHeight = targetNode.clientHeight;
 
