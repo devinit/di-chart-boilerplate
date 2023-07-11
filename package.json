@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.22.5",
+    "@emotion/eslint-plugin": "^11.11.0",
     "@types/d3": "^7.4.0",
     "eslint": "^8.44.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -39,16 +40,21 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@turf/center": "^6.5.0",
+    "@turf/center-of-mass": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
     "classnames": "^2.3.2",
     "core-js": "^3.31.1",
     "deepmerge": "^4.3.1",
     "expect.js": "^0.3.1",
+    "mapbox-gl": "^2.15.0",
     "mobx": "^6.9.0",
     "papaparse": "^5.4.1",
     "prettier": "^3.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-select": "^5.7.3"
+    "react-select": "^5.7.3",
+    "reactjs-popup": "^2.0.5"
   }
 }
