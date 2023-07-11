@@ -2,7 +2,7 @@ import { parse } from 'papaparse';
 
 export const ACTIVE_BRANCH = 'main';
 
-const fetchCSVData = (url) =>
+export const fetchCSVData = (url) =>
   new Promise((resolve) => {
     parse(url, {
       download: true,
@@ -39,4 +39,12 @@ export const getYearsFromRange = (range) => {
   return count.map((key) => range[0] + key);
 };
 
-export default fetchCSVData;
+const fetchData = (url) => {
+  if (url.endsWith('csv')) {
+    return fetchCSVData(url);
+  }
+
+  return window.fetch(url).then((response) => response.json());
+};
+
+export default fetchData;
