@@ -146,3 +146,46 @@
 #preview-iframe {
   height: 100vh;
 }
+
+#preview-width {
+  margin-bottom: 2px;
+  padding: 8px;
+  border: 1px solid lightgray;
+  font-size: 16px;
+}
+
+#preview-button {
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: center;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 14px;
+  background-color: rgb(133, 39, 39);
+}
+
+#preview-button:hover {
+  color: white;
+  background-color: rgb(128, 99, 99);
+}
+
+#preview-width-label {
+  margin-top: 10px;
+}
+
+#preview-width-input {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#width-input {
+  display: grid;
+}
+
+.preview-input-error {
+  font-weight: 500;
+  color: rgb(169, 43, 43);
+  padding: 2px;
+}
