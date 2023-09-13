@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import PreviewWidth from '../widgets/previewWidth';
 
 const ChartView = () => {
+  const width = new PreviewWidth();
+
   const [view, setView] = useState('desktop');
   const [isValidInput, setIsValidInput] = useState(true);
 
@@ -8,13 +11,13 @@ const ChartView = () => {
 
   useEffect(() => {
     if (view === 'mobile') {
-      chartPreview.style.width = '500px';
+      chartPreview.style.width = width.getWidth('mobile');
     }
     if (view === 'desktop') {
-      chartPreview.style.width = '1400px';
+      chartPreview.style.width = width.getWidth('desktop');
     }
     if (view === 'tablet') {
-      chartPreview.style.width = '820px';
+      chartPreview.style.width = width.getWidth('tablet');
     }
   }, [view]);
 
