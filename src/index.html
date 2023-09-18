@@ -16,7 +16,11 @@
   <body class="body">
     <div class="ui-base">
       <main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
-        <div class="page-container">
+        <section class="section">
+          <div class="dicharts--chart-views sticky"></div>
+      </section>
+        <div class="page-container" id="page-container">
+
           <div class="all-charts">
             <section class="section">
               <div class="row row--narrow">
@@ -85,11 +89,11 @@
             </section>
           </div>
           <!-- Add this to preview the charts at different screen sizes -->
-          <div class="preview-pane">
+          <div class="preview-pane" id="preview-pane">
             <div class="iframeWrapper">
-              <section class="section">
+              <!-- <section class="section">
                 <div class="dicharts--chart-views sticky"></div>
-            </section>
+            </section> -->
               <iframe src="http://localhost:3000/" allow="fullscreen" id="preview-iframe" title="Preview of charts on different screen sizes">
               </iframe>
             </div>

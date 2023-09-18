@@ -6,6 +6,7 @@ const ChartView = () => {
 
   const [view, setView] = useState('desktop');
   const [isValidInput, setIsValidInput] = useState(true);
+  const [checked, setChecked] = useState(true);
 
   const chartPreview = document.getElementById('preview-iframe');
 
@@ -38,17 +39,68 @@ const ChartView = () => {
     chartPreview.style.width = view;
   };
 
+  // const togglePreview = () => {
+  // const previewPane = document.getElementsByClassName('preview-iframe');
+  // console.log(checked);
+  // if (checked) {
+  // } else {
+  // chartPreview.style.display = 'none';
+  // }
+  // };
+
+  const handleToggleChange = () => {
+    const previewPane = document.getElementById('preview-pane');
+    const buttons = document.getElementById('buttons');
+    const previewWidthLabel = document.getElementById('preview-width-label');
+    const widthInput = document.getElementById('width-input');
+    const container = document.getElementById('page-container');
+
+    setChecked((preview) => !preview);
+    previewPane.style.display = checked ? 'none' : 'block';
+    buttons.style.display = checked ? 'none' : 'block';
+    previewWidthLabel.style.display = checked ? 'none' : 'block';
+    widthInput.style.display = checked ? 'none' : 'block';
+    container.style.display = checked ? 'block' : 'flex';
+
+    // if (checked) {
+    //   previewPane.classList.remove('hidden');
+    //   buttons.classList.remove('hidden');
+    //   previewWidthLabel.classList.remove('hidden');
+    //   widthInput.classList.remove('hidden');
+    // } else {
+    //   previewPane.classList.add('hidden');
+    //   buttons.classList.add('hidden');
+    //   previewWidthLabel.classList.add('hidden');
+    //   widthInput.classList.add('hidden');
+    // }
+
+    // togglePreview();
+  };
+
   return (
-    <div>
-      <button className="button" onClick={() => setView('desktop')}>
-        Desktop
-      </button>
-      <button className="button" onClick={() => setView('tablet')}>
-        Tablet
-      </button>
-      <button className="button" onClick={() => setView('mobile')}>
-        Mobile
-      </button>
+    <div className="preview">
+      <div className="toggle-buttons">
+        <div className="buttons" id="buttons">
+          <button className="button" onClick={() => setView('desktop')}>
+            Desktop
+          </button>
+          <button className="button" onClick={() => setView('tablet')}>
+            Tablet
+          </button>
+          <button className="button" onClick={() => setView('mobile')}>
+            Mobile
+          </button>
+        </div>
+        <label>
+          {checked ? 'Hide Preview' : 'Show Preview'}{' '}
+          <input
+            type="checkbox"
+            checked={checked}
+            value={checked}
+            onChange={(event) => handleToggleChange(event.target.checked)}
+          />
+        </label>
+      </div>
       <label htmlFor="preview-width" id="preview-width-label">
         Enter screen width
       </label>
