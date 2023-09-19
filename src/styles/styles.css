@@ -1,8 +1,6 @@
 .dicharts--d3-boilerplate-chart,
 .dicharts--echarts-boilerplate-chart {
   width: 70vw;
-  /* height: 100px; */
-  overflow-x: scroll;
 }
 
 .spotlight-banner.data-selector--wrapper {
@@ -17,9 +15,12 @@
   display: inline-block;
 }
 
-.charts__chart .table-styled table {
+.charts__chart {
   width: 70vw;
-  overflow-x: scroll;
+}
+
+.table-styled table {
+  width: 70vw;
 }
 
 .auto-height {
@@ -122,31 +123,12 @@
   visibility: hidden;
 }
 
-/* .page-container { */
-/* display: flex; */
-/* } */
-
 .preview-pane {
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   border-left: 1px solid #ccc;
   padding-left: 20px;
-  overflow: scroll;
 }
-
-/* #preview-pane {
-  visibility: visible;
-  height: auto;
-} */
-
-/* #preview-pane.hidden {
-  visibility: hidden;
-  height: 0;
-} */
-
-/* .preview-pane.hidden {
-  display: none;
-} */
 
 .iframeWrapper {
   width: 100%;
@@ -154,13 +136,14 @@
 }
 
 .all-charts {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  overflow: scroll;
+  margin: 20px;
 }
 
 #preview-iframe {
   height: 100vh;
+  width: 100vw;
 }
 
 #preview-width {
