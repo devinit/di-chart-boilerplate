@@ -73,12 +73,7 @@ const ChartView = () => {
         </div>
         <label>
           {checked ? 'Hide Preview' : 'Show Preview'}{' '}
-          <input
-            type="checkbox"
-            checked={checked}
-            value={checked}
-            onChange={(event) => handleToggleChange(event.target.checked)}
-          />
+          <input type="checkbox" checked={checked} value={checked} onChange={() => handleToggleChange()} />
         </label>
       </div>
       <label htmlFor="preview-width" id="preview-width-label">
