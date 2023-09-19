@@ -16,9 +16,9 @@
   <body class="body">
     <div class="ui-base">
       <main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
-        <section class="section">
+        <section class="section" id="dicharts--chart-views">
           <div class="dicharts--chart-views sticky"></div>
-      </section>
+        </section>
         <div class="page-container" id="page-container">
 
           <div class="all-charts">
@@ -91,9 +91,6 @@
           <!-- Add this to preview the charts at different screen sizes -->
           <div class="preview-pane" id="preview-pane">
             <div class="iframeWrapper">
-              <!-- <section class="section">
-                <div class="dicharts--chart-views sticky"></div>
-            </section> -->
               <iframe src="http://localhost:3000/" allow="fullscreen" id="preview-iframe" title="Preview of charts on different screen sizes">
               </iframe>
             </div>
@@ -107,5 +104,17 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://devinit.org/assets/js/app.bundle.0adecbc3ca7f.js"></script>
     <script src="https://devinit.org/assets/visualisation/js/dicharts.92c38e09499f.js"></script>
+
+    <script>
+      const iframe = document.getElementById('preview-iframe');
+      iframe.onload = function(){
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+        const section = iframeDocument.getElementById('dicharts--chart-views');
+        if(section){
+          section.remove();
+        }
+      }
+    </script>
   </body>
 </html>
