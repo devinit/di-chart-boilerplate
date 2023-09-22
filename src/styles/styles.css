@@ -170,25 +170,6 @@
   background-color: rgb(128, 99, 99);
 }
 
-#preview-width-label {
-  margin-top: 10px;
-}
-
-#preview-width-input {
-  display: flex;
-  justify-content: flex-start;
-}
-
-#width-input {
-  display: grid;
-}
-
-.preview-input-error {
-  font-weight: 500;
-  color: rgb(169, 43, 43);
-  padding: 2px;
-}
-
 .toggle-buttons {
   display: flex;
   justify-content: flex-end;
