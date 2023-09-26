@@ -53,10 +53,13 @@ const ChartView = () => {
             </button>
           </div>
         )}
-        <label>
-          {checked ? 'Hide Preview' : 'Show Preview'}{' '}
-          <input type="checkbox" checked={checked} value={checked} onChange={() => handleToggleChange()} />
-        </label>
+        <div className="preview-label">
+          <h3> {checked ? 'Hide Preview' : 'Show Preview'}</h3>
+          <label className="preview-switch">
+            <input type="checkbox" checked={checked} value={checked} onChange={() => handleToggleChange()} />
+            <span className="switch"></span>
+          </label>
+        </div>
       </div>
     </div>
   );

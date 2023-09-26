@@ -146,13 +146,6 @@
   width: 100vw;
 }
 
-#preview-width {
-  margin-bottom: 2px;
-  padding: 8px;
-  border: 1px solid lightgray;
-  font-size: 16px;
-}
-
 #preview-button {
   padding-left: 20px;
   padding-right: 20px;
@@ -180,8 +173,65 @@
 .preview {
   display: grid;
   justify-content: end;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 20px;
 }
 
 .buttons {
   margin-right: 20px;
+}
+
+.preview-label {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.preview-label h3 {
+  font-size: 20px;
+  color: black;
+}
+
+.preview-switch {
+  width: 48px;
+  height: 28px;
+  position: relative;
+}
+
+.preview-switch input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightgray;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.switch:before {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 4px;
+  top: 4px;
+  content: '';
+  background-color: white;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+input:checked + .switch {
+  background-color: rgb(133, 39, 39);
+}
+
+input:checked + .switch:before {
+  transform: translateX(20px);
 }
