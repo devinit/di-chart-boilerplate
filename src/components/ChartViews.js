@@ -6,35 +6,33 @@ const ChartView = () => {
 
   const [view, setView] = useState('desktop');
   const [checked, setChecked] = useState(false);
-  const [display, setDisplay] = useState('flex');
 
   const chartPreview = document.getElementById('preview-iframe');
+  const allCharts = document.getElementById('all-charts');
 
   useEffect(() => {
     if (view === 'mobile') {
-      chartPreview.style.width = width.getWidth('mobile');
+      chartPreview.style.maxWidth = width.getWidth('mobile');
     }
     if (view === 'desktop') {
-      chartPreview.style.width = width.getWidth('desktop');
+      chartPreview.style.maxWidth = width.getWidth('desktop');
     }
     if (view === 'tablet') {
-      chartPreview.style.width = width.getWidth('tablet');
+      chartPreview.style.maxWidth = width.getWidth('tablet');
     }
   }, [view]);
 
   const container = document.getElementById('page-container');
-  container.style.display = display;
+  container.style.display = 'flex';
 
   const previewPane = document.getElementById('preview-pane');
-
   previewPane.style.display = checked ? 'block' : 'none';
 
   const handleToggleChange = () => {
-    const buttons = document.getElementById('buttons');
-
     setChecked((preview) => !preview);
-    buttons.style.display = checked ? 'block' : 'none';
-    container.style.display = checked ? setDisplay('flex') : setDisplay('block');
+    container.style.display = checked ? 'block' : 'flex';
+    previewPane.style.minWidth = checked ? '0%' : '30%';
+    allCharts.style.minWidth = checked ? '100%' : '70%';
   };
 
   return (
