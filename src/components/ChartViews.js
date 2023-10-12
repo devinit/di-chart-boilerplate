@@ -20,7 +20,13 @@ const ChartView = () => {
     if (view === 'tablet') {
       chartPreview.style.maxWidth = width.getWidth('tablet');
     }
-  }, [view]);
+
+    // force table layout recalculation
+    window.dispatchEvent(new Event('resize'));
+    if (checked) {
+      window.dispatchEvent(new Event('resize'));
+    }
+  }, [view, checked]);
 
   const container = document.getElementById('page-container');
   container.style.display = 'flex';
