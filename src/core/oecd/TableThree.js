@@ -1,5 +1,5 @@
-import { createElement } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { TableOne } from '../../components/TableOne/TableOne';
 import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
 import { addFilter, addFilterWrapper } from '../../widgets/filters';
@@ -31,7 +31,7 @@ const renderTable = (data, country, purpose, tableNode) => {
   const tableData = getRows(sumChannelData(countryData));
   const rows = [rowHeader].concat(tableData);
 
-  render(createElement(TableOne, { rows }), tableNode);
+  tableNode.render(<TableOne rows={rows}/>);
 };
 
 const init = (className) => {
@@ -53,6 +53,7 @@ const init = (className) => {
           const filterWrapper = addFilterWrapper(chartNode);
           let purposeField;
           let activeCountry = DEFAULT_COUNTRY;
+          const root = createRoot(chartNode)
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
@@ -76,7 +77,7 @@ const init = (className) => {
                     window.DIState.setState({ purpose: event.target.value });
                   });
                 }
-                renderTable(data, activeCountry, purpose, chartNode);
+                renderTable(data, activeCountry, purpose, root);
 
                 dichart.hideLoading();
               }

@@ -1,5 +1,5 @@
-import { createElement } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { TableThree } from '../../components/TableThree/TableThree';
 import { MUSKOKA_PURPOSE_TO_FILTER_BY, COUNTRY_FIELD2, yearField2, MUSKOKA_TITLES } from '../../utils/constants';
 import { filterDataByPurpose, filterDataByCountry, filterDataByYear, formatNumber,getPropData } from '../../utils/data';
@@ -45,7 +45,7 @@ const renderTable = (tableNode, data, country) => {
 
 
   const headerRow = ['RMNCH category','% of RMNCH'.concat(' (',rmnch_attr,')'),'% of Health ODA'.concat(' (',health_attr,')'),'% of total ODA'.concat(' (',total_attr,')')];
-  
+
   const dataRows = MUSKOKA_PURPOSE_TO_FILTER_BY.map((purpose) => {
     const purpose_data = filterDataByPurpose(data, purpose, "x_variable")
 
@@ -57,7 +57,7 @@ const renderTable = (tableNode, data, country) => {
 
   const rows = [headerRow].concat(formattedDataRow);
 
-  render(createElement(TableThree, { country, rows }), tableNode);
+  tableNode.render(<TableThree country={country} rows={rows}/>);
 };
 
 /**
@@ -74,6 +74,7 @@ const init = (className) => {
 
           const defaultCountry = 'United States';
           const defaultYear = '2020';
+          const root = createRoot(tableNode)
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
@@ -85,7 +86,7 @@ const init = (className) => {
                   year || defaultYear, // This is variable but needs to be sorted to be that.
                   yearField2
                 );
-                renderTable(tableNode, countryData, country || defaultCountry);
+                renderTable(root, countryData, country || defaultCountry);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
               }

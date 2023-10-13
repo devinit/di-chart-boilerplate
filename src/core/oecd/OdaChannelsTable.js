@@ -1,5 +1,5 @@
-import { createElement } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import OdaChannelsTable from '../../components/OdaChannelsTable';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, VALUE_FIELD_AIDTYPE, CHANNEL_FIELD, YEARsingle } from '../../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
@@ -34,7 +34,7 @@ const renderTable = (tableNode, countryData, country) => {
   const tableData = getRows(sumChannelData(countryData));
   const rows = [rowHeader].concat(tableData);
 
-  render(createElement(OdaChannelsTable, { country, rows }), tableNode);
+  tableNode.render(<OdaChannelsTable country={country} rows={rows}/>);
 };
 
 /**
@@ -52,6 +52,7 @@ const init = (className) => {
           const filterWrapper = addFilterWrapper(tableNode);
           let purposeField;
           let activeCountry = DEFAULT_COUNTRY;
+          const root = createRoot(tableNode)
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
@@ -81,7 +82,7 @@ const init = (className) => {
                     window.DIState.setState({ purpose: event.target.value });
                   });
                 }
-                renderTable(tableNode, countryData, activeCountry || DEFAULT_COUNTRY);
+                renderTable(root, countryData, activeCountry || DEFAULT_COUNTRY);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
               }

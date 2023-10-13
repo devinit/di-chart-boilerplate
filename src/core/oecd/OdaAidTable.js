@@ -1,5 +1,5 @@
-import { createElement } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { OdaAidTable } from '../../components/OdaAidTable';
 import { COUNTRY_FIELD, DEFAULT_COUNTRY, PURPOSE_FIELD, NO_DATA, YEARsingle, AIDTYPE_FIELD, VALUE_FIELD_AIDTYPE } from '../../utils/constants';
 import { filterDataByCountry, filterDataByPurpose, formatNumber } from '../../utils/data';
@@ -44,7 +44,8 @@ const renderTable = (tableNode, data, country, purpose) => {
   const countryData = filterDataByCountry(data, country || DEFAULT_COUNTRY, COUNTRY_FIELD);
   const purposeFilteredData = filterDataByPurpose(countryData, purpose, PURPOSE_FIELD);
   const rows = getRows(data, filterDataByYear(purposeFilteredData));
-  render(createElement(OdaAidTable, { country, rows }), tableNode);
+
+  tableNode.render(<OdaAidTable country={country} rows={rows}/>);
 };
 
 /**
@@ -61,6 +62,7 @@ const init = (className) => {
 
           let purposeField;
           let activeCountry = DEFAULT_COUNTRY;
+          const root = createRoot(tableNode)
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
@@ -82,11 +84,11 @@ const init = (className) => {
 
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;
-                    renderTable(tableNode, data, activeCountry || DEFAULT_COUNTRY, activePurpose);
+                    renderTable(root, data, activeCountry || DEFAULT_COUNTRY, activePurpose);
                   });
                 }
 
-                renderTable(tableNode, data, activeCountry || DEFAULT_COUNTRY, activePurpose);
+                renderTable(root, data, activeCountry || DEFAULT_COUNTRY, activePurpose);
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');
               }
