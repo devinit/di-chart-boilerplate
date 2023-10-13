@@ -1,5 +1,5 @@
-import { createElement } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { TableTwo } from '../../components/TableTwo/TableTwo';
 import { DEFAULT_COUNTRY, NO_DATA } from '../../utils/constants';
 import { filterDataByCountry, formatNumber } from '../../utils/data';
@@ -56,11 +56,11 @@ const sortedDataRows = (data) => {
         fullRows.push([
           i + 1,
           data[i].recipient_name,
-          formatNumber(Number(data[i]['2016']), NO_DATA),
           formatNumber(Number(data[i]['2017']), NO_DATA),
           formatNumber(Number(data[i]['2018']), NO_DATA),
           formatNumber(Number(data[i]['2019']), NO_DATA),
           formatNumber(Number(data[i]['2020']), NO_DATA),
+          formatNumber(Number(data[i]['2021']), NO_DATA),
         ]);
       }
     }
@@ -72,11 +72,11 @@ const sortedDataRows = (data) => {
         fullRows.push([
           i + 1,
           data[i].recipient_name,
-          formatNumber(Number(data[i]['2016']), NO_DATA),
           formatNumber(Number(data[i]['2017']), NO_DATA),
           formatNumber(Number(data[i]['2018']), NO_DATA),
           formatNumber(Number(data[i]['2019']), NO_DATA),
           formatNumber(Number(data[i]['2020']), NO_DATA),
+          formatNumber(Number(data[i]['2021']), NO_DATA),
         ]);
       }
     }
@@ -94,7 +94,7 @@ const getUnsortedDataRow = (data, years) => {
 };
 
 const renderTable = (data, country, purpose, tableNode) => {
-  const YEARS = [2016, 2020];
+  const YEARS = [2017, 2021];
   const yearRange = YEARS[1] - YEARS[0] + 1;
   const count = [];
   for (const key of Array(yearRange).keys()) {
@@ -112,7 +112,7 @@ const renderTable = (data, country, purpose, tableNode) => {
     .concat(sortedDataRows(sortedData))
     .concat([['Total of all other recipients'].concat(unsortedDataSum)]);
 
-  render(createElement(TableTwo, { rows }), tableNode);
+  tableNode.render(<TableTwo rows={rows}/>);
 };
 
 const init = (className) => {
@@ -128,6 +128,7 @@ const init = (className) => {
           let purposeField;
           let activePurpose = DEFAULT_PURPOSE;
           let activeCountry = DEFAULT_COUNTRY;
+          const root = createRoot(tableNode)
           if (window.DIState) {
             window.DIState.addListener(() => {
               dichart.showLoading();
@@ -149,11 +150,11 @@ const init = (className) => {
                   });
                   purposeField.addEventListener('change', (event) => {
                     activePurpose = event.target.value;
-                    renderTable(data, activeCountry, activePurpose, tableNode);
+                    renderTable(data, activeCountry, activePurpose, root);
                   });
                 }
 
-                renderTable(data, activeCountry, activePurpose, tableNode);
+                renderTable(data, activeCountry, activePurpose, root);
 
                 dichart.hideLoading();
                 tableNode.parentElement.classList.add('auto-height');

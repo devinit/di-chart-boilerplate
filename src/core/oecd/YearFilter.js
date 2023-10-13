@@ -22,20 +22,20 @@ const init = (className) => {
            *
            * const chart = window.echarts.init(chartNode);
            */
-          const csv = 'https://raw.githubusercontent.com/devinit/di-website-data/main/2022/year_dropdown.csv';
+          const csv = 'https://raw.githubusercontent.com/devinit/di-website-data/feature/update-rhfp-files/2022/year_dropdown.csv';
           fetchCSVData(csv).then((data) => {
             data = data.filter((item) => item['year'] !== "");
             const filterWrapper = addFilterWrapper(chartNode);
             const countryFilter = addFilter({
               wrapper: filterWrapper,
               options: data.map((d) => d.year),
-              defaultOption: '2020',
+              defaultOption: '2021',
               className: 'year-filter',
               label: 'Select year',
             });
 
             if (window.DIState) {
-              window.DIState.setState({ year: '2020' });
+              window.DIState.setState({ year: '2021' });
             }
 
             // add event listeners
