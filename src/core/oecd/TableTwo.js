@@ -15,7 +15,7 @@ const getGroupedData = (countryData) => {
     for (let count = 0; count < countryData.length; count++) {
       if (iteratorData.length >= 1) {
         let maxRow = iteratorData.reduce((prev, current) => {
-          if (Number(prev['2020']) < Number(current['2020'])) {
+          if (Number(prev['2021']) < Number(current['2021'])) {
             return current;
           } else {
             return prev;
@@ -30,7 +30,7 @@ const getGroupedData = (countryData) => {
   for (let count = 0; count < 10; count++) {
     if (iteratorData.length >= 1) {
       let maxRow = iteratorData.reduce((prev, current) => {
-        if (Number(prev['2020']) < Number(current['2020'])) {
+        if (Number(prev['2021']) < Number(current['2021'])) {
           return current;
         } else {
           return prev;
