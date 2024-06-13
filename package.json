@@ -43,7 +43,7 @@
     "core-js": "^3.37.1",
     "deepmerge": "^4.3.1",
     "expect.js": "^0.3.1",
-    "mobx": "^6.12.3",
+    "mobx": "^6.12.4",
     "papaparse": "^5.4.1",
     "prettier": "^3.3.2",
     "prop-types": "^15.8.1",
