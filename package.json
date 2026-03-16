@@ -27,7 +27,7 @@
     "gulp-clean": "^0.4.0",
     "gulp-rename": "^2.1.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.3",
+    "lint-staged": "^16.4.0",
     "nwb": "0.25.x"
   },
   "author": "",
