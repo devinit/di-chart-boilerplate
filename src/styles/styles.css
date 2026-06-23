@@ -1,6 +1,6 @@
-.dicharts--d3-boilerplate-chart, .dicharts--echarts-boilerplate-chart {
-    width: 100%;
-    height: 400px;
+.dicharts--d3-boilerplate-chart,
+.dicharts--echarts-boilerplate-chart {
+  width: 100%;
 }
 
 .spotlight-banner.data-selector--wrapper {
@@ -15,7 +15,11 @@
   display: inline-block;
 }
 
-.charts__chart .table-styled table {
+.charts__chart {
+  width: 100%;
+}
+
+.table-styled table {
   width: 100%;
 }
 
@@ -49,7 +53,7 @@
 
 @media screen and (max-width: 412px) {
   .custom-legend.right {
-      display: block;
+    display: block;
   }
 }
 
@@ -85,7 +89,7 @@
 
 @media screen and (max-width: 699px) {
   .chart-container .charts__chart {
-      display: block;
+    display: block;
   }
 }
 
@@ -117,4 +121,120 @@
 
 .invisible {
   visibility: hidden;
+}
+
+.page-container {
+  display: flex;
+}
+
+.preview-pane {
+  border-left: 1px solid #ccc;
+  overflow: auto;
+}
+
+.all-charts {
+  min-width: 100%;
+  height: 100vh;
+  overflow: auto;
+}
+
+#preview-iframe {
+  height: 100vh;
+  width: 100%;
+}
+
+#preview-button {
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: center;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 14px;
+  background-color: rgb(133, 39, 39);
+}
+
+#preview-button:hover {
+  color: white;
+  background-color: rgb(128, 99, 99);
+}
+
+.toggle-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.preview {
+  display: grid;
+  justify-content: end;
+  border-bottom: 1px solid lightgray;
+  background-color: #f2f2f2;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.buttons {
+  margin-right: 20px;
+}
+
+.preview-label {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.preview-label h3 {
+  font-size: 20px;
+  color: black;
+}
+
+.preview-switch {
+  width: 48px;
+  height: 28px;
+  position: relative;
+}
+
+.preview-switch input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightgray;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.switch:before {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 4px;
+  top: 4px;
+  content: '';
+  background-color: white;
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+input:checked + .switch {
+  background-color: rgb(133, 39, 39);
+}
+
+input:checked + .switch:before {
+  transform: translateX(20px);
 }
