@@ -45,7 +45,7 @@
     "expect.js": "^0.3.1",
     "mobx": "^7.1.6",
     "papaparse": "^5.7.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "prop-types": "^15.8.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
